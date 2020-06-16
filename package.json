@@ -6,7 +6,13 @@
     "helpers": "tests/js/helpers"
   },
   "scripts": {
-    "test": "mocha --require @babel/register tests/js/cases/**/*.js"
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -39,10 +45,17 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "babel-plugin-module-resolver": "^3.2.0",
-    "chai": "^4.2.0",
-    "jquery": "^3.4.1",
-    "jsdom": "^15.1.1",
-    "mocha": "^6.2.0",
-    "sinon": "^7.4.1"
+    "cross-env": "^7.0.2",
+    "node-sass": "^4.14.1",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "resolve-url-loader": "^3.1.0",
+    "sass-loader": "^8.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "laravel-mix": "^5.0.4",
+    "vue": "^2.6.11"
   }
 }
