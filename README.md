@@ -6,4 +6,4 @@
   <li>4 php artisan october:passwd to change the password default</li>
 </ul>
 
-<p>Proyect development by Eduardo Navarrete Erdwell</p>
+<p>Proyect developed by Eduardo Navarrete Erdwell</p>
