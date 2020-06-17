@@ -1,0 +1,12 @@
+columns:
+    id:
+        label: id
+        type: number
+    category:
+        label: category
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: slug
+        type: text

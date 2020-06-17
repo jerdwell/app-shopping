@@ -3,3 +3,30 @@ url = "/"
 layout = "default"
 is_hidden = 0
 ==
+
+<div class="w-100">
+  <img class="w-100" src="https://dummyimage.com/1280x400" alt="">
+</div>
+
+<div class="bg-light py-5">
+  <div class="container">
+    <h1 class="text-center text-muted">Lorem ipsum dolor sit.</h1>
+    <p class="mb-5 py-5 text-dark text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat necessitatibus dolore quia aliquam ad? Ducimus asperiores reiciendis esse. Nemo officiis esse aperiam temporibus! Incidunt fugit reprehenderit voluptate tempora blanditiis doloribus mollitia enim ratione voluptates dolor recusandae reiciendis praesentium, neque vel perferendis! Accusamus blanditiis facilis incidunt eos possimus recusandae harum id!</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row py-5">
+
+    {% for item in 0..15 %}
+    <div class="col-md-6 col-xl-4 mb-5">
+      {% partial 'components/products/product-card-default' %}
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<div class="bg-dark">
+  <img src="https://dummyimage.com/1280x300" alt="" class="w-100">
+</div>

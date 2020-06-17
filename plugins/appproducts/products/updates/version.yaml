@@ -1,0 +1,41 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table appproducts_products_'
+    - builder_table_create_appproducts_products_.php
+1.0.3:
+    - 'Updated table appproducts_products_'
+    - builder_table_update_appproducts_products_products.php
+1.0.4:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_2.php
+1.0.5:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_3.php
+1.0.6:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_4.php
+1.0.7:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_5.php
+1.0.8:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_6.php
+1.0.9:
+    - 'Created table appproducts_products_'
+    - builder_table_create_appproducts_products__2.php
+1.0.10:
+    - 'Updated table appproducts_products_categories'
+    - builder_table_update_appproducts_products_categories.php
+1.0.11:
+    - 'Updated table appproducts_products_categories'
+    - builder_table_update_appproducts_products_categories_2.php
+1.0.12:
+    - 'Updated table appproducts_products_products_categories'
+    - builder_table_update_appproducts_products_products_categories.php
+1.0.13:
+    - 'Drop table appproducts_products_products_categories'
+    - builder_table_delete_appproducts_products_products_categories.php
+1.0.14:
+    - 'Updated table appproducts_products_products_categories'
+    - builder_table_update_appproducts_products_pivot_p_cat.php

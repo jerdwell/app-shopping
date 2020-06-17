@@ -39,6 +39,6 @@ mix.webpackConfig({
 
 mix
   // .js('resources/js/src/main.js', 'js')
-  .sass('themes/app-shopping-demo/src/sass/app.scss', 'css')
+  .sass('themes/app-shopping-demo/src/sass/app.sass', 'css')
   // .copy('resources/img', 'img', false).sourceMaps()
   .setPublicPath('themes/app-shopping-demo/assets/')

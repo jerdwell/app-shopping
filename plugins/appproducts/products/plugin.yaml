@@ -1,0 +1,16 @@
+plugin:
+    name: 'appproducts.products::lang.plugin.name'
+    description: 'appproducts.products::lang.plugin.description'
+    author: 'App Products'
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Products
+        url: appproducts/products/products
+        icon: icon-barcode
+        sideMenu:
+            side-menu-item:
+                label: Categorías
+                url: appproducts/products/categories
+                icon: icon-tags

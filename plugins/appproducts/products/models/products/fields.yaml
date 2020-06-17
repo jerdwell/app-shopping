@@ -1,0 +1,67 @@
+fields:
+    product_name:
+        label: 'Nombre del producto'
+        span: left
+        type: text
+    product_price:
+        label: Costo
+        span: auto
+        type: number
+    product_sku:
+        label: SKU
+        span: left
+        context:
+            - create
+            - preview
+        type: text
+    product_stock:
+        label: 'Productos en stock'
+        span: right
+        type: number
+    product_description:
+        label: 'Descripción del producto'
+        size: ''
+        span: full
+        type: richeditor
+    product_metadata:
+        label: metadatos
+        prompt: 'Agrega otro elemento'
+        maxItems: '9'
+        span: full
+        type: repeater
+        form:
+            fields:
+                key:
+                    label: Titulo
+                    span: auto
+                    type: text
+                value:
+                    label: Valor
+                    span: auto
+                    type: text
+    product_cover:
+        label: 'Portada de producto'
+        mode: image
+        mimeTypes: 'jpeg, jpg, jpeg2000, png, gif'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    product_gallery:
+        label: 'Galería del producto'
+        span: auto
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        mimeTypes: 'jpeg, jpg, jpeg2000, gif'
+        type: fileupload
+    categories:
+        label: Categorías
+        span: auto
+        nameFrom: category
+        descriptionFrom: description
+        type: relation
