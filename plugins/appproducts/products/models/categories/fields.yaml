@@ -11,4 +11,14 @@ fields:
         preset:
             field: category
             type: slug
+        hidden: 0
         type: text
+    cover_category:
+        label: Portada
+        mode: file
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

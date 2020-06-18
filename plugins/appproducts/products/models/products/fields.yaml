@@ -65,3 +65,9 @@ fields:
         nameFrom: category
         descriptionFrom: description
         type: relation
+    tags:
+        label: Etiquetas
+        span: auto
+        nameFrom: tag_name
+        descriptionFrom: description
+        type: relation

@@ -1,0 +1,10 @@
+name: Tags
+form: $/appproducts/products/models/tags/fields.yaml
+modelClass: AppProducts\Products\Models\Tags
+defaultRedirect: appproducts/products/tags
+create:
+    redirect: 'appproducts/products/tags/update/:id'
+    redirectClose: appproducts/products/tags
+update:
+    redirect: appproducts/products/tags
+    redirectClose: appproducts/products/tags

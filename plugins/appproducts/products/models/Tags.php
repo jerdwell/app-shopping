@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class Categories extends Model
+class Tags extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -17,7 +17,7 @@ class Categories extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'appproducts_products_categories';
+    public $table = 'appproducts_products_tags';
 
     /**
      * @var array Validation rules
@@ -25,21 +25,18 @@ class Categories extends Model
     public $rules = [
     ];
 
-
-    /** Relations **/
+    
+    /** Relarions */
 
     public $belongsToMany = [
         'products' => [
             'AppProducts\Products\Models\Products',
-            'table' => 'appproducts_products_pivot_p_cat',
-            'key'      => 'category_id',
+            'table' => 'appproducts_products_prod_tag',
+            'key'      => 'tag_id',
             'otherKey' => 'product_id',
             'order' => 'Product'
         ]
     ];
 
-    public $attachOne = [
-        'cover_category' => 'System\Models\File'
-    ];
 
 }

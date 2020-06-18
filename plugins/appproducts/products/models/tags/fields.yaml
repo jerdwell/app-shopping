@@ -1,0 +1,15 @@
+fields:
+    tag_name:
+        label: Etiqueta
+        span: left
+        required: 1
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        readOnly: 1
+        hidden: 0
+        preset:
+            field: tag_name
+            type: slug
+        type: text

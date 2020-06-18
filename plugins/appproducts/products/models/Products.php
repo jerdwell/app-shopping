@@ -39,6 +39,14 @@ class Products extends Model
             'key'      => 'product_id',
             'otherKey' => 'category_id',
             'order' => 'category'
+        ],
+
+        'tags' => [
+            'AppProducts\Products\Models\Tags',
+            'table' => 'appproducts_products_prod_tag',
+            'key'      => 'product_id',
+            'otherKey' => 'tag_id',
+            'order' => 'tag_name'
         ]
     ];
 

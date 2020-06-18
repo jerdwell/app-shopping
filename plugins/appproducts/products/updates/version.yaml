@@ -39,3 +39,15 @@
 1.0.14:
     - 'Updated table appproducts_products_products_categories'
     - builder_table_update_appproducts_products_pivot_p_cat.php
+1.0.15:
+    - 'Created table appproducts_products_tags'
+    - builder_table_create_appproducts_products_tags.php
+1.0.16:
+    - 'Updated table appproducts_products_tags'
+    - builder_table_update_appproducts_products_tags.php
+1.0.17:
+    - 'Created table appproducts_products_prod_tag'
+    - builder_table_create_appproducts_products_prod_tag.php
+1.0.18:
+    - 'Updated table appproducts_products_prod_tag'
+    - builder_table_update_appproducts_products_prod_tag.php

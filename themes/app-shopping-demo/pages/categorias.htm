@@ -1,0 +1,39 @@
+title = "Categorías"
+url = "/categorias"
+layout = "default"
+is_hidden = 0
+
+[builderList]
+modelClass = "AppProducts\Products\Models\Categories"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "category"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% set records = builderList.records %}
+
+<div class="bg-light py-5">
+  <div class="container">
+    <h1 class="text-muted text-center my-5">
+      {{ this.page.title }}
+    </h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row py-5">
+    {% for record in records %}
+    <div class="col-md-6 col-lg-4">
+      <a href="productos/categoria/{{attribute(record, 'slug')}}" class="card bg-dark">
+        <div class="card-body">
+          <img src="{{attribute(record,'cover_category').path}}" alt="" class="w-100">
+          <h4 class="text-center text-muted mt-4">{{attribute(record, 'category')}}</h4>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>

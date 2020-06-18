@@ -1,0 +1,12 @@
+title: Tags
+modelClass: AppProducts\Products\Models\Tags
+list: $/appproducts/products/models/tags/columns.yaml
+recordUrl: 'appproducts/products/tags/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

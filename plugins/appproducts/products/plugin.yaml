@@ -10,7 +10,15 @@ navigation:
         url: appproducts/products/products
         icon: icon-barcode
         sideMenu:
+            side-menu-item3:
+                label: Productos
+                url: appproducts/products/products
+                icon: icon-cubes
             side-menu-item:
                 label: Categorías
                 url: appproducts/products/categories
+                icon: icon-sitemap
+            side-menu-item2:
+                label: Etiquetas
+                url: appproducts/products/tags
                 icon: icon-tags
