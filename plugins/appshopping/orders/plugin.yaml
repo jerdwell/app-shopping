@@ -9,3 +9,8 @@ navigation:
         label: Órdenes
         url: appshopping/orders/orders
         icon: icon-th-list
+        sideMenu:
+            side-menu-item:
+                label: Órdenes
+                url: appshopping/orders/orders
+                icon: icon-sitemap

@@ -3,15 +3,15 @@ columns:
         label: id
         type: number
     order_status:
-        label: order_status
+        label: 'Estatus de la orden'
         type: text
     order_valid:
-        label: order_valid
+        label: Validez
         type: text
         searchable: true
         sortable: true
     order_code:
-        label: order_code
+        label: 'Código de orden'
         type: text
         searchable: true
         sortable: true

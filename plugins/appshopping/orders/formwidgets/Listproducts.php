@@ -23,11 +23,15 @@ class ListProducts extends FormWidgetBase
 
   public function render()
   {
-    $order = Orders::find($this -> model -> attributes['id']);
+    if(isset($this -> model -> attributes['id'])){
+      $order = Orders::find($this -> model -> attributes['id']);
+      $this -> vars ['products'] = $order -> products;
+    }else{
+      $this -> vars ['products'] = [];
+    }
     $this -> vars['id'] = $this -> getId();
     $this -> vars['name'] = $this -> getFieldName();
     $this -> vars['value'] = $this -> getLoadValue();
-    $this -> vars ['products'] = $order -> products;
     return $this -> makePartial('list-products');
   }
 

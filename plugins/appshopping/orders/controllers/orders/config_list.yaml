@@ -1,5 +1,5 @@
 title: Orders
-modelClass: appShopping\Orders\Models\Orders
+modelClass: AppShopping\Orders\Models\Orders
 list: $/appshopping/orders/models/orders/columns.yaml
 recordUrl: 'appshopping/orders/orders/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
