@@ -1,0 +1,11 @@
+plugin:
+    name: 'appshopping.orders::lang.plugin.name'
+    description: 'appshopping.orders::lang.plugin.description'
+    author: app-shopping
+    icon: oc-icon-file-text
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Órdenes
+        url: appshopping/orders/orders
+        icon: icon-th-list

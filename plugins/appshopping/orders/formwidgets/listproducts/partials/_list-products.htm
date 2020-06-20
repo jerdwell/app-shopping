@@ -1,0 +1,76 @@
+<?php
+  $i = 0;
+?>
+<div class="products-container">
+  <?php forEach($this -> vars['products'] as $product){ ?>
+  <div class="row">
+  
+    <div class="col-sm-6">
+      <label><small><?php echo $product -> product_sku; ?></small></label>
+      <input
+        readonly
+        type="text"
+        class="form-control"
+        name="product_name"
+        value="<?php echo $product -> product_name; ?>"
+        required>
+      <input
+        type="hidden"
+        class="form-control id-product-order"
+        name="Orders[products][<?php echo $i; ?>][product_id]"
+        value="<?php echo $product -> pivot -> product_id; ?>"
+        required>
+    </div>
+  
+    <div class="col-xs-4 col-sm-2 col-md-2 text-center">
+      <label>Costo</label>
+      <input
+        readonly
+        type="text"
+        class="form-control text-center"
+        name="product_price"
+        value="<?php echo $product -> product_price; ?>"
+        required>
+    </div>
+  
+    <div class="col-xs-4 col-sm-2 col-md-2 text-center">
+      <label>Cantidad</label>
+      <input
+        type="number"
+        step="any"
+        name="Orders[products][<?php echo $i; ?>][quantity]"
+        id="Form-formProductsForm0-field-Orders-products-0-quantity"
+        value="<?php echo $product -> pivot -> quantity; ?>"
+        placeholder=""
+        min="1"
+        class="form-control text-center"
+        autocomplete="off"
+        pattern="-?\d+(\.\d+)?"
+        maxlength="255"
+        required="true">
+    </div>
+  
+    <div class="col-xs-4 col-sm-2 col-md-2 text-center">
+      <label>Subtotal</label>
+      <input
+        readonly
+        type="number"
+        name="total"
+        id="total"
+        value="<?php echo $product -> pivot -> quantity * $product -> product_price; ?>"
+        class="form-control text-center"
+        required="true">
+    </div>
+  
+  </div>
+  <?php $i++ ?>
+  <?php } ?>
+</div>
+
+<?php include '_product-browser.htm' ?>
+
+<div class="text-center" style="margin-top:10px;">
+  <button type="button" onclick="toggleNewProduct()" id="add-product-quotation" class="btn btn-info">
+    Agregar Producto
+  </button>
+</div>

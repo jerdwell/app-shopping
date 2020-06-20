@@ -1,0 +1,17 @@
+columns:
+    id:
+        label: id
+        type: number
+    order_status:
+        label: order_status
+        type: text
+    order_valid:
+        label: order_valid
+        type: text
+        searchable: true
+        sortable: true
+    order_code:
+        label: order_code
+        type: text
+        searchable: true
+        sortable: true

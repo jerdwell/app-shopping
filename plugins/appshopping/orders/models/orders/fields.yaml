@@ -1,0 +1,29 @@
+fields:
+    order_code:
+        span: auto
+        readOnly: 0
+        path: $/appshopping/orders/partials/test.htm
+        type: partial
+    order_valid:
+        label: Vigencia
+        mode: datetime
+        span: left
+        required: 1
+        type: datepicker
+    order_status:
+        label: 'Status de la orden'
+        options:
+            Activa: Activa
+            Entregada: Entregada
+            Cancelada: Cancelada
+        emptyOption: 'Selecciona una opción'
+        showSearch: 0
+        span: right
+        cssClass: ''
+        required: 1
+        type: dropdown
+    products:
+        label: Productos
+        type: listproducts
+        span: full
+        required: 1
