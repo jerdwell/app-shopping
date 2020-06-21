@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table appshopping_customers_customers'
+    - builder_table_create_appshopping_customers_customers.php

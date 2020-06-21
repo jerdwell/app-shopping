@@ -9,6 +9,7 @@ fields:
         mode: datetime
         span: left
         required: 1
+        minDate: now
         type: datepicker
     order_status:
         label: 'Status de la orden'

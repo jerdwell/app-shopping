@@ -1,0 +1,29 @@
+fields:
+    customer_name:
+        label: Nombre(s)
+        span: left
+        required: 1
+        type: text
+    customer_lastname:
+        label: Apellidos
+        span: right
+        required: 1
+        type: text
+    customer_email:
+        label: Correo
+        span: left
+        required: 1
+        type: text
+    customer_phone:
+        label: Teléfono
+        span: auto
+        required: 1
+        type: text
+    customer_password:
+        label: Contraseña
+        span: left
+        required: 1
+        context:
+            - create
+            - update
+        type: password

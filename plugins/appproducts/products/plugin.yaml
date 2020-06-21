@@ -2,7 +2,7 @@ plugin:
     name: 'appproducts.products::lang.plugin.name'
     description: 'appproducts.products::lang.plugin.description'
     author: 'App Products'
-    icon: oc-icon-adjust
+    icon: oc-icon-cubes
     homepage: ''
 navigation:
     main-menu-item:
