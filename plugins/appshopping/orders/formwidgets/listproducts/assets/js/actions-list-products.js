@@ -31,3 +31,31 @@ function updateTotalSubtotalOrder(data){
   }
   $('#order-total').val(total)
 }
+
+function  getProductData(id){
+  $(this).request('onGetProduct', {
+    data: {
+      product_id: id
+    },
+    success: (res) => {
+      let modal = document.querySelector('.modal-pop-product')
+      modal.style.right = '5px'
+      $('.modal-pop-product-title').html(res.product_name)
+      if(res.product_cover != null){
+        $('.modal-pop-product-cover').attr('src',res.product_cover.path)
+      }
+      $('.modal-pop-product-price').html('Costo: <b>$' + res.product_price + '</b>')
+      $('.modal-pop-product-description').html(res.product_description)
+      let metadata = ''
+      res.product_metadata.forEach(e => {
+        metadata += `<li>${e.key}: <b>${e.value}</b></li>`
+      })
+      $('.modal-pop-product-metadata').html(metadata)
+    }
+  })
+}
+
+function closeModalProducts(){
+  let modal = document.querySelector('.modal-pop-product')
+  modal.style.right = '-50%'
+}

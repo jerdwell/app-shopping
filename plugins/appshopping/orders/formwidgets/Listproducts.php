@@ -66,4 +66,11 @@ class ListProducts extends FormWidgetBase
     }
   }
 
+  public function onGetProduct()
+  {
+    $product = Products::find(post('product_id'));
+    $product -> product_cover;
+    return $product;
+  }
+
 }
