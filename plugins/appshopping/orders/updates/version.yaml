@@ -39,3 +39,6 @@
 1.0.14:
     - 'Updated table appshopping_orders_orders_items'
     - builder_table_update_appshopping_orders_orders_items_8.php
+1.0.15:
+    - 'Updated table appshopping_orders_orders_items'
+    - builder_table_update_appshopping_orders_orders_items_9.php

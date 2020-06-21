@@ -3,6 +3,7 @@
 use AppProducts\Products\Models\Products;
 use AppShopping\Orders\Models\Orders;
 use Backend\Classes\FormWidgetBase;
+use Illuminate\Support\Facades\Redirect;
 
 class ListProducts extends FormWidgetBase
 {
@@ -23,9 +24,13 @@ class ListProducts extends FormWidgetBase
 
   public function render()
   {
+    $this -> vars['total_order'] = 0;
     if(isset($this -> model -> attributes['id'])){
       $order = Orders::find($this -> model -> attributes['id']);
       $this -> vars ['products'] = $order -> products;
+      foreach ($this -> vars['products'] as $product) {
+        $this -> vars['total_order'] += $product -> pivot -> quantity * $product -> product_price;
+      }
     }else{
       $this -> vars ['products'] = [];
     }
@@ -39,13 +44,26 @@ class ListProducts extends FormWidgetBase
   {
     $this -> addCss('css/listproducts.css');
     $this -> addJs('js/listproducts.js');
+    $this -> addJs('js/actions-list-products.js');
   }
 
-  public function onTest()
+  public function onFindProducts()
   {
     $products = Products::where('product_name', 'like', '%'. post('value') .'%')
       -> orWhere('product_sku', 'like', '%'. post('value') .'%') -> get();
     return $products;
+  }
+
+  public function onDetachProduct()
+  {
+    try {
+      $order_id = post('order_id');
+      $product_id = post('product_id');
+      $Order = Orders::find($order_id) -> products() -> detach($product_id);
+      return true;
+    } catch (\Throwable $th) {
+      return false;
+    }
   }
 
 }

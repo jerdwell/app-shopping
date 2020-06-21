@@ -1,6 +1,18 @@
-function toggleNewProduct() {
-  let item = document.getElementById('product-browser-content')
-  item.style.display = 'block'
+function toggleNewProduct(data) {
+  let browser = document.getElementById('product-browser-content')
+  let cancel_button = document.getElementById('cancel-add-product-quotation')
+  let add_product_button = document.getElementById('add-product-quotation')
+  if(data){
+    browser.style.display = 'block'
+    cancel_button.style.display = 'inline-block'
+    add_product_button.style.display = 'none'
+  }else{
+    $('#products-results').html('')
+    document.querySelector('.products-results-container').style.display = 'none '
+    browser.style.display = 'none'
+    cancel_button.style.display = 'none'
+    add_product_button.style.display = 'inline-block'
+  }
 }
 
 function searchProducts(data) {
@@ -11,7 +23,7 @@ function searchProducts(data) {
   });
   data = document.getElementById(data).value
   if(data.replace(/\s+/g, '').length <= 0) return false
-  $(this).request('onTest', {
+  $(this).request('onFindProducts', {
     data: {
       value: data
     },
@@ -63,6 +75,7 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
         <input
           readonly
           type="text"
+          id="price-${childrens}"
           class="form-control text-center"
           name="product_price"
           value="${product_price}"
@@ -72,11 +85,12 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
       <div class="col-xs-4 col-sm-2 col-md-2 text-center">
         <label>Cantidad</label>
         <input
+          onchange="updateTotalSubtotalOrder('${(childrens)}')"
           type="number"
           step="1"
           name="${key}[quantity]"
           min="1"
-          id=""
+          id="quantity-${childrens}"
           value="1"
           placeholder=""
           class="form-control text-center"
@@ -92,9 +106,9 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
           readonly
           type="number"
           name="total"
-          id="total"
+          id="subtotal-${childrens}"
           value="${ product_price * 1 }"
-          class="form-control text-center"
+          class="form-control text-center subtotal-items"
           required="true">
       </div>
     </div>

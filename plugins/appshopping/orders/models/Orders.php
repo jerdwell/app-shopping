@@ -1,5 +1,6 @@
 <?php namespace AppShopping\Orders\Models;
 
+use Illuminate\Support\Facades\DB;
 use Model;
 
 /**
@@ -24,6 +25,15 @@ class Orders extends Model
      */
     public $rules = [
     ];
+
+    /** events */
+
+    public function beforeSave()
+    {
+        DB::table('appshopping_orders_orders_items')
+            -> where('order_id', $this -> id)
+            -> delete();
+    }
 
     
     /** Relations */

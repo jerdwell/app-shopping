@@ -4,3 +4,6 @@
 .products-results-container{
   display: none;
 }
+#cancel-add-product-quotation{
+  display: none;
+}
