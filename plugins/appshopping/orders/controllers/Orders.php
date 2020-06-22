@@ -1,6 +1,7 @@
 <?php namespace appShopping\Orders\Controllers;
 
 use AppProducts\Products\Models\Products;
+use appshopping\Customers\Models\Customers;
 use Backend\Classes\Controller;
 use BackendMenu;
 
@@ -17,10 +18,16 @@ class Orders extends Controller
         BackendMenu::setContext('appShopping.Orders', 'main-menu-item');
     }
 
-    public function onTests()
+    public function onSearchCustomer()
     {
-        $input = post();
-        $products = Products::where('product_name', 'like', '%' . $input['data'] . '%')->get();
-        return ['products' => $products];
+        $data_customer = post('data_customer');
+        $customers = Customers::select('id', 'customer_name', 'customer_lastname', 'customer_email')
+        ->where('customer_name', 'like', '%' . $data_customer . '%')
+        ->where('customer_email_verified', 1)
+        ->where('deleted_at', null)
+        ->orWhere('customer_lastname', 'like', '%' . $data_customer . '%')
+        ->orWhere('customer_email', '%' . $data_customer . '%')
+        ->get();
+        return $customers;
     }
 }

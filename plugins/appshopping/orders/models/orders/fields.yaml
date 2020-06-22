@@ -1,8 +1,14 @@
 fields:
+    customer_id:
+        label: 'Cliente'
+        span: full
+        path: $/appshopping/orders/partials/attachcustomer.htm
+        type: partial
     order_code:
-        span: auto
+        label: 'Código de orden'
+        span: left
         readOnly: 0
-        path: $/appshopping/orders/partials/test.htm
+        path: $/appshopping/orders/partials/ordercode.htm
         type: partial
     order_valid:
         label: Vigencia
@@ -28,3 +34,7 @@ fields:
         type: listproducts
         span: full
         required: 1
+    customer_id:
+        label: Text
+        span: auto
+        type: text

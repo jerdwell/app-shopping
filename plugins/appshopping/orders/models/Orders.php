@@ -13,6 +13,7 @@ class Orders extends Model
     use \October\Rain\Database\Traits\SoftDelete;
 
     protected $dates = ['deleted_at'];
+    public $customer_data;
 
 
     /**
@@ -35,6 +36,10 @@ class Orders extends Model
             -> delete();
     }
 
+    public function afterFetch()
+    {
+        $this -> customer_data = $this -> order_customer;
+    }
     
     /** Relations */
     public $belongsToMany = [
@@ -44,6 +49,14 @@ class Orders extends Model
             'key'      => 'order_id',
             'otherKey' => 'product_id',
             'pivot' => ['quantity'],
+        ]
+    ];
+
+    public $hasOne = [
+        'order_customer' => [
+            'appshopping\Customers\Models\Customers',
+            'key' => 'id',
+            'otherKey' => 'customer_id'
         ]
     ];
 

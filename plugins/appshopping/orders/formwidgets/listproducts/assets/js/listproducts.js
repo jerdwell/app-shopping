@@ -52,8 +52,8 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
   let key = `Orders[products][${childrens}]`
 
   let template = `
-    <div class="row">
-      <div class="col-sm-6">
+    <div class="row" id="${product_sku}">
+      <div class="col-xs-8 col-sm-4">
         <label><small>${product_sku}</small></label>
         <input
           readonly
@@ -82,7 +82,7 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
           required>
       </div>
 
-      <div class="col-xs-4 col-sm-2 col-md-2 text-center">
+      <div class="col-xs-3 col-sm-2 col-md-2 text-center">
         <label>Cantidad</label>
         <input
           onchange="updateTotalSubtotalOrder('${(childrens)}')"
@@ -111,11 +111,30 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
           class="form-control text-center subtotal-items"
           required="true">
       </div>
+
+      <div class="col-xs-5 col-sm-2 text-center">
+        <div>
+          <label>Acciones</label>
+        </div>
+        <button type="button" class="btn btn-info btn-sm" onclick="getProductData('${product_id}')">
+          <i class="icon icon-eye"></i>
+        </button>
+        <button onclick="detachOrderProductUnsaved('${product_sku}')" type="button" class="btn btn-danger btn-sm">
+          <i class="icon icon-times"></i>
+        </button>
+      </div>
+
     </div>
 
   `
   content.append(template)
+  let button_cancel = document.getElementById('cancel-add-product-quotation').style.display = 'none'
+  let button_add_product = document.getElementById('add-product-quotation').style.display = 'inline-block'
   let item = document.getElementById('product-browser-content').style.display = 'none'
   document.querySelector('.products-results-container').style.display = 'none'
   return false
+}
+
+function detachOrderProductUnsaved(id){
+  $('#' + id).remove()
 }

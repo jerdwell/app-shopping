@@ -1,5 +1,6 @@
 <?php namespace appshopping\Customers\Models;
 
+use Illuminate\Support\Facades\Hash;
 use Model;
 
 /**
@@ -23,5 +24,21 @@ class Customers extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'customer_name' => 'required|string|max:150',
+        'customer_lastname' => 'required|string|max:150',
+        'customer_phone' => 'required|string|max:80',
+        'customer_password' => 'required|string|min:8|max:30',
+        'customer_email' => 'required|email|unique:appshopping_customers_customers,customer_email'
     ];
+
+    /** Relations */
+    public $attachOne = [
+        'customer_avatar' => 'System\Models\File'
+    ];
+
+    /** events */
+    public function beforeSave()
+    {
+        $this -> customer_password = Hash::make($this -> customer_password);
+    }
 }

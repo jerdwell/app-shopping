@@ -27,3 +27,13 @@ fields:
             - create
             - update
         type: password
+    customer_avatar:
+        label: 'Foto de perfil'
+        span: auto
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        fileTypes: 'jpeg, jpg, png'
+        type: fileupload

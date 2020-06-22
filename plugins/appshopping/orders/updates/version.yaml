@@ -42,3 +42,15 @@
 1.0.15:
     - 'Updated table appshopping_orders_orders_items'
     - builder_table_update_appshopping_orders_orders_items_9.php
+1.0.16:
+    - 'Created table appshopping_orders_customers'
+    - builder_table_create_appshopping_orders_customers.php
+1.0.17:
+    - 'Drop table appshopping_orders_customers'
+    - builder_table_delete_appshopping_orders_customers.php
+1.0.18:
+    - 'Updated table appshopping_orders_orders'
+    - builder_table_update_appshopping_orders_orders_4.php
+1.0.19:
+    - 'Updated table appshopping_orders_orders'
+    - builder_table_update_appshopping_orders_orders_5.php
