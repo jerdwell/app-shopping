@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Hash;
 use Model;
 
+
 /**
  * Model
  */
@@ -34,6 +35,10 @@ class Customers extends Model
     /** Relations */
     public $attachOne = [
         'customer_avatar' => 'System\Models\File'
+    ];
+
+    public $jsonable = [
+        'customer_address'
     ];
 
     /** events */

@@ -25,7 +25,6 @@ fields:
         required: 1
         context:
             - create
-            - update
         type: password
     customer_avatar:
         label: 'Foto de perfil'
@@ -37,3 +36,32 @@ fields:
             extension: auto
         fileTypes: 'jpeg, jpg, png'
         type: fileupload
+tabs:
+    fields:
+        customer_address:
+            label: Direcciones
+            prompt: 'Agregar Dirección'
+            maxItems: '3'
+            span: full
+            type: repeater
+            tab: Direcciones
+            form:
+                fields:
+                    address:
+                        label: Dirección
+                        span: full
+                        type: text
+                    lat:
+                        label: Latitud
+                        span: left
+                        required: 1
+                        type: text
+                    lng:
+                        label: Longitud
+                        span: auto
+                        required: 1
+                        type: text
+                    country:
+                        label: País
+                        span: auto
+                        type: text

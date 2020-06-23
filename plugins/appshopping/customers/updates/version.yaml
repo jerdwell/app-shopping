@@ -3,3 +3,24 @@
 1.0.2:
     - 'Created table appshopping_customers_customers'
     - builder_table_create_appshopping_customers_customers.php
+1.0.3:
+    - 'Created table appshopping_customers_'
+    - builder_table_create_appshopping_customers_.php
+1.0.4:
+    - 'Updated table appshopping_customers_'
+    - builder_table_update_appshopping_customers_address.php
+1.0.5:
+    - 'Updated table appshopping_customers_address'
+    - builder_table_update_appshopping_customers_address_2.php
+1.0.6:
+    - 'Updated table appshopping_customers_address'
+    - builder_table_update_appshopping_customers_customer_address.php
+1.0.7:
+    - 'Drop table appshopping_customers_customer_address'
+    - builder_table_delete_appshopping_customers_customer_address.php
+1.0.8:
+    - 'Updated table appshopping_customers_customers'
+    - builder_table_update_appshopping_customers_customers.php
+1.0.9:
+    - 'Updated table appshopping_customers_customers'
+    - builder_table_update_appshopping_customers_customers_2.php
