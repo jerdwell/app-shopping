@@ -7,10 +7,15 @@ use BackendMenu;
 
 class Orders extends Controller
 {
-    public $implement = [        'Backend\Behaviors\ListController',        'Backend\Behaviors\FormController'    ];
+    public $implement = [
+        'Backend\Behaviors\ListController',
+        'Backend\Behaviors\FormController',
+        'Backend.Behaviors.ImportExportController',
+    ];
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
+    public $importExportConfig = 'config_import_export.yaml';
 
     public function __construct()
     {
@@ -29,6 +34,11 @@ class Orders extends Controller
         ->orWhere('customer_email', '%' . $data_customer . '%')
         ->get();
         return $customers;
+    }
+
+    public function onExportList()
+    {
+        return $this -> listExportCSV(array('filename' => 'test.csv'));
     }
 
 }

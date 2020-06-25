@@ -15,5 +15,8 @@
         data-stripe-load-indicator>
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
-    <button type="button" class="btn btn-info">Descarga</button>
+    <a
+        href="<?= Backend::url('appshopping/orders/orders/export') ?>"
+        type="button"
+        class="btn btn-info">Descargar reporte</a>
 </div>

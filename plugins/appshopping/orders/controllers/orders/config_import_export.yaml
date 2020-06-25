@@ -1,0 +1,14 @@
+export:
+  useList:
+    raw: true
+  fileName: reporte_de_ordenes.csv
+  title: Exportar
+  modelClass: appShopping\Orders\Models\Orders
+  list: $/appshopping/orders/models/orders/columns.yaml
+  redirect: /
+  defaultFormatOptions:
+    delimiter: ';'
+    enclosure: '"'
+    escape: '\'
+    encoding: 'utf-8'
+

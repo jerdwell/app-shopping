@@ -24,3 +24,10 @@ columns:
         label: 'Total de la compra'
         type: text
         sortable: true
+        select: 'concat(''$'',FORMAT(order_total / 100, 2))'
+    customer_id:
+        label: Cliente
+        type: text
+        searchable: true
+        select: 'CONCAT(customer_name, '' '', customer_lastname)'
+        relation: order_customer
