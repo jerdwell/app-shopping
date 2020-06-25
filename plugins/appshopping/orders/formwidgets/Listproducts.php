@@ -24,13 +24,10 @@ class ListProducts extends FormWidgetBase
 
   public function render()
   {
-    $this -> vars['total_order'] = 0;
     if(isset($this -> model -> attributes['id'])){
       $order = Orders::find($this -> model -> attributes['id']);
       $this -> vars ['products'] = $order -> products;
-      foreach ($this -> vars['products'] as $product) {
-        $this -> vars['total_order'] += $product -> pivot -> quantity * $product -> product_price;
-      }
+      $this -> vars ['order_total'] = $order -> order_total;
     }else{
       $this -> vars ['products'] = [];
     }

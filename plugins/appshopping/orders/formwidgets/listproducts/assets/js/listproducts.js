@@ -132,9 +132,15 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
   let button_add_product = document.getElementById('add-product-quotation').style.display = 'inline-block'
   let item = document.getElementById('product-browser-content').style.display = 'none'
   document.querySelector('.products-results-container').style.display = 'none'
+  setTimeout(() => {
+    updateTotalSubtotalOrder(childrens)
+  }, 500);
   return false
 }
 
 function detachOrderProductUnsaved(id){
   $('#' + id).remove()
+  let content = $('.products-container')
+  let childrens = content.children('.row').length
+  updateTotalSubtotalOrder(childrens)
 }

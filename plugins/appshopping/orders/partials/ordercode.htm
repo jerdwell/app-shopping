@@ -1,7 +1,8 @@
+<?php if(!empty($this -> vars['formModel']->attributes)) $formdata = $this -> vars['formModel']->attributes; ?>
 <input
   class="form-control"
   type="text"
   name="Orders[order_code]"
   id="Orders[order_code]"
   readonly
-  value="enm-<?php echo time(); ?>">
+  value="<?php echo isset($formdata) ? $formdata['order_code'] : 'enm-' . time(); ?>">

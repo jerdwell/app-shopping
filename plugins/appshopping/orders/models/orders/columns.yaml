@@ -2,16 +2,25 @@ columns:
     id:
         label: id
         type: number
-    order_status:
-        label: 'Estatus de la orden'
-        type: text
+    created_at:
+        label: 'Fecha de creación'
+        type: date
+        searchable: true
+        sortable: true
     order_valid:
         label: Validez
-        type: text
+        type: date
         searchable: true
         sortable: true
     order_code:
         label: 'Código de orden'
         type: text
         searchable: true
+        sortable: true
+    order_status:
+        label: 'Estatus de la orden'
+        type: text
+    order_total:
+        label: 'Total de la compra'
+        type: text
         sortable: true

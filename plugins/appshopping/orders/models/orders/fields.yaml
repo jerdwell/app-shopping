@@ -1,6 +1,6 @@
 fields:
     customer_id:
-        label: 'Cliente'
+        label: Cliente
         span: full
         path: $/appshopping/orders/partials/attachcustomer.htm
         type: partial
@@ -11,11 +11,9 @@ fields:
         path: $/appshopping/orders/partials/ordercode.htm
         type: partial
     order_valid:
-        label: Vigencia
-        mode: datetime
+        label: Validez
+        mode: date
         span: left
-        required: 1
-        minDate: now
         type: datepicker
     order_status:
         label: 'Status de la orden'
@@ -26,15 +24,18 @@ fields:
         emptyOption: 'Selecciona una opción'
         showSearch: 0
         span: right
+        default: Activa
         cssClass: ''
         required: 1
+        context:
+            - create
         type: dropdown
     products:
         label: Productos
         type: listproducts
         span: full
         required: 1
-    customer_id:
-        label: Text
-        span: auto
-        type: text
+    order_total:
+        span: right
+        path: $/appshopping/orders/partials/ordertotal.htm
+        type: partial

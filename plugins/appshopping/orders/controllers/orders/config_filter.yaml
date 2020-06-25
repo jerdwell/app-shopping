@@ -1,0 +1,21 @@
+
+scopes:
+
+  status: 
+    label: Status de la orden
+    type: group
+    conditions: order_status in (:filtered)
+    options:
+      Activa: Activa
+      Cancelada: Cancelada
+      Entregada: Entregada
+
+  dates_range:
+    label: Rango de fechas
+    type: daterange
+    conditions: created_at >= ':after' AND created_at <= ':before'
+  
+  order_valid:
+    label: Validez
+    type: daterange
+    conditions: order_valid >= ':after' AND order_valid <= ':before'

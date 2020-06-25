@@ -30,4 +30,5 @@ class Orders extends Controller
         ->get();
         return $customers;
     }
+
 }
