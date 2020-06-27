@@ -3,7 +3,6 @@
 use AppProducts\Products\Models\Products;
 use AppShopping\Orders\Models\Orders;
 use Backend\Classes\FormWidgetBase;
-use Illuminate\Support\Facades\Redirect;
 
 class ListProducts extends FormWidgetBase
 {
@@ -12,7 +11,7 @@ class ListProducts extends FormWidgetBase
   * @var string a unique alias to identify this widget
   */
 
-  protected $dafultalias = 'listproducts';
+  protected $defaultAlias = 'listproducts';
 
   public function widgetDetails()
   {

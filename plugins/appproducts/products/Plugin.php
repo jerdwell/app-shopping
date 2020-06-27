@@ -8,6 +8,14 @@ class Plugin extends PluginBase
     {
     }
 
+    public function registerFormWidgets()
+    {
+        return [
+            'AppProducts\FormWidgets\BrandSpecifications' => 'brandspecifications',
+        ];
+    }
+
+
     public function registerSettings()
     {
     }

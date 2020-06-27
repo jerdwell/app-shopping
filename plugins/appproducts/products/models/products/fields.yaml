@@ -1,13 +1,17 @@
 fields:
+    product:
+        label: Producto
+        span: auto
+        type: section
     product_name:
         label: 'Nombre del producto'
         span: left
         type: text
     product_description:
         label: Aplicación
-        size: ''
         span: full
-        type: richeditor
+        required: 1
+        type: text
     product_cover:
         label: 'Portada de producto'
         mode: image
@@ -29,10 +33,9 @@ fields:
         mimeTypes: 'jpeg, jpg, jpeg2000, gif'
         type: fileupload
 tabs:
-    stretch: 1
     fields:
-        text1:
-            label: Text
-            span: auto
-            type: text
+        brands:
+            label: Marcas
+            type: brandspecifications
+            span: full
             tab: Marcas
