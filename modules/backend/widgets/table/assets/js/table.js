@@ -69,13 +69,8 @@
         this.documentClickHandler = this.onDocumentClick.bind(this)
         this.toolbarClickHandler = this.onToolbarClick.bind(this)
 
-        if (this.options.postback && this.options.clientDataSourceClass == 'client') {
-            if (!this.options.postbackHandlerName) {
-                var formHandler = this.$el.closest('form').data('request')
-                this.options.postbackHandlerName = formHandler || 'onSave'
-            }
+        if (this.options.postback && this.options.clientDataSourceClass == 'client')
             this.formSubmitHandler = this.onFormSubmit.bind(this)
-        }
 
         // Navigation helper
         this.navigation = null
@@ -1117,7 +1112,7 @@
         recordsPerPage: false,
         data: null,
         postback: true,
-        postbackHandlerName: null,
+        postbackHandlerName: 'onSave',
         adding: true,
         deleting: true,
         toolbar: true,

@@ -1,7 +1,5 @@
 <?php namespace Backend\Widgets;
 
-use Config;
-use Backend;
 use Lang;
 use Input;
 use Request;
@@ -125,7 +123,7 @@ class Table extends WidgetBase
         $this->vars['recordsKeyFrom'] = $this->recordsKeyFrom;
 
         $this->vars['recordsPerPage'] = $this->getConfig('recordsPerPage', false) ?: 'false';
-        $this->vars['postbackHandlerName'] = $this->getConfig('postbackHandlerName');
+        $this->vars['postbackHandlerName'] = $this->getConfig('postbackHandlerName', 'onSave');
         $this->vars['searching'] = $this->getConfig('searching', false);
         $this->vars['adding'] = $this->getConfig('adding', true);
         $this->vars['deleting'] = $this->getConfig('deleting', true);
@@ -155,15 +153,7 @@ class Table extends WidgetBase
     protected function loadAssets()
     {
         $this->addCss('css/table.css', 'core');
-
-        if (Config::get('develop.decompileBackendAssets', false)) {
-            $scripts = Backend::decompileAsset($this->getAssetPath('js/build.js'));
-            foreach ($scripts as $script) {
-                $this->addJs($script, 'core');
-            }
-        } else {
-            $this->addJs('js/build-min.js', 'core');
-        }
+        $this->addJs('js/build-min.js', 'core');
     }
 
     /**

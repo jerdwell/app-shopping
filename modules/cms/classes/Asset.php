@@ -285,14 +285,7 @@ class Asset extends Extendable
             $fileName = $this->fileName;
         }
 
-        // Limit paths to those under the assets directory
-        $directory = $this->theme->getPath() . '/' . $this->dirName . '/';
-        $path = realpath($directory . $fileName);
-        if (!starts_with($path, $directory)) {
-            return false;
-        }
-
-        return $path;
+        return $this->theme->getPath().'/'.$this->dirName.'/'.$fileName;
     }
 
     /**

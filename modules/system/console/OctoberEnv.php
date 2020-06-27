@@ -63,7 +63,7 @@ class OctoberEnv extends Command
     /**
      * Overwrite config file
      */
-    protected function overwriteConfig()
+    private function overwriteConfig()
     {
         foreach (array_keys($this->config()) as $config) {
             $this->config = $config;
@@ -75,7 +75,7 @@ class OctoberEnv extends Command
     /**
      * Replace config values with env() syntax
      */
-    protected function configToEnv()
+    private function configToEnv()
     {
         $content = $this->parseConfigFile();
 
@@ -87,7 +87,7 @@ class OctoberEnv extends Command
      *
      * @return string
      */
-    protected function parseConfigFile()
+    private function parseConfigFile()
     {
         $lines = [];
 
@@ -107,7 +107,7 @@ class OctoberEnv extends Command
      * @param $line
      * @return mixed
      */
-    protected function parseLine($line, $keys)
+    private function parseLine($line, $keys)
     {
         $line = $this->replaceConfigLine($line, $keys);
 
@@ -121,7 +121,7 @@ class OctoberEnv extends Command
      * @param $keys
      * @return mixed
      */
-    protected function replaceConfigLine($line, $keys)
+    private function replaceConfigLine($line, $keys)
     {
         foreach ($keys as $envKey => $configKey) {
             $pattern = $this->buildPattern($configKey);
@@ -140,7 +140,7 @@ class OctoberEnv extends Command
      * @param $line
      * @return mixed
      */
-    protected function replaceDbConfigLine($line)
+    private function replaceDbConfigLine($line)
     {
         if ($this->config == 'database') {
             foreach ($this->dbConfig() as $connection => $settings) {
@@ -159,7 +159,7 @@ class OctoberEnv extends Command
      * @param $line
      * @param $connection
      */
-    protected function setCurrentConnection($line, $connection)
+    private function setCurrentConnection($line, $connection)
     {
         if (preg_match("/['\"]" . $connection . "['\"]" . "\s*=>/", $line)) {
             $this->connection = $connection;
@@ -170,7 +170,7 @@ class OctoberEnv extends Command
      * @param $configKey
      * @return string
      */
-    protected function buildPattern($configKey)
+    private function buildPattern($configKey)
     {
         return "/['\"]" . $configKey . "['\"]" . "\s*=>\s*[^,\[]+,/";
     }
@@ -180,19 +180,19 @@ class OctoberEnv extends Command
      * @param $configKey
      * @return \Closure
      */
-    protected function buildCallback($envKey, $configKey)
+    private function buildCallback($envKey, $configKey)
     {
         return function ($matches) use ($envKey, $configKey) {
             $value = $this->envValue($configKey);
 
-            $this->saveEnvSettings($envKey, $this->normalizeForEnv($value));
+            $this->saveEnvSettings($envKey, $value);
 
             // Remove protected values from the config files
             if (in_array($envKey, $this->protectedKeys) && !empty($value)) {
-                $value = '';
+                $value = "''";
             }
 
-            return $this->isEnv($matches[0]) ? $matches[0] : "'$configKey' => env('$envKey', {$this->normalizeForConfig($value)}),";
+            return $this->isEnv($matches[0]) ? $matches[0] : "'$configKey' => env('$envKey', {$value}),";
         };
     }
 
@@ -200,10 +200,10 @@ class OctoberEnv extends Command
      * @param $key
      * @param $value
      */
-    protected function saveEnvSettings($key, $value)
+    private function saveEnvSettings($key, $value)
     {
         if (! $this->envKeyExists($key)) {
-            $line = sprintf("%s=%s\n", $key, $value);
+            $line = sprintf("%s=%s\n", $key, $this->stripQuotes($value));
 
             if ($this->config == 'database' && $key != 'DB_CONNECTION') {
                 $this->writeDbEnvSettings($line);
@@ -216,7 +216,7 @@ class OctoberEnv extends Command
     /**
      * @param $line
      */
-    protected function writeDbEnvSettings($line)
+    private function writeDbEnvSettings($line)
     {
         if ($this->connection == config('database.default') || $this->connection == 'redis') {
             $this->writeToEnv($line);
@@ -227,7 +227,7 @@ class OctoberEnv extends Command
      * @param $configKey
      * @return string
      */
-    protected function envValue($configKey)
+    private function envValue($configKey)
     {
         $value = config("$this->config.$configKey");
 
@@ -235,14 +235,14 @@ class OctoberEnv extends Command
             $value = $this->databaseConfigValue($configKey);
         }
 
-        return $value;
+        return $this->normalize($value);
     }
 
     /**
      * @param $configKey
      * @return string
      */
-    protected function databaseConfigValue($configKey)
+    private function databaseConfigValue($configKey)
     {
         if ($configKey == 'default') {
             return config('database.default');
@@ -260,19 +260,13 @@ class OctoberEnv extends Command
     }
 
     /**
-     * Normalizes a value to be inserted into the .env file
-     *
      * @param $value
      * @return string
      */
-    protected function normalizeForEnv($value)
+    private function normalize($value)
     {
         if (is_string($value)) {
-            if (preg_match('/["\'#]/', $value)) {
-                return '"' . str_replace('"', '\\"', $value) . '"';
-            } else {
-                return $value;
-            }
+            return "'$value'";
         } elseif (is_bool($value)) {
             return $value ? 'true' : 'false';
         } elseif ($value === null) {
@@ -283,25 +277,19 @@ class OctoberEnv extends Command
     }
 
     /**
-     * Normalizes a value to be inserted into config files.
-     *
-     * @param $value
+     * @param $string
      * @return string
      */
-    protected function normalizeForConfig($value)
+    private function stripQuotes($string)
     {
-        if (is_string($value)) {
-            return '\'' . addslashes($value) . '\'';
-        }
-
-        return $this->normalizeForEnv($value);
+        return strtr($string, ['"' => '', "'" => '']);
     }
 
     /**
      * @param $matches
      * @return bool
      */
-    protected function isEnv($matches)
+    private function isEnv($matches)
     {
         return strpos($matches, 'env') !== false;
     }
@@ -309,7 +297,7 @@ class OctoberEnv extends Command
     /**
      * @param $content
      */
-    protected function writeToEnv($content)
+    private function writeToEnv($content)
     {
         file_put_contents('.env', $content, FILE_APPEND);
     }
@@ -317,7 +305,7 @@ class OctoberEnv extends Command
     /**
      * @return string
      */
-    protected function readEnvFile()
+    private function readEnvFile()
     {
         return file_exists('.env') ? file_get_contents('.env') : '';
     }
@@ -325,7 +313,7 @@ class OctoberEnv extends Command
     /**
      * @param $content
      */
-    protected function writeToConfigFile($content)
+    private function writeToConfigFile($content)
     {
         file_put_contents(config_path($this->config . '.php'), $content);
     }
@@ -333,7 +321,7 @@ class OctoberEnv extends Command
     /**
      * @return array
      */
-    protected function lines()
+    private function lines()
     {
         return file(config_path($this->config . '.php'));
     }
@@ -342,7 +330,7 @@ class OctoberEnv extends Command
      * @param $key
      * @return bool
      */
-    protected function envKeyExists($key)
+    private function envKeyExists($key)
     {
         return strpos($this->readEnvFile(), $key) !== false;
     }
@@ -350,7 +338,7 @@ class OctoberEnv extends Command
     /**
      * @return array
      */
-    protected function config()
+    private function config()
     {
         return [
             'app' => [
@@ -392,7 +380,7 @@ class OctoberEnv extends Command
     /**
      * @return array
      */
-    protected function dbConfig()
+    private function dbConfig()
     {
         return [
             'sqlite' => [

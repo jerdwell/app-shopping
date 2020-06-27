@@ -313,7 +313,7 @@ class OctoberUtil extends Command
     {
         foreach (File::directories(plugins_path()) as $authorDir) {
             foreach (File::directories($authorDir) as $pluginDir) {
-                if (!File::exists($pluginDir.'/.git')) {
+                if (!File::isDirectory($pluginDir.'/.git')) {
                     continue;
                 }
 
@@ -325,7 +325,7 @@ class OctoberUtil extends Command
         }
 
         foreach (File::directories(themes_path()) as $themeDir) {
-            if (!File::exists($themeDir.'/.git')) {
+            if (!File::isDirectory($themeDir.'/.git')) {
                 continue;
             }
 

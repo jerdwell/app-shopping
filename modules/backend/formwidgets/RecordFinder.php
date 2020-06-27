@@ -252,7 +252,7 @@ class RecordFinder extends FormWidgetBase
                 $value = $model->{$attribute};
             }
         } else {
-            $value = $this->modelClass::where($this->keyFrom, parent::getLoadValue())->first();
+            $value = $this->modelClass::find(parent::getLoadValue());
         }
 
         return $value;

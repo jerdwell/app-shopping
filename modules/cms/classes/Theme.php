@@ -59,7 +59,7 @@ class Theme
     {
         $theme = new static;
         $theme->setDirName($dirName);
-        $theme->registerHalcyonDatasource();
+        $theme->registerHalyconDatasource();
 
         return $theme;
     }
@@ -546,7 +546,7 @@ class Theme
      * Ensures this theme is registered as a Halcyon datasource.
      * @return void
      */
-    public function registerHalcyonDatasource()
+    public function registerHalyconDatasource()
     {
         $resolver = App::make('halcyon');
 

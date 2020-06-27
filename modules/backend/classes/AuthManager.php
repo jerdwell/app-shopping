@@ -1,6 +1,5 @@
 <?php namespace Backend\Classes;
 
-use Config;
 use System\Classes\PluginManager;
 use October\Rain\Auth\Manager as RainAuthManager;
 use October\Rain\Exception\SystemException;
@@ -56,11 +55,6 @@ class AuthManager extends RainAuthManager
      * @var array Cache of registered permissions.
      */
     protected $permissionCache = false;
-
-    protected function init()
-    {
-        $this->useThrottle = Config::get('auth.throttle.enabled', true);
-    }
 
     /**
      * Registers a callback function that defines authentication permissions.

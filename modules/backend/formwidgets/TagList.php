@@ -137,9 +137,7 @@ class TagList extends FormWidgetBase
         $newTags = $this->customTags ? array_diff($names, $existingTags) : [];
 
         foreach ($newTags as $newTag) {
-            $newModel = new $relationModel;
-            $newModel->{$this->nameFrom} = $newTag;
-            $newModel->save();
+            $newModel = $relationModel::create([$this->nameFrom => $newTag]);
             $existingTags[$newModel->getKey()] = $newTag;
         }
 

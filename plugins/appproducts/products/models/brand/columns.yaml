@@ -1,0 +1,7 @@
+columns:
+    brand_name:
+        label: Marca
+        type: text
+    brand_slug:
+        label: Slug
+        type: text

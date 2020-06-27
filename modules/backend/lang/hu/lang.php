@@ -236,7 +236,6 @@ return [
         'remove_file' => 'Fájl eltávolítása'
     ],
     'repeater' => [
-        'add_new_item' => 'Új elem hozzáadása',
         'min_items_failed' => 'A(z) :name mező legalább :max elemből állhat. Jelenleg csak :items mező van megadva.',
         'max_items_failed' => 'A(z) :name mező legfeljebb :max elemből állhat. Jelenleg :items mező van megadva.',
     ],
@@ -283,7 +282,7 @@ return [
         'confirm' => 'Megerősítés',
         'reload' => 'Újratöltés',
         'complete' => 'Befejezés',
-        'ok' => 'Rendben',
+        'ok' => 'OK',
         'or' => 'vagy',
         'confirm_tab_close' => 'Valóban be akarja zárni a fület? El fognak veszni a nem mentett módosítások.',
         'behavior_not_ready' => 'Nem történt meg az űrlap viselkedésének inicializálása. Kérjük ellenőrizze, hogy meghívta-e az initForm() függvényt a vezérlőben.',
@@ -413,13 +412,7 @@ return [
         'line_breaker_tags' => 'Sortörő elemek',
         'line_breaker_tags_comment' => 'Azon HTML elemek, amik végén kötelezően egy új sor jelenik meg.',
         'toolbar_buttons' => 'Eszköztár',
-        'toolbar_buttons_comment' => 'Az alapértelmezetten megjelenő eszközök listája.',
-        'toolbar_buttons_preset' => 'Előre beállított eszköztár konfigurációk:',
-        'toolbar_buttons_presets' => [
-            'default' => 'Alapértelmezett',
-            'minimal' => 'Minimális',
-            'full' => 'Teljes',
-        ],
+        'toolbar_buttons_comment' => 'Használható értékek: [fullscreen, bold, italic, underline, strikeThrough, subscript, superscript, fontFamily, fontSize, |, color, emoticons, inlineStyle, paragraphStyle, |, paragraphFormat, align, formatOL, formatUL, outdent, indent, quote, insertHR, -, insertLink, insertImage, insertVideo, insertAudio, insertFile, insertTable, undo, redo, clearFormatting, selectAll, html]'
     ],
     'tooltips' => [
         'preview_website' => 'Weboldal megtekintése'
@@ -556,7 +549,6 @@ return [
             'iso_8859_13' => 'ISO-8859-13 (Latin-7, Balti)',
             'iso_8859_14' => 'ISO-8859-14 (Latin-8, Kelta)',
             'iso_8859_15' => 'ISO-8859-15 (Latin-9, Nyugat-európai Euró jellel)',
-            'windows_1250' => 'Windows-1250 (CP1250, Közép- és kelet-európai)',
             'windows_1251' => 'Windows-1251 (CP1251)',
             'windows_1252' => 'Windows-1252 (CP1252)'
         ]

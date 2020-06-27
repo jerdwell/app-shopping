@@ -300,14 +300,15 @@ class Router
 
     /**
      * Returns a routing parameter.
-     * @param  string $name
-     * @param  string|null $default
-     * @return string|null
+     * @return array
      */
-    public function getParameter(string $name, string $default = null)
+    public function getParameter($name, $default = null)
     {
-        $value = $this->parameters[$name] ?? '';
-        return $value !== '' ? $value : $default;
+        if (isset($this->parameters[$name]) && ($this->parameters[$name] === '0' || !empty($this->parameters[$name]))) {
+            return $this->parameters[$name];
+        }
+
+        return $default;
     }
 
     /**

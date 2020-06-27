@@ -1,6 +1,7 @@
 <?php namespace AppProducts\Products\Models;
 
 use Model;
+use October\Rain\Support\Str;
 
 /**
  * Model
@@ -41,5 +42,12 @@ class Categories extends Model
     public $attachOne = [
         'cover_category' => 'System\Models\File'
     ];
+
+    /** events */
+
+    public function beforeSave()
+    {
+        $this -> slug = Str::slug($this -> category);
+    }
 
 }

@@ -1,0 +1,25 @@
+fields:
+    brand_name:
+        label: Marca
+        span: auto
+        required: 1
+        type: text
+    brand_slug:
+        label: Slug
+        span: right
+        readOnly: 1
+        preset:
+            field: brand_name
+            type: slug
+        type: text
+    brand_logo:
+        label: Logotipo
+        mode: image
+        mimeTypes: 'jpg, jpge, jpge2000, png, svg'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        cssClass: ''
+        type: fileupload

@@ -15,4 +15,5 @@ class Categories extends Controller
         parent::__construct();
         BackendMenu::setContext('AppProducts.Products', 'main-menu-item', 'side-menu-item');
     }
+
 }

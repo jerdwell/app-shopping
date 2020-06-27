@@ -22,3 +22,7 @@ navigation:
                 label: Etiquetas
                 url: appproducts/products/tags
                 icon: icon-tags
+            side-menu-item4:
+                label: Marcas
+                url: appproducts/products/brands
+                icon: icon-th-list

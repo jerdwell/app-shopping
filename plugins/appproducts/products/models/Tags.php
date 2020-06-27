@@ -1,6 +1,7 @@
 <?php namespace AppProducts\Products\Models;
 
 use Model;
+use October\Rain\Support\Str;
 
 /**
  * Model
@@ -37,6 +38,13 @@ class Tags extends Model
             'order' => 'Product'
         ]
     ];
+
+    /** Events */
+
+    public function beforeSave()
+    {
+        $this -> slug = Str::slug($this -> tag_name);
+    }
 
 
 }

@@ -1,22 +1,11 @@
 columns:
     product_name:
-        label: product_name
+        label: 'Nombre del producto'
         type: text
         searchable: true
         sortable: true
-    created_at:
-        label: created_at
-        type: datetime
-        searchable: true
-        sortable: true
-    product_price:
-        label: product_price
-        type: number
-        searchable: true
-    product_sku:
-        label: product_sku
+    product_description:
+        label: Aplicación
         type: text
         searchable: true
-    product_stock:
-        label: product_stock
-        type: number
+        sortable: true

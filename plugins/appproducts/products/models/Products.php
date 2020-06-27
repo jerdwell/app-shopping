@@ -51,7 +51,7 @@ class Products extends Model
     ];
 
     public $attachOne = [
-        'product_cover' => 'System\Models\File'
+        'product_cover' => 'System\Models\File',
     ];
     
     public $attachMany = [

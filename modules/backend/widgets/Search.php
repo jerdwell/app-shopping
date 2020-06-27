@@ -128,14 +128,7 @@ class Search extends WidgetBase
          * Trigger class event, merge results as viewable array
          */
         $params = func_get_args();
-        try {
-            $result = $this->fireEvent('search.submit', [$params]);
-        } catch (\Throwable $e) {
-            // Remove the search term from the session if the search has failed.
-            $this->setActiveTerm('');
-            throw $e;
-        }
-
+        $result = $this->fireEvent('search.submit', [$params]);
         if ($result && is_array($result)) {
             return call_user_func_array('array_merge', $result);
         }

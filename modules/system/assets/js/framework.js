@@ -30,23 +30,12 @@ if (window.jQuery.request !== undefined) {
         }
 
         /*
-         * Prepare the options
+         * Prepare the options and execute the request
          */
         var $form = options.form ? $(options.form) : $el.closest('form'),
             $triggerEl = !!$form.length ? $form : $el,
             context = { handler: handler, options: options }
 
-        /*
-         * Validate the form client-side
-         */
-        if ((options.browserValidate !== undefined) && typeof document.createElement('input').reportValidity == 'function' && $form && $form[0] && !$form[0].checkValidity()) {
-            $form[0].reportValidity();
-            return false;
-        }
-
-        /*
-         * Execute the request
-         */
         $el.trigger('ajaxSetup', [context])
         var _event = jQuery.Event('oc.beforeRequest')
         $triggerEl.trigger(_event, context)
@@ -118,11 +107,7 @@ if (window.jQuery.request !== undefined) {
             }
 
             $.each(data, function(key) {
-                if (typeof Blob !== "undefined" && this instanceof Blob && this.filename) {
-                    requestData.append(key, this, this.filename)
-                } else {
-                    requestData.append(key, this)
-                }
+                requestData.append(key, this)
             })
         }
         else {
@@ -446,7 +431,6 @@ if (window.jQuery.request !== undefined) {
             loading: $this.data('request-loading'),
             flash: $this.data('request-flash'),
             files: $this.data('request-files'),
-            browserValidate: $this.data('browser-validate'),
             form: $this.data('request-form'),
             url: $this.data('request-url'),
             update: paramToObj('data-request-update', $this.data('request-update')),

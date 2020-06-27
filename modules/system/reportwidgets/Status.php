@@ -81,7 +81,7 @@ class Status extends ReportWidgetBase
     {
         $warnings = [];
 
-        $missingDependencies = PluginManager::instance()->findMissingDependencies();
+        $missingPlugins = PluginManager::instance()->findMissingDependencies();
 
         $writablePaths = [
             temp_path(),
@@ -127,13 +127,8 @@ class Status extends ReportWidgetBase
             }
         }
 
-        foreach ($missingDependencies as $pluginCode => $plugin) {
-            foreach ($plugin as $missingPluginCode) {
-                $warnings[] = Lang::get('system::lang.updates.update_warnings_plugin_missing', [
-                    'code' => '<strong>' . $missingPluginCode . '</strong>',
-                    'parent_code' => '<strong>' . $pluginCode . '</strong>'
-                ]);
-            }
+        foreach ($missingPlugins as $pluginCode) {
+            $warnings[] = Lang::get('backend::lang.warnings.plugin_missing', ['name' => '<strong>'.$pluginCode.'</strong>']);
         }
 
         return $warnings;
