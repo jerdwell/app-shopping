@@ -1,5 +1,7 @@
 <?php namespace AppProducts\Products\FormWidgets;
 
+use AppProducts\Products\Models\Brand;
+use AppProducts\Products\Models\Products;
 use Backend\Classes\FormWidgetBase;
 
 /**
@@ -26,7 +28,7 @@ class Brandspecifications extends FormWidgetBase
      */
     public function render()
     {
-        // $this->prepareVars();
+        $this->prepareVars();
         return $this->makePartial('brand-specifications');
     }
 
@@ -37,6 +39,7 @@ class Brandspecifications extends FormWidgetBase
     {
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
+        $this -> model -> product_brands;
         $this->vars['model'] = $this->model;
     }
 
@@ -49,11 +52,12 @@ class Brandspecifications extends FormWidgetBase
         $this->addJs('js/brandspecifications.js', '.appproducts/products');
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getSaveValue($value)
+    /** AJAX Events */
+
+    public function onSearchBrand()
     {
-        return $value;
+        $brand = Brand::all();
+        return $brand;
     }
+
 }

@@ -8,7 +8,7 @@ navigation:
     main-menu-item:
         label: Productos
         url: appproducts/products/products
-        icon: icon-barcode
+        icon: icon-cubes
         sideMenu:
             side-menu-item3:
                 label: Productos

@@ -69,3 +69,6 @@
 1.0.24:
     - 'Updated table appproducts_products_products'
     - builder_table_update_appproducts_products_products_9.php
+1.0.25:
+    - 'Updated table appproducts_products_brands_details'
+    - builder_table_update_appproducts_products_brands_details.php

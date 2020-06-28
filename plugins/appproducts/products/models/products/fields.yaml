@@ -1,40 +1,44 @@
-fields:
-    product:
-        label: Producto
-        span: auto
-        type: section
-    product_name:
-        label: 'Nombre del producto'
-        span: left
-        type: text
-    product_description:
-        label: Aplicación
-        span: full
-        required: 1
-        type: text
-    product_cover:
-        label: 'Portada de producto'
-        mode: image
-        mimeTypes: 'jpeg, jpg, jpeg2000, png, gif'
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: auto
-        type: fileupload
-    product_gallery:
-        label: 'Galería del producto'
-        span: auto
-        mode: image
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        mimeTypes: 'jpeg, jpg, jpeg2000, gif'
-        type: fileupload
 tabs:
     fields:
-        brands:
+        product:
+            label: Producto
+            span: full
+            type: section
+            tab: Producto
+        product_name:
+            label: 'Nombre del producto'
+            span: left
+            type: text
+            tab: Producto
+        product_description:
+            label: Aplicación
+            span: full
+            required: 1
+            type: text
+            tab: Producto
+        product_cover:
+            label: 'Portada de producto'
+            mode: image
+            mimeTypes: 'jpeg, jpg, jpeg2000, png, gif'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Producto
+        product_gallery:
+            label: 'Galería del producto'
+            span: auto
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            mimeTypes: 'jpeg, jpg, jpeg2000, gif'
+            type: fileupload
+            tab: Producto
+        product_brands:
             label: Marcas
             type: brandspecifications
             span: full

@@ -11,7 +11,7 @@ class Plugin extends PluginBase
     public function registerFormWidgets()
     {
         return [
-            'AppProducts\FormWidgets\BrandSpecifications' => 'brandspecifications',
+            'AppProducts\Products\FormWidgets\BrandSpecifications' => 'brandspecifications',
         ];
     }
 

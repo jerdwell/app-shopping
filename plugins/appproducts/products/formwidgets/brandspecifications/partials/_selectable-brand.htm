@@ -1,0 +1,26 @@
+<div class="card-list-brands-results-content card-list-brands-results-content-inactive">
+  <div class="card-list-brands-results bg-dark">
+    <div class="card-body-list-brands-results">
+      <span>Resultados</span>
+      <!-- <input onchange="" type="search" name="search-brand" id="search-brand" class="form-control" placeholder="Filtrar"> -->
+      <div class="table-brands-results-container">
+        <table class="table table-brands-results">
+          <thead>
+            <tr>
+              <th>
+                <input onchange="Brands.toggleAllBrandSelected()" type="checkbox" name="select-all-brands" id="select-all-brands">
+              </th>
+              <th>Marca</th>
+            </tr>
+          </thead>
+          <tbody class="list-brand-results-table-body">
+          </tbody>
+        </table>
+      </div>
+      <div class="text-right" style="margin-top: 10px;">
+        <button onclick="Brands.addBrands()" type="button" class="btn btn-info">Guardar</button>
+        <button onclick="Brands.toggleModal()" type="button" class="btn btn-danger">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

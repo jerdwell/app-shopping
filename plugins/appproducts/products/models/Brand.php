@@ -32,6 +32,21 @@ class Brand extends Model
     public $attachOne = [
         'brand_logo' => 'System\Models\File'
     ];
+    
+    public $belongToMany = [
+        'brands_product' => [
+            'AppProducts\Products\Models\Products',
+            'table' => 'appproducts_products_brands_details',
+            'key' => 'brand_id',
+            'otherKey' => 'product_id',
+            'pivot' => [
+                'brand_code',
+                'brand_price',
+                'brand_public_price',
+                'brand_remark'
+            ]
+        ]
+    ];
 
     public function beforeSave()
     {
