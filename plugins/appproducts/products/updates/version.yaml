@@ -72,3 +72,36 @@
 1.0.25:
     - 'Updated table appproducts_products_brands_details'
     - builder_table_update_appproducts_products_brands_details.php
+1.0.26:
+    - 'Created table appproducts_products_stock'
+    - builder_table_create_appproducts_products_stock.php
+1.0.27:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock.php
+1.0.28:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock_2.php
+1.0.29:
+    - 'Updated table appproducts_products_stock_branch'
+    - builder_table_update_appproducts_products_stock_branch.php
+1.0.30:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock_3.php
+1.0.31:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock_4.php
+1.0.32:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock_5.php
+1.0.33:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock_6.php
+1.0.34:
+    - 'Updated table appproducts_products_stock'
+    - builder_table_update_appproducts_products_stock_7.php
+1.0.35:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_10.php
+1.0.36:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_11.php

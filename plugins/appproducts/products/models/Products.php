@@ -29,20 +29,18 @@ class Products extends Model
     /**
      * @var array Attribute names to encode and decode using JSON.
      */
-    protected $jsonable = ['product_metadata'];
+    protected $jsonable = [
+        'product_metadata',
+        'product_stock'
+    ];
 
     /** Events */
 
     public function beforeSave()
     {
-        DB::table('appproducts_products_brands_details')
-        ->where('product_id', $this -> id)
-        ->delete();
-    }
-
-    public function afterEach()
-    {
-        $this -> product_brands = $this -> product_brands;
+        // DB::table('appproducts_products_brands_details')
+        // ->where('product_id', $this -> id)
+        // ->delete();
     }
 
     /* Relations */
@@ -63,7 +61,7 @@ class Products extends Model
             'otherKey' => 'tag_id',
             'order' => 'tag_name'
         ],
-        
+
         'product_brands' => [
             'AppProducts\Products\Models\Brand',
             'table' => 'appproducts_products_brands_details',
@@ -71,11 +69,12 @@ class Products extends Model
             'otherKey' => 'brand_id',
             'pivot' => [
                 'brand_code',
-                'brand_price',
                 'brand_public_price',
-                'brand_remark'
+                'brand_price',
+                'brand_remark',
             ]
-        ]
+        ],
+
     ];
 
     public $attachOne = [
@@ -83,7 +82,7 @@ class Products extends Model
     ];
     
     public $attachMany = [
-        'product_gallery' => 'System\Models\File',
+        'product_gallery' => 'System\Models\File'
     ];
 
 }

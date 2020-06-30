@@ -43,3 +43,8 @@ tabs:
             type: brandspecifications
             span: full
             tab: Marcas
+        product_stock:
+            label: Stock
+            type: stockmanage
+            span: full
+            tab: Stock

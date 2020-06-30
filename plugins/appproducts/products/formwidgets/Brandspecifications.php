@@ -1,6 +1,7 @@
 <?php namespace AppProducts\Products\FormWidgets;
 
 use AppProducts\Products\Models\Brand;
+use AppProducts\Products\Models\BrandDetails;
 use AppProducts\Products\Models\Products;
 use Backend\Classes\FormWidgetBase;
 
@@ -39,7 +40,6 @@ class Brandspecifications extends FormWidgetBase
     {
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
-        $this -> model -> product_brands;
         $this->vars['model'] = $this->model;
     }
 

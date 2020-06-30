@@ -1,0 +1,56 @@
+<input type="hidden" id="json-stock-items-attached" value='<?= json_encode($this -> model -> product_stock) ?>'>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código de Marca</th>
+            <th>Piezas en Stock</th>
+            <th>Sucursal</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="table-stock-manage">
+        <?php $i = 0; ?>
+        <?php forEach($this -> model -> product_stock as $stock): ?>
+            <tr class="stock-items-attached">
+                <td>
+                  <input
+                    readonly
+                    type="text"
+                    name="Products[product_stock][<?= $i ?>][brand_code]"
+                    class="form-control"
+                    value="<?= $stock['brand_code'] ?>">
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="Products[product_stock][<?= $i ?>][stock_product]"
+                    class="form-control"
+                    value="<?= $stock['stock_product'] ?>">
+                </td>
+                <td>
+                  <input
+                    type="hidden"
+                    name="Products[product_stock][<?= $i ?>][branch_id]"
+                    class="form-control"
+                    value="<?= $stock['branch_id'] ?>">
+                  <input
+                    readonly
+                    type="text"
+                    name="Products[product_stock][<?= $i ?>][branch_name]"
+                    class="form-control"
+                    value="<?= $stock['branch_name'] ?>">
+                </td>
+                <td class="text-center">
+                    <button type="button" onclick="StockManage.deleteItem(<?= $i ?>)" class="btn btn-danger"><i class="icon icon-trash"></i></button>
+                </td>
+            </tr>
+        <?php $i++; ?>
+        <?php endForeach; ?>
+    </tbody>
+</table>
+
+<?php include '_modal-stockmanage.htm'; ?>
+
+<div class="text-right">
+    <button onclick="StockManage.searchDataToAttach(<?= $this -> model -> id ?>)" type="button" class="btn btn-info active">Agregar stock a sucursales</button>
+</div>

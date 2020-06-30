@@ -1,0 +1,12 @@
+title: Branches
+modelClass: AppProducts\Branches\Models\Branches
+list: $/appproducts/branches/models/branches/columns.yaml
+recordUrl: 'appproducts/branches/branches/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

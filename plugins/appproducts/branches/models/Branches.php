@@ -1,12 +1,11 @@
-<?php namespace AppProducts\Products\Models;
+<?php namespace AppProducts\Branches\Models;
 
 use Model;
-use October\Rain\Support\Str;
 
 /**
  * Model
  */
-class Brand extends Model
+class Branches extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -18,7 +17,7 @@ class Brand extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'appproducts_products_brands';
+    public $table = 'appproducts_branches_branches';
 
     /**
      * @var array Validation rules
@@ -26,15 +25,12 @@ class Brand extends Model
     public $rules = [
     ];
 
+    public $jsonable = [
+        'branch_contact'
+    ];
 
     /** Relations */
 
-    public $attachOne = [
-        'brand_logo' => 'System\Models\File'
-    ];
+    public $belongsToMany = [];
 
-    public function beforeSave()
-    {
-        $this -> brand_slug = Str::slug($this -> brand_name);
-    }
 }

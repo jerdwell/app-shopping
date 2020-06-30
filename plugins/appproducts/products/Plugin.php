@@ -12,6 +12,7 @@ class Plugin extends PluginBase
     {
         return [
             'AppProducts\Products\FormWidgets\BrandSpecifications' => 'brandspecifications',
+            'AppProducts\Products\FormWidgets\StockManage' => 'stockmanage',
         ];
     }
 

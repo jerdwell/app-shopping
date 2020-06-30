@@ -1,0 +1,21 @@
+columns:
+    branch_name:
+        label: Sucursal
+        type: text
+        searchable: true
+    branch_address:
+        label: 'Calle y número'
+        type: text
+        searchable: true
+    branch_zip_code:
+        label: 'Código postal'
+        type: text
+    branch_city:
+        label: Ciudad
+        type: text
+    branch_state:
+        label: Estado
+        type: text
+    branch_country:
+        label: Delegación
+        type: text
