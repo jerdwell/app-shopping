@@ -105,3 +105,9 @@
 1.0.36:
     - 'Updated table appproducts_products_products'
     - builder_table_update_appproducts_products_products_11.php
+1.0.37:
+    - 'Drop table appproducts_products_stock'
+    - builder_table_delete_appproducts_products_stock.php
+1.0.38:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_12.php

@@ -1,6 +1,11 @@
 columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
     product_name:
-        label: 'Nombre del producto'
+        label: Producto
         type: text
         searchable: true
         sortable: true
@@ -9,3 +14,7 @@ columns:
         type: text
         searchable: true
         sortable: true
+    product_stock:
+        label: Stock
+        type: stock_test
+        searchable: true

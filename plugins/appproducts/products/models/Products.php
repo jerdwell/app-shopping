@@ -38,9 +38,15 @@ class Products extends Model
 
     public function beforeSave()
     {
-        // DB::table('appproducts_products_brands_details')
-        // ->where('product_id', $this -> id)
-        // ->delete();
+        DB::table('appproducts_products_brands_details')
+        ->where('product_id', $this -> id)
+        ->delete();
+    }
+
+    ///@return product_stock
+    public function getStockAttribute()
+    {
+        return $product_stock = 'ok';
     }
 
     /* Relations */

@@ -14,7 +14,8 @@ const StockManage = {
   },
 
   addStockItems(){
-    let vals = JSON.parse($(`#${this.data.json_stock_items_attached}`).val())
+    let vals = $(`#${this.data.json_stock_items_attached}`).val()
+    vals = vals!= 'null' ? JSON.parse(vals) : []
     let items = $(`.${this.data.class_checkbox_modal}`)
     let template = ''
     let index_items = $(`.${this.data.stock_items_attached}`).length
@@ -28,7 +29,7 @@ const StockManage = {
           branch_name: items[i].getAttribute('data-branch-name')
         })
 
-        template += `<tr>
+        template += `<tr class="stock-items-attached">
           <td>
             <input
               readonly
@@ -83,7 +84,8 @@ const StockManage = {
 
   prepareTemplateSearch(){
     let template = ''
-    let vals = JSON.parse($(`#${this.data.json_stock_items_attached}`).val())
+    let vals = $(`#${this.data.json_stock_items_attached}`).val()
+    vals = vals != 'null' ? JSON.parse(vals) : []
     this.data.brands.forEach(e => {
       this.data.branches.forEach(i => {
         if(vals.find(item => item.brand_code == e.brand_code && item.branch_id == i.id) == undefined){
