@@ -26,15 +26,19 @@ class Orders extends Model
      */
     public $rules = [
     ];
+    
+    public $jsonable = [
+        'order_details'
+    ];
 
     /** events */
 
-    public function beforeSave()
-    {
-        DB::table('appshopping_orders_orders_items')
-            -> where('order_id', $this -> id)
-            -> delete();
-    }
+    // public function beforeSave()
+    // {
+    //     DB::table('appshopping_orders_orders_items')
+    //         -> where('order_id', $this -> id)
+    //         -> delete();
+    // }
 
     public function afterFetch()
     {
@@ -42,15 +46,6 @@ class Orders extends Model
     }
     
     /** Relations */
-    public $belongsToMany = [
-        'products' => [
-            'AppProducts\Products\Models\Products',
-            'table' => 'appshopping_orders_orders_items',
-            'key'      => 'order_id',
-            'otherKey' => 'product_id',
-            'pivot' => ['quantity'],
-        ]
-    ];
 
     public $hasOne = [
         'order_customer' => [

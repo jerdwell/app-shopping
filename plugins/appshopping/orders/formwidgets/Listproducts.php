@@ -23,13 +23,6 @@ class ListProducts extends FormWidgetBase
 
   public function render()
   {
-    if(isset($this -> model -> attributes['id'])){
-      $order = Orders::find($this -> model -> attributes['id']);
-      $this -> vars ['products'] = $order -> products;
-      $this -> vars ['order_total'] = $order -> order_total;
-    }else{
-      $this -> vars ['products'] = [];
-    }
     $this -> vars['id'] = $this -> getId();
     $this -> vars['name'] = $this -> getFieldName();
     $this -> vars['value'] = $this -> getLoadValue();
@@ -46,7 +39,9 @@ class ListProducts extends FormWidgetBase
   public function onFindProducts()
   {
     $products = Products::where('product_name', 'like', '%'. post('value') .'%')
-      -> orWhere('product_sku', 'like', '%'. post('value') .'%') -> get();
+      -> orWhere('product_stock','like', '%'. post('value') .'%')
+      ->with('product_brands')
+      -> get();
     return $products;
   }
 

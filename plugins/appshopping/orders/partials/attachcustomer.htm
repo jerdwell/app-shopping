@@ -1,8 +1,6 @@
-<?php 
-  if(!empty($this -> vars['formModel']->attributes)) $formdata = $this -> vars['formModel']->attributes;
-  if(isset($this -> vars['formModel']->customer_data->attributes)){
-    $customer_data = $this -> vars['formModel']->customer_data->attributes;
-  }
+<?php
+$formdata = !empty($this -> vars['formModel']->attributes) ? $this -> vars['formModel']->attributes : [];
+$customer_data = isset($this -> vars['formModel']->customer_data->attributes) ? $this -> vars['formModel']->customer_data->attributes : null;
 ?>
 <input
   type="hidden"

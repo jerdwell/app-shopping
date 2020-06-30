@@ -57,3 +57,21 @@
 1.0.20:
     - 'Updated table appshopping_orders_orders'
     - builder_table_update_appshopping_orders_orders_6.php
+1.0.21:
+    - 'Updated table appshopping_orders_orders_items'
+    - builder_table_update_appshopping_orders_orders_items_10.php
+1.0.22:
+    - 'Updated table appshopping_orders_orders_items'
+    - builder_table_update_appshopping_orders_orders_items_11.php
+1.0.23:
+    - 'Updated table appshopping_orders_orders_items'
+    - builder_table_update_appshopping_orders_orders_items_12.php
+1.0.24:
+    - 'Drop table appshopping_orders_orders_items'
+    - builder_table_delete_appshopping_orders_orders_items.php
+1.0.25:
+    - 'Updated table appshopping_orders_orders'
+    - builder_table_update_appshopping_orders_orders_7.php
+1.0.26:
+    - 'Updated table appshopping_orders_orders'
+    - builder_table_update_appshopping_orders_orders_8.php

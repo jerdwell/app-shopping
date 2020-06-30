@@ -30,7 +30,7 @@ fields:
         context:
             - create
         type: dropdown
-    products:
+    order_details:
         label: Productos
         type: listproducts
         span: full

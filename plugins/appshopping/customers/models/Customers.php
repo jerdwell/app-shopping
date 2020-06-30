@@ -14,6 +14,7 @@ class Customers extends Model
     use \October\Rain\Database\Traits\SoftDelete;
 
     protected $dates = ['deleted_at'];
+    protected $hidden = ['customer_password', 'customer_email_verified', 'updated_at', 'created_at', 'deleted_at'];
 
 
     /**

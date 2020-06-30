@@ -8,7 +8,7 @@ function toggleNewProduct(data) {
     add_product_button.style.display = 'none'
   }else{
     $('#products-results').html('')
-    document.querySelector('.products-results-container').style.display = 'none '
+    document.querySelector('.product-modal-results').classList.add('product-modal-results-inactive')
     browser.style.display = 'none'
     cancel_button.style.display = 'none'
     add_product_button.style.display = 'inline-block'
@@ -28,16 +28,18 @@ function searchProducts(data) {
       value: data
     },
     success: (res) => {
-      document.querySelector('.products-results-container').style.display = 'block'
+      document.querySelector('.product-modal-results').classList.remove('product-modal-results-inactive')
       let template = ''
       res.forEach(e => {
         if(products_added.indexOf(e.id) >= 0) return
-        template +='<tr>'
-        template += `<td>${e.product_name}</td>` 
-        template += `<td class="text-center">${e.product_sku}</td>` 
-        template += `<td class="text-center">${e.product_price}</td>` 
-        template += `<td><button type="button" onclick="appendProduct('${e.product_name}', '${e.product_price}', '${e.product_sku}', '${e.id}')" class="btn btn-success btn-sm">Agregar</button></td>` 
-        template +='</tr>'
+        e.product_brands.forEach(brand => {
+          template +='<tr>'
+          template += `<td>${e.product_name}</td>` 
+          template += `<td class="text-center">${brand.pivot.brand_code}</td>` 
+          template += `<td class="text-center">${brand.pivot.brand_public_price}</td>` 
+          template += `<td><button type="button" onclick="appendProduct('${e.product_name}', '${brand.pivot.brand_public_price}', '${brand.pivot.brand_code}', '${e.id}')" class="btn btn-success btn-sm">Agregar</button></td>` 
+          template +='</tr>'
+        })
       });
       if(template == '') template += `<tr><td>No existen resultados</td></tr>`
       $('#products-results').html(template)
@@ -46,92 +48,77 @@ function searchProducts(data) {
   return false
 }
 
-function appendProduct(product_name, product_price, product_sku, product_id) {
+function appendProduct(product_name, product_price, brand_code, product_id) {
   let content = $('.products-container')
-  let childrens = content.children('.row').length
+  let childrens = content.children('tr').length
   let key = `Orders[products][${childrens}]`
 
   let template = `
-    <div class="row" id="${product_sku}">
-      <div class="col-xs-8 col-sm-4">
-        <label><small>${product_sku}</small></label>
+    <tr id="${brand_code}">
+      <td>
+        ${product_name}
+        <input type="hidden" name="Orders[order_details][${childrens}][product_name]" value="${product_name}"/>
+      </td>
+      
+      <td>
+        ${brand_code}
+        <input type="hidden" name="Orders[order_details][${childrens}][brand_code]" value="${brand_code}"/>
+      </td>
+      
+      <td>
         <input
-          readonly
-          type="text"
-          class="form-control"
-          name="product_name"
-          value="${product_name}"
-          required>
-        <input
-          type="hidden"
-          class="form-control id-product-order"
-          name="${key}[product_id]"
-          value="${product_id}"
-          required>
-      </div>
+        readonly
+        type="text"
+        id="price-${childrens}"
+        class="form-control text-center"
+        name="Orders[order_details][${childrens}][brand_public_price]"
+        value="${product_price}"
+        required>
+      </td>
 
-      <div class="col-xs-4 col-sm-2 col-md-2 text-center">
-        <label>Costo</label>
+      <td>
         <input
-          readonly
-          type="text"
-          id="price-${childrens}"
-          class="form-control text-center"
-          name="product_price"
-          value="${product_price}"
-          required>
-      </div>
+        onchange="updateTotalSubtotalOrder('${(childrens)}')"
+        type="number"
+        step="1"
+        name="Orders[order_details][${childrens}][product_quantity]"
+        min="1"
+        id="quantity-${childrens}"
+        value="1"
+        class="form-control text-center"
+        autocomplete="off"
+        pattern="-?\d+(\.\d+)?"
+        maxlength="255"
+        required="true">
+      </td>
 
-      <div class="col-xs-3 col-sm-2 col-md-2 text-center">
-        <label>Cantidad</label>
+      <td>
         <input
-          onchange="updateTotalSubtotalOrder('${(childrens)}')"
-          type="number"
-          step="1"
-          name="${key}[quantity]"
-          min="1"
-          id="quantity-${childrens}"
-          value="1"
-          placeholder=""
-          class="form-control text-center"
-          autocomplete="off"
-          pattern="-?\d+(\.\d+)?"
-          maxlength="255"
-          required="true">
-      </div>
-
-      <div class="col-xs-4 col-sm-2 col-md-2 text-center">
-        <label>Subtotal</label>
-        <input
-          readonly
-          type="number"
-          name="total"
-          id="subtotal-${childrens}"
-          value="${ product_price * 1 }"
-          class="form-control text-center subtotal-items"
-          required="true">
-      </div>
-
-      <div class="col-xs-5 col-sm-2 text-center">
-        <div>
-          <label>Acciones</label>
-        </div>
+        readonly
+        type="number"
+        name=""
+        id="subtotal-${childrens}"
+        value="${ product_price * 1 }"
+        class="form-control text-center subtotal-items"
+        required="true">
+      </td>
+      
+      <td>
         <button type="button" class="btn btn-info btn-sm" onclick="getProductData('${product_id}')">
           <i class="icon icon-eye"></i>
         </button>
-        <button onclick="detachOrderProductUnsaved('${product_sku}')" type="button" class="btn btn-danger btn-sm">
+        <button onclick="detachOrderProductUnsaved('${brand_code}')" type="button" class="btn btn-danger btn-sm">
           <i class="icon icon-times"></i>
         </button>
-      </div>
+      </td>
 
-    </div>
+    </tr>
 
   `
   content.append(template)
   let button_cancel = document.getElementById('cancel-add-product-quotation').style.display = 'none'
   let button_add_product = document.getElementById('add-product-quotation').style.display = 'inline-block'
   let item = document.getElementById('product-browser-content').style.display = 'none'
-  document.querySelector('.products-results-container').style.display = 'none'
   setTimeout(() => {
     updateTotalSubtotalOrder(childrens)
   }, 500);
@@ -139,8 +126,11 @@ function appendProduct(product_name, product_price, product_sku, product_id) {
 }
 
 function detachOrderProductUnsaved(id){
-  $('#' + id).remove()
-  let content = $('.products-container')
-  let childrens = content.children('.row').length
-  updateTotalSubtotalOrder(childrens)
+  let conf = confirm('¿En relaidad deseas quitar este producto de la lista?')
+  if(conf){
+    $('#' + id).remove()
+    let content = $('.products-container')
+    let childrens = content.children('.row').length
+    updateTotalSubtotalOrder(childrens)
+  }
 }

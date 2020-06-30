@@ -46,3 +46,31 @@
   padding: 5px 0;
   list-style: none;
 }
+
+.product-modal-results{
+  align-items: center;
+  background:rgba(0,0,0,.3);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 1000;
+  width: 100vw;
+}
+.product-modal-results-inactive{
+  display: none;
+}
+
+.table-modal-results-container{
+  background: rgb(238, 238, 238);
+  position: relative;
+  max-height: 80vh;
+  max-width: 800px;
+  width: 90%;
+}
+
+.table-product-results thead{
+  background:rgba(224, 223, 223,1);
+}
