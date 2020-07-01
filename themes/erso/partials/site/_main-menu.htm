@@ -1,0 +1,50 @@
+==
+function onStart(){
+  $this['menu_items'] = [
+    [
+      'item' => 'Categorías',
+      'url' => '/',
+      'childs' => []
+    ],
+    [
+      'item' => 'Blog',
+      'url' => '/',
+      'childs' => []
+    ],
+    [
+      'item' => 'Contacto',
+      'url' => '/',
+      'childs' => []
+    ],
+    [
+      'item' => 'Ingresar',
+      'url' => '/',
+      'childs' => []
+    ],
+  ];
+}
+==
+
+<ul class="main-menu-erso navbar-main-inactive-erso">
+
+  <li class="main-menu-item">
+    <div class="input-group bg-white rounded-pill mr-0 ml-auto" style="overflow: hidden; max-width:400px;">
+      <input type="text" class="form-control border-0" placeholder="Buscar" style="box-shadow: none;">
+      <div class="input-group-prepend p-0">
+        <span class="input-group-text bg-transparent border-0">
+          <span class="oi oi-magnifying-glass"></span>
+        </span>
+      </div>
+    </div>      
+  </li>
+
+  {% for item in menu_items %}
+    <li class="main-menu-item">
+      {% if item.url != null %}
+        <a class="text-light main-menu-item-link" href="{{ item.url }}">{{ item.item }}</a>
+      {% else %}
+        <span>{{ item.item }}</span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

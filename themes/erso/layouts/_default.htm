@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ [
+    'assets/css/app.css',
+    'assets/fonts/open-iconic/font/css/open-iconic-bootstrap.css'
+  ]|theme }}">
+  <title>{{ this.page.title }}</title>
+  <meta name="description" content="{{this.page.meta_description}}">
+</head>
+<body>
+
+  {% partial "site/_main-navbar" %}
+  {% partial "site/_header" %}
+  {% page %}
+  {% partial "site/_footer" %}
+
+  <script src="{{ 'assets/js/main.js'|theme }}"></script>
+  
+</body>
+</html>

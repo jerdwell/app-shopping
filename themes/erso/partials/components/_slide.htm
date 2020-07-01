@@ -1,0 +1,57 @@
+==
+function onStart(){
+  $this['slide_items'] = [
+    [
+      'pos' => 0,
+      'img' => 'assets/img/brake-disc-1749633_1280.jpg',
+      'title' => 'Loem ipsum dolor sit amet',
+      'description' => null,
+      'url' => null,
+    ],
+    [
+      'pos' => 1,
+      'img' => 'assets/img/brake-disc-1749633_1280.jpg',
+      'title' => 'Loem ipsum dolor sit amet',
+      'description' => null,
+      'url' => null,
+    ],
+    [
+      'pos' => 2,
+      'img' => 'assets/img/brake-disc-1749633_1280.jpg',
+      'title' => 'Loem ipsum dolor sit amet',
+      'description' => null,
+      'url' => null,
+    ],
+  ];
+  $this['index_slide'] = 0;
+}
+==
+
+<div class="slide" id="main-slide">
+  <div class="slide-container">
+    {% for slide_item in slide_items %}
+      <div class="slide-item">
+        <img class="slide-item-image" src="{{ slide_item['img']|theme }}" alt="">
+        {% if slide_item['title'] != null %}
+        <h3 class="slide-item-title">{{ slide_item['title'] }}</h3>
+        {% endif %}
+        {% if slide_item['description'] != null %}
+        <h3 class="slide-item-description">{{ slide_item['description'] }}</h3>
+        {% endif %}
+        {% if slide_item['url'] != null %}
+        <a class="slide-item-url" href="{{slide_item['url']}}"></a>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+  </div>
+  <div class="slide-controls">
+    <div id="slide-controls-prev" class="slide-controls-prev"><span class="oi oi-chevron-left slide-control-icon"></span></div>
+    <div id="slide-controls-next" class="slide-controls-next"><span class="oi oi-chevron-right slide-control-icon"></span></div>
+  </div>
+  <div class="slide-control-dots">
+    {% for slide_item  in slide_items %}
+    <div class="dot-indicator {{ slide_item['pos'] == 0 ? 'dot-indicator-active' : '' }}" data-index="{{ slide_item['pos'] }}"></div>
+    {% endfor %}
+  </div>
+</div>

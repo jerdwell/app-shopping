@@ -1,0 +1,104 @@
+.slide
+  height: 100vh
+  overflow: hidden
+  width: 100vw
+  .slide-container
+    height: 100%
+    transition: all ease .5s
+    display: flex
+    width: auto
+    .slide-item
+      align-items: center
+      display: flex
+      justify-content: center
+      padding: 8%
+      position: relative
+      height: 100%
+      width: 100vw
+      .slide-item-image
+        height: 100%
+        left: 0
+        position: absolute
+        object-fit: cover
+        object-position: center
+        top: 0
+        width: 100%
+      .slide-item-title
+        border-left: solid 3px $light
+        padding: 20px 0
+        color: $light
+        text-shadow: -1px 1px 0px #000
+        padding-left: 10px
+        font-size: 3em
+        font-weight: bolder
+        z-index: 1
+      .slide-item-description
+        z-index: 1
+      .slide-item-url
+        z-index: 1
+  
+  .slide-controls
+    display: flex
+    justify-content: space-between
+    left: 0
+    position: absolute
+    padding: 0px 10px
+    top: 50%
+    transform: translateY(-50%)
+    width: 100%
+    z-index: 1
+    .slide-controls-prev, .slide-controls-next
+      align-items: center
+      background: rgba($dark, .4)
+      border-radius: 50%
+      cursor: pointer
+      display: flex
+      height: 50px
+      justify-content: center
+      transition: all ease .5s
+      width: 50px
+      &:hover
+        background: rgba(#000000,.8)
+      .slide-control-icon
+        color: rgba(#ffffff,.6)
+        font-size: 30px
+        margin-left: -3px
+    .slide-controls-next
+      .slide-control-icon
+        margin-left: 6px
+  
+  .slide-control-dots
+    align-items: center
+    bottom: 40px
+    display: flex
+    justify-content: center
+    position: absolute
+    width: 100%
+    .dot-indicator
+      background: rgba(#ffffff, .4)
+      border-radius: 10px
+      cursor: pointer
+      display: inline-block
+      height: 15px
+      transition: all ease .5s
+      margin: 0px 5px
+      width: 15px
+    .dot-indicator-active
+      background: rgba(#ffffff, .8)
+      width: 40px
+  
+  @media screen and ( min-width: 768px )
+    .slide-container
+      .slide-item
+        padding-left: 3%
+        justify-content: flex-start
+        .slide-item-title
+          font-size: 3.2em
+          max-width: 80%
+
+  @media screen and ( min-width: 1024px )
+    .slide-container
+      .slide-item
+        .slide-item-title
+          font-size: 3.6em
+    

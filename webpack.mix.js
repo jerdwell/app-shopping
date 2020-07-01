@@ -38,7 +38,7 @@ mix.webpackConfig({
 });
 
 mix
-  // .js('resources/js/src/main.js', 'js')
-  .sass('themes/app-shopping-demo/src/sass/app.sass', 'css')
+  .js('themes/erso/src/js/main.js', 'js')
+  .sass('themes/erso/src/scss/app.sass', 'css')
   // .copy('resources/img', 'img', false).sourceMaps()
-  .setPublicPath('themes/app-shopping-demo/assets/')
+  .setPublicPath('themes/erso/assets/')
