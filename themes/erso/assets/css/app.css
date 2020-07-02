@@ -154,6 +154,7 @@
 }
 
 .navbar-main-erso {
+  background-image: linear-gradient(rgba(32, 32, 43, 0.5) 60%, transparent 100%);
   z-index: 1000;
 }
 
@@ -222,13 +223,15 @@
 
 .main-menu-erso {
   background: #20202b;
-  height: calc( 100vh - 60px);
+  height: 100vh;
   left: 0;
   overflow: hidden;
   overflow-y: auto;
   position: fixed;
   padding: 30px;
-  top: 60px;
+  padding-top: 80px;
+  top: 0;
+  transition: all ease .5s;
   width: 100%;
   z-index: -1;
 }
@@ -250,8 +253,7 @@
 
 @media screen and (min-width: 768px) {
   .main-menu-erso {
-    height: calc( 100vh - 110px);
-    top: 110px;
+    padding-top: 120px;
   }
 }
 
@@ -294,6 +296,23 @@
 
 .navbar-main-inactive-erso {
   left: -150%;
+}
+
+.navbar-main-erso-fixed {
+  box-shadow: 0 5px 5px rgba(32, 32, 43, 0.8);
+  background: #20202b;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-main-erso-fixed .navbar-items-container .navbar-brand {
+    height: 70px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar-main-erso-fixed .navbar-items-container .navbar-brand {
+    height: 70px !important;
+  }
 }
 
 .slide {
@@ -598,6 +617,8 @@
 }
 
 .branches .branch-item {
+  background-size: cover;
+  background-position: centter;
   align-items: center;
   display: inline-flex;
   height: 300px;

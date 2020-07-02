@@ -97,8 +97,68 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Slide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Slide */ "./themes/erso/src/js/modules/Slide.js");
 /* harmony import */ var _modules_Slide__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_Slide__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Navbar */ "./themes/erso/src/js/modules/Navbar.js");
+/* harmony import */ var _modules_Navbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_Navbar__WEBPACK_IMPORTED_MODULE_1__);
+
 
 _modules_Slide__WEBPACK_IMPORTED_MODULE_0___default.a.init('main-slide', 8000);
+
+window.onload = function () {
+  _modules_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a.init();
+};
+
+/***/ }),
+
+/***/ "./themes/erso/src/js/modules/Navbar.js":
+/*!**********************************************!*\
+  !*** ./themes/erso/src/js/modules/Navbar.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var Navbar = {
+  data: {
+    class_navbar_fixed: 'navbar-main-erso-fixed',
+    class_navbar: 'navbar-main-erso',
+    navbar: document.querySelector('.navbar-main-erso'),
+    icon_main_menu: document.querySelector('.icon-menu-navbar-erso'),
+    main_menu: document.querySelector('.main-menu-erso'),
+    main_menu_inactive: 'navbar-main-inactive-erso',
+    max_scroll: 300
+  },
+  init: function init() {
+    var _this = this;
+
+    var navbar = this.data.navbar;
+
+    document.onscroll = function () {
+      return _this.toggleNavbar();
+    };
+
+    this.data.icon_main_menu.addEventListener('click', function () {
+      return _this.toggleMainMenu();
+    });
+  },
+  toggleNavbar: function toggleNavbar() {
+    var scroll = window.scrollY;
+
+    if (scroll >= this.data.max_scroll) {
+      if (!this.data.navbar.classList.contains(this.data.class_navbar_fixed)) this.data.navbar.classList.add(this.data.class_navbar_fixed);
+    } else {
+      if (this.data.navbar.classList.contains(this.data.class_navbar_fixed)) this.data.navbar.classList.remove(this.data.class_navbar_fixed);
+    }
+  },
+  toggleMainMenu: function toggleMainMenu() {
+    var contains = this.data.main_menu.classList.contains(this.data.main_menu_inactive);
+
+    if (!contains) {
+      this.data.main_menu.classList.add(this.data.main_menu_inactive);
+    } else {
+      this.data.main_menu.classList.remove(this.data.main_menu_inactive);
+    }
+  }
+};
+module.exports = Navbar;
 
 /***/ }),
 

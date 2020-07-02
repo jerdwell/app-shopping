@@ -1,5 +1,5 @@
 .navbar-main-erso
-  // box-shadow: 0 5px 5px rgba($dark, .8)
+  background-image: linear-gradient(rgba($dark,.5) 60%, transparent 100%)
   z-index: $z-index-navbar
   .navbar-items-container, .container
     justify-content: center!important
@@ -37,13 +37,15 @@
 
 .main-menu-erso
   background: $dark
-  height: calc( 100vh - 60px)
+  height: 100vh
   left: 0
   overflow: hidden
   overflow-y: auto
   position: fixed
   padding: 30px
-  top: 60px
+  padding-top: 80px
+  top: 0
+  transition: all ease .5s
   width: 100%
   z-index: -1
   .main-menu-item
@@ -56,8 +58,7 @@
     a:hover
       text-decoration: none
   @media screen and ( min-width: 768px )
-    height: calc( 100vh - 110px )
-    top: 110px
+    padding-top: 120px
   @media screen and ( min-width: 1024px )
     align-self: center
     background: transparent
@@ -88,3 +89,15 @@
   
 .navbar-main-inactive-erso
   left: -150%
+
+.navbar-main-erso-fixed
+  box-shadow: 0 5px 5px rgba($dark, .8)
+  background: $dark
+  @media screen and ( min-width: 768px )
+    .navbar-items-container
+      .navbar-brand
+        height: 70px
+  @media screen and ( min-width: 1024px )
+    .navbar-items-container
+      .navbar-brand
+        height: 70px!important
