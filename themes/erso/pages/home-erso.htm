@@ -7,3 +7,72 @@ is_hidden = 0
 ==
 
 {% partial 'components/_slide' %}
+{%
+  partial 'components/_step'
+  title = "Categorías"
+  align= "center"
+  type= "light"
+  local= true
+  color= "dark"
+  img= "assets/img/bg_step_01.png"
+%}
+
+<!-- Categorías -->
+<div class="home-categories">
+  <a href="" class="home-categories-item">
+    <h5 class="home-categories-text">Amortiguadores</h5>
+    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
+  </a>
+  <a href="" class="home-categories-item">
+    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
+    <h5 class="home-categories-text">Suspensiones</h5>
+  </a>
+  <a href="" class="home-categories-item">
+    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
+    <h5 class="home-categories-text">Direcciones</h5>
+  </a>
+  <a href="" class="home-categories-item">
+    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
+    <h5 class="home-categories-text">Tracciones</h5>
+  </a>
+</div>
+<!-- Categorías -->
+
+<!-- Contacto -->
+<div class="home-contact">
+  <!-- label form contact -->
+  <div class="label-form-contact bg-dark">
+    <h2 class="text-yellow text-center">Somos especialistas en:</h2>
+    <p class="text-light text-center">Suspensión, Dirección, Tracción y Amortiguadores </p>
+  </div>
+  <!-- label form contact -->
+  <div class="form-home-contact" style="background-image: url({{ '/assets/img/muestra_01.png'|theme }});">
+    <!-- Form -->
+    <h2 class="text-center text-light">Contáctanos</h2>
+    <form action="/">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <label class="text-white lead">Nombre:</label>
+          <input type="text" class="form-control bg-transparent text-white border-white" name="name" id="name" required>
+        </div>
+        <div class="col-md-6 mb-4">
+          <label class="text-white lead">Correo:</label>
+          <input type="email" class="form-control bg-transparent text-white border-white" name="email" id="email" required>
+        </div>
+        <div class="col-md-6 mb-4">
+          <label class="text-white lead">Teléfono:</label>
+          <input type="text" class="form-control bg-transparent text-white border-white" name="phone" id="phone" required>
+        </div>
+        <div class="col-12 mb-4">
+          <label class="text-white lead">Comentarios:</label>
+          <textarea name="comments" id="comments" rows="4" class="form-control bg-transparent text-white border-white"></textarea>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-info btn-lg">Contactar</button>
+      </div>
+    </form>
+    <!-- Form -->
+  </div>
+</div>
+<!-- Contacto -->
