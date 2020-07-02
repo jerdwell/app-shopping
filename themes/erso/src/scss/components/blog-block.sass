@@ -1,0 +1,112 @@
+.home-blog-block
+  overflow: hidden
+  width: 100%
+  .main-block
+    background: $blue
+    width: 100%
+    .image-main-block
+      object-fit: cover
+      object-position: center
+      height: calc(100vw / 1.6)
+      width: 100vw
+    .main-block-data
+      padding: 20px
+      .title-main-block
+        border-bottom-width: 2px!important
+      .text-main-block
+  
+  .secondary-block
+    align-items: center
+    display: flex
+    flex-wrap: wrap
+    overflow: hidden
+    width: 100%
+    .secondary-block-item
+      align-items: center
+      background: $blue
+      display: flex
+      justify-content: center
+      position: relative
+      width: 50vw
+      .image-secondary-block
+        left: 0
+        height: 100%
+        object-fit: cover
+        object-position: center
+        position: absolute
+        top: 0
+        width: 100%
+        z-index: 0
+      .secondary-block-data
+        background: rgba($dark,.8)
+        height: 100%
+        padding: 10px
+        width: 100%
+        z-index: 1
+        .title-secondary-block
+          font-size: .9em
+          width: 100%
+  
+  @media screen and ( min-width: 768px )
+    .main-block
+      align-items: center
+      align-content: center
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      .image-main-block
+        width: 50vw
+      .main-block-data
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        height: auto
+        width: 50%
+
+    .secondary-block
+      .secondary-block-item
+        min-height: 30vw
+        .secondary-block-data
+          align-items: center
+          align-content: center
+          display: flex
+          flex-wrap: wrap
+          justify-content: center
+          padding: 5px 20px
+          position: relative
+          min-height: 30vw
+
+  @media screen and ( min-width: 1024px )
+    .main-block
+      .main-block-data
+        .title-main-block
+          font-size: 2em
+        .text-main-block
+          margin-bottom: 30px
+    
+    .secondary-block
+      .secondary-block-item
+        .secondary-block-data
+          .title-secondary-block
+            font-size: 1.6em
+
+  @media screen and ( min-width: 1280px )
+    align-items: flex-start
+    display: flex
+    justify-content: flex-start
+
+    .main-block
+      justify-content: flex-start
+      width: 60%
+      .image-main-block
+        height: 100vh
+        width: 40%
+      .main-block-data
+        width: 60%
+
+    .secondary-block
+      height: 100vh
+      width: 40%
+      .secondary-block-item
+        height: 50vh
+        width: 50%
