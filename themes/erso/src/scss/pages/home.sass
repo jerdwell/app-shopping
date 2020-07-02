@@ -83,3 +83,27 @@
     .form-home-contact
       padding: 100px 50px
       width: 60%
+
+.branches
+  overflow: hidden
+  width: 100%
+  .branch-item
+    align-items: center
+    display: inline-flex
+    height: 300px
+    justify-content: center
+    width: 100%
+    &:hover
+      text-decoration: none
+      .branch-data
+        .icon-branch-pin
+          font-size: 100px
+    .branch-data
+      text-align: center
+      .icon-branch-pin
+        font-size: 70px
+        transition: all ease .5s
+  @media screen and ( min-width: 768px )
+    display: flex
+  //TODO(Erdwell) agregar las imágenes de fondo en la sección de branches
+    

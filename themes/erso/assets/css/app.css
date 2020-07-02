@@ -592,6 +592,42 @@
   }
 }
 
+.branches {
+  overflow: hidden;
+  width: 100%;
+}
+
+.branches .branch-item {
+  align-items: center;
+  display: inline-flex;
+  height: 300px;
+  justify-content: center;
+  width: 100%;
+}
+
+.branches .branch-item:hover {
+  text-decoration: none;
+}
+
+.branches .branch-item:hover .branch-data .icon-branch-pin {
+  font-size: 100px;
+}
+
+.branches .branch-item .branch-data {
+  text-align: center;
+}
+
+.branches .branch-item .branch-data .icon-branch-pin {
+  font-size: 70px;
+  transition: all ease .5s;
+}
+
+@media screen and (min-width: 768px) {
+  .branches {
+    display: flex;
+  }
+}
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
