@@ -153,8 +153,10 @@ var Navbar = {
 
     if (!contains) {
       this.data.main_menu.classList.add(this.data.main_menu_inactive);
+      document.body.style.overflow = 'auto';
     } else {
       this.data.main_menu.classList.remove(this.data.main_menu_inactive);
+      document.body.style.overflow = 'hidden';
     }
   }
 };

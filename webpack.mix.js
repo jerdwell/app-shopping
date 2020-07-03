@@ -39,6 +39,7 @@ mix.webpackConfig({
 
 mix
   .js('themes/erso/src/js/main.js', 'js')
+  .js('themes/erso/src/js/vue-app/app.js', 'js')
   .sass('themes/erso/src/scss/app.sass', 'css')
   // .copy('resources/img', 'img', false).sourceMaps()
   .setPublicPath('themes/erso/assets/')

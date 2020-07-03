@@ -13,11 +13,14 @@
 </head>
 <body>
 
-  {% partial "site/_main-navbar" %}
-  {% partial "site/_header" %}
-  {% page %}
-  {% partial "site/_footer" %}
+  <div id="app">
+    {% partial "site/_main-navbar" %}
+    {% partial "site/_header" %}
+    {% page %}
+    {% partial "site/_footer" %}
+  </div>
 
+  <script src="{{ 'assets/js/app.js'|theme }}"></script>
   <script src="{{ 'assets/js/main.js'|theme }}"></script>
   
 </body>
