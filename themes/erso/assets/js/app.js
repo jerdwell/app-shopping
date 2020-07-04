@@ -86,6 +86,71 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      typeSearch: null,
+      searchProduct: false
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=style&index=0&id=aec0cbec&lang=sass&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=style&index=0&id=aec0cbec&lang=sass&scoped=true& ***!
@@ -98,7 +163,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".navbar-filters .filters .row .search-item[data-v-aec0cbec] {\n  margin-bottom: 20px;\n}\n.navbar-filters .filters .row .search-item label[data-v-aec0cbec] {\n  color: #ffffff;\n}\n", ""]);
+exports.push([module.i, ".navbar-filters .filters-inactive[data-v-aec0cbec] {\n  padding: 0 !important;\n  height: 0 !important;\n}\n.navbar-filters .filters[data-v-aec0cbec] {\n  height: auto;\n  color: #ffffff;\n  overflow: hidden;\n  padding: 30px;\n  transition: all ease .5s;\n  z-index: -3;\n}\n.navbar-filters .controll-filters .button-filters[data-v-aec0cbec] {\n  background: #ffffff;\n  box-shadow: none;\n  outline: none;\n  max-width: 400px;\n}\n@media screen and (min-width: 768px) {\n.navbar-filters .controll-filters .button-filters[data-v-aec0cbec] {\n    margin-left: auto;\n    margin-bottom: 20px;\n    margin-right: 0;\n}\n}\n@media screen and (min-width: 1024px) {\n.navbar-filters .filters[data-v-aec0cbec] {\n    left: 0;\n    padding-top: 140px;\n    position: fixed;\n    top: 0;\n    width: 100%;\n    width: 100%;\n}\n.navbar-filters .controll-filters .button-filters[data-v-aec0cbec] {\n    display: block;\n    margin-bottom: 0;\n    width: 250px;\n}\n}\n@media screen and (min-width: 1280px) {\n.navbar-filters .controll-filters .button-filters[data-v-aec0cbec] {\n    width: 350px;\n}\n}\n", ""]);
 
 // exports
 
@@ -3335,37 +3400,180 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "navbar-filters" }, [
-    _c("div", { staticClass: "filters" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4 search-item" }, [
-          _c("label", [_vm._v("Buscar por auto")]),
+    _c("div", { staticClass: "controll-filters" }, [
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.searchProduct,
+              expression: "!searchProduct"
+            }
+          ],
+          staticClass: "btn btn-block rounded-pill button-filters",
+          on: {
+            click: function($event) {
+              _vm.searchProduct = true
+            }
+          }
+        },
+        [_vm._m(0)]
+      ),
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.searchProduct,
+              expression: "searchProduct"
+            }
+          ],
+          staticClass:
+            "btn btn-block btn-warning bg-warning rounded-pill button-filters",
+          on: {
+            click: function($event) {
+              _vm.searchProduct = false
+            }
+          }
+        },
+        [_vm._m(1)]
+      )
+    ]),
+    _c(
+      "div",
+      {
+        staticClass: "filters bg-dark",
+        class: !_vm.searchProduct ? "filters-inactive" : ""
+      },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("label", { staticClass: "col-12 text-center" }, [
+            _vm._v("Buscar por:")
+          ]),
           _c(
-            "select",
-            { staticClass: "form-control", attrs: { id: "car-search" } },
-            _vm._l(10, function(item) {
-              return _c("option", { key: item, attrs: { value: "" } }, [
-                _vm._v("Auto " + _vm._s(item))
-              ])
+            "label",
+            { staticClass: "col-4 col-md-2 offset-md-3 p-2 text-center" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.typeSearch,
+                    expression: "typeSearch"
+                  }
+                ],
+                staticClass: "form-check-input",
+                attrs: { type: "radio", name: "typeSearch", value: "car" },
+                domProps: { checked: _vm._q(_vm.typeSearch, "car") },
+                on: {
+                  change: function($event) {
+                    _vm.typeSearch = "car"
+                  }
+                }
+              }),
+              _c("span", { staticClass: "b-block" }, [_vm._v("Auto")])
+            ]
+          ),
+          _c("label", { staticClass: "col-4 col-md-2 p-2 text-center" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.typeSearch,
+                  expression: "typeSearch"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "radio", name: "typeSearch", value: "brand" },
+              domProps: { checked: _vm._q(_vm.typeSearch, "brand") },
+              on: {
+                change: function($event) {
+                  _vm.typeSearch = "brand"
+                }
+              }
             }),
-            0
-          )
-        ]),
-        _c("div", { staticClass: "col-md-4 search-item" }, [
-          _c("label", [_vm._v("Buscar por marca")]),
-          _c(
-            "select",
-            { staticClass: "form-control", attrs: { id: "brand-search" } },
-            _vm._l(10, function(item) {
-              return _c("option", { key: item, attrs: { value: "" } }, [
-                _vm._v("Marca " + _vm._s(item))
-              ])
+            _c("span", { staticClass: "b-block" }, [_vm._v("Marca")])
+          ]),
+          _c("label", { staticClass: "col-4 col-md-2 p-2 text-center" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.typeSearch,
+                  expression: "typeSearch"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "radio", name: "typeSearch", value: "general" },
+              domProps: { checked: _vm._q(_vm.typeSearch, "general") },
+              on: {
+                change: function($event) {
+                  _vm.typeSearch = "general"
+                }
+              }
             }),
-            0
-          )
+            _c("span", { staticClass: "b-block" }, [_vm._v("General")])
+          ])
         ]),
-        _vm._m(0)
-      ])
-    ])
+        _vm.typeSearch != null
+          ? _c("div", { staticClass: "row" }, [
+              _vm.typeSearch == "car"
+                ? _c("div", { staticClass: "col-md-4 search-item" }, [
+                    _c("label", [_vm._v("Buscar por auto")]),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control rounded-pill border-0",
+                        attrs: { id: "car-search" }
+                      },
+                      _vm._l(10, function(item) {
+                        return _c(
+                          "option",
+                          { key: item, attrs: { value: "" } },
+                          [_vm._v("Auto " + _vm._s(item))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm.typeSearch == "brand"
+                ? _c("div", { staticClass: "col-md-4 search-item" }, [
+                    _c("label", [_vm._v("Buscar por marca")]),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control rounded-pill border-0",
+                        attrs: { id: "brand-search" }
+                      },
+                      _vm._l(10, function(item) {
+                        return _c(
+                          "option",
+                          { key: item, attrs: { value: "" } },
+                          [_vm._v("Marca " + _vm._s(item))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm.typeSearch == "general"
+                ? _c("div", { staticClass: "col-md-4 search-item" }, [
+                    _c("label", [_vm._v("Búsqueda general")]),
+                    _vm._m(2)
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e()
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -3373,31 +3581,53 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 search-item" }, [
-      _c("label", [_vm._v("Búsqueda general")]),
-      _c(
-        "div",
-        {
-          staticClass:
-            "input-group bg-white rounded-pill mr-0 ml-auto item-search",
-          staticStyle: { overflow: "hidden", "max-width": "400px" }
-        },
-        [
-          _c("input", {
-            staticClass: "form-control border-0",
-            staticStyle: { "box-shadow": "none" },
-            attrs: { type: "text", placeholder: "Buscar" }
-          }),
-          _c("div", { staticClass: "input-group-prepend p-0" }, [
-            _c(
-              "div",
-              { staticClass: "input-group-text bg-transparent border-0" },
-              [_c("span", { staticClass: "oi oi-magnifying-glass" })]
-            )
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-between align-items-center" },
+      [
+        _c("span", [_vm._v("Buscar productos")]),
+        _c("span", { staticClass: "oi oi-magnifying-glass" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-between align-items-center" },
+      [
+        _c("span", { staticClass: "mr-2" }, [_vm._v("Cancelar búsqueda")]),
+        _c("span", { staticClass: "oi oi-x" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "input-group bg-white rounded-pill mr-0 ml-auto",
+        staticStyle: { overflow: "hidden", "max-width": "400px" }
+      },
+      [
+        _c("input", {
+          staticClass: "form-control border-0 border-0",
+          staticStyle: { "box-shadow": "none" },
+          attrs: { type: "text", placeholder: "Buscar" }
+        }),
+        _c("div", { staticClass: "input-group-prepend p-0" }, [
+          _c(
+            "div",
+            { staticClass: "input-group-text bg-transparent border-0" },
+            [_c("span", { staticClass: "oi oi-magnifying-glass" })]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -17125,17 +17355,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_filters_vue_vue_type_template_id_aec0cbec_scoped_true_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar-filters.vue?vue&type=template&id=aec0cbec&scoped=true&lang=pug& */ "./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=template&id=aec0cbec&scoped=true&lang=pug&");
-/* harmony import */ var _navbar_filters_vue_vue_type_style_index_0_id_aec0cbec_lang_sass_scoped_true___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar-filters.vue?vue&type=style&index=0&id=aec0cbec&lang=sass&scoped=true& */ "./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=style&index=0&id=aec0cbec&lang=sass&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _navbar_filters_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar-filters.vue?vue&type=script&lang=js& */ "./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _navbar_filters_vue_vue_type_style_index_0_id_aec0cbec_lang_sass_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar-filters.vue?vue&type=style&index=0&id=aec0cbec&lang=sass&scoped=true& */ "./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=style&index=0&id=aec0cbec&lang=sass&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _navbar_filters_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _navbar_filters_vue_vue_type_template_id_aec0cbec_scoped_true_lang_pug___WEBPACK_IMPORTED_MODULE_0__["render"],
   _navbar_filters_vue_vue_type_template_id_aec0cbec_scoped_true_lang_pug___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -17149,6 +17381,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "themes/erso/src/js/vue-app/components/filters/navbar-filters.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_navbar_filters_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./navbar-filters.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./themes/erso/src/js/vue-app/components/filters/navbar-filters.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_navbar_filters_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
