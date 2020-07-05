@@ -111,3 +111,6 @@
 1.0.38:
     - 'Updated table appproducts_products_products'
     - builder_table_update_appproducts_products_products_12.php
+1.0.39:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_13.php

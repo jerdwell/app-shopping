@@ -24,19 +24,19 @@
         span.b-block General
 
 
-    .row(v-if="typeSearch != null")
+    .row(v-if="typeSearch != ''")
       .col-md-4.search-item(v-if="typeSearch == 'car'")
         label Buscar por auto
-        select.form-control.rounded-pill.border-0#car-search
+        select.form-control.rounded-pill.border-0#car-search(v-model="dataSearch" @change="searchData()")
           option(value="" v-for="item in 10" :key="item") Auto {{ item  }}
       .col-md-4.search-item(v-if="typeSearch == 'brand'")
         label Buscar por marca
-        select.form-control.rounded-pill.border-0#brand-search
+        select.form-control.rounded-pill.border-0#brand-search(v-model="dataSearch" @change="searchData()")
           option(value="" v-for="item in 10" :key="item") Marca {{ item  }}
       .col-md-4.search-item(v-if="typeSearch == 'general'")
         label Búsqueda general
-        .input-group.bg-white.rounded-pill.mr-0.ml-auto(style="overflow: hidden; max-width:400px;")
-          input.form-control.border-0.border-0(type="text" placeholder="Buscar" style="box-shadow: none;")
+        .input-group.bg-white.rounded-pill.mr-0.ml-auto(style="overflow: hidden; max-width:400px;" @change="searchData()")
+          input.form-control.border-0.border-0(type="text" placeholder="Buscar" style="box-shadow: none;" v-model="dataSearch")
           .input-group-prepend.p-0
             .input-group-text.bg-transparent.border-0
               span.oi.oi-magnifying-glass
@@ -44,13 +44,30 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data(){
     return {
-      typeSearch: null,
-      searchProduct: false
+      typeSearch: '',
+      searchProduct: false,
+      dataSearch: ''
     }
-  }
+  },
+  methods: {
+    ...mapActions([
+      'searchProducts' //Buscador de productos
+    ]),
+    searchData(){
+      let search_products = this.searchProducts({
+        type: this.typeSearch,
+        data: this.dataSearch,
+        limit: 20
+      })
+      this.searchProduct = false
+      document.querySelector('.icon-menu-navbar-erso').click()
+      document.body.style.overflow = 'auto'
+    }
+  },
 }
 </script>
 
@@ -92,6 +109,7 @@ export default {
     .controll-filters
       .button-filters
         display: block
+        margin-top: 0
         margin-bottom: 0
         width: 250px
   @media screen and (min-width: 1280px)

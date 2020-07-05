@@ -1,6 +1,7 @@
 <?php namespace AppProducts\Products\Models;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Model;
 
 /**
@@ -38,6 +39,7 @@ class Products extends Model
 
     public function beforeSave()
     {
+        $this -> product_slug = Str::slug($this -> product_name);
         DB::table('appproducts_products_brands_details')
         ->where('product_id', $this -> id)
         ->delete();
