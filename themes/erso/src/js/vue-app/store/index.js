@@ -7,7 +7,7 @@ import Cart from './cart'
 import Products from './products'
 
 const vuexLocal = new VuexPerists({
-  storage: window.localStorage
+  storage: window.sessionStorage
 })
 
 Vue.use(Vuex)

@@ -1,6 +1,6 @@
 const getteres = {
   
-  getlistProducts: state => { return state.listProducts }
+  getListProducts: state => { return state.listProducts }
 
 }
 
