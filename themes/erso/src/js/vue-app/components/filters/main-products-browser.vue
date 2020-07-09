@@ -19,25 +19,10 @@
             option(value="100") 100 resultados
             option(value="200") 200 resultados
             option(value="500") 500 resultados
-        
+      
+      //product item
       .row
-        .col-6.col-md-4.mb-3.border-bottom.border-light(v-for="product in getListProducts.data")
-          .card-body
-            .row
-              .col-lg-4.p-0
-                img.w-100(:src="product.product_cover.path")
-              .col-lg-8.p-0.pl-md-2
-                h5.text-yellow {{ product.product_name }}
-                p.mb-0
-                  b.text-info Aplicación
-                  br
-                  small.text-light {{ product.product_description }}
-                a.link.text-info.mb-4(:href="`/products/product/${product.product_slug}`")
-                  small Ver más
-                br
-                button.btn.btn-info.btn-sm.mt-2
-                  i.oi.oi-cart
-                  span.ml-3.pl-3.border-left.border-light Cotizar
+        productItemBrowser.col-6.col-md-4.mb-3.border-bottom.border-light(v-for="(product, i) in getListProducts.data" :key="i" :product="product")
       
       nav.paginator-browser.mt-3
         ul.pagination.justify-content-center
@@ -53,8 +38,12 @@
 </template>
 
 <script>
+import productItemBrowser from './../cart/product-item-browser'
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  components: {
+    productItemBrowser
+  },
   data(){
     return {
       perPage: ''
@@ -84,13 +73,6 @@ export default {
         }
       }
     }
-  },
-  mounted(){
-    // document.body.style.overflowY = 'hidden'
-    this.scrollButton()
-  },
-  beforeDestroy(){
-    // document.body.style.overflowY = 'auto'
   }
 }
 </script>

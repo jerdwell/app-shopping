@@ -83,6 +83,18 @@ class Products extends Model
             ]
         ],
 
+        'product_brands_customer' => [
+            'AppProducts\Products\Models\Brand',
+            'table' => 'appproducts_products_brands_details',
+            'key' => 'product_id',
+            'otherKey' => 'brand_id',
+            'pivot' => [
+                'brand_code',
+                'brand_public_price',
+                'brand_remark',
+            ]
+        ],
+
     ];
 
     public $attachOne = [

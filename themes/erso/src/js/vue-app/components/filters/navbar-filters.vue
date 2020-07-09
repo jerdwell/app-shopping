@@ -147,6 +147,9 @@ export default {
       width: 100%
     .controll-filters
       .button-filters
+        span
+          &:first-child
+            text-align: right
         margin-bottom: 0
   @media screen and (min-width: 1280px)
     .controll-filters

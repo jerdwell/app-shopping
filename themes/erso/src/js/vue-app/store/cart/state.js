@@ -1,5 +1,9 @@
 const state = {
-  test_data: ''
+  
+  cart_items: [],
+  
+  branch_selected: ''
+
 }
 
 export default state
