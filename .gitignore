@@ -15,13 +15,13 @@ php-errors.log
 sftp-config.json
 .ftpconfig
 selenium.php
-composer.lock
+# composer.lock
 package-lock.json
 /node_modules
 _ide_helper.php
 
 #move al images uploaded into the storage to another proyect or backup with ftp protocol
-/storage/app
+# /storage/app
 
 # for netbeans
 nbproject
