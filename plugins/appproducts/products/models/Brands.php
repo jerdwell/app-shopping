@@ -6,7 +6,7 @@ use October\Rain\Support\Str;
 /**
  * Model
  */
-class Brand extends Model
+class Brands extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
