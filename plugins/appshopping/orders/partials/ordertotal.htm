@@ -1,8 +1,0 @@
-<?php if(!empty($this -> vars['formModel']->attributes)) $formdata = $this -> vars['formModel']->attributes; ?>
-<input
-  type="text"
-  class="form-control text-right"
-  name="Orders[order_total]"
-  id="order-total"
-  readonly
-  value="<?php echo isset($formdata['order_total']) ? $formdata['order_total'] : 0; ?>">
