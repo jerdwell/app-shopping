@@ -3,10 +3,6 @@ import { store } from './store'
 import Axios from 'axios'
 
 Axios.defaults.baseURL = '/api/v1'
-Axios.defaults.headers.commons = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-}
 
 Vue.prototype.$http = Axios
 
