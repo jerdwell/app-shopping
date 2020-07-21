@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    shipowner_name:
+        label: Armadora
+        type: switch
+        searchable: true
+        sortable: true
+    shipowner_logo:
+        label: Logo
+        type: text

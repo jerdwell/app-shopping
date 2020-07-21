@@ -114,3 +114,27 @@
 1.0.39:
     - 'Updated table appproducts_products_products'
     - builder_table_update_appproducts_products_products_13.php
+1.0.40:
+    - 'Updated table appproducts_products_categories'
+    - builder_table_update_appproducts_products_categories_3.php
+1.0.41:
+    - 'Updated table appproducts_products_brands'
+    - builder_table_update_appproducts_products_brands_2.php
+1.0.42:
+    - 'Drop table appproducts_products_brands_details'
+    - builder_table_delete_appproducts_products_brands_details.php
+1.0.43:
+    - 'Updated table appproducts_products_categories'
+    - builder_table_update_appproducts_products_categories_4.php
+1.0.44:
+    - 'Updated table appproducts_products_categories'
+    - builder_table_update_appproducts_products_categories_5.php
+1.0.45:
+    - 'Created table appproducts_products_shipowners'
+    - builder_table_create_appproducts_products_shipowners.php
+1.0.46:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_14.php
+1.0.47:
+    - 'Updated table appproducts_products_products'
+    - builder_table_update_appproducts_products_products_15.php

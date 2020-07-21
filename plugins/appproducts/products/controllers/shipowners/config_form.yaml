@@ -1,0 +1,10 @@
+name: Shipowners
+form: $/appproducts/products/models/shipowner/fields.yaml
+modelClass: AppProducts\Products\Models\Shipowner
+defaultRedirect: appproducts/products/shipowners
+create:
+    redirect: 'appproducts/products/shipowners/update/:id'
+    redirectClose: appproducts/products/shipowners
+update:
+    redirect: appproducts/products/shipowners
+    redirectClose: appproducts/products/shipowners

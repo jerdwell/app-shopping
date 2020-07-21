@@ -1,6 +1,0 @@
-columns:
-    category:
-        label: Categoría
-        type: text
-        searchable: true
-        sortable: true

@@ -26,3 +26,7 @@ navigation:
                 label: Marcas
                 url: appproducts/products/brands
                 icon: icon-th-list
+            side-menu-item5:
+                label: Armadoras
+                url: appproducts/products/shipowners
+                icon: icon-puzzle-piece

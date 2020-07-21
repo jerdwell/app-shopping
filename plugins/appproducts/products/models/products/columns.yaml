@@ -14,7 +14,3 @@ columns:
         type: text
         searchable: true
         sortable: true
-    product_stock:
-        label: Stock
-        type: stock_test
-        searchable: true

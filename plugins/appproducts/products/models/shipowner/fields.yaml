@@ -1,0 +1,20 @@
+tabs:
+    fields:
+        shipowner_name:
+            label: Armadora
+            span: auto
+            required: 1
+            type: text
+            tab: General
+        shipowner_logo:
+            label: Logo
+            mode: image
+            span: auto
+            type: mediafinder
+            tab: Media
+        shipowner_cover:
+            label: Cover
+            mode: image
+            span: auto
+            type: mediafinder
+            tab: Media

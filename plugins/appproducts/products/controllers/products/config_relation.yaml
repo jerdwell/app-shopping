@@ -1,17 +1,17 @@
-categories:
-  label: 'Categorías'
-  view:
-    list: $/appproducts/products/models/categories/columns_relation.yaml
-    showSearch: true
-    showSorting: true
-    recordsPerPage: 10
-    toolbarButtons: add|remove
+# categories:
+#   label: 'Categorías'
+#   view:
+#     list: $/appproducts/products/models/categories/columns_relation.yaml
+#     showSearch: true
+#     showSorting: true
+#     recordsPerPage: 10
+#     toolbarButtons: add|remove
 
-tags:
-  label: Etiquetas
-  view:
-    list: $/appproducts/products/models/tags/columns_relation.yaml
-    showSearch: true
-    showSorting: true
-    recordsPerPage: 10
-    toolbarButtons: add|remove
+# tags:
+#   label: Etiquetas
+#   view:
+#     list: $/appproducts/products/models/tags/columns_relation.yaml
+#     showSearch: true
+#     showSorting: true
+#     recordsPerPage: 10
+#     toolbarButtons: add|remove

@@ -4,21 +4,8 @@ fields:
         span: auto
         required: 1
         type: text
-    slug:
-        label: Slug
+    category_cover:
+        label: Cover
+        mode: image
         span: auto
-        readOnly: 1
-        preset:
-            field: category
-            type: slug
-        hidden: 0
-        type: text
-    cover_category:
-        label: Portada
-        mode: file
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: auto
-        type: fileupload
+        type: mediafinder

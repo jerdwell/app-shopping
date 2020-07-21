@@ -10,20 +10,7 @@
     <?= Form::open(['class' => 'layout']) ?>
 
         <div class="layout-row">
-
-            <div class="col-12 col-md-8">
-                <?= $this->formRender() ?>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <h3 class="text-muted text-center">Categorías</h3>
-                <hr>
-                <?= $this->relationRender('categories') ?>
-                <h3 class="text-muted text-center">Etiquetas</h3>
-                <hr>
-                <?= $this->relationRender('tags') ?>
-            </div>
-            
+            <?= $this->formRender() ?>
         </div>
 
         <div class="form-buttons">

@@ -12,3 +12,6 @@
 1.0.5:
     - 'Updated table appproducts_branches_branches'
     - builder_table_update_appproducts_branches_branches_3.php
+1.0.6:
+    - 'Updated table appproducts_branches_branches'
+    - builder_table_update_appproducts_branches_branches_4.php
