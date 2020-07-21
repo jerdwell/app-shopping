@@ -21016,7 +21016,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = '/v1';
+axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = '/api/v1';
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axios__WEBPACK_IMPORTED_MODULE_2___default.a;
 
 
