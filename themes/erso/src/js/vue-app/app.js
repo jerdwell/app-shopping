@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { store } from './store'
 import Axios from 'axios'
 
-Axios.defaults.baseURL = 'http://www.erso.com.mx/api/v1'
+Axios.defaults.baseURL = '/api/v1'
 
 Vue.prototype.$http = Axios
 

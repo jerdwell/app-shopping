@@ -293,8 +293,8 @@ module.exports = Slide; // TODO(erdwell): Add features to touch events
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/erdwell/Sites/app-shopping/themes/erso/src/js/main.js */"./themes/erso/src/js/main.js");
-module.exports = __webpack_require__(/*! /Users/erdwell/Sites/app-shopping/themes/erso/src/scss/app.sass */"./themes/erso/src/scss/app.sass");
+__webpack_require__(/*! /Users/erdwell/Sites/erso/themes/erso/src/js/main.js */"./themes/erso/src/js/main.js");
+module.exports = __webpack_require__(/*! /Users/erdwell/Sites/erso/themes/erso/src/scss/app.sass */"./themes/erso/src/scss/app.sass");
 
 
 /***/ })

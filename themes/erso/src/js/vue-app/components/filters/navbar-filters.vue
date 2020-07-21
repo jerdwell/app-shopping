@@ -10,60 +10,38 @@
 
   .filters.bg-dark(:class="!searchProduct ? 'filters-inactive' : ''")
     .row
-      .col-md-6
-        .row
-          label.col-12.text-center Buscar por:
-          label.col-4.col-md-4.p-2.text-center
-            input.form-check-input(type="radio" name="typeSearch" value="car" v-model="typeSearch")
-            span.b-block Auto
-          label.col-4.col-md-4.p-2.text-center
-            input.form-check-input(type="radio" name="typeSearch" value="brand" v-model="typeSearch")
-            span.b-block Marca
-          label.col-4.col-md-4.p-2.text-center
-            input.form-check-input(type="radio" name="typeSearch" value="general" v-model="typeSearch")
-            span.b-block General
-
-      .col-md-6(v-if="typeSearch != ''")
-        .row
-          .col-md-10.offset-md-2
-            .search-item(v-if="typeSearch == 'car'")
-              label.text-muted.text-md-right.w-100 Buscar por auto
-              select.form-control.rounded-pill.border-0#car-search(v-model="dataSearch")
-                option(value="" v-for="item in 10" :key="item") Auto {{ item  }}
-            .search-item(v-if="typeSearch == 'brand'")
-              label.text-muted.text-md-right.w-100 Buscar por marca
-              select.form-control.rounded-pill.border-0#brand-search(v-model="dataSearch")
-                option(value="" v-for="item in 10" :key="item") Marca {{ item  }}
-            .search-item(v-if="typeSearch == 'general'")
-              label.text-muted.text-md-right.w-100 Búsqueda general
-              .input-group.bg-white.rounded-pill.mr-0.ml-auto(style="overflow: hidden; max-width:400px;")
-                input.form-control.border-0.border-0(type="text" placeholder="Buscar" style="box-shadow: none;" v-model="dataSearch")
-                .input-group-prepend.p-0
-                  .input-group-text.bg-transparent.border-0
-                    span.oi.oi-magnifying-glass
-        
-        .text-left.text-md-right.mt-3
-          button.btn.btn-info.btn-sm.rounded-pill(@click="searchData()" :disabled="dataSearch == ''")
-            span(v-if="loading")
-              i.spinner-border.mr-2
-              span Buscando
-            span(v-else) Buscar
+      .col-md-4
+        CarFilters
+      .col-md-4
+        ModelFilters
+      .col-md-4
+        CategoryFilters
+    
+    hr.border-light
             
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import MainProductsBrowser from './main-products-browser'
+import CarFilters from './car-filters'
+import ModelFilters from './model-filters'
+import CategoryFilters from './category-filters'
 export default {
   components: {
-    MainProductsBrowser
+    MainProductsBrowser,
+    CarFilters,
+    ModelFilters,
+    CategoryFilters
   },
   data(){
     return {
-      typeSearch: '',
       searchProduct: false,
-      dataSearch: '',
-      loading: false
+      loading: false,
+      //filters to search
+      car_search: '',
+      category_search: '',
+      model_search: '',
     }
   },
   computed: {
@@ -78,8 +56,8 @@ export default {
     searchData(){
       this.loading = true
       let search_products = this.searchProducts({
-        type: this.typeSearch,
-        data: this.dataSearch,
+        type: 'general',
+        data: 'prod',
         limit: 20
       }).then( res => this.loading = false )
       this.searchProduct = false
@@ -141,8 +119,7 @@ export default {
       padding-top: 140px
       position: fixed
       top: 0
-      max-height: 100vh
-      height: auto
+      height: 100vh
       overflow: auto!important
       width: 100%
     .controll-filters

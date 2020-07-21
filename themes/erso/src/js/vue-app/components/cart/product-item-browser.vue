@@ -14,7 +14,7 @@
         br
         button.btn.btn-info.btn-sm.mt-2(@click="showPop = true")
           i.oi.oi-cart
-          span.ml-3.pl-3.border-left.border-light Cotizar
+          span.ml-3.pl-3.border-left.border-light Agregar
     
     PopProductCart(:productData="product" v-if="showPop")
 

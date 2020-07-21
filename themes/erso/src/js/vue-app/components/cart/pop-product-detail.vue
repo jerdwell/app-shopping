@@ -24,10 +24,13 @@
                       p.my-1.py-0.border-info.border-bottom.pb-2(v-for="(branch, i) in getStockBrand(productData.product_stock, brand.pivot.brand_code)" :key="i")
                         small #[b.text-info Sucursal: ] {{ branch.branch_name }}
                         br
-                        small #[b.text-info Stock: ] {{ branch.stock_product }}pz.
-                        br
-                        button.btn.btn-sm.btn-info Agregar
+                        //- small #[b.text-info Stock: ] {{ branch.stock_product }}pz.
+                        //- br
+                        //- button.btn.btn-sm.btn-info Agregar
+                        CartControlButtons
+                        
                         //TODO: Falta agregar la funcionalidad del botón para agregar elementos al carrito de compra u order.
+                    
                     li.list-group-item.py-1(v-else)
                       h4.text-center.text-muted No existen productos disponibles
             h4.text-center.text-muted(v-else) No existen productos disponibles
@@ -39,7 +42,11 @@
 </template>
 
 <script>
+import CartControlButtons from './cart-control-buttons'
 export default {
+  components: {
+    CartControlButtons
+  },
   props: [
     'productData', //información del producto
   ],
@@ -66,7 +73,6 @@ export default {
 .pop-product-cart
   left: 0
   height: 100vh
-  overflow: hidden
   overflow-y: auto
   padding: 30px 3%
   position: fixed
