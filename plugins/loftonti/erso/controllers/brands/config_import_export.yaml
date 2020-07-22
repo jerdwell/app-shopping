@@ -1,0 +1,6 @@
+import:
+  title: Import subscribers
+  modelClass: Loftonti\Erso\Models\BrandsImport
+  list: $/loftonti/erso/models/brands/columns_import.yaml
+  redirect: loftonti/erso/brands
+

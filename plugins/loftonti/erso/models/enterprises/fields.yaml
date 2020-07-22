@@ -1,5 +1,5 @@
 fields:
     enterprise_name:
         label: Empresa
-        span: auto
+        span: full
         type: text

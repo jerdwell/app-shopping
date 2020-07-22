@@ -25,3 +25,12 @@ shipowner_id:
   manage:
       form: $/loftonti/erso/models/shipowners/fields.yaml
       list: $/loftonti/erso/models/shipowners/columns.yaml
+
+enterprise_id:
+  label: 'Empresa'
+  view:
+    form: $/loftonti/erso/models/enterprises/fields.yaml
+    toolbarButtons: link
+  manage:
+      form: $/loftonti/erso/models/enterprises/fields.yaml
+      list: $/loftonti/erso/models/enterprises/columns.yaml

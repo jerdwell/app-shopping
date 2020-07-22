@@ -1,6 +1,7 @@
 <?php namespace Loftonti\Erso\Models;
 
 use Model;
+use Illuminate\Support\Str;
 
 /**
  * Model
@@ -29,5 +30,14 @@ class Brands extends Model
      * @var array Validation rules
      */
     public $rules = [
+        // 'brand_name' => 'unique:loftonti_erso_brands,brand_name'
     ];
+
+    /** Events */
+
+    public function beforeSave()
+    {
+        $this -> brand_slug = Str::slug($this -> brand_name);
+    }
+
 }
