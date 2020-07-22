@@ -1,0 +1,5 @@
+import:
+  title: Importanción de Armadoras
+  modelClass: Loftonti\Erso\Models\ShipownersImport
+  list: $/loftonti/erso/models/shipowners/columns.yaml
+  redirect: loftonti/erso/shipowners
