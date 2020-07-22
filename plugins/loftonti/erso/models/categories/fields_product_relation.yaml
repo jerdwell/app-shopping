@@ -3,4 +3,3 @@ fields:
     label: Categoría
     span: full
     type: text
-    required: 1

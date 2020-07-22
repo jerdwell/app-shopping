@@ -1,6 +1,7 @@
 <?php namespace Loftonti\Erso\Models;
 
 use Model;
+use Illuminate\Support\Str;
 
 /**
  * Model
@@ -31,11 +32,19 @@ class Products extends Model
     public $rules = [
     ];
 
+    /** Events */
+
+    public function beforeSave()
+    {
+        $this -> product_slug = Str::slug($this -> product_name);
+    }
+
+    /** Relations */
+
     public $belongsTo = [
-        'brand_id' => [ 'Loftonti\Erso\Models\Brands' ],
-        'category_id' => [ 'Loftonti\Erso\Models\Categories' ],
-        'enterprise_id' => [ 'Loftonti\Erso\Models\Enterprises' ],
-        'shipowner_id' => [ 'Loftonti\Erso\Models\Shipowners' ],
+        'brand' => [ 'Loftonti\Erso\Models\Brands' ],
+        'category' => [ 'Loftonti\Erso\Models\Categories' ],
+        'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ]
     ];
 
 }

@@ -40,4 +40,10 @@ class Brands extends Model
         $this -> brand_slug = Str::slug($this -> brand_name);
     }
 
+    /** Relations */
+
+    public $hasMany = [
+        'product_id' => 'Loftonti\Erso\Models\Products'
+    ];
+
 }

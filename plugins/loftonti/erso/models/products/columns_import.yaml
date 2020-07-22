@@ -1,32 +1,14 @@
 columns:
-  product_name:
-    type: text
-    required: 1
-  
-  product_description:
-    type: text
-  
-  product_note:
-    type: text
-  
+  shipowner_id:
   product_model:
-    type: text
-    required: 1
-  
   erso_code:
-    type: text
-  
   provider_code:
-    type: text
-    required: 1
-  
   product_year:
-    type: text
-    required: 1
-  
+  product_name:
+  product_description:
+  product_note:
+  category_id:
+  enterprise_id:
+  brand_id:
   public_price:
-    type: text
-  
   provider_price:
-    type: text
-  

@@ -14,14 +14,12 @@
                 <?= $this->formRender() ?>
             </div>
             <div class="col-md-3">
-                <h5 class="text-muted text-center">Marca</h5>
-                <?= $this->relationRender('brand_id') ?>
-                <h5 class="text-muted text-center">Categoría</h5>
-                <?= $this->relationRender('category_id') ?>
-                <h5 class="text-muted text-center">Armadora</h5>
-                <?= $this->relationRender('shipowner_id') ?>
-                <h5 class="text-muted text-center">Empresa</h5>
-                <?= $this->relationRender('enterprise_id') ?>
+                <h4 class="text-center text-muted">Marca</h4>
+                <?= $this->relationRender('brand') ?>
+                <h4 class="text-center text-muted">Categoría</h4>
+                <?= $this->relationRender('category') ?>
+                <h4 class="text-center text-muted">Armadora</h4>
+                <?= $this->relationRender('shipowner') ?>
             </div>
         </div>
 
