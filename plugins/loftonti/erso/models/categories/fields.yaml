@@ -3,7 +3,8 @@ fields:
         label: Categoría
         span: left
         type: text
-    mediafinder1:
-        label: 'Media finder'
+    category_cover:
+        label: Cover
         span: auto
+        mode: file
         type: mediafinder

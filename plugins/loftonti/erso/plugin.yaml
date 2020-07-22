@@ -30,3 +30,7 @@ navigation:
                 label: Sucursales
                 url: loftonti/erso/branches
                 icon: icon-sitemap
+            side-menu-item6:
+                label: Empresas
+                url: loftonti/erso/enterprises
+                icon: icon-building

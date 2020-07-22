@@ -1,11 +1,11 @@
 tabs:
     fields:
-        product_cover:
-            label: Cover
-            mode: image
-            span: auto
-            type: mediafinder
-            tab: Media
+        product_name:
+            label: Producto
+            span: full
+            required: 1
+            type: text
+            tab: Producto
         product_note:
             label: Nota
             span: auto
@@ -49,3 +49,9 @@ tabs:
             span: right
             type: number
             tab: Producto
+        product_cover:
+            label: Cover
+            mode: image
+            span: auto
+            type: mediafinder
+            tab: Media

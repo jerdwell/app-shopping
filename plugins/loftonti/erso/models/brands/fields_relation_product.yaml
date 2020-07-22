@@ -1,0 +1,6 @@
+fields:
+  brand_name:
+    label: Marca
+    span: full
+    required: 1
+    type: text

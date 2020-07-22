@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 /**
  * Model
  */
-class Categories extends Model
+class Enterprises extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -24,20 +24,20 @@ class Categories extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'loftonti_erso_categories';
+    public $table = 'loftonti_erso_enterprises';
 
     /**
      * @var array Validation rules
      */
     public $rules = [
-        // 'category_name' => 'unique:loftonti_erso_categories.category_name,'
+        'enterprise_name' => 'unique:loftonti_erso_enterprises,enterprise_name'
     ];
 
     /** Events */
 
     public function beforeSave()
     {
-        $this -> category_slug = Str::slug($this -> category_name);
+        $this -> enterprise_slug = Str::slug($this -> enterprise_name);
     }
 
 }

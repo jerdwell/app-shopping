@@ -10,7 +10,17 @@
     <?= Form::open(['class' => 'layout']) ?>
 
         <div class="layout-row">
-            <?= $this->formRender() ?>
+            <div class="col-md-9">
+                <?= $this->formRender() ?>
+            </div>
+            <div class="col-md-3">
+                <h5 class="text-muted text-center">Marca</h5>
+                <?= $this->relationRender('brand_id') ?>
+                <h5 class="text-muted text-center">Categoría</h5>
+                <?= $this->relationRender('category_id') ?>
+                <h5 class="text-muted text-center">Armadora</h5>
+                <?= $this->relationRender('shipowner_id') ?>
+            </div>
         </div>
 
         <div class="form-buttons">

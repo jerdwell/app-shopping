@@ -1,0 +1,6 @@
+fields:
+  category_name:
+    label: Categoría
+    span: full
+    type: text
+    required: 1

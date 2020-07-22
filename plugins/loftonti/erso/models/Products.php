@@ -30,4 +30,11 @@ class Products extends Model
      */
     public $rules = [
     ];
+
+    public $belongsTo = [
+        'brand_id' => [ 'Loftonti\Erso\Models\Brands' ],
+        'category_id' => [ 'Loftonti\Erso\Models\Categories' ],
+        'shipowner_id' => [ 'Loftonti\Erso\Models\Shipowners' ],
+    ];
+
 }

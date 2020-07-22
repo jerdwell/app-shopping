@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    enterprise_name:
+        label: Empresa
+        type: text
+        searchable: true
+        sortable: true

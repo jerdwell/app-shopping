@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('loftonti/erso/products') ?>">Products</a></li>
+        <li><a href="<?= Backend::url('loftonti/erso/enterprises') ?>">Enterprises</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -10,17 +10,7 @@
     <?= Form::open(['class' => 'layout']) ?>
 
         <div class="layout-row">
-            <div class="col-md-9">
-                <?= $this->formRender() ?>
-            </div>
-            <div class="col-md-3">
-                <h5 class="text-muted text-center">Marca</h5>
-                <?= $this->relationRender('brand_id') ?>
-                <h5 class="text-muted text-center">Categoría</h5>
-                <?= $this->relationRender('category_id') ?>
-                <h5 class="text-muted text-center">Armadora</h5>
-                <?= $this->relationRender('shipowner_id') ?>
-            </div>
+            <?= $this->formRender() ?>
         </div>
 
         <div class="form-buttons">
@@ -43,7 +33,7 @@
                     <?= e(trans('backend::lang.form.create_and_close')) ?>
                 </button>
                 <span class="btn-text">
-                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('loftonti/erso/products') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('loftonti/erso/enterprises') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
                 </span>
             </div>
         </div>
@@ -52,5 +42,5 @@
 
 <?php else: ?>
     <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-    <p><a href="<?= Backend::url('loftonti/erso/products') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+    <p><a href="<?= Backend::url('loftonti/erso/enterprises') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
 <?php endif ?>
