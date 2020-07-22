@@ -1,0 +1,11 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    brand_name:
+        label: Marca
+        type: text
+        searchable: true
+        sortable: true

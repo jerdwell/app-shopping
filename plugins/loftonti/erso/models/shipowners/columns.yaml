@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    shipowner_name:
+        label: Armadora
+        type: text
+        searchable: true
+        sortable: true

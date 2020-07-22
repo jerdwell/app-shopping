@@ -1,0 +1,20 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    product_name:
+        label: Producto
+        type: text
+        searchable: true
+        sortable: true
+    product_model:
+        label: Modelo
+        type: text
+        searchable: true
+        sortable: true
+    product_year:
+        label: Año
+        type: number
+        searchable: true
+        sortable: true

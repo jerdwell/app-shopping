@@ -1,0 +1,10 @@
+name: Products
+form: $/loftonti/erso/models/products/fields.yaml
+modelClass: Loftonti\Erso\Models\Products
+defaultRedirect: loftonti/erso/products
+create:
+    redirect: 'loftonti/erso/products/update/:id'
+    redirectClose: loftonti/erso/products
+update:
+    redirect: loftonti/erso/products
+    redirectClose: loftonti/erso/products

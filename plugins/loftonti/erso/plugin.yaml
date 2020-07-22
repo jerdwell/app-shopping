@@ -4,3 +4,25 @@ plugin:
     author: LoftonTi
     icon: oc-icon-puzzle-piece
     homepage: ''
+navigation:
+    main-menu-item:
+        label: Erso
+        url: loftonti/erso/products
+        icon: icon-cubes
+        sideMenu:
+            side-menu-item2:
+                label: Productos
+                url: loftonti/erso/products
+                icon: icon-cubes
+            side-menu-item:
+                label: Categorías
+                url: loftonti/erso/categories
+                icon: icon-tag
+            side-menu-item3:
+                label: Armadoras
+                url: loftonti/erso/shipowners
+                icon: icon-puzzle-piece
+            side-menu-item4:
+                label: Marcas
+                url: loftonti/erso/brands
+                icon: icon-list-ul

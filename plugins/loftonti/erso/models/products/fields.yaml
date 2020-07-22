@@ -1,0 +1,51 @@
+tabs:
+    fields:
+        product_cover:
+            label: Cover
+            mode: image
+            span: auto
+            type: mediafinder
+            tab: Media
+        product_note:
+            label: Nota
+            span: auto
+            type: text
+            tab: Producto
+        product_description:
+            label: Descripción
+            size: ''
+            span: full
+            type: richeditor
+            tab: Producto
+        product_model:
+            label: Model
+            span: auto
+            required: 1
+            type: text
+            tab: Producto
+        product_year:
+            label: Año
+            span: auto
+            type: text
+            tab: Producto
+        erso_code:
+            label: 'Código Erso'
+            span: left
+            type: text
+            tab: Producto
+        provider_code:
+            label: 'Código de proveedor'
+            span: right
+            required: 1
+            type: text
+            tab: Producto
+        public_price:
+            label: 'Precio público'
+            span: left
+            type: number
+            tab: Producto
+        provider_price:
+            label: 'Precio de proveedor'
+            span: right
+            type: number
+            tab: Producto

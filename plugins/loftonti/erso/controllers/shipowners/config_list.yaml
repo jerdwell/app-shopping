@@ -1,0 +1,12 @@
+list: $/loftonti/erso/models/shipowners/columns.yaml
+modelClass: Loftonti\Erso\Models\Shipowners
+title: Shipowners
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'loftonti/erso/shipowners/update/:id'

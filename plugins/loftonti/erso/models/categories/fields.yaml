@@ -1,0 +1,9 @@
+fields:
+    category_name:
+        label: Categoría
+        span: left
+        type: text
+    mediafinder1:
+        label: 'Media finder'
+        span: auto
+        type: mediafinder

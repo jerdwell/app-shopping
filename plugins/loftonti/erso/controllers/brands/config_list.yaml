@@ -1,0 +1,12 @@
+list: $/loftonti/erso/models/brands/columns.yaml
+modelClass: Loftonti\Erso\Models\Brands
+title: Brands
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'loftonti/erso/brands/update/:id'

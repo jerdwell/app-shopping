@@ -1,2 +1,17 @@
 1.0.1:
-    - Initialize plugin.
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_erso_products'
+    - builder_table_create_loftonti_erso_products.php
+1.0.3:
+    - 'Created table loftonti_erso_categories'
+    - builder_table_create_loftonti_erso_categories.php
+1.0.4:
+    - 'Updated table loftonti_erso_categories'
+    - builder_table_update_loftonti_erso_categories.php
+1.0.5:
+    - 'Created table loftonti_erso_shipowners'
+    - builder_table_create_loftonti_erso_shipowners.php
+1.0.6:
+    - 'Created table loftonti_erso_brands'
+    - builder_table_create_loftonti_erso_brands.php
