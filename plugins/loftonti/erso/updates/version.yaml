@@ -15,3 +15,6 @@
 1.0.6:
     - 'Created table loftonti_erso_brands'
     - builder_table_create_loftonti_erso_brands.php
+1.0.7:
+    - 'Created table loftonti_erso_branches'
+    - builder_table_create_loftonti_erso_branches.php

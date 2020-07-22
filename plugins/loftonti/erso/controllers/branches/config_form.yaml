@@ -1,0 +1,10 @@
+name: Branches
+form: $/loftonti/erso/models/branches/fields.yaml
+modelClass: Loftonti\Erso\Models\Branches
+defaultRedirect: loftonti/erso/branches
+create:
+    redirect: 'loftonti/erso/branches/update/:id'
+    redirectClose: loftonti/erso/branches
+update:
+    redirect: loftonti/erso/branches
+    redirectClose: loftonti/erso/branches

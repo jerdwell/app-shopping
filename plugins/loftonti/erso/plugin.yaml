@@ -26,3 +26,7 @@ navigation:
                 label: Marcas
                 url: loftonti/erso/brands
                 icon: icon-list-ul
+            side-menu-item5:
+                label: Sucursales
+                url: loftonti/erso/branches
+                icon: icon-sitemap
