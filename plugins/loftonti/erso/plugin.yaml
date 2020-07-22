@@ -1,0 +1,6 @@
+plugin:
+    name: 'loftonti.erso::lang.plugin.name'
+    description: 'loftonti.erso::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-puzzle-piece
+    homepage: ''
