@@ -8,14 +8,10 @@
       span.text-yellow.mr-2 Cancelar búsqueda
       span.oi.oi-x.icon-button-filter.text-yellow.border-yellow
 
-  .filters.bg-dark(:class="!searchProduct ? 'filters-inactive' : ''")
-    .row
-      .col-md-4
-        CarFilters
-      .col-md-4
-        ModelFilters
-      .col-md-4
-        CategoryFilters
+  //- .filters.bg-dark(:class="!searchProduct ? 'filters-inactive' : ''")
+  .filters.bg-dark
+    SelectTypeFilters
+    FilterByCar(v-if="type_filter == 'car'")
     
     hr.border-light
             
@@ -24,24 +20,23 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import MainProductsBrowser from './main-products-browser'
-import CarFilters from './car-filters'
-import ModelFilters from './model-filters'
-import CategoryFilters from './category-filters'
+import SelectTypeFilters from './select-type-filters'
+import FilterByCar from './filter-by-car'
+import GeneralFilter from './general-filter'
+import Codefilter from './code-filter'
 export default {
   components: {
+    FilterByCar,
     MainProductsBrowser,
-    CarFilters,
-    ModelFilters,
-    CategoryFilters
+    SelectTypeFilters,
+    GeneralFilter,
+    Codefilter
   },
   data(){
     return {
       searchProduct: false,
       loading: false,
-      //filters to search
-      car_search: '',
-      category_search: '',
-      model_search: '',
+      type_filter: '',
     }
   },
   computed: {

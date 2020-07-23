@@ -34,3 +34,7 @@ navigation:
                 label: Empresas
                 url: loftonti/erso/enterprises
                 icon: icon-building
+            side-menu-item7:
+                label: Modelos
+                url: loftonti/erso/carsmodels
+                icon: icon-automobile

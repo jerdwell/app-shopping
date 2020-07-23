@@ -1,0 +1,10 @@
+name: CarsModels
+form: $/loftonti/erso/models/carsmodels/fields.yaml
+modelClass: Loftonti\Erso\Models\CarsModels
+defaultRedirect: loftonti/erso/carsmodels
+create:
+    redirect: 'loftonti/erso/carsmodels/update/:id'
+    redirectClose: loftonti/erso/carsmodels
+update:
+    redirect: loftonti/erso/carsmodels
+    redirectClose: loftonti/erso/carsmodels

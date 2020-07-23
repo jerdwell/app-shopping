@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class Shipowners extends Model
+class CarsModels extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -23,17 +23,11 @@ class Shipowners extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'loftonti_erso_shipowners';
+    public $table = 'loftonti_erso_models';
 
     /**
      * @var array Validation rules
      */
     public $rules = [
     ];
-
-    /** Relations */
-    public $hasMany = [
-        'Products' => [ 'Loftonti\Erso\Models\Products', 'key' => 'id' ]
-    ];
-
 }

@@ -45,7 +45,8 @@ class Products extends Model
         'brand' => [ 'Loftonti\Erso\Models\Brands' ],
         'category' => [ 'Loftonti\Erso\Models\Categories' ],
         'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ],
-        'enterprise' => [ 'Loftonti\Erso\Models\enterprises' ]
+        'enterprise' => [ 'Loftonti\Erso\Models\enterprises' ],
+        'car_model' => [ 'Loftonti\Erso\Models\CarsModels' ]
     ];
 
 }
