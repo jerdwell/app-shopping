@@ -44,7 +44,8 @@ class Products extends Model
     public $belongsTo = [
         'brand' => [ 'Loftonti\Erso\Models\Brands' ],
         'category' => [ 'Loftonti\Erso\Models\Categories' ],
-        'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ]
+        'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ],
+        'enterprise' => [ 'Loftonti\Erso\Models\enterprises' ]
     ];
 
 }
