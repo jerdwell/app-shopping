@@ -22,11 +22,6 @@ tabs:
             span: auto
             type: text
             tab: Producto
-        erso_code:
-            label: 'Código Erso'
-            span: left
-            type: text
-            tab: Producto
         provider_code:
             label: 'Código de proveedor'
             span: right

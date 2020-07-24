@@ -1,14 +1,27 @@
 columns:
   shipowner_id:
+    label: 'Armadora'
   product_model:
+    label: 'Modelo'
   erso_code:
+    label: 'Código ERSO'
   provider_code:
+    label: 'Código de proveedor'
   product_year:
+    label: 'Año'
   product_name:
+    label: 'Producto'
   product_description:
+    label: 'Descripción'
   product_note:
+    label: 'Nota'
   category_id:
+    label: 'Categoría'
   enterprise_id:
+    label: 'Empresa'
   brand_id:
+    label: 'Marca'
   public_price:
+    label: 'Precio Público'
   provider_price:
+    label: 'Precio Proveedor'

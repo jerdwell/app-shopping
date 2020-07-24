@@ -1,7 +1,7 @@
 <?php namespace Loftonti\Erso\Models;
 
 use Backend\Models\ImportModel;
-use Loftonti\Erso\Models\{Categories, Products, Shipowners, Enterprises, Brands, CarsModels};
+use Loftonti\Erso\Models\{Categories, Products, Shipowners, Enterprises, Brands, CarsModels, ErsoCodes};
 use Illuminate\Support\Str;
 
 class ProductsImport extends ImportModel
@@ -9,7 +9,7 @@ class ProductsImport extends ImportModel
 
   public $rules = [];
   
-  public function importdata($results, $sessionKey = null)
+  public function importData($results, $sessionKey = null)
   {
     $imgSrc = '/products/placeholder-img.png';
     
@@ -18,6 +18,7 @@ class ProductsImport extends ImportModel
     $enterprises = new Enterprises;
     $brands = new Brands;
     $carsmodels = new CarsModels;
+    $ersocodes = new ErsoCodes;
     foreach ($results as $row => $data) {
       
       try {
@@ -27,16 +28,18 @@ class ProductsImport extends ImportModel
         $enterprise = $enterprises -> where('enterprise_slug', Str::slug($data['enterprise_id'])) -> first();
         $brand = $brands -> where('brand_slug', Str::slug($data['brand_id'])) -> first();
         $carmodel = $carsmodels -> where('model_slug', Str::slug($data['product_model'])) -> first();
+        $ersocode = $ersocodes -> where('erso_code', Str::upper(Str::slug($data['erso_code']))) -> first();
 
         if(!isset($shipowner -> id)) throw new \Exception("Armadora {$data['shipowner_id']} no encontrada");
         if(!isset($brand -> id)) throw new \Exception("Marca {$data['brand_id']} no encontrada");
         if(!isset($category -> id)) throw new \Exception("Categoría {$data['category_id']} no encontrada");
         if(!isset($enterprise -> id)) throw new \Exception("Empresa {$data['enterprise_id']} no encontrada");
         if(!isset($carmodel -> id)) throw new \Exception("Modelo {$data['product_model']} no encontrado");
+        if(!isset($ersocode -> id)) throw new \Exception("Código {$data['erso_code']} no encontrado");
 
         $product = new Products;
         $product -> shipowner_id = $shipowner -> id;
-        $product -> erso_code = $data['erso_code'];
+        $product -> erso_code_id = $ersocode -> id;
         $product -> provider_code = $data['provider_code'];
         $product -> product_year = $data['product_year'];
         $product -> product_name = $data['product_name'];

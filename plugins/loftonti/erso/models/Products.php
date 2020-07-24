@@ -45,8 +45,9 @@ class Products extends Model
         'brand' => [ 'Loftonti\Erso\Models\Brands' ],
         'category' => [ 'Loftonti\Erso\Models\Categories' ],
         'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ],
-        'enterprise' => [ 'Loftonti\Erso\Models\enterprises' ],
-        'car' => [ 'Loftonti\Erso\Models\CarsModels', 'key' => 'model_id' ]
+        'enterprise' => [ 'Loftonti\Erso\Models\Enterprises' ],
+        'car' => [ 'Loftonti\Erso\Models\CarsModels', 'key' => 'model_id' ],
+        'erso_code' => [ 'Loftonti\Erso\Models\ErsoCodes', 'key' => 'erso_code_id' ],
     ];
 
 }
