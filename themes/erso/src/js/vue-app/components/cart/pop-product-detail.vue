@@ -7,35 +7,38 @@
         h4.text-center.text-muted {{ productData.product_name }}
         hr
         .row
-          .col-md-5
-            img.w-100(:src="productData.product_cover.path")
-          .col-md-7
-            h6.text-muted Aplicación
-            p {{ productData.product_description }}
-            div(v-if="productData.product_brands_customer.length > 0")
-              ul.list-group(v-if="productData.product_brands_customer.length > 0")
-                li.list-group-item(v-for="(brand, index) in productData.product_brands_customer" :key="index")
-                  h5 Marca: {{ brand.brand_name }}
-                  hr
-                  ul.list-group.list-group-flush
-                    li.list-group-item.py-1 #[b Precio: ] #[b.lead ${{ brand.pivot.brand_public_price }}]
-                    li.list-group-item.py-1(v-show="brand.pivot.remark != null") #[b Observaciones: ] {{ brand.pivot.remark }}
-                    li.list-group-item.py-1(v-if="productData.product_stock != null") #[small Disponible en las sucursales de: ]
-                      p.my-1.py-0.border-info.border-bottom.pb-2(v-for="(branch, i) in getStockBrand(productData.product_stock, brand.pivot.brand_code)" :key="i")
-                        small #[b.text-info Sucursal: ] {{ branch.branch_name }}
-                        br
-                        //- small #[b.text-info Stock: ] {{ branch.stock_product }}pz.
-                        //- br
-                        //- button.btn.btn-sm.btn-info Agregar
-                        CartControlButtons
-                        
-                        //TODO: Falta agregar la funcionalidad del botón para agregar elementos al carrito de compra u order.
-                    
-                    li.list-group-item.py-1(v-else)
-                      h4.text-center.text-muted No existen productos disponibles
-            h4.text-center.text-muted(v-else) No existen productos disponibles
-        .text-right.my-2
-          button.btn.btn-info(@click="$parent.showPop = false") Cerrar
+          .col-8.col-md-4.offset-2.offset-md-0
+            img.w-100(:src="`/storage/app/media/${productData.product_cover}`")
+          .col-12.col-md-8
+            span.h6.text-info Costo: {{ productData.public_price == null ? 'No hay dato' : `$${productData.public_price}` }}
+            br
+            span.small.text-muted #[b Notas: ] {{ productData.product_note }}
+            br
+            span.small.text-muted #[b Año: ] {{ productData.product_year }}
+            br
+            span.small.text-muted #[b Aplicación: ] {{ productData.product_escription }}
+            br
+            span.small.text-muted #[b Modelo: ] {{ productData.car.model_name }}
+            br
+            span.small.text-muted #[b Auto: ] {{ productData.shipowner.shipowner_name }}
+            br
+            span.small.text-muted #[b Marca: ] {{ productData.brand.brand_name }}
+            br
+            div.mt-2
+              label.text-secondary Selecciona una sucursal
+              select.form-control(style="max-width:350px;")
+                option(value="") Selecciona una opción
+                option(value="") Tlalnepantla
+                option(value="") Cuautitlan Izcalli
+                option(value="") Coacalco
+            .mt-4.text-center(style="max-width:350px;")
+              h6.text-muted Agregar
+              button.btn.btn-danger.bg-transparent.border-danger.text-danger #[.oi.oi-minus]
+              input.form-control-inline.mx-1.align-middle.text-center(disabled value="0" style="max-width:100px;")
+              button.btn.btn-info.bg-transparent.border-info.text-info #[.oi.oi-plus]
+        
+        .text-right.my-2.mt-5
+          button.btn.btn-info.btn-block(@click="$parent.showPop = false") Cerrar
 
       //- span {{productData}}
   
@@ -51,10 +54,6 @@ export default {
     'productData', //información del producto
   ],
   methods: {  
-    getStockBrand(stock, code){
-      let item = stock.filter(i => { if(i.brand_code == code) return i })
-      return item
-    }
   },
 
   mounted(){

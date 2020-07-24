@@ -1831,6 +1831,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1838,14 +1841,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['productData' //información del producto
   ],
-  methods: {
-    getStockBrand: function getStockBrand(stock, code) {
-      var item = stock.filter(function (i) {
-        if (i.brand_code == code) return i;
-      });
-      return item;
-    }
-  },
+  methods: {},
   mounted: function mounted() {
     document.querySelector('.navbar-main-erso').style.opacity = 0;
     document.body.style.overflowY = 'hidden';
@@ -6982,165 +6978,65 @@ var render = function() {
         ]),
         _c("hr"),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-5" }, [
+          _c("div", { staticClass: "col-8 col-md-4 offset-2 offset-md-0" }, [
             _c("img", {
               staticClass: "w-100",
-              attrs: { src: _vm.productData.product_cover.path }
+              attrs: {
+                src: "/storage/app/media/" + _vm.productData.product_cover
+              }
             })
           ]),
-          _c("div", { staticClass: "col-md-7" }, [
-            _c("h6", { staticClass: "text-muted" }, [_vm._v("Aplicación")]),
-            _c("p", [_vm._v(_vm._s(_vm.productData.product_description))]),
-            _vm.productData.product_brands_customer.length > 0
-              ? _c("div", [
-                  _vm.productData.product_brands_customer.length > 0
-                    ? _c(
-                        "ul",
-                        { staticClass: "list-group" },
-                        _vm._l(
-                          _vm.productData.product_brands_customer,
-                          function(brand, index) {
-                            return _c(
-                              "li",
-                              { key: index, staticClass: "list-group-item" },
-                              [
-                                _c("h5", [
-                                  _vm._v("Marca: " + _vm._s(brand.brand_name))
-                                ]),
-                                _c("hr"),
-                                _c(
-                                  "ul",
-                                  {
-                                    staticClass: "list-group list-group-flush"
-                                  },
-                                  [
-                                    _c(
-                                      "li",
-                                      { staticClass: "list-group-item py-1" },
-                                      [
-                                        _c("b", [_vm._v("Precio: ")]),
-                                        _vm._v(" "),
-                                        _c("b", { staticClass: "lead" }, [
-                                          _vm._v(
-                                            "$" +
-                                              _vm._s(
-                                                brand.pivot.brand_public_price
-                                              )
-                                          )
-                                        ])
-                                      ]
-                                    ),
-                                    _c(
-                                      "li",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "show",
-                                            rawName: "v-show",
-                                            value: brand.pivot.remark != null,
-                                            expression:
-                                              "brand.pivot.remark != null"
-                                          }
-                                        ],
-                                        staticClass: "list-group-item py-1"
-                                      },
-                                      [
-                                        _c("b", [_vm._v("Observaciones: ")]),
-                                        _vm._v(" " + _vm._s(brand.pivot.remark))
-                                      ]
-                                    ),
-                                    _vm.productData.product_stock != null
-                                      ? _c(
-                                          "li",
-                                          {
-                                            staticClass: "list-group-item py-1"
-                                          },
-                                          [
-                                            _c("small", [
-                                              _vm._v(
-                                                "Disponible en las sucursales de: "
-                                              )
-                                            ]),
-                                            _vm._l(
-                                              _vm.getStockBrand(
-                                                _vm.productData.product_stock,
-                                                brand.pivot.brand_code
-                                              ),
-                                              function(branch, i) {
-                                                return _c(
-                                                  "p",
-                                                  {
-                                                    key: i,
-                                                    staticClass:
-                                                      "my-1 py-0 border-info border-bottom pb-2"
-                                                  },
-                                                  [
-                                                    _c("small", [
-                                                      _c(
-                                                        "b",
-                                                        {
-                                                          staticClass:
-                                                            "text-info"
-                                                        },
-                                                        [_vm._v("Sucursal: ")]
-                                                      ),
-                                                      _vm._v(
-                                                        " " +
-                                                          _vm._s(
-                                                            branch.branch_name
-                                                          )
-                                                      )
-                                                    ]),
-                                                    _c("br"),
-                                                    _c("CartControlButtons")
-                                                  ],
-                                                  1
-                                                )
-                                              }
-                                            )
-                                          ],
-                                          2
-                                        )
-                                      : _c(
-                                          "li",
-                                          {
-                                            staticClass: "list-group-item py-1"
-                                          },
-                                          [
-                                            _c(
-                                              "h4",
-                                              {
-                                                staticClass:
-                                                  "text-center text-muted"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "No existen productos disponibles"
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                  ]
-                                )
-                              ]
-                            )
-                          }
-                        ),
-                        0
-                      )
-                    : _vm._e()
-                ])
-              : _c("h4", { staticClass: "text-center text-muted" }, [
-                  _vm._v("No existen productos disponibles")
-                ])
+          _c("div", { staticClass: "col-12 col-md-8" }, [
+            _c("span", { staticClass: "h6 text-info" }, [
+              _vm._v(
+                "Costo: " +
+                  _vm._s(
+                    _vm.productData.public_price == null
+                      ? "No hay dato"
+                      : "$" + _vm.productData.public_price
+                  )
+              )
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "small text-muted" }, [
+              _c("b", [_vm._v("Notas: ")]),
+              _vm._v(" " + _vm._s(_vm.productData.product_note))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "small text-muted" }, [
+              _c("b", [_vm._v("Año: ")]),
+              _vm._v(" " + _vm._s(_vm.productData.product_year))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "small text-muted" }, [
+              _c("b", [_vm._v("Aplicación: ")]),
+              _vm._v(" " + _vm._s(_vm.productData.product_escription))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "small text-muted" }, [
+              _c("b", [_vm._v("Modelo: ")]),
+              _vm._v(" " + _vm._s(_vm.productData.car.model_name))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "small text-muted" }, [
+              _c("b", [_vm._v("Auto: ")]),
+              _vm._v(" " + _vm._s(_vm.productData.shipowner.shipowner_name))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "small text-muted" }, [
+              _c("b", [_vm._v("Marca: ")]),
+              _vm._v(" " + _vm._s(_vm.productData.brand.brand_name))
+            ]),
+            _c("br"),
+            _vm._m(0),
+            _vm._m(1)
           ])
         ]),
-        _c("div", { staticClass: "text-right my-2" }, [
+        _c("div", { staticClass: "text-right my-2 mt-5" }, [
           _c(
             "button",
             {
-              staticClass: "btn btn-info",
+              staticClass: "btn btn-info btn-block",
               on: {
                 click: function($event) {
                   _vm.$parent.showPop = false
@@ -7154,7 +7050,65 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-2" }, [
+      _c("label", { staticClass: "text-secondary" }, [
+        _vm._v("Selecciona una sucursal")
+      ]),
+      _c(
+        "select",
+        { staticClass: "form-control", staticStyle: { "max-width": "350px" } },
+        [
+          _c("option", { attrs: { value: "" } }, [
+            _vm._v("Selecciona una opción")
+          ]),
+          _c("option", { attrs: { value: "" } }, [_vm._v("Tlalnepantla")]),
+          _c("option", { attrs: { value: "" } }, [
+            _vm._v("Cuautitlan Izcalli")
+          ]),
+          _c("option", { attrs: { value: "" } }, [_vm._v("Coacalco")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "mt-4 text-center",
+        staticStyle: { "max-width": "350px" }
+      },
+      [
+        _c("h6", { staticClass: "text-muted" }, [_vm._v("Agregar")]),
+        _c(
+          "button",
+          {
+            staticClass:
+              "btn btn-danger bg-transparent border-danger text-danger"
+          },
+          [_c("div", { staticClass: "oi oi-minus" })]
+        ),
+        _c("input", {
+          staticClass: "form-control-inline mx-1 align-middle text-center",
+          staticStyle: { "max-width": "100px" },
+          attrs: { disabled: "", value: "0" }
+        }),
+        _c(
+          "button",
+          { staticClass: "btn btn-info bg-transparent border-info text-info" },
+          [_c("div", { staticClass: "oi oi-plus" })]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
