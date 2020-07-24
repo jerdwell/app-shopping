@@ -2,17 +2,18 @@
   .card-body
     .row
       .col-4.col-md-4.p-0
-        img.w-100(:src="'http://www.erso.com.mx/storage/app/media/' + product.product_cover")
+        a.link.text-info.mb-4(:href="`/products/product/${product.product_slug}`")
+          img.w-100(:src="'http://www.erso.com.mx/storage/app/media/' + product.product_cover")
       .col-8.col-md-8.p-0.pl-2
-        span.h6.text-yellow {{ product.product_name }}
-        p.mb-0
+        a.link.text-info.mb-4(:href="`/products/product/${product.product_slug}`" style="text-decoration:none;")
+          span.h6.text-yellow {{ product.product_name }}
+        p.mb-0.small
           b.text-info Aplicación
           br
           small.text-light {{ product.product_description }}
-        a.link.text-info.mb-4(:href="`/products/product/${product.product_slug}`")
-          small Ver más
-        br
-        button.btn.btn-info.btn-sm.mt-2(@click="showPop = true")
+          br
+          small.text-light {{ product.product_year }}
+        button.btn.btn-info.btn-sm.mt-4(@click="showPop = true")
           i.oi.oi-cart
           span.ml-3.pl-3.border-left.border-light Agregar
     

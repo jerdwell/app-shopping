@@ -8,8 +8,15 @@
       hr.border-light
 
       .container
+
+        .row.my-4
+          .col-md-4.p-0
+            select.form-control.rounded-pill(v-model="year_filter")
+              option(value="all") Todos
+              option(v-for="(year, index) in years" :value="year") {{ year }}
+
         .row
-          productItemBrowser.col-md-6.col-lg-4.mb-3(v-for="(product, i) in getListProducts" :key="i" :product="product")
+          productItemBrowser.col-md-6.col-lg-4.mb-3(v-for="(product, i) in getListProducts" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
 
       //- nav.paginator-browser.mt-3
         ul.pagination.justify-content-center
@@ -33,7 +40,8 @@ export default {
   },
   data(){
     return {
-      perPage: ''
+      perPage: '',
+      year_filter: 'all'
     }
   },
   computed: {
@@ -41,7 +49,12 @@ export default {
       [
         'getListProducts', //lista de prodctos con paginado
       ]
-    )
+    ),
+    years(){
+      let years = this.getListProducts.map(e => { return e.product_year })
+      years = new Set(years)
+      return [...years]
+    }
   },
   methods: {
     ...mapActions([

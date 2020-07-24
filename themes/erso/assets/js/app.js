@@ -1890,6 +1890,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2275,12 +2276,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cart_product_item_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../cart/product-item-browser */ "./themes/erso/src/js/vue-app/components/cart/product-item-browser.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2315,11 +2335,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      perPage: ''
+      perPage: '',
+      year_filter: 'all'
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //lista de prodctos con paginado
-  ])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //lista de prodctos con paginado
+  ])), {}, {
+    years: function years() {
+      var years = this.getListProducts.map(function (e) {
+        return e.product_year;
+      });
+      years = new Set(years);
+      return _toConsumableArray(years);
+    }
+  }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['clearProducts' //limpiar listado de productos
   ]))
 });
@@ -6981,39 +7010,53 @@ var render = function() {
     [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-4 col-md-4 p-0" }, [
-          _c("img", {
-            staticClass: "w-100",
-            attrs: {
-              src:
-                "http://www.erso.com.mx/storage/app/media/" +
-                _vm.product.product_cover
-            }
-          })
-        ]),
-        _c("div", { staticClass: "col-8 col-md-8 p-0 pl-2" }, [
-          _c("span", { staticClass: "h6 text-yellow" }, [
-            _vm._v(_vm._s(_vm.product.product_name))
-          ]),
-          _c("p", { staticClass: "mb-0" }, [
-            _c("b", { staticClass: "text-info" }, [_vm._v("Aplicación")]),
-            _c("br"),
-            _c("small", { staticClass: "text-light" }, [
-              _vm._v(_vm._s(_vm.product.product_description))
-            ])
-          ]),
           _c(
             "a",
             {
               staticClass: "link text-info mb-4",
               attrs: { href: "/products/product/" + _vm.product.product_slug }
             },
-            [_c("small", [_vm._v("Ver más")])]
+            [
+              _c("img", {
+                staticClass: "w-100",
+                attrs: {
+                  src:
+                    "http://www.erso.com.mx/storage/app/media/" +
+                    _vm.product.product_cover
+                }
+              })
+            ]
+          )
+        ]),
+        _c("div", { staticClass: "col-8 col-md-8 p-0 pl-2" }, [
+          _c(
+            "a",
+            {
+              staticClass: "link text-info mb-4",
+              staticStyle: { "text-decoration": "none" },
+              attrs: { href: "/products/product/" + _vm.product.product_slug }
+            },
+            [
+              _c("span", { staticClass: "h6 text-yellow" }, [
+                _vm._v(_vm._s(_vm.product.product_name))
+              ])
+            ]
           ),
-          _c("br"),
+          _c("p", { staticClass: "mb-0 small" }, [
+            _c("b", { staticClass: "text-info" }, [_vm._v("Aplicación")]),
+            _c("br"),
+            _c("small", { staticClass: "text-light" }, [
+              _vm._v(_vm._s(_vm.product.product_description))
+            ]),
+            _c("br"),
+            _c("small", { staticClass: "text-light" }, [
+              _vm._v(_vm._s(_vm.product.product_year))
+            ])
+          ]),
           _c(
             "button",
             {
-              staticClass: "btn btn-info btn-sm mt-2",
+              staticClass: "btn btn-info btn-sm mt-4",
               on: {
                 click: function($event) {
                   _vm.showPop = true
@@ -7514,15 +7557,61 @@ var render = function() {
         ]),
         _c("hr", { staticClass: "border-light" }),
         _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row my-4" }, [
+            _c("div", { staticClass: "col-md-4 p-0" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.year_filter,
+                      expression: "year_filter"
+                    }
+                  ],
+                  staticClass: "form-control rounded-pill",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.year_filter = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "all" } }, [_vm._v("Todos")]),
+                  _vm._l(_vm.years, function(year, index) {
+                    return _c("option", { domProps: { value: year } }, [
+                      _vm._v(_vm._s(year))
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          ]),
           _c(
             "div",
             { staticClass: "row" },
             _vm._l(_vm.getListProducts, function(product, i) {
-              return _c("productItemBrowser", {
-                key: i,
-                staticClass: "col-md-6 col-lg-4 mb-3",
-                attrs: { product: product }
-              })
+              return (_vm.year_filter == "all"
+              ? true
+              : product.product_year == _vm.year_filter)
+                ? _c("productItemBrowser", {
+                    key: i,
+                    staticClass: "col-md-6 col-lg-4 mb-3",
+                    attrs: { product: product }
+                  })
+                : _vm._e()
             }),
             1
           )
