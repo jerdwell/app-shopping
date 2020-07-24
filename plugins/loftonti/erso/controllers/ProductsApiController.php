@@ -1,7 +1,7 @@
 <?php namespace Loftonti\Erso\Controllers;
 
 use Illuminate\Routing\Controller;
-use Loftonti\Erso\Models\{ Shipowners, Products, Categories, CarsModels };
+use Loftonti\Erso\Models\{ Shipowners, Products, Categories, CarsModels, ErsoCodes };
 use Illuminate\Support\Str;
 
 class ProductsApiController extends Controller {
@@ -50,7 +50,7 @@ class ProductsApiController extends Controller {
       }
       $products = Products::whereIn('shipowner_id',$shipowner_filtered)
         ->orWhereIn('model_id',$models_filtered)
-        ->with([ 'car', 'shipowner' ])
+        ->with([ 'car', 'shipowner', 'brand' ])
         ->get()
         ->take(50);
       return $products;
@@ -61,7 +61,17 @@ class ProductsApiController extends Controller {
 
   public function CodeSearchProduct($data)
   {
-    return [$data];
+    $codes = ErsoCodes::where('erso_code', 'like', "%{$data}%")->get() -> take(30);
+    $codes_filtered = [];
+    foreach ($codes as $code) {
+      array_push($codes_filtered, $code -> id);
+    }
+    $products = Products::whereIn('erso_code_id', $codes_filtered)
+      ->with(['shipowner', 'car', 'brand', 'category'])
+      ->get()
+      ->take(20);
+    $products -> makeHidden(['model_id', 'enterprise_id', 'shipowner_id', 'category_id', 'brand_id', 'provider_price', 'provider_code']);
+    return $products;
   }
 
 }

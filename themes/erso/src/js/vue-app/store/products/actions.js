@@ -16,7 +16,16 @@ const actions = {
     if( data.replace(/\s+/g, '').length <= 0 )return false
     try {
       let products = await vm.prototype.$http.get(`/general-search-products/${data}`)
-      console.log(products);
+      commit('setListProducts', products.data)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  searchByCode: async({ commit }, data) => {
+    if( data.replace(/\s+/g, '').length <= 0 )return false
+    try {
+      let products = await vm.prototype.$http.get(`/code-search-products/${data}`)
       commit('setListProducts', products.data)
     } catch (error) {
       console.log(error)

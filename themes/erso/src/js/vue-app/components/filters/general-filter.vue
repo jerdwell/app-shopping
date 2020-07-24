@@ -6,7 +6,9 @@
         input.form-control.rounded-pill(type="search" placeholder="Buscar productos" v-model="data_search")
         .list-group.mt-3(v-if="no_results")
           .list-group-item.bg-transparent.border-danger.p-1 #[i.oi.oi-x] No existen coincidencias
-        button.btn.btn-info.mt-4(@click.prevent="generalFilter") Buscar
+        button.btn.btn-info.mt-4(@click.prevent="generalFilter" :disabled="loading")
+          .spinner-border.mr-2(v-if="loading")
+          span Buscar
 </template>
 
 <script>
@@ -16,7 +18,8 @@ export default {
   data(){
     return {
       data_search: '',
-      no_results: false
+      no_results: false,
+      loading: false
     }
   },
   computed: {
@@ -29,7 +32,9 @@ export default {
       'generalSearch',
     ]),
     async generalFilter(){
+      this.loading = true
       let products = await this.generalSearch(this.data_search)
+      this.loading = false
       if(this.getListProducts.length > 0){
         this.no_results = false
         return this.$parent.searchProduct = false

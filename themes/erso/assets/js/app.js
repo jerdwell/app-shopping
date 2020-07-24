@@ -2242,6 +2242,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2253,8 +2268,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'filter-by-code'
+  name: 'filter-by-code',
+  data: function data() {
+    return {
+      loading: false,
+      no_results: false,
+      data_search: ''
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //get list products 
+  ])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['searchByCode' //seaach by code
+  ])), {}, {
+    searchProducts: function searchProducts() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var products;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _this.loading = true;
+                _context.next = 4;
+                return _this.searchByCode(_this.data_search);
+
+              case 4:
+                products = _context.sent;
+                _this.loading = false;
+
+                if (!(_this.getListProducts.length <= 0)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                _this.no_results = true;
+                setTimeout(function () {
+                  _this.no_results = false;
+                }, 3000);
+                return _context.abrupt("return");
+
+              case 10:
+                _this.$parent.searchProduct = false;
+                _context.next = 16;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 13]]);
+      }))();
+    }
+  })
 });
 
 /***/ }),
@@ -2294,13 +2373,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'general-filter',
   data: function data() {
     return {
       data_search: '',
-      no_results: false
+      no_results: false,
+      loading: false
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //get list products
@@ -2315,27 +2397,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                _this.loading = true;
+                _context.next = 3;
                 return _this.generalSearch(_this.data_search);
 
-              case 2:
+              case 3:
                 products = _context.sent;
+                _this.loading = false;
 
                 if (!(_this.getListProducts.length > 0)) {
-                  _context.next = 6;
+                  _context.next = 8;
                   break;
                 }
 
                 _this.no_results = false;
                 return _context.abrupt("return", _this.$parent.searchProduct = false);
 
-              case 6:
+              case 8:
                 _this.no_results = true;
                 setTimeout(function () {
                   _this.no_results = false;
                 }, 3000);
 
-              case 8:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -2377,6 +2461,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -7573,31 +7658,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row w-100" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("label", { staticClass: "text-light" }, [_vm._v("Buscar Código")]),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data_search,
+                expression: "data_search"
+              }
+            ],
+            staticClass: "form-control rounded-pill",
+            attrs: { type: "search", placeholder: "Capturar código" },
+            domProps: { value: _vm.data_search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.data_search = $event.target.value
+              }
+            }
+          }),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.no_results,
+                  expression: "no_results"
+                }
+              ],
+              staticClass: "list-group"
+            },
+            [_vm._m(0)]
+          ),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-info mt-4",
+              attrs: { disabled: _vm.loading },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.searchProducts($event)
+                }
+              }
+            },
+            [
+              _vm.loading
+                ? _c("div", { staticClass: "spinner-border" })
+                : _vm._e(),
+              _c("span", [_vm._v("Buscar")])
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row w-100" }, [
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("label", { staticClass: "text-light" }, [
-              _vm._v("Buscar Código")
-            ]),
-            _c("input", {
-              staticClass: "form-control rounded-pill",
-              attrs: { type: "search", placeholder: "Capturar código" }
-            }),
-            _c("button", { staticClass: "btn btn-info mt-4" }, [
-              _vm._v("Buscar ")
-            ])
-          ])
-        ])
-      ])
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "list-group-item bg-transparent border-danger p-1 mt-3 text-danger"
+      },
+      [_c("i", { staticClass: "oi oi-x" }), _vm._v(" No existen resultados")]
+    )
   }
 ]
 render._withStripped = true
@@ -7653,6 +7791,7 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-info mt-4",
+            attrs: { disabled: _vm.loading },
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -7660,7 +7799,12 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Buscar")]
+          [
+            _vm.loading
+              ? _c("div", { staticClass: "spinner-border mr-2" })
+              : _vm._e(),
+            _c("span", [_vm._v("Buscar")])
+          ]
         )
       ])
     ])
@@ -7730,6 +7874,7 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row my-4" }, [
             _c("div", { staticClass: "col-md-4 p-0" }, [
+              _c("label", { staticClass: "text-light" }, [_vm._v("Modelo")]),
               _c(
                 "select",
                 {
@@ -22985,22 +23130,21 @@ var actions = {
 
             case 6:
               products = _context2.sent;
-              console.log(products);
               commit('setListProducts', products.data);
-              _context2.next = 14;
+              _context2.next = 13;
               break;
 
-            case 11:
-              _context2.prev = 11;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2["catch"](3);
               console.log(_context2.t0);
 
-            case 14:
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[3, 11]]);
+      }, _callee2, null, [[3, 10]]);
     }));
 
     function generalSearch(_x3, _x4) {
@@ -23009,9 +23153,55 @@ var actions = {
 
     return generalSearch;
   }(),
+  searchByCode: function () {
+    var _searchByCode = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, data) {
+      var commit, products;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+
+              if (!(data.replace(/\s+/g, '').length <= 0)) {
+                _context3.next = 3;
+                break;
+              }
+
+              return _context3.abrupt("return", false);
+
+            case 3:
+              _context3.prev = 3;
+              _context3.next = 6;
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/code-search-products/".concat(data));
+
+            case 6:
+              products = _context3.sent;
+              commit('setListProducts', products.data);
+              _context3.next = 13;
+              break;
+
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](3);
+              console.log(_context3.t0);
+
+            case 13:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[3, 10]]);
+    }));
+
+    function searchByCode(_x5, _x6) {
+      return _searchByCode.apply(this, arguments);
+    }
+
+    return searchByCode;
+  }(),
   //Limpiar state de productos
-  clearProducts: function clearProducts(_ref3) {
-    var commit = _ref3.commit;
+  clearProducts: function clearProducts(_ref4) {
+    var commit = _ref4.commit;
     commit('clearProducts');
   }
 };

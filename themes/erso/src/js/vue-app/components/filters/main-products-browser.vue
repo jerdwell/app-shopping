@@ -11,6 +11,7 @@
 
         .row.my-4
           .col-md-4.p-0
+            label.text-light Modelo
             select.form-control.rounded-pill(v-model="year_filter")
               option(value="all") Todos
               option(v-for="(year, index) in years" :value="year") {{ year }}
