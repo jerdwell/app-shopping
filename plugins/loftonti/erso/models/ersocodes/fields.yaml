@@ -1,0 +1,6 @@
+fields:
+    erso_code:
+        label: Código
+        span: auto
+        required: 1
+        type: text

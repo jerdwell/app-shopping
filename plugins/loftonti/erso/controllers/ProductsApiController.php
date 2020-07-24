@@ -59,4 +59,9 @@ class ProductsApiController extends Controller {
     }
   }
 
+  public function CodeSearchProduct($data)
+  {
+    return [$data];
+  }
+
 }

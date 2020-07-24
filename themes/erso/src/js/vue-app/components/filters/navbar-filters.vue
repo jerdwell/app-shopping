@@ -12,6 +12,7 @@
     SelectTypeFilters
     FilterByCar(v-if="type_filter == 'car'")
     GeneralFilter(v-if="type_filter == 'general'")
+    FilterByCode(v-if="type_filter == 'code'")
       
 </template>
 
@@ -20,11 +21,13 @@ import { mapActions, mapGetters } from 'vuex'
 import MainProductsBrowser from './main-products-browser'
 import SelectTypeFilters from './select-type-filters'
 import FilterByCar from './filter-by-car'
+import FilterByCode from './filter-by-code'
 import GeneralFilter from './general-filter'
 import Codefilter from './code-filter'
 export default {
   components: {
     FilterByCar,
+    FilterByCode,
     MainProductsBrowser,
     SelectTypeFilters,
     GeneralFilter,

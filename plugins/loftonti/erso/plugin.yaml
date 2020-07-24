@@ -38,3 +38,7 @@ navigation:
                 label: Modelos
                 url: loftonti/erso/carsmodels
                 icon: icon-automobile
+            side-menu-item8:
+                label: 'Códigos ERSO'
+                url: loftonti/erso/ersocodes
+                icon: icon-barcode

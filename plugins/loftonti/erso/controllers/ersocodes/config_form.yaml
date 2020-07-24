@@ -1,0 +1,10 @@
+name: ErsoCodes
+form: $/loftonti/erso/models/ersocodes/fields.yaml
+modelClass: Loftonti\Erso\Models\ErsoCodes
+defaultRedirect: loftonti/erso/ersocodes
+create:
+    redirect: 'loftonti/erso/ersocodes/update/:id'
+    redirectClose: loftonti/erso/ersocodes
+update:
+    redirect: loftonti/erso/ersocodes
+    redirectClose: loftonti/erso/ersocodes
