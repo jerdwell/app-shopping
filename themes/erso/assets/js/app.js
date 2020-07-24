@@ -2242,7 +2242,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2257,10 +2265,59 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'general-filter',
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['searchProducts']))
+  data: function data() {
+    return {
+      data_search: '',
+      no_results: false
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //get list products
+  ])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['generalSearch'])), {}, {
+    generalFilter: function generalFilter() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var products;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.generalSearch(_this.data_search);
+
+              case 2:
+                products = _context.sent;
+
+                if (!(_this.getListProducts.length > 0)) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _this.no_results = false;
+                return _context.abrupt("return", _this.$parent.searchProduct = false);
+
+              case 6:
+                _this.no_results = true;
+                setTimeout(function () {
+                  _this.no_results = false;
+                }, 3000);
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  })
 });
 
 /***/ }),
@@ -7486,27 +7543,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-4" }, [
-      _c("label", { staticClass: "text-light" }, [_vm._v("Buscar Producto")]),
-      _c("input", { staticClass: "form-control", attrs: { type: "search" } }),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-info",
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row w-100" }, [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("label", { staticClass: "text-light" }, [_vm._v("Buscar Producto")]),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.data_search,
+              expression: "data_search"
+            }
+          ],
+          staticClass: "form-control rounded-pill",
+          attrs: { type: "search", placeholder: "Buscar productos" },
+          domProps: { value: _vm.data_search },
           on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.searchProducts($event)
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.data_search = $event.target.value
             }
           }
-        },
-        [_vm._v("Buscar")]
-      )
+        }),
+        _vm.no_results
+          ? _c("div", { staticClass: "list-group mt-3" }, [_vm._m(0)])
+          : _vm._e(),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-info mt-4",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.generalFilter($event)
+              }
+            }
+          },
+          [_vm._v("Buscar")]
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "list-group-item bg-transparent border-danger p-1" },
+      [_c("i", { staticClass: "oi oi-x" }), _vm._v(" No existen coincidencias")]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -22682,7 +22775,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var actions = {
-  // Buscador de productos
+  // Buscador de productos por auto
   searchProducts: function () {
     var _searchProducts = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref, data) {
       var commit, products;
@@ -22720,9 +22813,57 @@ var actions = {
 
     return searchProducts;
   }(),
+  //búsqueda general de productos
+  generalSearch: function () {
+    var _generalSearch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, data) {
+      var commit, products;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+
+              if (!(data.replace(/\s+/g, '').length <= 0)) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", false);
+
+            case 3:
+              _context2.prev = 3;
+              _context2.next = 6;
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/general-search-products/".concat(data));
+
+            case 6:
+              products = _context2.sent;
+              console.log(products);
+              commit('setListProducts', products.data);
+              _context2.next = 14;
+              break;
+
+            case 11:
+              _context2.prev = 11;
+              _context2.t0 = _context2["catch"](3);
+              console.log(_context2.t0);
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[3, 11]]);
+    }));
+
+    function generalSearch(_x3, _x4) {
+      return _generalSearch.apply(this, arguments);
+    }
+
+    return generalSearch;
+  }(),
   //Limpiar state de productos
-  clearProducts: function clearProducts(_ref2) {
-    var commit = _ref2.commit;
+  clearProducts: function clearProducts(_ref3) {
+    var commit = _ref3.commit;
     commit('clearProducts');
   }
 };

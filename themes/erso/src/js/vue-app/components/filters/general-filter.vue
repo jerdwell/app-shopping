@@ -1,19 +1,42 @@
 <template lang="pug">
-.row
-  .col-md-4
-    label.text-light Buscar Producto
-    input.form-control(type="search")
-    button.btn.btn-info(@click.prevent="searchProducts") Buscar
+  .container
+    .row.w-100
+      .col-md-4
+        label.text-light Buscar Producto
+        input.form-control.rounded-pill(type="search" placeholder="Buscar productos" v-model="data_search")
+        .list-group.mt-3(v-if="no_results")
+          .list-group-item.bg-transparent.border-danger.p-1 #[i.oi.oi-x] No existen coincidencias
+        button.btn.btn-info.mt-4(@click.prevent="generalFilter") Buscar
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'general-filter',
+  data(){
+    return {
+      data_search: '',
+      no_results: false
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getListProducts', //get list products
+    ])
+  },
   methods: {
     ...mapActions([
-      'searchProducts',
-    ])
-  }
+      'generalSearch',
+    ]),
+    async generalFilter(){
+      let products = await this.generalSearch(this.data_search)
+      if(this.getListProducts.length > 0){
+        this.no_results = false
+        return this.$parent.searchProduct = false
+      }
+      this.no_results = true
+      setTimeout(() => { this.no_results = false }, 3000);
+    }
+  },
 }
 </script>
