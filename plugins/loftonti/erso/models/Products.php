@@ -46,7 +46,7 @@ class Products extends Model
         'category' => [ 'Loftonti\Erso\Models\Categories' ],
         'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ],
         'enterprise' => [ 'Loftonti\Erso\Models\enterprises' ],
-        'car_model' => [ 'Loftonti\Erso\Models\CarsModels' ]
+        'car' => [ 'Loftonti\Erso\Models\CarsModels', 'key' => 'model_id' ]
     ];
 
 }

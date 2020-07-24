@@ -4,5 +4,6 @@
     
     Route::get('search-car/{car}', 'Loftonti\Erso\Controllers\ProductsApiController@serachCars');
     Route::get('get-models/{car}', 'Loftonti\Erso\Controllers\ProductsApiController@getModels');
+    Route::get('search-product-category-model/{model}/{category}', 'Loftonti\Erso\Controllers\ProductsApiController@SearchProductCategoryModel');
 
   });

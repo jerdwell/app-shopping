@@ -1,11 +1,9 @@
 <template lang="pug">
   div
     label.text-center Modelo
-    select.form-control.rounded-pill(v-model="$parent.model_search" :disabled="$parent.car_search == ''")
+    select.form-control.rounded-pill(v-model="$parent.model_selected" :disabled="$parent.car_selected == ''")
       option(value="") Selecciona una opción
-      option(value="modelo 1") Modelo 1
-      option(value="modelo 2") Modelo 2
-      option(value="modelo 3") Modelo 3
+      option(v-for="(model, index) in models.data" :key="index" :value="model.car.id") {{ model.car.model_name }}
 
 </template>
 
@@ -17,12 +15,17 @@ export default {
       this.getModels()
     }
   },
+  data() {
+    return {
+      models: []
+    }
+  },
   methods: {
     async getModels(){
       if(this.$parent.car_selected.replace(/\s/g, '') <= 0) return false
       try{
         let models = await this.$http.get(`get-models/${this.$parent.car_selected}`)
-        console.log(models);
+        this.models = models
       }catch(error){
         console.log(error)
       }

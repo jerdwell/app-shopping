@@ -33,3 +33,12 @@ enterprise:
   manage:
     form: $/loftonti/erso/models/enterprises/fields.yaml
     list: $/loftonti/erso/models/enterprises/columns.yaml
+
+car:
+  label: Modelos
+  view:
+    form: $/loftonti/erso/models/carsmodels/fields.yaml
+    toolbarButtons: link
+  manage:
+    form: $/loftonti/erso/models/carsmodels/fields.yaml
+    list: $/loftonti/erso/models/carsmodels/columns.yaml

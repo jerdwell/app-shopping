@@ -1,7 +1,7 @@
 <?php namespace Loftonti\Erso\Controllers;
 
 use Illuminate\Routing\Controller;
-use Loftonti\Erso\Models\{ Shipowners, Products };
+use Loftonti\Erso\Models\{ Shipowners, Products, Categories };
 use Illuminate\Support\Str;
 
 class ProductsApiController extends Controller {
@@ -17,11 +17,22 @@ class ProductsApiController extends Controller {
 
   public function getModels($car)
   {
-    $shipowners = Shipowners::where('shipowner_slug', $car)
-      ->with(['Products' => function($query){
-        $query -> select('id','product_model', 'product_name', 'erso_code', 'product_year') -> get();
-      }]) -> get();
-    return $shipowners;
+    $shipowner = Shipowners::where('shipowner_slug', $car) -> first();
+    $models = Products::select('model_id')
+      ->where('shipowner_id', $shipowner->id)
+      ->distinct()
+      ->with('car')
+      ->get();
+    return $models;
+  }
+
+  public function SearchProductCategoryModel($model, $category)
+  {
+    $category = Categories::where('category_slug', $category)->first();
+    if(empty($category)) return response(['Categoría no encontrada'], 404);
+    $products = Products::where('model_id', $model)
+      -> where('category_id', $category->id)->get();
+    return $products;
   }
 
 }

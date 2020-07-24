@@ -1,10 +1,10 @@
 <template lang="pug">
   .card-body
     .row
-      .col-lg-4.p-0
-        img.w-100(:src="product.product_cover.path")
-      .col-lg-8.p-0.pl-md-2
-        h5.text-yellow {{ product.product_name }}
+      .col-4.col-md-4.p-0
+        img.w-100(:src="'http://www.erso.com.mx/storage/app/media/' + product.product_cover")
+      .col-8.col-md-8.p-0.pl-2
+        span.h6.text-yellow {{ product.product_name }}
         p.mb-0
           b.text-info Aplicación
           br

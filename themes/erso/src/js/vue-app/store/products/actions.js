@@ -4,7 +4,7 @@ const actions = {
   // Buscador de productos
   searchProducts: async({ commit }, data) => {
     try {
-      let products = await vm.prototype.$http.get(`/products/${data.type}/${data.data}/${data.limit}`)
+      let products = await vm.prototype.$http.get(`/search-product-category-model/${data.model}/${data.category}`)
       commit('setListProducts', products.data)
     } catch (error) {
       console.log(error.response.data)

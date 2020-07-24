@@ -8,13 +8,11 @@
       span.text-yellow.mr-2 Cancelar búsqueda
       span.oi.oi-x.icon-button-filter.text-yellow.border-yellow
 
-  //- .filters.bg-dark(:class="!searchProduct ? 'filters-inactive' : ''")
-  .filters.bg-dark
+  .filters.bg-dark(:class="!searchProduct ? 'filters-inactive' : ''")
     SelectTypeFilters
     FilterByCar(v-if="type_filter == 'car'")
-    
-    hr.border-light
-            
+    GeneralFilter(v-if="type_filter == 'general'")
+      
 </template>
 
 <script>
@@ -30,7 +28,7 @@ export default {
     MainProductsBrowser,
     SelectTypeFilters,
     GeneralFilter,
-    Codefilter
+    Codefilter,
   },
   data(){
     return {
@@ -72,7 +70,7 @@ export default {
     height: auto
     color: #ffffff
     overflow: hidden
-    padding: 30px
+    padding: 30px 0
     transition: all ease .5s
     z-index: -3
 

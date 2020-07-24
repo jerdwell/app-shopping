@@ -33,7 +33,7 @@ class Shipowners extends Model
 
     /** Relations */
     public $hasMany = [
-        'Products' => [ 'Loftonti\Erso\Models\Products', 'key' => 'id' ]
+        'Products' => [ 'Loftonti\Erso\Models\Products', 'key' => 'shipowner_id' ]
     ];
 
 }

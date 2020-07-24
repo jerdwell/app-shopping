@@ -10,7 +10,7 @@
     .text-center(v-if="loading")
       .spinner-border
     
-    ul.list-group.bg-transparent.small(v-if="results")
+    ul.list-group.bg-transparent.small.list-models-searchable(v-if="results")
       li.list-group-item.bg-transparent.p-1.border-secondary(v-for="(car, index) in cars.data" :key="index" v-show="cars.data.length > 0")
         label.mb-0
           input.form-control-checkbox.mr-2(type="radio" :name="car.shipowner_slug" :value="car.shipowner_slug" v-model="$parent.car_selected")
@@ -61,4 +61,7 @@ export default {
     &:focus
       border: none
       box-shadow: none
+  .list-models-searchable
+    max-height: 200px
+    overflow-y: auto
 </style>

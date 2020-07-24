@@ -1,6 +1,6 @@
 <template lang="pug">
-  div
-    .row
+  .container
+    .row.w-100
       CarFilters.col-md-4
       ModelFilters.col-md-4
       CategoryFilters.col-md-4

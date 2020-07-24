@@ -30,4 +30,10 @@ class CarsModels extends Model
      */
     public $rules = [
     ];
+
+    /** Relations */
+    public $hasMany = [
+        'Product' => [ 'Loftonti\Erso\Models\Products', 'key' => 'id' ]
+    ];
+    
 }

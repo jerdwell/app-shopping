@@ -63,3 +63,6 @@
 1.0.22:
     - 'Updated table loftonti_erso_products'
     - builder_table_update_loftonti_erso_products_11.php
+1.0.23:
+    - 'Updated table loftonti_erso_products'
+    - builder_table_update_loftonti_erso_products_12.php

@@ -17,12 +17,6 @@ tabs:
             span: full
             type: richeditor
             tab: Producto
-        product_model:
-            label: Model
-            span: auto
-            required: 1
-            type: text
-            tab: Producto
         product_year:
             label: Año
             span: auto
