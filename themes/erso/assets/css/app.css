@@ -158,42 +158,37 @@
   z-index: 1000;
 }
 
-.navbar-main-erso .navbar-items-container,
-.navbar-main-erso .container {
+.navbar-main-erso .navbar-items-container {
   justify-content: center !important;
 }
 
-.navbar-main-erso .navbar-items-container .navbar-brand,
-.navbar-main-erso .container .navbar-brand {
+.navbar-main-erso .navbar-items-container .navbar-brand {
   height: 60px;
   justify-self: center;
 }
 
-.navbar-main-erso .navbar-items-container .navbar-brand img,
-.navbar-main-erso .container .navbar-brand img {
+.navbar-main-erso .navbar-items-container .navbar-brand img {
   height: 100%;
   margin: auto;
 }
 
 @media screen and (min-width: 768px) {
-  .navbar-main-erso .navbar-items-container,
-  .navbar-main-erso .container {
+  .navbar-main-erso .navbar-items-container {
     padding: 0;
     justify-content: space-between !important;
   }
 
-  .navbar-main-erso .navbar-items-container .navbar-brand,
-  .navbar-main-erso .container .navbar-brand {
+  .navbar-main-erso .navbar-items-container .navbar-brand {
     height: 110px;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .navbar-main-erso .navbar-items-container.container {
+  .navbar-main-erso .navbar-items-container {
     flex-wrap: nowrap;
   }
 
-  .navbar-main-erso .navbar-items-container.container .navbar-brand {
+  .navbar-main-erso .navbar-items-container .navbar-brand {
     height: 140px;
   }
 }
@@ -268,6 +263,7 @@
     margin: 0;
     position: static;
     padding: 0;
+    width: calc( 100% - 320px);
     z-index: auto;
   }
 
@@ -319,6 +315,7 @@
 .slide {
   height: 100vh;
   overflow: hidden;
+  position: relative;
   width: 100vw;
 }
 

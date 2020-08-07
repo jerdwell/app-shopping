@@ -1,27 +1,27 @@
 <template lang="pug">
   .container
-    .row.w-100
+    .row
       CarFilters.col-md-4
-      ModelFilters.col-md-4
+      YearsFilters.col-md-4
       CategoryFilters.col-md-4
 </template>
 
 <script>
 import CarFilters from './component-filters/car-filters'
-import ModelFilters from './component-filters/model-filters'
+import YearsFilters from './component-filters/years-filters'
 import CategoryFilters from './component-filters/category-filters'
 export default {
   name: 'filter-by-car',
   components: {
     CarFilters,
-    ModelFilters,
+    YearsFilters,
     CategoryFilters,
   },
   data() {
     return {
-      car_selected: '',
+      car_model_selected: {},
       category_selected: '',
-      model_selected: '',
+      year_selected: '',
     }
   },
 }

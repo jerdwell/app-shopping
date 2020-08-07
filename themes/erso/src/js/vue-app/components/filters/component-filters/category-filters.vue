@@ -1,17 +1,11 @@
 <template lang="pug">
 div
-  label.text-center Categoría
+  label.text-center.text-light Categoría
   select.form-control.rounded-pill(
     v-model="$parent.category_selected"
-    :disabled="$parent.model_selected != '' ? false :true"
-    @change="getProducts")
+    :disabled="$parent.model_selected != '' ? false :true")
     option(value="") Selecciona una opción
-    option(value="amortiguadores") Amortiguadores
-    option(value="suspensiones") Suspensiones
-    option(value="direcciones") Direcciones
-    option(value="tracciones") Tracciones
-    option(value="frenos") Tracciones
-    option(value="embragues") Embragues
+    option(v-for="(category, index) in get_categories_related" :key="index" :value="category.category.id") {{ category.category.category_name }}
   .list-group.mt-3(v-if="no_results")
     .list-group-item.border-danger.p-1.bg-transparent.text-danger #[i.oi.oi-x] No existen resultados
 </template>
@@ -27,28 +21,11 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getListProducts'
+      'get_categories_related'
     ])
   },
   methods: {
-    ...mapActions([
-      'searchProducts',
-    ]),
-    async getProducts(){
-      let products = await this.searchProducts({
-        category: this.$parent.category_selected,
-        model: this.$parent.model_selected,
-      })
-      if(this.getListProducts.length > 0){
-        this.no_results = false
-        this.$parent.model_selected = ''
-        this.$parent.category_selected = ''
-        this.$parent.car_selected = ''
-        return this.$parent.$parent.searchProduct = false
-      }
-      this.no_results = true
-      setTimeout(() => { this.no_results }, 3000);
-    }
+    
   }
 }
 </script>

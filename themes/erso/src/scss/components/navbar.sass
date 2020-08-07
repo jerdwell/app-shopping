@@ -1,7 +1,7 @@
 .navbar-main-erso
   background-image: linear-gradient(rgba($dark,.5) 60%, transparent 100%)
   z-index: $z-index-navbar
-  .navbar-items-container, .container
+  .navbar-items-container
     justify-content: center!important
     .navbar-brand
       height: 60px
@@ -10,13 +10,13 @@
         height: 100%
         margin: auto
   @media screen and(min-width: 768px)
-    .navbar-items-container, .container
+    .navbar-items-container
       padding: 0
       justify-content: space-between!important
       .navbar-brand
         height: 110px
   @media screen and ( min-width: 1024px )
-    .navbar-items-container.container
+    .navbar-items-container
       flex-wrap: nowrap
       .navbar-brand
         height: 140px
@@ -69,6 +69,7 @@
     margin: 0
     position: static
     padding: 0
+    width: calc( 100% - 320px )
     z-index: auto
     .main-menu-item
       align-items: center

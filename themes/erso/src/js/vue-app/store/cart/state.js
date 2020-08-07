@@ -1,8 +1,6 @@
 const state = {
   
-  cart_items: [],
-  
-  branch_selected: ''
+  cart_items: []
 
 }
 

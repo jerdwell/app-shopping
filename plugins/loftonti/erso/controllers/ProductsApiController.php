@@ -4,26 +4,49 @@ use Illuminate\Routing\Controller;
 use Loftonti\Erso\Models\{ Shipowners, Products, Categories, CarsModels, ErsoCodes };
 use Illuminate\Support\Str;
 
+use function PHPSTORM_META\type;
+
 class ProductsApiController extends Controller {
 
-  public function serachCars($car)
+  public function serachCarsModels($car)
   {
     $car = Str::slug($car);
-    $shipowners = Shipowners::select('id', 'shipowner_name', 'shipowner_slug')
-      -> where('shipowner_name', 'like', "%{$car}%")
-      -> get();
+    $shipowners = Shipowners::getCarModels($car) -> groupBy('model_id') -> get();
     return $shipowners;
   }
 
-  public function getModels($car)
+  public function searchCars($model,$shipowner)
   {
-    $shipowner = Shipowners::where('shipowner_slug', $car) -> first();
-    $models = Products::select('model_id')
-      ->where('shipowner_id', $shipowner->id)
-      ->distinct()
-      ->with('car')
-      ->get();
-    return $models;
+    $products = Products::where('shipowner_id', $shipowner)
+    ->where('model_id', $model)
+    -> with([
+      'shipowner',
+      'brand',
+      'car',
+      'category',
+    ])
+    ->paginate(20);
+    
+    $years = Products::selectRaw('product_year')
+    ->groupBy('product_year')
+    ->where('shipowner_id', $shipowner)
+    ->where('model_id', $model)
+    ->get();
+
+    $categories = Products::select('category_id')
+    ->with(['category'])
+    ->where('shipowner_id', $shipowner)
+    ->where('model_id', $model)
+    ->groupBy('category_id')
+    ->get();
+
+    // $products -> push(['years' => $years]);
+    return [
+      'products' => $products,
+      'years' => $years,
+      'categories' => $categories
+    ];
+    
   }
 
   public function SearchProductCategoryModel($model, $category)

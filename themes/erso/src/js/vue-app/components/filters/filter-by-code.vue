@@ -1,15 +1,14 @@
 <template lang="pug">
   .container
-    .container
-      .row.w-100
-        .col-md-4
-          label.text-light Buscar Código
-          input.form-control.rounded-pill(type="search" placeholder="Capturar código" v-model="data_search")
-          .list-group(v-show="no_results")
-            .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
-          button.btn.btn-info.mt-4(@click.prevent="searchProducts" :disabled="loading")
-            .spinner-border(v-if="loading")
-            span Buscar
+    .row
+      .col-md-4
+        label.text-light Buscar Código
+        input.form-control.rounded-pill(type="search" placeholder="Capturar código" v-model="data_search")
+        .list-group(v-show="no_results")
+          .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
+        button.btn.btn-info.mt-4(@click.prevent="searchProducts" :disabled="loading")
+          .spinner-border(v-if="loading")
+          span Buscar
 
 </template>
 

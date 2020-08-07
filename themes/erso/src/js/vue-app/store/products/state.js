@@ -1,6 +1,12 @@
 const state = {
 
-  listProducts: []
+  listProducts: [],
+
+  categoriesRelated: [],
+
+  yearsRelated: [],
+  
+  branch_selected: ''
 
 }
 
