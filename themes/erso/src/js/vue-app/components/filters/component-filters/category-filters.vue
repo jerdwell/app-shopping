@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   label.text-center.text-light Categoría
-  select.form-control.rounded-pill(
+  select.form-control.form-control-sm.rounded-pill(
     v-model="$parent.category_selected"
     :disabled="$parent.model_selected != '' ? false :true")
     option(value="") Selecciona una opción

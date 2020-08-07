@@ -1,20 +1,24 @@
 import vm from 'vue'
 const actions = {
 
-  set_branch_selected: ({ commit }, data) => {
-    commit('setBranchSelected', data)
+  //setear la susucrsal seleccionada
+  setBranchSelected: ({ commit }, data) => {
+    commit('SET_BRANCH_SELECTED', data)
   },
 
+  // setear el listado de producto
   setListProducts: ({ commit }, data) => {
-    commit('setListProducts', data)
+    commit('SET_LIST_PRODUCTS', data)
   },
   
+  // setear lel listado de años
   setYearsRelated: ({ commit }, data) => {
-    commit('setYearsRelated', data)
+    commit('SET_YEARS_RELATED', data)
   },
   
+  //setear las categorías relacionadas
   setCategoriesRelated: ({ commit }, data) => {
-    commit('setCategoriesRelated', data)
+    commit('SET_CATEGORIES_RELATED', data)
   },
 
   //busqueda por modelo / armadora
@@ -42,6 +46,7 @@ const actions = {
     }
   },
 
+  //búsqueda de productos por código
   searchByCode: async({ dispatch }, data) => {
     if( data.replace(/\s+/g, '').length <= 0 )return false
     try {
@@ -54,7 +59,12 @@ const actions = {
 
   //Limpiar state de productos
   clearProducts: ({ commit }) => {
-    commit('clearProducts')
+    commit('CLEAR_PRODUCTS')
+  },
+
+  //Mostrar los filtros
+  toggleFliters: ({ commit }) => {
+    commit(('TOGGLE_FILTERS'))
   }
 
 }

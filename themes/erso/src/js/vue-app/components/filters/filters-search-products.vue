@@ -1,5 +1,5 @@
 <template lang="pug">
-section.filters-search-products.bg-dark#filter-products
+section.filters-search-products.bg-dark#filter-products(v-if="get_show_filters")
   .filters
     SelectTypeFilters
     FilterByCar(v-if="type_filter == 'car'")
@@ -34,7 +34,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getListProducts', //lista de productos encontrados
+      'get_list_products', //lista de productos encontrados
+      'get_show_filters', //obtener parametro para mostrar los filtros
     ])
   },
   methods: {

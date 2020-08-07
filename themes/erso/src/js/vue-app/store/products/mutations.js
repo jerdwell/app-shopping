@@ -2,26 +2,30 @@ import state from "./state"
 
 const mutations = {
 
-  setListProducts: (state, data) => {
-    state.listProducts = data
+  SET_LIST_PRODUCTS: (state, data) => {
+    state.list_products = data
   },
 
-  clearProducts: state => {
-    state.listProducts = []
-    state.yearsRelated = []
-    state.categoriesRelated = []
+  CLEAR_PRODUCTS: state => {
+    state.list_products = []
+    state.years_related = []
+    state.categories_related = []
   },
 
-  setBranchSelected: (state, data) => {
+  SET_BRANCH_SELECTED: (state, data) => {
     state.branch_selected = data
   },
 
-  setYearsRelated: (state, data) => {
-    state.yearsRelated = data
+  SET_YEARS_RELATED: (state, data) => {
+    state.years_related = data
   },
   
-  setCategoriesRelated: (state, data) => {
-    state.categoriesRelated = data
+  SET_CATEGORIES_RELATED: (state, data) => {
+    state.categories_related = data
+  },
+
+  TOGGLE_FILTERS: state => {
+    state.show_filters = !state.show_filters
   }
 
 }

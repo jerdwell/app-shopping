@@ -2,7 +2,7 @@
   .container
     branchSelected.mb-3
     div(v-show="get_branch_selected")
-      h4.text-yellow Buscar por:
+      h6.text-yellow Buscar por:
       ul.nav.nav-tabs.border-yellow.nav-tabs-filters.mb-4
         li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'car' ? 'bg-yellow nav-item-active' : null")
           label.m-0.text-light

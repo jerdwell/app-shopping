@@ -6,7 +6,7 @@
         .input-group-text
           i.oi.oi-magnifying-glass(v-if="!$parent.car_model_selected.model_id")
           i.oi.oi-x.text-danger(v-else)
-      input.form-control.form-control(
+      input.form-control.form-control-sm(
         type="search"
         placeholder="Buscar"
         @change="serach_cars"

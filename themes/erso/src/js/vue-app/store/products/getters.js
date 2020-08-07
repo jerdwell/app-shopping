@@ -1,12 +1,16 @@
+import state from "./state"
+
 const getteres = {
   
-  getListProducts: state => { return state.listProducts },
+  get_list_products: state => { return state.list_products },
 
   get_branch_selected: state => { return state.branch_selected },
   
-  get_categories_related: state => { return state.categoriesRelated },
+  get_categories_related: state => { return state.categories_related },
   
-  get_years_related: state => { return state.yearsRelated },
+  get_years_related: state => { return state.years_related },
+
+  get_show_filters: state => { return state.show_filters }
 
 }
 

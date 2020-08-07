@@ -1,12 +1,14 @@
 const state = {
 
-  listProducts: [],
+  list_products: [],
 
-  categoriesRelated: [],
+  categories_related: [],
 
-  yearsRelated: [],
+  years_related: [],
   
-  branch_selected: ''
+  branch_selected: '',
+  
+  show_filters: false
 
 }
 

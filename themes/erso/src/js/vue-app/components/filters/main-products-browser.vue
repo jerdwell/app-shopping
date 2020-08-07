@@ -1,25 +1,25 @@
 <template lang="pug">
-  .main-products-browser.bg-dark#list-products-finded(v-show="this.getListProducts.data && this.getListProducts.data.length > 0")
+  .main-products-browser#list-products-finded.pt-5(v-show="this.get_list_products.data && this.get_list_products.data.length > 0")
     .container
-      .d-flex.justify-content-between
-        h3.text-light.text-center Resultados
+      .d-flex.justify-content-between.align-items-center
+        h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
         button.btn.btn-close-product-browser.bg-yellow(@click.prevent="clearProducts")
           i.oi.oi-x
-      hr.border-light
+      hr.border-dark
 
       .container
 
         .row
-          productItemBrowser.col-md-6.col-lg-4.mb-3(v-for="(product, i) in getListProducts.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+          productItemBrowser.col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
 
     nav.paginator-browser.py-5
       ul.pagination.justify-content-center
-        li.page-item(v-if="getListProducts.prev_page_url != null")
+        li.page-item(v-if="get_list_products.prev_page_url != null")
           a.page-link(href="#") 
             .oi.oi-caret-left
-        li.page-item(v-for="page in getListProducts.last_page" :key="page" :class="getListProducts.current_page == page ? 'active' : '' ")
+        li.page-item(v-for="page in get_list_products.last_page" :key="page" :class="get_list_products.current_page == page ? 'active' : '' ")
           a.page-link(href="#") {{ page }}
-        li.page-item(v-if="getListProducts.next_page_url != null")
+        li.page-item(v-if="get_list_products.next_page_url != null")
           a.page-link(href="#")
             .oi.oi-caret-right
             
@@ -33,10 +33,10 @@ export default {
     productItemBrowser
   },
   watch: {
-    getListProducts: {
+    get_list_products: {
       handler: (oldData, newData) =>{
-        // if(newData.length > 0) 
-        // window.location.href = '#list-products-finded'
+        if(newData.length > 0) 
+        window.location.href = '#list-products-finded'
       },
       deep: true
     }
@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getListProducts', //lista de prodctos con paginado
+      'get_list_products', //lista de prodctos con paginado
     ])
   },
   methods: {

@@ -1887,16 +1887,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     PopProductCart: _pop_product_detail__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  data: function data() {
-    return {
-      showPop: false
-    };
-  },
+  data: function data() {},
   props: ['product'],
   methods: {}
 });
@@ -1912,6 +1909,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1922,18 +1926,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'button-search-products',
-  data: function data() {
-    return {
-      searchProduct: false
-    };
-  },
-  methods: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_show_filters' //get param to show filters
+  ])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['toggleFliters' //toggle search filters
+  ])), {}, {
     toggleSearch: function toggleSearch() {
-      this.searchProduct = !this.searchProduct;
+      this.toggleFliters();
     }
-  }
+  })
 });
 
 /***/ }),
@@ -1976,10 +1979,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: 'branch-selected',
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_branch_selected' //get branch selected
   ])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['set_branch_selected'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['setBranchSelected'])), {}, {
     changeBranch: function changeBranch() {
       var data = document.getElementById('branch-selected').value;
-      this.set_branch_selected(data);
+      this.setBranchSelected(data);
     }
   })
 });
@@ -2479,7 +2482,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type_filter: 'car'
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['getListProducts' //lista de productos encontrados
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_list_products', //lista de productos encontrados
+  'get_show_filters' //obtener parametro para mostrar los filtros
   ])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['searchProducts' //Buscador de productos
   ])), {}, {
@@ -2648,9 +2652,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     productItemBrowser: _cart_product_item_browser__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   watch: {
-    getListProducts: {
-      handler: function handler(oldData, newData) {// if(newData.length > 0) 
-        // window.location.href = '#list-products-finded'
+    get_list_products: {
+      handler: function handler(oldData, newData) {
+        if (newData.length > 0) window.location.href = '#list-products-finded';
       },
       deep: true
     }
@@ -2661,7 +2665,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       year_filter: 'all'
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //lista de prodctos con paginado
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_list_products' //lista de prodctos con paginado
   ])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['clearProducts' //limpiar listado de productos
   ])),
@@ -7314,8 +7318,8 @@ var render = function() {
     "div",
     { staticClass: "card-body" },
     [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-4 col-md-4 p-0" }, [
+      _c("div", { staticClass: "row bg-light rounded-sm" }, [
+        _c("div", { staticClass: "col-4 col-md-4 p-2" }, [
           _c(
             "a",
             {
@@ -7343,41 +7347,43 @@ var render = function() {
               attrs: { href: "/products/product/" + _vm.product.product_slug }
             },
             [
-              _c("span", { staticClass: "h6 text-yellow" }, [
+              _c("span", { staticClass: "h6 text-info" }, [
                 _vm._v(_vm._s(_vm.product.product_name))
               ])
             ]
           ),
           _c("p", { staticClass: "mb-0 small" }, [
-            _c("b", { staticClass: "text-info" }, [_vm._v("Aplicación")]),
-            _c("br"),
-            _c("small", { staticClass: "text-light" }, [
-              _vm._v(_vm._s(_vm.product.product_description))
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Aplicación: " + _vm._s(_vm.product.product_description))
             ]),
             _c("br"),
-            _c("small", { staticClass: "text-light" }, [
-              _vm._v(_vm._s(_vm.product.product_year))
-            ])
-          ]),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-info btn-sm mt-4",
-              on: {
-                click: function($event) {
-                  _vm.showPop = true
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "oi oi-cart" }),
-              _c(
-                "span",
-                { staticClass: "ml-3 pl-3 border-left border-light" },
-                [_vm._v("Agregar")]
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Año: " + _vm._s(_vm.product.product_year))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v(
+                "Auto: " +
+                  _vm._s(_vm.product.shipowner.shipowner_name) +
+                  " - " +
+                  _vm._s(_vm.product.car.model_name)
               )
-            ]
-          )
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Código: " + _vm._s(_vm.product.provider_code))
+            ]),
+            _c("br"),
+            _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
+              _vm._v(
+                _vm._s(
+                  _vm.product.public_price != null
+                    ? "$" + _vm.product.public_price
+                    : "Precio no disponible"
+                )
+              )
+            ])
+          ])
         ])
       ]),
       _vm.showPop
@@ -7417,8 +7423,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: !_vm.searchProduct,
-            expression: "!searchProduct"
+            value: !_vm.get_show_filters,
+            expression: "!get_show_filters"
           }
         ],
         staticClass: "button-filters",
@@ -7437,8 +7443,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.searchProduct,
-            expression: "searchProduct"
+            value: _vm.get_show_filters,
+            expression: "get_show_filters"
           }
         ],
         staticClass: "button-filters",
@@ -7478,7 +7484,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-left" }, [
-    _c("h4", { staticClass: "text-yellow d-inline-block" }, [
+    _c("h6", { staticClass: "text-yellow d-inline-block" }, [
       _vm._v("Selecciona una sucursal:")
     ]),
     _c("div", { staticClass: "row" }, [
@@ -7486,7 +7492,8 @@ var render = function() {
         _c(
           "select",
           {
-            staticClass: "form-control d-inline-block rounded-pill",
+            staticClass:
+              "form-control form-control-sm d-inline-block rounded-pill",
             attrs: { name: "branch-selected", id: "branch-selected" },
             domProps: { value: _vm.get_branch_selected },
             on: { change: _vm.changeBranch }
@@ -7582,7 +7589,7 @@ var render = function() {
                   expression: "car_search"
                 }
               ],
-              staticClass: "form-control form-control",
+              staticClass: "form-control form-control-sm",
               attrs: { type: "search", placeholder: "Buscar" },
               domProps: { value: _vm.car_search },
               on: {
@@ -7761,7 +7768,7 @@ var render = function() {
             expression: "$parent.category_selected"
           }
         ],
-        staticClass: "form-control rounded-pill",
+        staticClass: "form-control form-control-sm rounded-pill",
         attrs: { disabled: _vm.$parent.model_selected != "" ? false : true },
         on: {
           change: function($event) {
@@ -7849,7 +7856,7 @@ var render = function() {
             expression: "$parent.year_selected"
           }
         ],
-        staticClass: "form-control rounded-pill",
+        staticClass: "form-control form-control-sm rounded-pill",
         attrs: { disabled: _vm.$parent.car_selected == "" },
         on: {
           change: function($event) {
@@ -8039,26 +8046,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    {
-      staticClass: "filters-search-products bg-dark",
-      attrs: { id: "filter-products" }
-    },
-    [
-      _c(
-        "div",
-        { staticClass: "filters" },
+  return _vm.get_show_filters
+    ? _c(
+        "section",
+        {
+          staticClass: "filters-search-products bg-dark",
+          attrs: { id: "filter-products" }
+        },
         [
-          _c("SelectTypeFilters"),
-          _vm.type_filter == "car" ? _c("FilterByCar") : _vm._e(),
-          _vm.type_filter == "general" ? _c("GeneralFilter") : _vm._e(),
-          _vm.type_filter == "code" ? _c("FilterByCode") : _vm._e()
-        ],
-        1
+          _c(
+            "div",
+            { staticClass: "filters" },
+            [
+              _c("SelectTypeFilters"),
+              _vm.type_filter == "car" ? _c("FilterByCar") : _vm._e(),
+              _vm.type_filter == "general" ? _c("GeneralFilter") : _vm._e(),
+              _vm.type_filter == "code" ? _c("FilterByCode") : _vm._e()
+            ],
+            1
+          )
+        ]
       )
-    ]
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8174,40 +8183,54 @@ var render = function() {
           name: "show",
           rawName: "v-show",
           value:
-            this.getListProducts.data && this.getListProducts.data.length > 0,
+            this.get_list_products.data &&
+            this.get_list_products.data.length > 0,
           expression:
-            "this.getListProducts.data && this.getListProducts.data.length > 0"
+            "this.get_list_products.data && this.get_list_products.data.length > 0"
         }
       ],
-      staticClass: "main-products-browser bg-dark",
+      staticClass: "main-products-browser pt-5",
       attrs: { id: "list-products-finded" }
     },
     [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "d-flex justify-content-between" }, [
-          _c("h3", { staticClass: "text-light text-center" }, [
-            _vm._v("Resultados")
-          ]),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-close-product-browser bg-yellow",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.clearProducts($event)
+        _c(
+          "div",
+          { staticClass: "d-flex justify-content-between align-items-center" },
+          [
+            _c(
+              "h5",
+              {
+                staticClass: "text-dark text-center m-0 p-0 align-items-center"
+              },
+              [
+                _vm._v("Resultados "),
+                _c("small", { staticClass: "small" }, [
+                  _vm._v("total: " + _vm._s(_vm.get_list_products.total))
+                ])
+              ]
+            ),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-close-product-browser bg-yellow",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.clearProducts($event)
+                  }
                 }
-              }
-            },
-            [_c("i", { staticClass: "oi oi-x" })]
-          )
-        ]),
-        _c("hr", { staticClass: "border-light" }),
+              },
+              [_c("i", { staticClass: "oi oi-x" })]
+            )
+          ]
+        ),
+        _c("hr", { staticClass: "border-dark" }),
         _c("div", { staticClass: "container" }, [
           _c(
             "div",
             { staticClass: "row" },
-            _vm._l(_vm.getListProducts.data, function(product, i) {
+            _vm._l(_vm.get_list_products.data, function(product, i) {
               return (_vm.year_filter == "all"
               ? true
               : product.product_year == _vm.year_filter)
@@ -8227,17 +8250,17 @@ var render = function() {
           "ul",
           { staticClass: "pagination justify-content-center" },
           [
-            _vm.getListProducts.prev_page_url != null
+            _vm.get_list_products.prev_page_url != null
               ? _c("li", { staticClass: "page-item" }, [_vm._m(0)])
               : _vm._e(),
-            _vm._l(_vm.getListProducts.last_page, function(page) {
+            _vm._l(_vm.get_list_products.last_page, function(page) {
               return _c(
                 "li",
                 {
                   key: page,
                   staticClass: "page-item",
                   class:
-                    _vm.getListProducts.current_page == page ? "active" : ""
+                    _vm.get_list_products.current_page == page ? "active" : ""
                 },
                 [
                   _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
@@ -8246,7 +8269,7 @@ var render = function() {
                 ]
               )
             }),
-            _vm.getListProducts.next_page_url != null
+            _vm.get_list_products.next_page_url != null
               ? _c("li", { staticClass: "page-item" }, [_vm._m(1)])
               : _vm._e()
           ],
@@ -8313,7 +8336,7 @@ var render = function() {
           ]
         },
         [
-          _c("h4", { staticClass: "text-yellow" }, [_vm._v("Buscar por:")]),
+          _c("h6", { staticClass: "text-yellow" }, [_vm._v("Buscar por:")]),
           _c(
             "ul",
             { staticClass: "nav nav-tabs border-yellow nav-tabs-filters mb-4" },
@@ -23552,21 +23575,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var actions = {
-  set_branch_selected: function set_branch_selected(_ref, data) {
+  //setear la susucrsal seleccionada
+  setBranchSelected: function setBranchSelected(_ref, data) {
     var commit = _ref.commit;
-    commit('setBranchSelected', data);
+    commit('SET_BRANCH_SELECTED', data);
   },
+  // setear el listado de producto
   setListProducts: function setListProducts(_ref2, data) {
     var commit = _ref2.commit;
-    commit('setListProducts', data);
+    commit('SET_LIST_PRODUCTS', data);
   },
+  // setear lel listado de años
   setYearsRelated: function setYearsRelated(_ref3, data) {
     var commit = _ref3.commit;
-    commit('setYearsRelated', data);
+    commit('SET_YEARS_RELATED', data);
   },
+  //setear las categorías relacionadas
   setCategoriesRelated: function setCategoriesRelated(_ref4, data) {
     var commit = _ref4.commit;
-    commit('setCategoriesRelated', data);
+    commit('SET_CATEGORIES_RELATED', data);
   },
   //busqueda por modelo / armadora
   serachProductModelShipowner: function () {
@@ -23657,6 +23684,7 @@ var actions = {
 
     return generalSearch;
   }(),
+  //búsqueda de productos por código
   searchByCode: function () {
     var _searchByCode = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref7, data) {
       var dispatch, products;
@@ -23706,7 +23734,12 @@ var actions = {
   //Limpiar state de productos
   clearProducts: function clearProducts(_ref8) {
     var commit = _ref8.commit;
-    commit('clearProducts');
+    commit('CLEAR_PRODUCTS');
+  },
+  //Mostrar los filtros
+  toggleFliters: function toggleFliters(_ref9) {
+    var commit = _ref9.commit;
+    commit('TOGGLE_FILTERS');
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
@@ -23722,18 +23755,23 @@ var actions = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./themes/erso/src/js/vue-app/store/products/state.js");
+
 var getteres = {
-  getListProducts: function getListProducts(state) {
-    return state.listProducts;
+  get_list_products: function get_list_products(state) {
+    return state.list_products;
   },
   get_branch_selected: function get_branch_selected(state) {
     return state.branch_selected;
   },
   get_categories_related: function get_categories_related(state) {
-    return state.categoriesRelated;
+    return state.categories_related;
   },
   get_years_related: function get_years_related(state) {
-    return state.yearsRelated;
+    return state.years_related;
+  },
+  get_show_filters: function get_show_filters(state) {
+    return state.show_filters;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getteres);
@@ -23778,22 +23816,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./themes/erso/src/js/vue-app/store/products/state.js");
 
 var mutations = {
-  setListProducts: function setListProducts(state, data) {
-    state.listProducts = data;
+  SET_LIST_PRODUCTS: function SET_LIST_PRODUCTS(state, data) {
+    state.list_products = data;
   },
-  clearProducts: function clearProducts(state) {
-    state.listProducts = [];
-    state.yearsRelated = [];
-    state.categoriesRelated = [];
+  CLEAR_PRODUCTS: function CLEAR_PRODUCTS(state) {
+    state.list_products = [];
+    state.years_related = [];
+    state.categories_related = [];
   },
-  setBranchSelected: function setBranchSelected(state, data) {
+  SET_BRANCH_SELECTED: function SET_BRANCH_SELECTED(state, data) {
     state.branch_selected = data;
   },
-  setYearsRelated: function setYearsRelated(state, data) {
-    state.yearsRelated = data;
+  SET_YEARS_RELATED: function SET_YEARS_RELATED(state, data) {
+    state.years_related = data;
   },
-  setCategoriesRelated: function setCategoriesRelated(state, data) {
-    state.categoriesRelated = data;
+  SET_CATEGORIES_RELATED: function SET_CATEGORIES_RELATED(state, data) {
+    state.categories_related = data;
+  },
+  TOGGLE_FILTERS: function TOGGLE_FILTERS(state) {
+    state.show_filters = !state.show_filters;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -23810,10 +23851,11 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  listProducts: [],
-  categoriesRelated: [],
-  yearsRelated: [],
-  branch_selected: ''
+  list_products: [],
+  categories_related: [],
+  years_related: [],
+  branch_selected: '',
+  show_filters: false
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 

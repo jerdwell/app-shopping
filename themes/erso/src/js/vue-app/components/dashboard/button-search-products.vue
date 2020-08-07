@@ -1,24 +1,28 @@
 <template lang="pug">
 .controll-filters
-  a.button-filters(v-show="!searchProduct" @click="toggleSearch" href="#filter-products")
+  a.button-filters(v-show="!get_show_filters" @click="toggleSearch" href="#filter-products")
       span Buscar productos
       span.oi.oi-magnifying-glass.icon-button-filter
-  button.button-filters(v-show="searchProduct" @click="toggleSearch")
+  button.button-filters(v-show="get_show_filters" @click="toggleSearch")
     span.text-yellow.mr-2 Cancelar búsqueda
     span.oi.oi-x.icon-button-filter.text-yellow.border-yellow
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'button-search-products',
-  data() {
-    return {
-      searchProduct: false
-    }
+  computed: {
+    ...mapGetters([
+      'get_show_filters', //get param to show filters
+    ])
   },
   methods: {
+    ...mapActions([
+      'toggleFliters', //toggle search filters
+    ]),
     toggleSearch(){
-      this.searchProduct = !this.searchProduct
+      this.toggleFliters()
     }
   },
 }

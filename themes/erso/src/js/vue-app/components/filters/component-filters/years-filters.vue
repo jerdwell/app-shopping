@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     label.text-center.text-light Año
-    select.form-control.rounded-pill(
+    select.form-control.form-control-sm.rounded-pill(
       v-model="$parent.year_selected"
       :disabled="$parent.car_selected == ''")
       option(value="") Selecciona una opción

@@ -1,9 +1,9 @@
 <template lang="pug">
   .text-left
-    h4.text-yellow.d-inline-block Selecciona una sucursal:
+    h6.text-yellow.d-inline-block Selecciona una sucursal:
     .row
       .col-md-6.col-lg-4
-        select.form-control.d-inline-block.rounded-pill(
+        select.form-control.form-control-sm.d-inline-block.rounded-pill(
           name="branch-selected"
           id="branch-selected"
           :value="get_branch_selected"
@@ -26,11 +26,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'set_branch_selected'
+      'setBranchSelected'
     ]),
     changeBranch(){
       let data = document.getElementById('branch-selected').value
-      this.set_branch_selected(data)
+      this.setBranchSelected(data)
     }
   },
 }
