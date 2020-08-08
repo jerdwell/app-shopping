@@ -25,6 +25,9 @@ export default {
       this.toggleFliters()
     }
   },
+  mounted(){
+    if(performance.navigation.type == performance.navigation.TYPE_RELOAD) this.get_show_filters ? this.toggleFliters() : null
+  }
 }
 </script>
 

@@ -18,17 +18,10 @@
           br
           b.text-info.mb-0.pb-0.lead {{ product.public_price != null ? '$' + product.public_price : 'Precio no disponible' }}
     
-    PopProductCart(:productData="product" v-if="showPop")
-
 </template>
 
 <script>
-import PopProductCart from './pop-product-detail'
 export default {
-  components: {
-    PopProductCart
-  },
-  data() {},
   props: [
     'product'
   ],
