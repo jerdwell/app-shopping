@@ -3,6 +3,7 @@ div
   label.text-center.text-light Categoría
   select.form-control.form-control-sm.rounded-pill(
     v-model="$parent.category_selected"
+    @change="addCategoryToFilter"
     :disabled="$parent.model_selected != '' ? false :true")
     option(value="") Selecciona una opción
     option(v-for="(category, index) in get_categories_related" :key="index" :value="category.category.id") {{ category.category.category_name }}
@@ -25,7 +26,13 @@ export default {
     ])
   },
   methods: {
-    
+    ...mapActions([
+      'serachProductModelShipowner', //search products
+    ]),
+    addCategoryToFilter(){
+      this.$parent.car_model_selected['category'] = this.$parent.category_selected
+      this.serachProductModelShipowner(this.$parent.car_model_selected)
+    }
   }
 }
 </script>

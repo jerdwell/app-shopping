@@ -39,6 +39,78 @@ class Products extends Model
         $this -> product_slug = Str::slug($this -> product_name);
     }
 
+    /** Scopes */
+
+    public function scopeFilterCars($query, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    {
+        $query -> where('shipowner_id', $shipowner)
+        ->where('model_id', $model)
+        ->when($filter1, function($q) use($filter1, $value1){
+            if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
+            if($filter1 == 'category') return $q -> where("category_id", $value1);
+        })
+        ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
+            if($filter1 == 'year') {
+                $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
+                    -> where("category_id", $value2);
+            }else{
+                $q -> whereRaw("{$value2} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
+                    -> where("category_id", $value1);
+            }
+        })
+        -> with([
+            'shipowner',
+            'brand',
+            'car',
+            'category',
+        ]);
+        return $query;
+    }
+
+    public function scopeFilterYear($query, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    {
+        $query -> select('product_year')
+            ->groupBy('product_year')
+            ->where('shipowner_id', $shipowner)
+            ->where('model_id', $model)
+            ->when($filter1, function($q) use($filter1, $value1){
+                if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
+                if($filter1 == 'category') return $q -> where("category_id", $value1);
+            })
+            ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
+                if($filter1 == 'year') {
+                    $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
+                        -> where("category_id", $value2);
+                }else{
+                    $q -> whereRaw("{$value2} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
+                        -> where("category_id", $value1);
+                }
+            });
+        return $query;
+    }
+
+    public function scopeFilterCategories($query, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    {
+        $query -> select('category_id')
+        ->where('shipowner_id', $shipowner)
+        ->where('model_id', $model)
+        ->when($filter1, function($q) use($filter1, $value1){
+            if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
+            if($filter1 == 'category') return $q -> where("category_id", $value1);
+        })
+        ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
+            if($filter1 == 'year') {
+                $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
+                    -> where("category_id", $value2);
+            }else{
+                $q -> whereRaw("{$value2} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
+                    -> where("category_id", $value1);
+            }
+        })
+        ->groupBy('category_id');
+        return $query;
+    }
+
     /** Relations */
 
     public $belongsTo = [

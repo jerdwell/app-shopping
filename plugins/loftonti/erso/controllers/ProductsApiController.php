@@ -15,29 +15,20 @@ class ProductsApiController extends Controller {
     return $shipowners;
   }
 
-  public function searchCars($model,$shipowner)
+  public function searchCars($model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null)
   {
-    $products = Products::where('shipowner_id', $shipowner)
-    ->where('model_id', $model)
-    -> with([
-      'shipowner',
-      'brand',
-      'car',
-      'category',
-    ])
-    ->paginate(20);
+    $products = Products::filterCars(
+      $model, $shipowner, $filter1, $value1, $filter2, $value2
+    )->paginate(20);
     
-    $years = Products::selectRaw('product_year')
-    ->groupBy('product_year')
-    ->where('shipowner_id', $shipowner)
-    ->where('model_id', $model)
-    ->get();
+    $years = Products::filterYear(
+      $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null
+      )->get();
 
-    $categories = Products::select('category_id')
+    $categories = Products::filterCategories(
+      $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null
+    )
     ->with(['category'])
-    ->where('shipowner_id', $shipowner)
-    ->where('model_id', $model)
-    ->groupBy('category_id')
     ->get();
 
     // $products -> push(['years' => $years]);

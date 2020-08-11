@@ -3,14 +3,15 @@
     label.text-center.text-light Año
     select.form-control.form-control-sm.rounded-pill(
       v-model="$parent.year_selected"
-      :disabled="$parent.car_selected == ''")
+      :disabled="$parent.car_selected == ''"
+      @change="addYearsToFilter")
       option(value="") Selecciona una opción
       option(v-for="(year, index) in years" :key="index" :value="year") {{ year }}
 
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'years-filters',
   data() {
@@ -35,6 +36,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'serachProductModelShipowner', //search products
+    ]),
+    addYearsToFilter(){
+      this.$parent.car_model_selected['year'] = this.$parent.year_selected
+      this.serachProductModelShipowner(this.$parent.car_model_selected)
+    }
   }
 }
 </script>

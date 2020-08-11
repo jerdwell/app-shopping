@@ -12,7 +12,7 @@
         @change="serach_cars"
         v-model="car_search"
         v-if="!$parent.car_model_selected.model_id")
-      input.form-control.form-control(
+      input.form-control.form-control-sm(
         type="text"
         :value="getCarModel()"
         v-on:click="$parent.car_model_selected = {}"

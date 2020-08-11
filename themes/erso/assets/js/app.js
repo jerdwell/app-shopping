@@ -2092,6 +2092,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'category-filters',
@@ -2101,7 +2102,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_categories_related'])),
-  methods: {}
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['serachProductModelShipowner' //search products
+  ])), {}, {
+    addCategoryToFilter: function addCategoryToFilter() {
+      this.$parent.car_model_selected['category'] = this.$parent.category_selected;
+      this.serachProductModelShipowner(this.$parent.car_model_selected);
+    }
+  })
 });
 
 /***/ }),
@@ -2145,6 +2152,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'years-filters',
@@ -2170,7 +2178,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return range;
     }
   }),
-  methods: {}
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['serachProductModelShipowner' //search products
+  ])), {}, {
+    addYearsToFilter: function addYearsToFilter() {
+      this.$parent.car_model_selected['year'] = this.$parent.year_selected;
+      this.serachProductModelShipowner(this.$parent.car_model_selected);
+    }
+  })
 });
 
 /***/ }),
@@ -2560,8 +2574,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_list_products' //lista de prodctos con paginado
   ])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['clearProducts' //limpiar listado de productos
-  ])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['clearProducts', //limpiar listado de productos
+  'serachProductModelShipowner' //get products filtered
+  ])), {}, {
+    goToPage: function goToPage(path, page) {
+      if (page) {
+        this.serachProductModelShipowner({
+          url: path + '?page=' + page
+        });
+      } else {
+        this.serachProductModelShipowner({
+          url: path
+        });
+      }
+    }
+  }),
   mounted: function mounted() {
     if (performance.navigation.type == performance.navigation.TYPE_RELOAD) this.clearProducts();
   }
@@ -7177,7 +7204,7 @@ var render = function() {
               }
             })
           : _c("input", {
-              staticClass: "form-control form-control",
+              staticClass: "form-control form-control-sm",
               attrs: { type: "text" },
               domProps: { value: _vm.getCarModel() },
               on: {
@@ -7345,21 +7372,24 @@ var render = function() {
         staticClass: "form-control form-control-sm rounded-pill",
         attrs: { disabled: _vm.$parent.model_selected != "" ? false : true },
         on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.$set(
-              _vm.$parent,
-              "category_selected",
-              $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-            )
-          }
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.$parent,
+                "category_selected",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            },
+            _vm.addCategoryToFilter
+          ]
         }
       },
       [
@@ -7433,21 +7463,24 @@ var render = function() {
         staticClass: "form-control form-control-sm rounded-pill",
         attrs: { disabled: _vm.$parent.car_selected == "" },
         on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.$set(
-              _vm.$parent,
-              "year_selected",
-              $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-            )
-          }
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.$set(
+                _vm.$parent,
+                "year_selected",
+                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+              )
+            },
+            _vm.addYearsToFilter
+          ]
         }
       },
       [
@@ -7825,7 +7858,24 @@ var render = function() {
           { staticClass: "pagination justify-content-center" },
           [
             _vm.get_list_products.prev_page_url != null
-              ? _c("li", { staticClass: "page-item" }, [_vm._m(0)])
+              ? _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.goToPage(
+                            _vm.get_list_products.prev_page_url
+                          )
+                        }
+                      }
+                    },
+                    [_c("div", { staticClass: "oi oi-caret-left" })]
+                  )
+                ])
               : _vm._e(),
             _vm._l(_vm.get_list_products.last_page, function(page) {
               return _c(
@@ -7837,14 +7887,42 @@ var render = function() {
                     _vm.get_list_products.current_page == page ? "active" : ""
                 },
                 [
-                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-                    _vm._v(_vm._s(page))
-                  ])
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.goToPage(_vm.get_list_products.path, page)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(page))]
+                  )
                 ]
               )
             }),
             _vm.get_list_products.next_page_url != null
-              ? _c("li", { staticClass: "page-item" }, [_vm._m(1)])
+              ? _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.goToPage(
+                            _vm.get_list_products.next_page_url
+                          )
+                        }
+                      }
+                    },
+                    [_c("div", { staticClass: "oi oi-caret-right" })]
+                  )
+                ])
               : _vm._e()
           ],
           2
@@ -7853,24 +7931,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-      _c("div", { staticClass: "oi oi-caret-left" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-      _c("div", { staticClass: "oi oi-caret-right" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -22998,7 +23059,7 @@ var actions = {
   //busqueda por modelo / armadora
   serachProductModelShipowner: function () {
     var _serachProductModelShipowner = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref5, data) {
-      var dispatch, model_id, shipowner_id, response;
+      var dispatch, model_id, shipowner_id, url, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -23007,28 +23068,43 @@ var actions = {
               _context.prev = 1;
               model_id = data.model_id;
               shipowner_id = data.shipowner_id;
-              _context.next = 6;
-              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("search-products/".concat(model_id, "/").concat(shipowner_id));
+              url = '';
 
-            case 6:
+              if (data.url) {
+                url = data.url;
+              } else if (!data.year && !data.category) {
+                url = "search-products/".concat(model_id, "/").concat(shipowner_id);
+              } else if (data.year && !data.category) {
+                url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year);
+              } else if (!data.year && data.category) {
+                url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/category/").concat(data.category);
+              } else {
+                url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year, "/category/").concat(data.category);
+              }
+
+              console.log(url);
+              _context.next = 9;
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get(url);
+
+            case 9:
               response = _context.sent;
               dispatch('setListProducts', response.data.products);
               dispatch('setYearsRelated', response.data.years);
               dispatch('setCategoriesRelated', response.data.categories);
-              _context.next = 15;
+              _context.next = 18;
               break;
 
-            case 12:
-              _context.prev = 12;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 15:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 12]]);
+      }, _callee, null, [[1, 15]]);
     }));
 
     function serachProductModelShipowner(_x, _x2) {

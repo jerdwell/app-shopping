@@ -26,7 +26,20 @@ const actions = {
     try {
       let model_id = data.model_id
       let shipowner_id = data.shipowner_id
-      let response = await vm.prototype.$http.get(`search-products/${model_id}/${shipowner_id}`)
+      let url = ''
+      if(data.url){
+        url = data.url
+      }else if(!data.year && !data.category){
+        url = `search-products/${model_id}/${shipowner_id}`
+      }else if(data.year && !data.category){
+        url = `search-products/${model_id}/${shipowner_id}/year/${data.year}`
+      }else if(!data.year && data.category){
+        url = `search-products/${model_id}/${shipowner_id}/category/${data.category}`
+      }else{
+        url = `search-products/${model_id}/${shipowner_id}/year/${data.year}/category/${data.category}`
+      }
+      console.log(url)  
+      let response = await vm.prototype.$http.get(url)
       dispatch('setListProducts', response.data.products)
       dispatch('setYearsRelated', response.data.years)
       dispatch('setCategoriesRelated', response.data.categories)

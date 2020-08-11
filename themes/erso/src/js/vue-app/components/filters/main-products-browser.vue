@@ -15,12 +15,12 @@
     nav.paginator-browser.py-5
       ul.pagination.justify-content-center
         li.page-item(v-if="get_list_products.prev_page_url != null")
-          a.page-link(href="#") 
+          a.page-link(href="#" @click.prevent="goToPage(get_list_products.prev_page_url)")
             .oi.oi-caret-left
         li.page-item(v-for="page in get_list_products.last_page" :key="page" :class="get_list_products.current_page == page ? 'active' : '' ")
-          a.page-link(href="#") {{ page }}
+          a.page-link(href="#" @click.prevent="goToPage(get_list_products.path ,page)") {{ page }}
         li.page-item(v-if="get_list_products.next_page_url != null")
-          a.page-link(href="#")
+          a.page-link(href="#" @click.prevent="goToPage(get_list_products.next_page_url)")
             .oi.oi-caret-right
             
 </template>
@@ -54,8 +54,16 @@ export default {
   },
   methods: {
     ...mapActions([
-      'clearProducts' //limpiar listado de productos
+      'clearProducts', //limpiar listado de productos
+      'serachProductModelShipowner' //get products filtered
     ]),
+    goToPage(path, page){
+      if(page){
+        this.serachProductModelShipowner({url: path + '?page=' + page})
+      }else{
+        this.serachProductModelShipowner({url: path})
+      }
+    }
   },
   mounted(){
     if(performance.navigation.type == performance.navigation.TYPE_RELOAD) this.clearProducts()
