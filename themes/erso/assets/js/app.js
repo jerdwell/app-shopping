@@ -1761,6 +1761,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1783,9 +1790,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product'],
-  methods: {}
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['add_cart_item', //add item to cart shopping or quotation
+  'remove_cart_item' //remove item to cart shopping or quotation
+  ]))
 });
 
 /***/ }),
@@ -2198,9 +2222,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _component_filters_car_filters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component-filters/car-filters */ "./themes/erso/src/js/vue-app/components/filters/component-filters/car-filters.vue");
-/* harmony import */ var _component_filters_years_filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component-filters/years-filters */ "./themes/erso/src/js/vue-app/components/filters/component-filters/years-filters.vue");
-/* harmony import */ var _component_filters_category_filters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./component-filters/category-filters */ "./themes/erso/src/js/vue-app/components/filters/component-filters/category-filters.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _component_filters_car_filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component-filters/car-filters */ "./themes/erso/src/js/vue-app/components/filters/component-filters/car-filters.vue");
+/* harmony import */ var _component_filters_years_filters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./component-filters/years-filters */ "./themes/erso/src/js/vue-app/components/filters/component-filters/years-filters.vue");
+/* harmony import */ var _component_filters_category_filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./component-filters/category-filters */ "./themes/erso/src/js/vue-app/components/filters/component-filters/category-filters.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2209,15 +2240,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'filter-by-car',
   components: {
-    CarFilters: _component_filters_car_filters__WEBPACK_IMPORTED_MODULE_0__["default"],
-    YearsFilters: _component_filters_years_filters__WEBPACK_IMPORTED_MODULE_1__["default"],
-    CategoryFilters: _component_filters_category_filters__WEBPACK_IMPORTED_MODULE_2__["default"]
+    CarFilters: _component_filters_car_filters__WEBPACK_IMPORTED_MODULE_1__["default"],
+    YearsFilters: _component_filters_years_filters__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CategoryFilters: _component_filters_category_filters__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -2225,6 +2257,10 @@ __webpack_require__.r(__webpack_exports__);
       category_selected: '',
       year_selected: ''
     };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['clearProducts'])),
+  mounted: function mounted() {
+    this.clearProducts();
   }
 });
 
@@ -2278,7 +2314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       data_search: ''
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //get list products 
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_list_products' //get list products 
   ])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['searchByCode' //seaach by code
   ])), {}, {
@@ -2291,17 +2327,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _this.loading = true;
-                _context.next = 4;
-                return _this.searchByCode(_this.data_search);
-
-              case 4:
-                products = _context.sent;
-                _this.loading = false;
-
-                if (!(_this.getListProducts.length <= 0)) {
-                  _context.next = 10;
+                if (!(_this.data_search.replace(/\s/g, '').length <= 0)) {
+                  _context.next = 4;
                   break;
                 }
 
@@ -2311,22 +2338,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }, 3000);
                 return _context.abrupt("return");
 
-              case 10:
+              case 4:
+                _context.prev = 4;
+                _this.loading = true;
+                _context.next = 8;
+                return _this.searchByCode(_this.data_search);
+
+              case 8:
+                products = _context.sent;
+                _this.loading = false;
+
+                if (!(_this.get_list_products.data.length <= 0)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _this.no_results = true;
+                setTimeout(function () {
+                  _this.no_results = false;
+                }, 3000);
+                return _context.abrupt("return");
+
+              case 14:
                 _this.$parent.searchProduct = false;
-                _context.next = 16;
+                _context.next = 20;
                 break;
 
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](0);
+              case 17:
+                _context.prev = 17;
+                _context.t0 = _context["catch"](4);
                 console.log(_context.t0);
 
-              case 16:
+              case 20:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 13]]);
+        }, _callee, null, [[4, 17]]);
       }))();
     }
   })
@@ -2461,9 +2509,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loading: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getListProducts' //get list products
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_list_products' //get list products
   ])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['generalSearch'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['generalSearch', // search by general data
+  'clearProducts' //clear store products
+  ])), {}, {
     generalFilter: function generalFilter() {
       var _this = this;
 
@@ -2473,37 +2523,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (!(_this.data_search.replace(/\s/g, '').length <= 0)) {
+                  _context.next = 4;
+                  break;
+                }
+
+                _this.no_results = true;
+                setTimeout(function () {
+                  _this.no_results = false;
+                }, 3000);
+                return _context.abrupt("return");
+
+              case 4:
+                _context.prev = 4;
                 _this.loading = true;
-                _context.next = 3;
+                _context.next = 8;
                 return _this.generalSearch(_this.data_search);
 
-              case 3:
+              case 8:
                 products = _context.sent;
                 _this.loading = false;
 
-                if (!(_this.getListProducts.length > 0)) {
-                  _context.next = 8;
+                if (!(_this.get_list_products.data.length > 0)) {
+                  _context.next = 13;
                   break;
                 }
 
                 _this.no_results = false;
                 return _context.abrupt("return", _this.$parent.searchProduct = false);
 
-              case 8:
+              case 13:
                 _this.no_results = true;
                 setTimeout(function () {
                   _this.no_results = false;
                 }, 3000);
+                _context.next = 20;
+                break;
 
-              case 10:
+              case 17:
+                _context.prev = 17;
+                _context.t0 = _context["catch"](4);
+                console.log(_context.t0);
+
+              case 20:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[4, 17]]);
       }))();
     }
-  })
+  }),
+  mounted: function mounted() {
+    this.clearProducts();
+  }
 });
 
 /***/ }),
@@ -2525,8 +2598,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -6924,8 +6995,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-body" }, [
-    _c("div", { staticClass: "row bg-light rounded-sm" }, [
-      _c("div", { staticClass: "col-4 col-md-4 p-2" }, [
+    _c("div", { staticClass: "row py-3 bg-light rounded-sm" }, [
+      _c("div", { staticClass: "col-4 col-md-4 col-lg-8 offset-lg-2 p-2" }, [
         _c(
           "a",
           {
@@ -6944,57 +7015,121 @@ var render = function() {
           ]
         )
       ]),
-      _c("div", { staticClass: "col-8 col-md-8 p-0 pl-2" }, [
-        _c(
-          "a",
-          {
-            staticClass: "link text-info mb-4",
-            staticStyle: { "text-decoration": "none" },
-            attrs: { href: "/products/product/" + _vm.product.product_slug }
-          },
-          [
-            _c("span", { staticClass: "h6 text-info" }, [
-              _vm._v(_vm._s(_vm.product.product_name))
-            ])
-          ]
-        ),
-        _c("p", { staticClass: "mb-0 small" }, [
-          _c("span", { staticClass: "text-muted" }, [
-            _vm._v("Aplicación: " + _vm._s(_vm.product.product_description))
-          ]),
-          _c("br"),
-          _c("span", { staticClass: "text-muted" }, [
-            _vm._v("Año: " + _vm._s(_vm.product.product_year))
-          ]),
-          _c("br"),
-          _c("span", { staticClass: "text-muted" }, [
-            _vm._v(
-              "Auto: " +
-                _vm._s(_vm.product.shipowner.shipowner_name) +
-                " - " +
-                _vm._s(_vm.product.car.model_name)
-            )
-          ]),
-          _c("br"),
-          _c("span", { staticClass: "text-muted" }, [
-            _vm._v("Código: " + _vm._s(_vm.product.provider_code))
-          ]),
-          _c("br"),
-          _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
-            _vm._v(
-              _vm._s(
-                _vm.product.public_price != null
-                  ? "$" + _vm.product.public_price
-                  : "Precio no disponible"
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-8 col-md-8 p-0 col-lg-12 pl-2 text-lg-center pt-lg-3"
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "link text-info mb-4",
+              staticStyle: { "text-decoration": "none" },
+              attrs: { href: "/products/product/" + _vm.product.product_slug }
+            },
+            [
+              _c("span", { staticClass: "h6 text-info" }, [
+                _vm._v(_vm._s(_vm.product.product_name))
+              ])
+            ]
+          ),
+          _c("p", { staticClass: "mb-0 small" }, [
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Aplicación: " + _vm._s(_vm.product.product_description))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Año: " + _vm._s(_vm.product.product_year))
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v(
+                "Auto: " +
+                  _vm._s(_vm.product.shipowner.shipowner_name) +
+                  " - " +
+                  _vm._s(_vm.product.car.model_name)
               )
-            )
+            ]),
+            _c("br"),
+            _c("span", { staticClass: "text-muted" }, [
+              _vm._v("Código: " + _vm._s(_vm.product.provider_code))
+            ]),
+            _c("br"),
+            _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
+              _vm._v(
+                _vm._s(
+                  _vm.product.public_price != null
+                    ? "$" + _vm.product.public_price
+                    : "Precio no disponible"
+                )
+              )
+            ])
+          ])
+        ]
+      ),
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "text-center mt-2" }, [
+          _c("small", { staticClass: "d-block text-muted mb-2 small" }, [
+            _vm._v("Cotizar")
+          ]),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(0),
+            _c("div", { staticClass: "col-4 text-left px-0" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-danger btn-sm bg-transparent text-danger mr-1 rounded-circle",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.remove_cart_item(_vm.product)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "oi oi-minus" })]
+              ),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-info btn-sm bg-transparent text-info rounded-circle",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.add_cart_item(_vm.product)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "oi oi-plus" })]
+              )
+            ])
           ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-8" }, [
+      _c("div", { staticClass: "input-group input-group-sm" }, [
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", disabled: "" }
+        }),
+        _c("div", { staticClass: "input-group-prepend" }, [
+          _c("div", { staticClass: "input-group-text" }, [_vm._v("pz")])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -7756,7 +7891,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "list-group-item bg-transparent border-danger p-1" },
+      {
+        staticClass:
+          "list-group-item bg-transparent border-danger text-danger p-1"
+      },
       [_c("i", { staticClass: "oi oi-x" }), _vm._v(" No existen coincidencias")]
     )
   }
@@ -7843,7 +7981,7 @@ var render = function() {
               : product.product_year == _vm.year_filter)
                 ? _c("productItemBrowser", {
                     key: i,
-                    staticClass: "col-md-6 col-lg-4 mb-3",
+                    staticClass: "col-md-6 col-lg-3 mb-3",
                     attrs: { product: product }
                   })
                 : _vm._e()
@@ -22900,7 +23038,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var actions = {};
+var actions = {
+  add_cart_item: function add_cart_item(_ref, data) {
+    var commit = _ref.commit;
+    alert('agregar al carrito');
+    commit('ADD_CART_ITEM', data);
+  },
+  remove_cart_item: function remove_cart_item(_ref2, data) {
+    var commit = _ref2.commit;
+    alert('quitar del carrito');
+    commit('ADD_CART_ITEM', data);
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = (actions);
 
 /***/ }),
@@ -22958,7 +23107,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var mutations = {};
+var mutations = {
+  ADD_CART_ITEM: function ADD_CART_ITEM(state, data) {
+    console.log(data);
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
 
 /***/ }),
@@ -23137,7 +23290,7 @@ var actions = {
 
             case 6:
               products = _context2.sent;
-              dispatch('setListProducts', products.data);
+              dispatch('setListProducts', products.data.products);
               _context2.next = 13;
               break;
 

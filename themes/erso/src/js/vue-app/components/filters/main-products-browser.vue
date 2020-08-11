@@ -6,11 +6,9 @@
         button.btn.btn-close-product-browser.bg-yellow(@click.prevent="clearProducts")
           i.oi.oi-x
       hr.border-dark
-
       .container
-
         .row
-          productItemBrowser.col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+          productItemBrowser.col-md-6.col-lg-3.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
 
     nav.paginator-browser.py-5
       ul.pagination.justify-content-center

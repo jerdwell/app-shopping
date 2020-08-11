@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import CarFilters from './component-filters/car-filters'
 import YearsFilters from './component-filters/years-filters'
 import CategoryFilters from './component-filters/category-filters'
@@ -24,5 +25,13 @@ export default {
       year_selected: '',
     }
   },
+  methods: {
+    ...mapActions([
+      'clearProducts'
+    ])
+  },
+  mounted(){
+    this.clearProducts()
+  }
 }
 </script>

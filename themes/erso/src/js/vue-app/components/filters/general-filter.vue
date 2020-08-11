@@ -5,7 +5,7 @@
         label.text-light Buscar Producto
         input.form-control.rounded-pill(type="search" placeholder="Buscar productos" v-model="data_search")
         .list-group.mt-3(v-if="no_results")
-          .list-group-item.bg-transparent.border-danger.p-1 #[i.oi.oi-x] No existen coincidencias
+          .list-group-item.bg-transparent.border-danger.text-danger.p-1 #[i.oi.oi-x] No existen coincidencias
         button.btn.btn-info.mt-4(@click.prevent="generalFilter" :disabled="loading")
           .spinner-border.mr-2(v-if="loading")
           span Buscar
@@ -24,24 +24,39 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getListProducts', //get list products
+      'get_list_products', //get list products
     ])
   },
   methods: {
     ...mapActions([
-      'generalSearch',
+      'generalSearch', // search by general data
+      'clearProducts', //clear store products
     ]),
     async generalFilter(){
-      this.loading = true
-      let products = await this.generalSearch(this.data_search)
-      this.loading = false
-      if(this.getListProducts.length > 0){
-        this.no_results = false
-        return this.$parent.searchProduct = false
+      if(this.data_search.replace(/\s/g, '').length <= 0){
+        this.no_results = true
+        setTimeout(() => {
+          this.no_results = false
+        }, 3000);
+        return
       }
-      this.no_results = true
-      setTimeout(() => { this.no_results = false }, 3000);
+      try {
+        this.loading = true
+        let products = await this.generalSearch(this.data_search)
+        this.loading = false
+        if(this.get_list_products.data.length > 0){
+          this.no_results = false
+          return this.$parent.searchProduct = false
+        }
+        this.no_results = true
+        setTimeout(() => { this.no_results = false }, 3000);
+      } catch (error) {
+        console.log(error)
+      }
     }
+  },
+  mounted() {
+    this.clearProducts()
   },
 }
 </script>

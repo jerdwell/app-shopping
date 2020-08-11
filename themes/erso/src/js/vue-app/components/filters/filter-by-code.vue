@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getListProducts', //get list products 
+      'get_list_products', //get list products 
     ])
   },
   methods: {
@@ -33,11 +33,18 @@ export default {
       'searchByCode',//seaach by code
     ]),
     async searchProducts(){
+      if(this.data_search.replace(/\s/g, '').length <= 0){
+        this.no_results = true
+        setTimeout(() => {
+          this.no_results = false
+        }, 3000);
+        return
+      }
       try {
         this.loading = true
         let products = await this.searchByCode(this.data_search)
         this.loading = false
-        if(this.getListProducts.length <= 0){
+        if(this.get_list_products.data.length <= 0){
           this.no_results = true
           setTimeout(() => {
             this.no_results = false
