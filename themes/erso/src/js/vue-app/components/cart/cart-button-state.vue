@@ -1,7 +1,7 @@
 <template lang="pug">
-  button.btn.btn-dark.btn-cart-state(v-show="get_cart_items.length > 0")
+  button.btn.btn-dark.btn-cart-state(v-show="count_cart_items > 0")
     .oi.oi-cart
-    span.cart-items-count.bg-success +10
+    span.cart-items-count.bg-success {{count_cart_items <= 10 ? count_cart_items : '+10'}}
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'get_cart_items' //items del carrido de compras
+      'count_cart_items' //items del carrido de compras
     ])
   }
 }

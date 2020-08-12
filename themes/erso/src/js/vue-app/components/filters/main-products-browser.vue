@@ -9,6 +9,7 @@
       .container
         .row
           productItemBrowser.col-md-6.col-lg-3.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+    cartShoppingAsside
 
     nav.paginator-browser.py-5
       ul.pagination.justify-content-center
@@ -25,10 +26,12 @@
 
 <script>
 import productItemBrowser from './../cart/product-item-browser'
+import cartShoppingAsside from '../cart/cart-shopping-asside'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
-    productItemBrowser
+    productItemBrowser,
+    cartShoppingAsside
   },
   watch: {
     get_list_products: {
@@ -64,7 +67,7 @@ export default {
     }
   },
   mounted(){
-    if(performance.navigation.type == performance.navigation.TYPE_RELOAD) this.clearProducts()
+    // if(performance.navigation.type == performance.navigation.TYPE_RELOAD) this.clearProducts()
   }
 }
 </script>
