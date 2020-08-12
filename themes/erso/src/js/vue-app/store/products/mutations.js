@@ -26,6 +26,7 @@ const mutations = {
 
   TOGGLE_FILTERS: state => {
     state.show_filters = !state.show_filters
+    if(!state.show_filters) return false
   }
 
 }

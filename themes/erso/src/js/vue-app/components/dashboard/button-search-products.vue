@@ -1,11 +1,11 @@
 <template lang="pug">
 .controll-filters
   a.button-filters(v-show="!get_show_filters" @click="toggleSearch" href="#filter-products")
-      span Buscar productos
-      span.oi.oi-magnifying-glass.icon-button-filter
+    span Buscar productos
+    i.oi.oi-magnifying-glass.icon-button-filter
   button.button-filters(v-show="get_show_filters" @click="toggleSearch")
-    span.text-yellow.mr-2 Cancelar búsqueda
-    span.oi.oi-x.icon-button-filter.text-yellow.border-yellow
+    span.text-yellow Cancelar
+    i.oi.oi-x.icon-button-filter.text-yellow.border-yellow
 </template>
 
 <script>
@@ -48,17 +48,26 @@ export default {
       border: solid 2px white
       display: inline-flex
       justify-content: center
-      height: 40px
       margin-right: 10px
+      line-height: 0
+      top: 0
+      height: 40px
       width: 40px
   @media screen and (min-width: 768px)
     .button-filters
       padding: 0
       margin-bottom: 20px
   @media screen and (min-width: 1024px)
+    width: 100%
     .button-filters
+      justify-content: flex-end
       margin-bottom: 0px
+      flex-direction: row
+      .icon-button-filter
+        margin-right: 0
+        margin-left: 10px
       span
         &:first-child
           text-align: right
+        width: calc(100% - 50px)
 </style>

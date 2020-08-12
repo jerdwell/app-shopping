@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.btn.btn-dark.btn-cart-state(v-show="count_cart_items > 0")
+  button.btn.btn-dark.btn-cart-state(v-show="count_cart_items > 0" @click.prevent="showCarFilters")
     .oi.oi-cart
     span.cart-items-count.bg-success {{count_cart_items <= 10 ? count_cart_items : '+10'}}
 </template>
@@ -11,7 +11,13 @@ export default {
     ...mapGetters([
       'count_cart_items' //items del carrido de compras
     ])
-  }
+  },
+  methods: {
+    showCarFilters(){
+      let item = document.getElementById('cart-shopping-asside')
+      if(item) item.classList.toggle('cart-shopping-asside-hidden')
+    }
+  },
 }
 </script>
 
@@ -20,17 +26,17 @@ export default {
   align-items: center
   border-radius: 50%
   border: solid 2px white
+  bottom: 15px
   box-shadow: 0 0 10px rgba(#000,.7)
   display: flex
   justify-content: center
   font-size: 30px
   height: 50px
-  right: 55px
+  right: 15px
   position: fixed
   transition: all ease .5s
-  top: 5px
   width: 50px
-  z-index: 10
+  z-index: 100
   &:hover
     border: solid 2px #17a2b8
   .cart-items-count
@@ -44,23 +50,9 @@ export default {
     right: -5px
     top: -5px
     width: 20px
-  @media screen and (min-width: 768px)
-    top: calc( 110px - 75px )
-    right: 80px
-  @media screen and (min-width: 768px)
+  @media screen and(min-width:1024px)
+    bottom: auto
     position: relative
+    transform: none
     right: auto
-    top: auto
-
-
-.navbar-main-erso-fixed //este estilo base está en el archivo navbar
-  @media screen and (min-width: 768px)
-    .btn-cart-state
-      top: 10px
-  @media screen and(min-width: 1024px)
-    .btn-cart-state
-      height: 40px
-      top: auto
-      width: 40px
-
 </style>

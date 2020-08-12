@@ -76,8 +76,13 @@ const actions = {
   },
 
   //Mostrar los filtros
-  toggleFliters: ({ commit }) => {
-    commit(('TOGGLE_FILTERS'))
+  toggleFliters: async ({ commit }) => {
+    try {
+      let toggle = await commit('TOGGLE_FILTERS')
+      if(!toggle) commit('CLEAR_PRODUCTS')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 }

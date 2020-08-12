@@ -1,15 +1,19 @@
 <template lang="pug">
   .main-products-browser#list-products-finded.pt-5(v-show="this.get_list_products.data && this.get_list_products.data.length > 0")
-    .container
-      .d-flex.justify-content-between.align-items-center
-        h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
-        button.btn.btn-close-product-browser.bg-yellow(@click.prevent="clearProducts")
-          i.oi.oi-x
-      hr.border-dark
-      .container
-        .row
-          productItemBrowser.col-md-6.col-lg-3.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
-    cartShoppingAsside
+    .container-fluid
+      .row
+        .col-xl-9
+          .container
+            .d-flex.justify-content-between.align-items-center
+              h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
+              button.btn.btn-close-product-browser.bg-yellow(@click.prevent="clearProducts")
+                i.oi.oi-x
+            hr.border-dark
+            .container
+              .row
+                productItemBrowser.col-md-6.col-lg-3.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+        .col-xl-3
+          cartShoppingAsside
 
     nav.paginator-browser.py-5
       ul.pagination.justify-content-center
