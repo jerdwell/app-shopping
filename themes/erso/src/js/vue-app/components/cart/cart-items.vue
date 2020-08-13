@@ -52,7 +52,7 @@ export default {
         buttons: ['cancelar', 'Ingresar'],
         dangerMode: false
       }).then(res => {
-        if(res) window.location.href = '/mi-cuenta'
+        if(res) window.location.href = '/registro'
       })
     }
   },

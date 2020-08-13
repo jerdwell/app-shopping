@@ -1860,7 +1860,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         buttons: ['cancelar', 'Ingresar'],
         dangerMode: false
       }).then(function (res) {
-        if (res) window.location.href = '/mi-cuenta';
+        if (res) window.location.href = '/registro';
       });
     }
   })
