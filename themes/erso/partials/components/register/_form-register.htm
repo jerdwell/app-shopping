@@ -1,0 +1,57 @@
+<div class="form-register">
+  <div class="card card-register">
+    <div class="card-body">
+      <h3 class="text-muted text-center">Registro</h3>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="small text-muted">Nombre:</label>
+          <input class="form-control" type="text" name="name" id="name" minlength="2" maxlength="130" placeholder="Nombre y Apellidos" required>
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">Correo:</label>
+          <input class="form-control" type="email" name="email" id="email" minlength="2" maxlength="130" placeholder="tu@correo" required>
+        </div>
+        
+        <div class="col-12">
+          <hr>
+        </div>
+
+        <div class="col-12 col-md-9">
+          <label class="small text-muted">Dirección:</label>
+          <input class="form-control" type="text" name="address1" id="address1" minlength="2" maxlength="130" placeholder="Tu calle #555" required>
+        </div>        
+        <div class="col-md-3">
+          <label class="small text-muted">Codigo postal:</label>
+          <input class="form-control" type="text" name="address1" id="address1" minlength="5" maxlength="5" placeholder="09234" required>
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">Colonia:</label>
+          <input class="form-control" type="text" name="address2" id="address2" minlength="2" maxlength="130" placeholder="Colonia" required>
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">Delegación:</label>
+          <input class="form-control" type="text" name="country" id="country" minlength="2" maxlength="130" placeholder="Delegación" required>
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">Estado:</label>
+          <select class="form-control" name="state" id="state" minlength="2" maxlength="130" placeholder="Estado" required>
+            <option value="CDMX">CDMX</option>
+            <option value="EDOMEX">Estado de Mex.</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="small text-muted">País:</label>
+          <input class="form-control" type="text" name="city" id="city" minlength="2" maxlength="130" value="México" readonly required>
+        </div>        
+
+      </div>
+
+      <div class="text-center my-3">
+        <hr>
+        <button class="btn btn-info">Registrarme</button>
+      </div>
+
+    </div>
+  </div>
+</div>

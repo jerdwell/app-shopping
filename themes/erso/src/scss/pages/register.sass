@@ -1,0 +1,49 @@
+.register
+  align-items: center
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  padding-top: 80px
+  padding-bottom: 30px
+  min-height: 80vh
+  overflow: hidden
+  position: relative
+  width: 100%
+  .register-bg
+    left: 0
+    height: 100%
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 0
+    img
+      height: 100%
+      object-fit: cover
+      object-position: center
+      width: 100%
+  
+  .form-login
+    border: solid 1px red
+    width: 90%
+    .card-login
+      background: rgba(0,0,0, .8)!important
+  
+  .form-register
+    width: 90%
+  
+  @media screen and(min-width:768px)
+    align-items: flex-start
+    flex-direction: row-reverse
+    justify-content: space-around
+    padding-top: 130px
+    .form-register
+      width: 50%
+    .form-login
+      width: 40%
+  @media screen and(min-width:1024px)
+    padding-top: 180px
+    .form-register
+      width: 60%
+    .form-login
+      width: 35%
+      max-width: 400px

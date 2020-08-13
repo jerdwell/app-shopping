@@ -14,7 +14,8 @@
     "bootstrap": "^4.5.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "laravel-mix": "^5.0.4",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-swal": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

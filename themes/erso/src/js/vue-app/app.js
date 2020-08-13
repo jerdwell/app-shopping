@@ -13,6 +13,11 @@ import butttonSearchProducts from './components/dashboard/button-search-products
 import filtersSearchProducts from './components/filters/filters-search-products'
 import mainProductsBrowser from './components/filters/main-products-browser'
 import cartButtonState from './components/cart/cart-button-state'
+import VueSwal from 'vue-swal'
+
+Vue.use(VueSwal)
+//cart shopping
+import cartFixedGlobal from './components/cart/cart-fixed-global'
 
 const app = new Vue({
   el: '#app',
@@ -20,7 +25,8 @@ const app = new Vue({
     filtersSearchProducts,
     mainProductsBrowser,
     cartButtonState,
-    butttonSearchProducts
+    butttonSearchProducts,
+    cartFixedGlobal
   },
   template: '',
   store,

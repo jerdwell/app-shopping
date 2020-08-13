@@ -1,6 +1,16 @@
 @import url(https://fonts.googleapis.com/css2?family=Maven+Pro:wght@800:400&family=Noto+Sans+JP:wght@300;
 
-400&display=swap);.home-blog-block {
+400&display=swap);.swal-button--confirm {
+  background: #17a2b8 !important;
+  background-color: #17a2b8 !important;
+}
+
+.swal-button--danger {
+  background: #dc3545;
+  color: white;
+}
+
+.home-blog-block {
   overflow: hidden;
   width: 100%;
 }
@@ -644,6 +654,82 @@
 @media screen and (min-width: 768px) {
   .branches {
     display: flex;
+  }
+}
+
+.register {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 30px;
+  min-height: 80vh;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.register .register-bg {
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.register .register-bg img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+}
+
+.register .form-login {
+  border: solid 1px red;
+  width: 90%;
+}
+
+.register .form-login .card-login {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.register .form-register {
+  width: 90%;
+}
+
+@media screen and (min-width: 768px) {
+  .register {
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    padding-top: 130px;
+  }
+
+  .register .form-register {
+    width: 50%;
+  }
+
+  .register .form-login {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .register {
+    padding-top: 180px;
+  }
+
+  .register .form-register {
+    width: 60%;
+  }
+
+  .register .form-login {
+    width: 35%;
+    max-width: 400px;
   }
 }
 

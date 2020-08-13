@@ -13,6 +13,7 @@ const Slide = {
 
   init(target, time){
     this.data.target = target
+    if(!document.getElementById(this.data.target)) return
     this.data.time = time
     this.sizeSlide()
     window.addEventListener('resize', this.sizeSlide())
