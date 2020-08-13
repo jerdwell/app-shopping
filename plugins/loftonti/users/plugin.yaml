@@ -1,0 +1,6 @@
+plugin:
+    name: 'loftonti.users::lang.plugin.name'
+    description: 'loftonti.users::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-user
+    homepage: ''
