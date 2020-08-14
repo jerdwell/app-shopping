@@ -1,0 +1,11 @@
+name: UserAddress
+modelClass: LoftonTi\Users\Models\UserAddress
+form: $/loftonti/users/models/useraddress/fields.yaml
+defaultRedirect: loftonti/users/useraddress
+create:
+    redirect: 'loftonti/users/useraddress/update/:id'
+    redirectClose: loftonti/users/useraddress
+update:
+    redirect: loftonti/users/useraddress
+    redirectClose: loftonti/users/useraddress
+preview: {  }

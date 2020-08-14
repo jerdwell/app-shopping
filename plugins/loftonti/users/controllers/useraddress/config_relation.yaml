@@ -1,0 +1,8 @@
+user:
+  label: Usuario
+  view:
+    form: $/loftonti/users/models/users/fields.yaml
+    toolbarButtons: update
+  manage:
+    form: $/loftonti/users/models/users/fields.yaml
+    list: $/loftonti/users/models/users/columns.yaml

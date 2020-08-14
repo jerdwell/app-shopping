@@ -322,6 +322,38 @@
   }
 }
 
+.page-header {
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 100px 5%;
+  position: relative;
+  width: 100%;
+}
+
+.page-header .page-header-title {
+  color: white;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+@media screen and (min-width: 768px) {
+  .page-header {
+    padding-bottom: 110px;
+    padding-top: 130px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .page-header {
+    padding-top: 160px;
+  }
+
+  .page-header .page-header-title {
+    font-size: 3em;
+  }
+}
+
 .slide {
   height: 100vh;
   overflow: hidden;
