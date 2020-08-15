@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use LoftonTi\Users\Models\Users as ModelsUsers;
+use LoftonTi\Users\Models\UsersAuth;
 
 class Users extends Controller
 {
@@ -56,10 +57,32 @@ class Users extends Controller
                     "zip_code" => $request -> zip_code,
                 ]);
             });
-            return ['register account'];
+            return ['Usuario registrado exitosamente'];
         } catch (\Exception $th) {
-            print_r($request -> all());
             return response($th -> getMessage(), 403);
+        }
+    }
+
+    
+    public function userLogin(Request $request)
+    {
+        try {
+            $valid = Validator::make($request -> all(), [
+                'email' => 'required|email|exists:loftonti_users_users,email',
+                'password' => 'required|string|max:20|min:8'
+            ]);
+            if($valid -> fails()){
+                if($valid -> errors() -> has('email')) throw new \Exception('Los datos no son correctos');
+                if($valid -> errors() -> has('password')) throw new \Exception('Los datos no son correctos');
+            }
+            $user = ModelsUsers::where('email', $request -> email) -> first();
+            if(empty($user)) throw new \Exception('Los datos no son corectos');
+            if(!Hash::check($request -> password, $user -> password)) throw new \Exception('la contraseña es incorrecta');
+            $auth = UsersAuth::MakeToken($user -> id);
+            return $auth;
+            return $request -> all();
+        } catch (\Exception $th) {
+            return $th -> getMessage();
         }
     }
 

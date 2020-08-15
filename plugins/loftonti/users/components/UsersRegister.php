@@ -28,7 +28,6 @@ class UsersRegister extends ComponentBase
 
     public function onRender()
     {
-        $this -> page['test'] = '1927364';
         try {
             $this -> token = $this -> property('token');
             $token = Users::checkTokenRegister($this -> token);
