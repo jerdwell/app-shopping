@@ -1,0 +1,25 @@
+<div class="col-md-6 col-lg-4 mb-4 d-flex">
+  <div class="card w-100 bg-dark text-light">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4 pr-0">
+          <img
+          class="w-100"
+            src="{{ product.product_cover|media }}"
+            alt="{{ product.product_slug }}">
+        </div>
+        <div class="col-8">
+          <h6 class="text-info text-left">{{ product.product_name }}</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item small bg-transparent border-0 p-1">Auto: {{ product.shipowner.shipowner_name }}</li>
+            <li class="list-group-item small bg-transparent border-0 p-1">Año: {{ product.product_year }}</li>
+            <li class="list-group-item small bg-transparent border-0 p-1 d-none">Descripción: {{ product.product_description }}</li>
+            <li class="list-group-item small bg-transparent border-0 p-1">Categoría: {{ product.category.category_name }}</li>
+            <li class="list-group-item small bg-transparent border-0 p-1">Modelo: {{ product.car.model_name }}</li>
+          </ul>
+        </div>
+      </div>
+      <product-handler :product="{{ product }}"></product-handler>
+    </div>
+  </div>
+</div>

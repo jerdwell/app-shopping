@@ -322,6 +322,32 @@
   }
 }
 
+.erso-paginate ul .active {
+  background: #880F04;
+  color: white;
+}
+
+.erso-paginate ul li {
+  background: #f3f3f3;
+  padding: 5px;
+  border-left: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+.erso-paginate ul li:first-child {
+  border-left: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.erso-paginate ul li:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .erso-paginate ul li {
+    padding: 5px 10px;
+  }
+}
+
 .page-header {
   background-size: cover;
   background-position: center;
@@ -498,7 +524,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  padding: 60px 5%;
+  padding: 90px 5%;
   position: relative;
   width: 100%;
 }
@@ -523,8 +549,18 @@
 }
 
 @media screen and (min-width: 768px) {
+  .step {
+    padding: 130px 5%;
+  }
+
   .step .step-text {
     font-size: 2.8em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .step {
+    padding: 150px 5%;
   }
 }
 
@@ -687,6 +723,41 @@
   .branches {
     display: flex;
   }
+}
+
+.list-category-item {
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  position: relative;
+  text-decoration: none !important;
+  width: 100%;
+}
+
+.list-category-item .list-category-item-bg {
+  height: 100%;
+  left: 0;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.list-category-item .list-category-item-text {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  transition: all ease .5s;
+  text-shadow: 0 0 rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.list-category-item:hover .list-category-item-text {
+  transform: scale(1.1);
 }
 
 .register {

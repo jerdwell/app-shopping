@@ -1,0 +1,19 @@
+.erso-paginate
+  ul
+    .active
+      background: $primary
+      color: white
+    li
+      background: #f3f3f3
+      padding: 5px
+      border-left: solid 1px rgba(0,0,0, .1)
+      &:first-child
+        border-left: none
+        border-radius: 5px 0 0 5px
+      &:last-child
+        border-radius: 0 5px 5px 0
+  @media screen and ( min-width: 768px )
+    ul
+      li
+        padding: 5px 10px
+    

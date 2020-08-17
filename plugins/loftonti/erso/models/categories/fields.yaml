@@ -6,5 +6,5 @@ fields:
     category_cover:
         label: Cover
         span: auto
-        mode: file
+        mode: image
         type: mediafinder

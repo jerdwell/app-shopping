@@ -13,6 +13,7 @@ import butttonSearchProducts from './components/dashboard/button-search-products
 import filtersSearchProducts from './components/filters/filters-search-products'
 import mainProductsBrowser from './components/filters/main-products-browser'
 import cartButtonState from './components/cart/cart-button-state'
+import productHandler from './components/cart/product-handler'
 import VueSwal from 'vue-swal'
 
 //account
@@ -34,7 +35,8 @@ const app = new Vue({
     cartFixedGlobal,
     FormRegister,
     FormLogin,
-    MyAccount
+    MyAccount,
+    productHandler
   },
   template: '',
   store,

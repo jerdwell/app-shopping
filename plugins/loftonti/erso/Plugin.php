@@ -6,6 +6,9 @@ class Plugin extends PluginBase
 {
     public function registerComponents()
     {
+        return [
+            'LoftonTi\Erso\Components\ListProducts' => 'ListProducts'
+        ];
     }
 
     public function registerSettings()

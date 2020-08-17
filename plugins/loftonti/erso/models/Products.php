@@ -111,6 +111,20 @@ class Products extends Model
         return $query;
     }
 
+    /**
+     * Scope for list products categories
+     */
+    public function scopeFilterByCategory($query, $category)
+    {
+        $query -> selectRaw('loftonti_erso_products.*')
+            -> when($category != null, function($q) use($category){
+                $q -> leftJoin('loftonti_erso_categories', 'loftonti_erso_categories.id','=', 'loftonti_erso_products.category_id')
+                -> where('loftonti_erso_categories.category_name', $category);
+            })
+            ->orderBy('loftonti_erso_products.category_id');
+        return $query;
+    }
+
     /** Relations */
 
     public $belongsTo = [

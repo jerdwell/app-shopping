@@ -1,0 +1,46 @@
+{% set list = __SELF__.list %}
+{% set category = __SELF__.category %}
+{% set categories = __SELF__.categories %}
+{%
+  partial 'components/_step'
+  title = category != null ? list[0].category.category_name : "Productos"
+  align= "center"
+  type= "light"
+  local= true
+  color= "dark"
+  img= "assets/img/bg_step_01.png"
+%}
+
+<div class="container-fluid bg-dark">
+  <div class="row bg-dark">
+    {% for item_category in categories %}
+      {%
+        partial 'components/products/_categories-list-blocks'
+        category = item_category
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="bg-light py-5">
+  <div class="container">
+    <div class="text-center">
+      <h6 class="text-muted text-left">Resultados totales: {{ list.total }}</h6>
+      <hr class="my-2 mb-4">
+    </div>
+    <div class="row">
+      {% for product in list %}
+        {% 
+          partial 'components/products/_product-item'
+          product= product
+        %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container">
+    <span class="h5 text-info text-left d-block">Páginas totales</span>
+    <div class="erso-paginate">
+      {{ list.render|raw }}
+    </div>
+  </div>
+</div>
