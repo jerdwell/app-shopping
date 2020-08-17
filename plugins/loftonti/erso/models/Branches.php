@@ -30,4 +30,11 @@ class Branches extends Model
      */
     public $rules = [
     ];
+
+    /**
+     * @var array jsonable to asign json data in database
+     */
+    public $jsonable = [
+        'contact_data'
+    ];
 }

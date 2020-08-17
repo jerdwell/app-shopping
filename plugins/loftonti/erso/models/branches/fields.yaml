@@ -45,6 +45,7 @@ fields:
                     options:
                         phone: Teléfono
                         email: Correo
+                        whatsapp: whatsapp
                     showSearch: true
                     span: auto
                     required: 1
