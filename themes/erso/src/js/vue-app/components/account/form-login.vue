@@ -5,6 +5,9 @@
       button.btn.btn-info(:disabled="loading" @click.prevent="testLoading")
         .spinner-border.spinner-border-sm.align-middle.mr-2(v-if="loading")
         span Ingresar
+      div(v-if="!get_show_register")
+        hr.border-light
+        button.btn.btn-warning(@click.prevent="showRegister") Crear una cuenta
 </template>
 
 <script>
@@ -26,11 +29,13 @@ export default {
   computed: {
     ...mapGetters([
       'get_token',// get token account
+      'get_show_register',// get conditional to show form register
     ])
   },
   methods: {
     ...mapActions([
       'setDataAccount', //set data account
+      'showRegister', //set if form register is showed
     ]),
     testLoading(){
       let valid = true
@@ -82,6 +87,7 @@ export default {
     }
   },
   beforeMount(){
+    if(this.get_show_register) this.showRegister()
     if(this.get_token != '') window.location.href = '/mi-cuenta'
   }
 }

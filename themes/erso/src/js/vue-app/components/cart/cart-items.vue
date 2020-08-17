@@ -37,6 +37,7 @@ export default {
   computed: {
     ...mapGetters([
       'get_cart_items', //get list products in cart buy
+      'get_token', //check if token user exists
     ])
   },
   methods: {
@@ -44,16 +45,34 @@ export default {
       'add_cart_item', //add item to cart
       'remove_cart_item', //remove item to cart
     ]),
-    sendOrder(){
-      this.$swal({
-        title: 'Envío de orden',
-        text: 'Para solicitar un pedido necesitar iniciar sesión.',
-        icon: 'warning',
-        buttons: ['cancelar', 'Ingresar'],
-        dangerMode: false
-      }).then(res => {
-        if(res) window.location.href = '/registro'
-      })
+    async sendOrder(){
+      if(this.get_token != ''){
+        try {
+          let send_order = await this.$swal({
+            title: 'Envío de orden',
+            text: 'Tu órden se ha enviado con éxito.',
+            icon: 'success',
+            buttons: false,
+          })
+        } catch (error) {
+          let send_order = await this.$swal({
+            title: 'Envío de orden',
+            text: error,
+            icon: 'error',
+            buttons: false,
+          })
+        }
+      }else{
+        let errors = this.$swal({
+          title: 'Envío de orden',
+          text: 'Para solicitar un pedido necesitar iniciar sesión.',
+          icon: 'warning',
+          buttons: ['cancelar', 'Ingresar'],
+          dangerMode: false
+        }).then(res => {
+          if(res) window.location.href = '/ingresar'
+        })
+      }
     }
   },
 }

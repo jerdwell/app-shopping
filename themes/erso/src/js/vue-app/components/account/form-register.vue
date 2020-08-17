@@ -1,14 +1,19 @@
 <template lang="pug">
-form(@submit.prevent="validRegister")
-  slot(name="form")
-  .text-center.my-3
-    hr
-    button.btn.btn-info(:disabled="loading" type="submit")
-      .spinner-border.spinner-border-sm.mr-2.align-middle(v-if="loading")
-      span Registrarme
+form.form-register(@submit.prevent="validRegister" v-if="get_show_register")
+  .card.card-register
+    .card-body
+      slot(name="form")
+    .text-center.my-3
+      hr
+      button.btn.btn-info(:disabled="loading" type="submit")
+        .spinner-border.spinner-border-sm.mr-2.align-middle(v-if="loading")
+        span Registrarme
+      button.btn.btn-danger.ml-2(@click.prevent="showRegister")
+        span Cancelar
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'form-register',
   data() {
@@ -28,10 +33,18 @@ export default {
         'city',
         'address2',
       ],
-      loading: false
+      loading: false,
     }
   },
+  computed: {
+    ...mapGetters([
+      'get_show_register', //get form register state
+    ])
+  },
   methods: {
+    ...mapActions([
+      'showRegister', //set if form register is showed
+    ]),
     validRegister(){
       let valid = true
       this.items.forEach(e => {

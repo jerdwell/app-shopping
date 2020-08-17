@@ -1755,6 +1755,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'form-login',
@@ -1770,9 +1773,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loading: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_token' // get token account
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_token', // get token account
+  'get_show_register' // get conditional to show form register
   ])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['setDataAccount' //set data account
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['setDataAccount', //set data account
+  'showRegister' //set if form register is showed
   ])), {}, {
     testLoading: function testLoading() {
       var valid = true;
@@ -1858,6 +1863,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   beforeMount: function beforeMount() {
+    if (this.get_show_register) this.showRegister();
     if (this.get_token != '') window.location.href = '/mi-cuenta';
   }
 });
@@ -1875,12 +1881,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1891,6 +1904,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'form-register',
   data: function data() {
@@ -1899,7 +1917,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loading: false
     };
   },
-  methods: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_show_register' //get form register state
+  ])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['showRegister' //set if form register is showed
+  ])), {}, {
     validRegister: function validRegister() {
       var _this = this;
 
@@ -2031,7 +2052,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[3, 13]]);
       }))();
     }
-  }
+  })
 });
 
 /***/ }),
@@ -2066,13 +2087,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: 'my-account',
   watch: {
     get_token: function get_token(newData, oldData) {
-      if (newData == '') window.location.href = '/';
+      if (newData == '') window.location.href = '/ingresar';
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token' //get token
   ])),
   beforeMount: function beforeMount() {
-    if (this.get_token == '') window.location.href = '/';
+    if (this.get_token == '') window.location.href = '/ingresar';
   }
 });
 
@@ -2161,7 +2182,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2203,21 +2232,77 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cart-items',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_cart_items' //get list products in cart buy
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_cart_items', //get list products in cart buy
+  'get_token' //check if token user exists
   ])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['add_cart_item', //add item to cart
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['add_cart_item', //add item to cart
   'remove_cart_item' //remove item to cart
   ])), {}, {
     sendOrder: function sendOrder() {
-      this.$swal({
-        title: 'Envío de orden',
-        text: 'Para solicitar un pedido necesitar iniciar sesión.',
-        icon: 'warning',
-        buttons: ['cancelar', 'Ingresar'],
-        dangerMode: false
-      }).then(function (res) {
-        if (res) window.location.href = '/registro';
-      });
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var send_order, _send_order, errors;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.get_token != '')) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.prev = 1;
+                _context.next = 4;
+                return _this.$swal({
+                  title: 'Envío de orden',
+                  text: 'Tu órden se ha enviado con éxito.',
+                  icon: 'success',
+                  buttons: false
+                });
+
+              case 4:
+                send_order = _context.sent;
+                _context.next = 12;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](1);
+                _context.next = 11;
+                return _this.$swal({
+                  title: 'Envío de orden',
+                  text: _context.t0,
+                  icon: 'error',
+                  buttons: false
+                });
+
+              case 11:
+                _send_order = _context.sent;
+
+              case 12:
+                _context.next = 15;
+                break;
+
+              case 14:
+                errors = _this.$swal({
+                  title: 'Envío de orden',
+                  text: 'Para solicitar un pedido necesitar iniciar sesión.',
+                  icon: 'warning',
+                  buttons: ['cancelar', 'Ingresar'],
+                  dangerMode: false
+                }).then(function (res) {
+                  if (res) window.location.href = '/ingresar';
+                });
+
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 7]]);
+      }))();
     }
   })
 });
@@ -7641,7 +7726,25 @@ var render = function() {
               : _vm._e(),
             _c("span", [_vm._v("Ingresar")])
           ]
-        )
+        ),
+        !_vm.get_show_register
+          ? _c("div", [
+              _c("hr", { staticClass: "border-light" }),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.showRegister($event)
+                    }
+                  }
+                },
+                [_vm._v("Crear una cuenta")]
+              )
+            ])
+          : _vm._e()
       ])
     ],
     2
@@ -7669,40 +7772,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.validRegister($event)
-        }
-      }
-    },
-    [
-      _vm._t("form"),
-      _c("div", { staticClass: "text-center my-3" }, [
-        _c("hr"),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-info",
-            attrs: { disabled: _vm.loading, type: "submit" }
-          },
-          [
-            _vm.loading
-              ? _c("div", {
-                  staticClass:
-                    "spinner-border spinner-border-sm mr-2 align-middle"
-                })
-              : _vm._e(),
-            _c("span", [_vm._v("Registrarme")])
-          ]
-        )
-      ])
-    ],
-    2
-  )
+  return _vm.get_show_register
+    ? _c(
+        "form",
+        {
+          staticClass: "form-register",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.validRegister($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "card card-register" }, [
+            _c("div", { staticClass: "card-body" }, [_vm._t("form")], 2),
+            _c("div", { staticClass: "text-center my-3" }, [
+              _c("hr"),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { disabled: _vm.loading, type: "submit" }
+                },
+                [
+                  _vm.loading
+                    ? _c("div", {
+                        staticClass:
+                          "spinner-border spinner-border-sm mr-2 align-middle"
+                      })
+                    : _vm._e(),
+                  _c("span", [_vm._v("Registrarme")])
+                ]
+              ),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger ml-2",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.showRegister($event)
+                    }
+                  }
+                },
+                [_c("span", [_vm._v("Cancelar")])]
+              )
+            ])
+          ])
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -25192,6 +25312,10 @@ var actions = {
   setDataAccount: function setDataAccount(_ref, data) {
     var commit = _ref.commit;
     commit('SET_DATA_ACCOUNT', data);
+  },
+  showRegister: function showRegister(_ref2) {
+    var commit = _ref2.commit;
+    commit('SHOW_REGISTER');
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
@@ -25213,6 +25337,9 @@ var getters = {
   },
   get_name: function get_name(state) {
     return state.data_account.name;
+  },
+  get_show_register: function get_show_register(state) {
+    return state.show_register;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
@@ -25260,6 +25387,9 @@ var mutations = {
   SET_DATA_ACCOUNT: function SET_DATA_ACCOUNT(state, data) {
     state.data_account.name = data.name;
     state.data_account.token = data.token;
+  },
+  SHOW_REGISTER: function SHOW_REGISTER(state) {
+    state.show_register = !state.show_register;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -25279,7 +25409,8 @@ var state = {
   data_account: {
     name: '',
     token: ''
-  }
+  },
+  show_register: false
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 
