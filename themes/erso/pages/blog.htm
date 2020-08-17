@@ -1,0 +1,47 @@
+title = "Blog"
+url = "/blog/:slug?"
+layout = "_default"
+is_hidden = 0
+==
+{%
+  partial 'components/_step'
+  title = "Blog"
+  align= "center"
+  type= "light"
+  local= true
+  color= "dark"
+  img= "assets/img/bg_step_01.png"
+%}
+
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img class="w-100" src="{{ 'assets/img/muestra_01.png'|theme }}" alt="">
+    </div>
+    <div class="col-md-6">
+      <h3 class="text-left text-primary">Lorem ipsum dolor sit amet, consectetur.</h3>
+      <p class="text-dark">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam aliquid sapiente minus atque animi porro quia? Magni dolor eligendi numquam laudantium iste in distinctio iure illo! Nam animi nihil qui.</p>
+      <p class="text-dark">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam aliquid sapiente minus atque animi porro quia? Magni dolor eligendi numquam laudantium iste in distinctio iure illo! Nam animi nihil qui.</p>
+      <p class="text-dark">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quam voluptatum ex! Nihil pariatur soluta corrupti nostrum ad cumque eveniet repellat similique natus, officiis asperiores maiores laboriosam aspernatur harum illo necessitatibus minima cum temporibus dolorum. Architecto laboriosam ratione illum debitis est dolore at qui ut vitae. Tempore, voluptate quidem autem vel dolorum esse deserunt odio perferendis, expedita veritatis ipsa impedit velit officia. Provident molestiae officia corrupti reprehenderit velit! Veritatis laboriosam impedit pariatur inventore nam facere itaque nostrum nobis necessitatibus rem cupiditate, deleniti quis aut assumenda, a, architecto ipsam? Exercitationem quisquam explicabo cum sunt, aliquid impedit voluptate modi delectus ipsum sapiente!</p>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light py-5">
+  <div class="container">
+    <h2 class="text-center text-dark">Recientes</h2>
+    <hr class="mb-4">
+    <div class="row">
+      {% for i in 1..10 %}
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <img class="w-100" src="{{ 'assets/img/muestra_01.png'|theme }}" alt="">
+            <h6 class="text-primary">Lorem ipsum dolor sit amet consectetur...</h6>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
