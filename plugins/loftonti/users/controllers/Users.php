@@ -75,14 +75,14 @@ class Users extends Controller
                 if($valid -> errors() -> has('email')) throw new \Exception('Los datos no son correctos');
                 if($valid -> errors() -> has('password')) throw new \Exception('Los datos no son correctos');
             }
-            $user = ModelsUsers::where('email', $request -> email) -> first();
+            $user = ModelsUsers::where('email', $request -> email) -> where('deleted_at', null) -> where('mail_confirm', true) -> first();
             if(empty($user)) throw new \Exception('Los datos no son corectos');
             if(!Hash::check($request -> password, $user -> password)) throw new \Exception('la contraseña es incorrecta');
             $auth = UsersAuth::MakeToken($user -> id);
             return $auth;
             return $request -> all();
         } catch (\Exception $th) {
-            return $th -> getMessage();
+            return response($th -> getMessage(), 401);
         }
     }
 

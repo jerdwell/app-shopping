@@ -5,46 +5,50 @@
       <hr class="border-light mb-0">
     </div>
     <div class="card-body">
-      <div class="row">
-        <div class="col-12">
-          <label class="text-light small">Correo</label>
-          <div class="input-group rounded-pill border-yellow" style="overflow: hidden; border: solid 1px;">
-            <div class="input-group-prepend border-0">
-              <div class="input-group-text bg-yellow border-0">
-                <i class="oi oi-person text-light"></i>
+      <form-login>
+        <template slot="form">
+          <div class="row">
+            <div class="col-12">
+              <label class="text-light small">Correo</label>
+              <div class="input-group rounded-pill border-yellow" style="overflow: hidden; border: solid 1px;">
+                <div class="input-group-prepend border-0">
+                  <div class="input-group-text bg-yellow border-0">
+                    <i class="oi oi-person text-light"></i>
+                  </div>
+                </div>
+                <input
+                  type="email"
+                  class="form-control form-control-sm border-0"
+                  name="user"
+                  id="user"
+                  placeholder="tu@correo"
+                  required>
               </div>
+              <div id="valid-user" class="invalid-feedback"></div>
             </div>
-            <input
-              type="email"
-              class="form-control form-control-sm border-0"
-              name="user"
-              id="user"
-              placeholder="tu@correo"
-              required>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <label class="text-light small">Contraseña</label>
-          <div class="input-group rounded-pill border-yellow" style="overflow: hidden; border: solid 1px;">
-            <div class="input-group-prepend border-0">
-              <div class="input-group-text bg-yellow border-0">
-                <i class="oi oi-key text-light"></i>
+    
+            <div class="col-12">
+              <label class="text-light small">Contraseña</label>
+              <div class="input-group rounded-pill border-yellow" style="overflow: hidden; border: solid 1px;">
+                <div class="input-group-prepend border-0">
+                  <div class="input-group-text bg-yellow border-0">
+                    <i class="oi oi-key text-light"></i>
+                  </div>
+                </div>
+                <input
+                  type="password"
+                  class="form-control form-control-sm border-0"
+                  name="password"
+                  id="password-user"
+                  placeholder="******"
+                  minlength="8"
+                  required>
               </div>
+              <div id="valid-password-user" class="invalid-feedback"></div>
             </div>
-            <input
-              type="password"
-              class="form-control form-control-sm border-0"
-              name="password"
-              id="password"
-              placeholder="******"
-              required>
           </div>
-        </div>
-      </div>
-      <div class="text-center mt-4">
-        <button class="btn btn-info">Ingresar</button>
-      </div>
+        </template>
+      </form-login>
     </div>
   </div>
 </div>
