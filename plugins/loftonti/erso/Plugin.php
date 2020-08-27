@@ -7,7 +7,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'LoftonTi\Erso\Components\ListProducts' => 'ListProducts'
+            'LoftonTi\Erso\Components\ListProducts' => 'ListProducts',
+            'LoftonTi\Erso\Components\ContactBranch' => 'ContactBranch'
         ];
     }
 

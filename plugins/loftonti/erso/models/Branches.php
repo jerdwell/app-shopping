@@ -1,6 +1,7 @@
 <?php namespace Loftonti\Erso\Models;
 
 use Model;
+use Illuminate\Support\Str;
 
 /**
  * Model
@@ -37,4 +38,12 @@ class Branches extends Model
     public $jsonable = [
         'contact_data'
     ];
+
+    /**
+     * Events
+     */
+    public function beforeSave()
+    {
+        $this -> slug = Str::slug($this->branch_name);
+    }
 }
