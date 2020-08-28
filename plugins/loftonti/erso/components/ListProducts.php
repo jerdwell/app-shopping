@@ -25,12 +25,6 @@ class ListProducts extends ComponentBase
                 'description' => 'category to list products',
                 'type' => 'string',
                 'validationPattern' => '^[a-z0-9-]+$'
-            ],
-            'limit' => [
-                'title' => 'category',
-                'description' => 'category to list products',
-                'type' => 'string',
-                'validationPattern' => '[0-9]'
             ]
         ];
     }

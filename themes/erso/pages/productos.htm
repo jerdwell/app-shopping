@@ -1,10 +1,10 @@
 title = "Productos"
-url = "/productos/:category?/:limit?"
+url = "/productos/:category?"
 layout = "_default"
 is_hidden = 0
 
 [ListProducts]
 category = "{{ :category }}"
-limit = "{{ :limit }}"
+limit = 30
 ==
 {% component 'ListProducts' %}

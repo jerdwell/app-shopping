@@ -8380,7 +8380,7 @@ var render = function() {
       },
       [
         _c("span", [_vm._v("Buscar productos")]),
-        _c("i", { staticClass: "oi oi-magnifying-glass icon-button-filter" })
+        _c("i", { staticClass: "fas fa-search icon-button-filter" })
       ]
     ),
     _c(

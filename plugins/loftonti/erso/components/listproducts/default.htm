@@ -11,19 +11,11 @@
   img= "assets/img/bg_step_01.png"
 %}
 
-<div class="container-fluid bg-dark">
-  <div class="row bg-dark">
-    {% for item_category in categories %}
-      {%
-        partial 'components/products/_categories-list-blocks'
-        category = item_category
-      %}
-    {% endfor %}
-  </div>
-</div>
+{% partial 'components/products/_categories-list-blocks' categories = categories %}
+{% partial 'components/products/_filters' %}
 
 <div class="bg-light py-5">
-  <div class="container">
+  <div class="container-fluid">
     <div class="text-center">
       <h6 class="text-muted text-left">Resultados totales: {{ list.total }}</h6>
       <hr class="my-2 mb-4">

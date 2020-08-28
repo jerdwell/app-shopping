@@ -29,11 +29,11 @@
         <div class="col-md-4 col-lg-6 mb-3">
           <div class="container">
             {% if(data.type == 'whatsapp') %}
-            <a class="text-light" href="https://wa.me/52{{data.data}}"><i class="oi oi-phone"></i> {{ data.data }}</a>
+            <a class="text-light" href="https://wa.me/52{{data.data}}"><i class="fab fa-whatsapp h5 mr-2"></i> {{ data.data }}</a>
             {% elseif(data.type == 'phone') %}
-            <a class="text-light" href="tel:{{data.data}}"><i class="oi oi-phone"></i> {{ data.data }}</a>
+            <a class="text-light" href="tel:{{data.data}}"><i class="fas fa-phone mr-2"></i> {{ data.data }}</a>
             {% else %}
-            <i class="fi-envelope-closed"></i> {{ data.data }}
+            <i class="oi fi-envelope-closed"></i> {{ data.data }}
             {% endif %}
           </div>
         </div>
