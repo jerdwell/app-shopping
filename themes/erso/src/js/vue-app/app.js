@@ -25,6 +25,10 @@ Vue.use(VueSwal)
 //cart shopping
 import cartFixedGlobal from './components/cart/cart-fixed-global'
 
+//products
+import productsCarsFilter from './components/page-products/products-cars-filter'
+import productsYearsFilter from './components/page-products/products-years-filter'
+
 const app = new Vue({
   el: '#app',
   components: {
@@ -36,7 +40,9 @@ const app = new Vue({
     FormRegister,
     FormLogin,
     MyAccount,
-    productHandler
+    productHandler,
+    productsCarsFilter,
+    productsYearsFilter
   },
   template: '',
   store,
