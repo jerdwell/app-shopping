@@ -83,9 +83,6 @@
     }
 
     AssetList.prototype.onUploadFail = function(file, message) {
-        if (file.xhr.status === 413) {
-            message = 'Server rejected the file because it was too large, try increasing post_max_size';
-        }
         if (!message) {
             message = 'Error uploading file'
         }
@@ -173,7 +170,6 @@
             $.each(self.$form.serializeArray(), function (index, field) {
                 formData.append(field.name, field.value)
             })
-            xhr.setRequestHeader('X-OCTOBER-REQUEST-HANDLER', self.alias + '::onUpload')
             self.onUploadStart()
         })
     }

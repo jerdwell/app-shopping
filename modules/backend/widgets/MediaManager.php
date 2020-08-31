@@ -6,7 +6,6 @@ use Lang;
 use File;
 use Input;
 use Config;
-use Backend;
 use Request;
 use Response;
 use Exception;
@@ -80,15 +79,7 @@ class MediaManager extends WidgetBase
     protected function loadAssets()
     {
         $this->addCss('css/mediamanager.css', 'core');
-
-        if (Config::get('develop.decompileBackendAssets', false)) {
-            $scripts = Backend::decompileAsset($this->getAssetPath('js/mediamanager-browser.js'));
-            foreach ($scripts as $script) {
-                $this->addJs($script, 'core');
-            }
-        } else {
-            $this->addJs('js/mediamanager-browser-min.js', 'core');
-        }
+        $this->addJs('js/mediamanager-browser-min.js', 'core');
     }
 
     /**

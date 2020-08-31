@@ -737,7 +737,7 @@ class Form extends WidgetBase
                 $this->model->setValidationAttributeName($attrName, $fieldObj->label);
             }
 
-            $this->allFields[$fieldObj->fieldName] = $fieldObj;
+            $this->allFields[$name] = $fieldObj;
 
             switch (strtolower($addToArea)) {
                 case FormTabs::SECTION_PRIMARY:

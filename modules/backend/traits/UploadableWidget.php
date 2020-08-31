@@ -69,12 +69,7 @@ trait UploadableWidget
              * See mime type handling in the asset manager
              */
             if (!$uploadedFile->isValid()) {
-                if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-                    $message = "The file \"{$uploadedFile->getClientOriginalName()}\" uploaded successfully but wasn't available at {$uploadedFile->getPathName()}. Check to make sure that nothing moved it away.";
-                } else {
-                    $message = $uploadedFile->getErrorMessage();
-                }
-                throw new ApplicationException($message);
+                throw new ApplicationException($uploadedFile->getErrorMessage());
             }
 
             // Use the configured upload path unless it's null, in which case use the user-provided path
@@ -118,7 +113,7 @@ trait UploadableWidget
                 'result' => 'success'
             ]);
         } catch (\Exception $ex) {
-            throw new ApplicationException($ex->getMessage());
+            $response = Response::make($ex->getMessage(), 400);
         }
 
         return $response;
