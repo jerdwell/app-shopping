@@ -10,6 +10,7 @@
     flex-wrap: wrap
     justify-content: center
     overflow: hidden
+    margin: 0!important
     position: relative
     width: 100%
     &:nth-last-child(even)
@@ -48,7 +49,7 @@
 
   @media screen and ( min-width: 768px )
     .home-categories-item
-      width: calc( 100vw / 2 )
+      width: calc( 100% / 2 )
       &:nth-child(3)
         .home-categories-text
           background: rgba($blue,.80)

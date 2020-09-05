@@ -38,7 +38,8 @@ const Slide = {
     if(this.data.index >= childs.length) this.data.index = 0
     if(this.data.index < 0) this.data.index = childs.length -1
     let container = document.querySelector(`.${this.data.slide_container}`)
-    container.style.marginLeft = '-' + this.data.index * window.innerWidth + 'px'
+    let target = document.getElementById(`${this.data.target}`)
+    container.style.marginLeft = '-' + this.data.index * target.offsetWidth + 'px'
     this.setStateDots()
   },
 

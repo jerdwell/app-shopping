@@ -215,7 +215,8 @@ var Slide = {
     if (this.data.index >= childs.length) this.data.index = 0;
     if (this.data.index < 0) this.data.index = childs.length - 1;
     var container = document.querySelector(".".concat(this.data.slide_container));
-    container.style.marginLeft = '-' + this.data.index * window.innerWidth + 'px';
+    var target = document.getElementById("".concat(this.data.target));
+    container.style.marginLeft = '-' + this.data.index * target.offsetWidth + 'px';
     this.setStateDots();
   },
 
@@ -294,8 +295,8 @@ module.exports = Slide; // TODO(erdwell): Add features to touch events
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/erdwell/Sites/erso/themes/erso/src/js/main.js */"./themes/erso/src/js/main.js");
-module.exports = __webpack_require__(/*! /Users/erdwell/Sites/erso/themes/erso/src/scss/app.sass */"./themes/erso/src/scss/app.sass");
+__webpack_require__(/*! C:\Users\mktstf05\Documents\projects\erso\themes\erso\src\js\main.js */"./themes/erso/src/js/main.js");
+module.exports = __webpack_require__(/*! C:\Users\mktstf05\Documents\projects\erso\themes\erso\src\scss\app.sass */"./themes/erso/src/scss/app.sass");
 
 
 /***/ })
