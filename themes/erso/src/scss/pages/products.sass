@@ -1,26 +1,74 @@
-.list-category-item
-  align-items: center
+.list-category-content
   display: flex
-  height: 150px
-  justify-content: center
-  position: relative
-  text-decoration: none!important
+  flex-wrap: wrap
+  overflow: hidden
+  padding: 0
   width: 100%
-  .list-category-item-bg
-    height: 100%
-    left: 0
-    object-position: center
-    object-fit: cover
-    position: absolute
-    top: 0
+  .list-category-item
+    align-items: center
+    display: flex
+    justify-content: center
+    height: 200px
+    overflow: hidden
+    position: relative
+    text-decoration: none!important
+    transition: all ease .3s
     width: 100%
-  .list-category-item-text
-    font-size: 20px
-    margin: 0
-    padding: 0
-    transition: all ease .5s
-    text-shadow: 0 0 rgba(0,0,0,.7)
-    z-index: 10
-  &:hover
+    &:hover
+      transform: scale(1.05) translateY(5px)
+      z-index: 1
+      .list-category-item-bg
+        box-shadow: 0 0 15px rgba(0,0,0, .8)
+    &:nth-child(2), &:nth-child(3), &:nth-child(5), &:nth-child(6)
+      width: 50%
+    .list-category-item-bg
+      height: 100%
+      left: 50%
+      object-fit: cover
+      object-position: center
+      position: absolute
+      top: 50%
+      transform: translate(-50%, -50%)
+      width: 100%
+      z-index: 0
     .list-category-item-text
-      transform: scale(1.1)
+      color: white
+      position: relative
+      text-align: center
+      text-shadow: 0 0 10px rgba(0,0,0,.5)
+      width: 100%
+      z-index: 1
+  @media screen and(min-width: 768px)
+    .list-category-item
+      &:nth-child(4), &:nth-child(5), &:nth-child(6)
+        width: calc(100% / 3)
+      .list-category-item-text
+        font-size: 1.8em
+  @media screen and(min-width: 1024px)
+    .list-category-item
+      height: 250px
+      &:nth-child(1)
+        height: 300px
+        .list-category-item-text
+          font-size: 2.2em
+  @media screen and(min-width: 1280px)
+    .list-category-item
+        .list-category-item-bg
+          border-radius: 10px
+          height: calc(100% - 20px)
+          width: calc(100% - 20px)
+.product-recommended
+  .product-recommended-header
+    height: 200px
+    overflow: hidden
+    padding: 0
+    img
+      height: 100%
+      object-fit: cover
+      object-position: center
+      width: 100%
+  .product-recommended-title
+    align-items: center
+    display: flex
+    justify-content: center
+    height: 70px

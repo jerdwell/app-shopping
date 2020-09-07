@@ -7,12 +7,14 @@
   type= "light"
   local= true
   color= "dark"
+  principal = true
   img= "assets/img/bg_step_01.png"
 %}
 
-{% partial 'components/contacto/_branches' %}
-
-<!-- {{ branch_data }} -->
+<div class="container-fluid bg-yellow py-5">
+  <h2 class="text-center text-white">Ubicación</h2>
+</div>
+<iframe class="w-100 m-0 p-0" style="margin-bottom: -10px;" height="450px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120276.9167575366!2d-99.21936712465177!3d19.599333671685237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21e343a2242a3%3A0x9b36d9acd2ed3a40!2sREFACCIONARIAS%20ERSO!5e0!3m2!1ses-419!2smx!4v1597657403403!5m2!1ses-419!2smx" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
 <div class="home-contact">
   <div class="label-form-contact bg-dark">
@@ -43,7 +45,5 @@
   </div>
   {% partial 'components/contacto/_form-contact' %}
 </div>
-<div class="container-fluid bg-yellow py-5">
-  <h2 class="text-center text-white">Ubicación</h2>
-</div>
-<iframe class="w-100 m-0 p-0" height="450px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120276.9167575366!2d-99.21936712465177!3d19.599333671685237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21e343a2242a3%3A0x9b36d9acd2ed3a40!2sREFACCIONARIAS%20ERSO!5e0!3m2!1ses-419!2smx!4v1597657403403!5m2!1ses-419!2smx" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+{% partial 'components/contacto/_branches' %}

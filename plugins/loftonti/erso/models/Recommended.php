@@ -5,14 +5,10 @@ use Model;
 /**
  * Model
  */
-class ErsoCodes extends Model
+class Recommended extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
-    use \October\Rain\Database\Traits\SoftDelete;
-
-    protected $dates = ['deleted_at'];
-
     /*
      * Disable timestamps by default.
      * Remove this line if timestamps are defined in the database table.
@@ -23,26 +19,11 @@ class ErsoCodes extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'loftonti_erso_codes';
+    public $table = 'loftonti_erso_recommended';
 
     /**
      * @var array Validation rules
      */
     public $rules = [
-    ];
-
-    /**
-     * Relations
-     */
-
-    /**
-     * @var array hasMany to get relationships
-     */
-    public $hasMany = [
-        'products' => [
-            'Loftonti\Erso\Models\Products',
-            'key' => 'erso_code_id',
-            'otherKey' => 'id',
-        ]
     ];
 }

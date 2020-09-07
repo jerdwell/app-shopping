@@ -42,3 +42,7 @@ navigation:
                 label: 'Códigos ERSO'
                 url: loftonti/erso/ersocodes
                 icon: icon-barcode
+            side-menu-item9:
+                label: Recomendados
+                url: loftonti/erso/recommended
+                icon: icon-star

@@ -13,7 +13,7 @@ export default {
   name: 'my-account',
   watch: {
     get_token: (newData, oldData) => {
-      if(newData == '') window.location.href = '/ingresar'
+      if(newData == '') window.location.href = '/login'
     }
   },
   computed: {
@@ -22,7 +22,7 @@ export default {
     ])
   },
   beforeMount(){
-    if(this.get_token == '') window.location.href = '/ingresar'
+    if(this.get_token == '') window.location.href = '/login'
   }
 }
 </script>

@@ -1,0 +1,22 @@
+<div class="bg-light py-5">
+  <div class="container-fluid">
+    <div class="text-center">
+      <h6 class="text-muted text-left">Resultados totales: {{ list.total }}</h6>
+      <hr class="my-2 mb-4">
+    </div>
+    <div class="row">
+      {% for product in list %}
+        {% 
+          partial 'components/products/_product-item'
+          product= product
+        %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container">
+    <span class="h5 text-info text-left d-block">Páginas totales</span>
+    <div class="erso-paginate">
+      {{ list.render|raw }}
+    </div>
+  </div>
+</div>

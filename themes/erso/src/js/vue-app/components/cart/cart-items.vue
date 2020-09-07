@@ -5,22 +5,28 @@
     div(v-if="get_cart_items.length <= 0" )
       h5.text-info.text-center No tienes elementos agregados a la cotización
     div(v-else)
-      .row(v-for="(product, index) in get_cart_items" :key="product.id")
-        .col-4
-          img.w-100(:src="`/storage/app/media${product.product_cover}`")
-        .col-8
-          h6.d-block.text-info {{ product.product_name }}
-          span.d-block.small.text-muted Código: {{ product.provider_code }}
-          span.d-block.small.text-muted Auto: {{ product.model }}
-          span.d-block.small.text-muted Categoría: {{ product.category_name }}
-          h6.d-block.text-dark.my-2
-            span.align-middle Cantidad: {{ product.quantity }}
-            div.d-inline-block.align-middle
-              button.p-1.btn.btn-sm.bg-transparent.border-0.oi.oi-minus.text-danger(@click.prevent="remove_cart_item(product.id)")
-              button.p-1.btn.btn-sm.bg-transparent.border-0.oi.oi-plus.text-info(@click.prevent="add_cart_item(product)")
-          h6.d-block.lead.text-primary.small Precio: {{ product.public_price != null ? '$' + product.public_price : 'no hay dato' }}
-        .col-12
-          hr
+      .table-responsive
+        table.table.table-striped
+          thead
+            tr.bg-dark
+              th #
+              th.text-yellow.text-center Producto
+              th.text-yellow.text-center Costo
+          tbody
+            tr(v-for="(product, index) in get_cart_items" :key="product.id")
+              td.text-center.text-dark {{ index +1 }}
+              td.text-center.text-dark
+                span.small {{ product.product_name }}
+                br
+                small #[b {{ product.provider_code }}]
+                .w-100.d-inline-block.align-middle
+                  button.cart-button-handler.p-1.btn.btn-sm.bg-transparent.fas.fa-minus.text-danger.border-danger(@click.prevent="remove_cart_item(product.id)")
+                  span.align-middle.mx-2 {{ product.quantity }}
+                  button.cart-button-handler.p-1.btn.btn-sm.bg-transparent.fas.fa-plus.text-info.border-info(@click.prevent="add_cart_item(product)")
+                .text-center
+                  a.small.text-danger(href="#" @click.prevent="delete_cart_item(product)") Eliminar #[.fas.fa-times]
+              td.text-center.text-dark
+                span.small {{ product.public_price != null ? '$' + product.public_price : 'sin dato' }}
       .text-center
         button.btn.btn-info(@click.prevent="sendOrder()")
           .oi.oi-check.mr-2
@@ -44,6 +50,7 @@ export default {
     ...mapActions([
       'add_cart_item', //add item to cart
       'remove_cart_item', //remove item to cart
+      'delete_cart_item', //delete item to cart
     ]),
     async sendOrder(){
       if(this.get_token != ''){
@@ -82,4 +89,8 @@ export default {
 .swal-button--confirm
   background: #17a2b8!important
   background-color: #17a2b8!important
+.cart-button-handler
+  border-radius: 50%
+  border: solid 1px
+  vertical-align: middle
 </style>

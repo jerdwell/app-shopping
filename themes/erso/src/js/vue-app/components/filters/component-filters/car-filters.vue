@@ -29,7 +29,7 @@
             tr
               th.bg-yellow.text-light
               th.bg-yellow.text-light Marca
-              th.bg-yellow.text-light Vehículo
+              th.bg-yellow.text-light Modelo
           tbody
             tr(v-for="(car_model, index) in carsModels.data" :key="index")
               td

@@ -1,8 +1,11 @@
 <template lang="pug">
   div
-    slot(name="form")
+    slot(name="form" v-if="!show_form_recovery")
+    recoveryAccount(v-else)
+    .text-center.text-md-right
+      a.text-info.small(href="#" @click.prevent="show_form_recovery = !show_form_recovery" v-if="!show_form_recovery") Recuperar contraseña 
     .text-center.mt-4
-      button.btn.btn-info(:disabled="loading" @click.prevent="testLoading")
+      button.btn.btn-info(:disabled="loading" @click.prevent="testLoading" v-if="!show_form_recovery")
         .spinner-border.spinner-border-sm.align-middle.mr-2(v-if="loading")
         span Ingresar
       div(v-if="!get_show_register")
@@ -11,9 +14,13 @@
 </template>
 
 <script>
+import recoveryAccount from './recovery-account'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'form-login',
+  components: {
+    recoveryAccount
+  },
   watch: {
     get_token: (newData, oldData) => {
       if(newData != '') window.location.href = '/mi-cuenta'
@@ -23,7 +30,8 @@ export default {
     return {
       user: '',
       password: '',
-      loading: false
+      loading: false,
+      show_form_recovery: false
     }
   },
   computed: {

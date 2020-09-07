@@ -1,0 +1,10 @@
+name: Recommended
+form: $/loftonti/erso/models/recommended/fields.yaml
+modelClass: Loftonti\Erso\Models\Recommended
+defaultRedirect: loftonti/erso/recommended
+create:
+    redirect: 'loftonti/erso/recommended/update/:id'
+    redirectClose: loftonti/erso/recommended
+update:
+    redirect: loftonti/erso/recommended
+    redirectClose: loftonti/erso/recommended

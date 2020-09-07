@@ -1,11 +1,11 @@
 columns:
-    id:
-        label: id
-        type: number
-        searchable: true
-        sortable: true
-    category_name:
-        label: Categoría
-        type: text
-        searchable: true
-        sortable: true
+  id:
+    label: id
+    type: number
+    searchable: true
+    sortable: true
+  category_name:
+    label: Categoría
+    type: text
+    searchable: true
+    sortable: true

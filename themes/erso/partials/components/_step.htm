@@ -1,4 +1,4 @@
-<div class="step bg-{{type != '' ? type : ''}}">
+<div class="step bg-{{type != '' ? type : ''}} {{ principal ? 'step-principal' : null }}">
   {% if img != '' %}
   <img src="{{ local ? img|theme : img }}" alt="Refaccionarias ERSO" class="step-bg">
   {% endif %}

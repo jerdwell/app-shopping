@@ -11,6 +11,7 @@ use Cms\Classes\Theme;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use LoftonTi\Users\Models\Users as ModelsUsers;
@@ -132,6 +133,34 @@ class Users extends Controller
             }
         } catch (\Exception $th) {
             throw new \Exception($th -> getMessage());
+        }
+    }
+
+    public function recoveryAccount(Request $request)
+    {
+        try {
+            $valid = Validator::make($request -> all(), [
+                'email' => 'email|required|exists:loftonti_users_users,email'
+            ]);
+            if($valid -> fails()) throw new \Exception(null);
+            $user = ModelsUsers::where('email', $request -> email) -> first();
+            $special_char = '!#$%&()[]*';
+            $password = Str::random(14);
+            $password = str_random($special_char) . $password;
+            $password = str_shuffle($password);
+            $user -> update(['password' => Hash::make($password)]);
+            $mailData = [
+                'name' => $user -> firstname . ' ' . $user -> lastname,
+                'password' => $password,
+                'email' => $user -> email,
+            ];
+            Mail::send('loftonti.users::mail.recovery-account', $mailData, function($message) use($mailData){
+                $message -> to($mailData['email'], 'info@erso.com.mx');
+                $message -> subject('Registro de usuario.');
+            });
+            return ['Contraseña recuperada exitosamente.'];
+        } catch (\Throwable $th) {
+            return response('Contraseña recuperada exitosamente.', 200);
         }
     }
 

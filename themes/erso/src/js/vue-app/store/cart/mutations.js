@@ -29,6 +29,11 @@ const mutations = {
     let item = state.cart_items[index]
     if(item.quantity == 1) return state.cart_items.splice(index, 1)
     item.quantity --
+  },
+
+  DELETE_CART_ITEM: (state, item) => {
+    let index = state.cart_items.map(e => { return e.id}).indexOf(item.id)
+    state.cart_items.splice(index, 1)
   }
 
 }

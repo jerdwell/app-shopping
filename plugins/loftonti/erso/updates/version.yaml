@@ -78,3 +78,6 @@
 1.0.27:
     - 'Updated table loftonti_erso_branches'
     - builder_table_update_loftonti_erso_branches.php
+1.0.28:
+    - 'Created table loftonti_erso_recommended'
+    - builder_table_create_loftonti_erso_recommended.php
