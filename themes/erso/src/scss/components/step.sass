@@ -1,10 +1,11 @@
 .step
   align-items: center
   display: flex
+  min-height: 150px
   justify-content: center
   overflow: hidden
-  padding: 90px 5%
   position: relative
+  padding: 0
   width: 100%
   .step-bg
     height: 100%
@@ -15,17 +16,34 @@
     top: 0
     width: 100%
   .step-text
+    align-items: center
+    background: radial-gradient(rgba(0,0,0,.6) 0%, rgba(0,0,0,.6) 50%, rgba(0,0,0,.2) 100%)
+    background-size: 5px 5px
+    color: white
+    display: flex
     font-weight: bolder
     font-size: 2.3em
+    height: 100%
+    justify-content: center
+    margin: 0
+    padding: 10px 5%
+    position: absolute
+    top: 0
+    text-shadow: 0 5px 15px rgba(0, 0, 0, .8  )
     width: 100%
     z-index: 1
   @media screen and ( min-width: 768px )
-    padding: 90px 5%
+    min-height: 250px
     .step-text
       font-size: 2.8em
+  @media screen and(min-width:1280px)
+    .step-text
+      font-size: 3.8em
 
 .step-principal
   @media screen and ( min-width: 768px )
-    padding: 130px 5%
+    .step-text
+      padding: 130px 5%
   @media screen and ( min-width: 1024px )
-    padding: 150px 5%
+    .step-text
+    padding: 180px 5%

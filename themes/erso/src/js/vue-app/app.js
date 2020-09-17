@@ -24,6 +24,7 @@ import MyAccount from './components/account/my-account'
 Vue.use(VueSwal)
 //cart shopping
 import cartFixedGlobal from './components/cart/cart-fixed-global'
+import productItemBrowser from './components/cart/product-item-browser'
 
 //products
 import productsCarsFilter from './components/page-products/products-cars-filter'
@@ -42,7 +43,8 @@ const app = new Vue({
     MyAccount,
     productHandler,
     productsCarsFilter,
-    productsYearsFilter
+    productsYearsFilter,
+    productItemBrowser
   },
   template: '',
   store,

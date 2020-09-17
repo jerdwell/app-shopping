@@ -3,7 +3,8 @@
   a.text-light(href="#" v-show="!car_selected && !alias" @click.prevent="show_pop = !show_pop") Auto #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
   div(v-show="car_selected && alias")
     a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ alias }}
-    input.form-control(type="text" id="car-selected" v-model="car_selected")
+    input.form-control(type="hidden" id="car-selected" v-model="car_selected")
+
   popUpSearcheable(v-show="show_pop")
     template(slot="pop-header")
       a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")

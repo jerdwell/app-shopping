@@ -4,8 +4,9 @@ layout = "_default"
 description = "Página de inicio de ERSO"
 meta_title = "ERSO"
 is_hidden = 0
-==
 
+[ListCategories]
+==
 {% partial 'components/_slide' %}
 {%
   partial 'components/_step'
@@ -14,28 +15,10 @@ is_hidden = 0
   type= "light"
   local= true
   color= "dark"
-  img= "assets/img/bg_step_01.png"
+  img= "steps1.jpg"|media
 %}
-
 <!-- Categorías -->
-<div class="home-categories">
-  <a href="" class="home-categories-item">
-    <h5 class="home-categories-text">Amortiguadores</h5>
-    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
-  </a>
-  <a href="" class="home-categories-item">
-    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
-    <h5 class="home-categories-text">Suspensiones</h5>
-  </a>
-  <a href="" class="home-categories-item">
-    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
-    <h5 class="home-categories-text">Direcciones</h5>
-  </a>
-  <a href="" class="home-categories-item">
-    <img src="{{ 'assets/img/bg_step_01.png'|theme }}" alt="" class="home-categories-bg">
-    <h5 class="home-categories-text">Tracciones</h5>
-  </a>
-</div>
+{% component 'ListCategories' %}
 <!-- Categorías -->
 
 <!-- Contacto -->
@@ -60,7 +43,7 @@ is_hidden = 0
   type= "light"
   local= true
   color= "dark"
-  img= "assets/img/bg_step_01.png"
+  img= "steps5.jpg"|media
 %}
 
 {% partial 'components/blog/_blog-block' %}

@@ -1,21 +1,6 @@
 {% set list = __SELF__.list %}
 {% set category = __SELF__.category %}
 {% set categories = __SELF__.categories %}
-{%
-  partial 'components/_step'
-  title = category != null ? list[0].category.category_name : "Productos"
-  align= "center"
-  type= "light"
-  local= true
-  color= "dark"
-  principal = true
-  img= "assets/img/bg_step_01.png"
-%}
-
-{% if(category == '') %}
-{% partial 'components/products/_categories-list-blocks' categories = categories %}
-{% partial 'components/products/_recommended' %}
-{% endif %}
 
 {% if category %}
 {% partial 'components/products/_filters' category=category %}

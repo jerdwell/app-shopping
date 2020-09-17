@@ -1,21 +1,18 @@
 <template lang="pug">
 .cars-types-container
-  a.text-light(href="#" v-show="!year_selected && !alias" @click.prevent="getYears") Año #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
-  div(v-show="year_selected && alias")
-    a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ alias }}
-    input.form-control(type="text" name="car-selected" v-model="year_selected")
+  a.text-light(href="#" v-show="!year_selected" @click.prevent="getYears") Año #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
+  div(v-show="year_selected")
+    a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ year_selected }}
+    input.form-control(type="hidden" name="year-selected" id="year-selected" v-model="year_selected")
   popUpSearcheable(v-show="show_pop")
     template(slot="pop-header")
       a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
     template(slot="pop-content")
       label.label.small.text-muted Seleccionar año
-      select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="data_search")
-      //- ul.list-cars.list-group.list-group-flush.mt-3(v-if="cars.length > 0")
-        li.list-group-item.p-1(v-for="(car, index) in cars" :key="car.model_id")
-          label
-            input.form-control-checkbox.mr-2(type="checkbox" @click="setCarSelected(car)")
-            .small.d-inline-block {{ car.shipowner_name }} - {{ car.model_name }}
-      //- .mt-3(v-if="errors")
+      select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="year_selected" @change="setYearSelected")
+        option(value="") Selecciona un año
+        option(v-for="(year, index) in years" :key="year") {{ year }}
+      .mt-3(v-if="errors")
         .border.border-warning.p-2.rounded-lg.text-muted {{ errors }}
 
 </template>
@@ -24,10 +21,11 @@
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'products-years-filter',
+  props:[ 'category' ],
   data() {
     return {
       data_search: '',
-      cars: [],
+      years: [],
       show_pop: false,
       year_selected: '',
       alias: '',
@@ -41,29 +39,36 @@ export default {
     async getYears(){
       try {
         let car = document.getElementById('car-selected')
+        if(!car || car.value == '') return false
         car = car.value.split('-')
-        // this.years = []
-        // if (this.data_search.length <= 0) return
-        let years = await this.$http.get(`search-products/${car[0]}/${car[1]}`)
-        console.log(years)
-        // if(cars.data.length <= 0) return this.errors = 'No existen coincidencias'
-        // this.years = years.data
-        // console.log(years)
+        let results = await this.$http.get(`search-products/${car[0]}/${car[1]}`)
+        if(!results.data || results.data.years.length <= 0) throw 'No existen resultados'
+        let years = []
+        results.data.years.map(e => {
+          years = [...e.product_year.split('-'), ...years]
+        })
+        let range = []
+        let min = Math.min(...years)
+        let max = Math.max(...years)
+        while (min <= max) range.push(min++)
+        this.show_pop = true
+        this.years = range
       } catch (error) {
         this.errors = error
-        console.log(error)
       }
     },
-    // setCarSelected(car){
-    //   this.show_pop = false
-    //   this.year_selected = car.model_id
-    //   this.alias = car.shipowner_name + '-' + car.model_name
-    // },
-    // resetDefault(){
-    //   this.show_pop = true
-    //   this.year_selected = ''
-    //   this.alias = ''
-    // }
+    setYearSelected(){
+      this.show_pop = false
+      let car = document.getElementById('car-selected')
+      if(!car || car.value == '') return false
+      let url = `/productos/${this.category}/${car.value.replace('-', '/')}/${this.year_selected}`
+      location.assign(url)
+    },
+    resetDefault(){
+      this.show_pop = true
+      this.year_selected = ''
+      this.alias = ''
+    }
   },
 }
 </script>

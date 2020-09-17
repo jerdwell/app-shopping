@@ -1,0 +1,20 @@
+plugin:
+    name: 'loftonti.ersoblog::lang.plugin.name'
+    description: 'loftonti.ersoblog::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-newspaper-o
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Blog
+        url: loftonti/ersoblog/posts
+        icon: icon-newspaper-o
+        sideMenu:
+            side-menu-item2:
+                label: Posts
+                url: loftonti/ersoblog/posts
+                icon: icon-newspaper-o
+            side-menu-item:
+                label: Categories
+                url: loftonti/ersoblog/categories
+                icon: icon-sitemap

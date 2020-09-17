@@ -5,7 +5,7 @@ use Loftonti\Erso\Models\Branches;
 
 class ContactBranch extends ComponentBase
 {
-    public $branch_data;
+    public $branch_data, $branch;
 
     public function componentDetails()
     {
@@ -30,6 +30,7 @@ class ContactBranch extends ComponentBase
     public function onRun()
     {
         $slug = $this -> property('branch');
+        $this -> branch = $this -> property('branch') != null ? $this -> property('branch') : 'Contacto';
         $branch = Branches::where('slug', $slug) -> first();
         $this -> branch_data = $branch;
     }

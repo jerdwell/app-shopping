@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: Categoría
+        type: text
+    status:
+        label: Status
+        type: switch

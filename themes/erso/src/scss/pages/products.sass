@@ -1,10 +1,12 @@
 .list-category-content
+  background: $dark
   display: flex
   flex-wrap: wrap
   overflow: hidden
   padding: 0
   width: 100%
   .list-category-item
+    background: #000
     align-items: center
     display: flex
     justify-content: center
@@ -15,22 +17,29 @@
     transition: all ease .3s
     width: 100%
     &:hover
-      transform: scale(1.05) translateY(5px)
-      z-index: 1
       .list-category-item-bg
-        box-shadow: 0 0 15px rgba(0,0,0, .8)
+        img
+          animation: animate-items-categories .5s forwards
+          
     &:nth-child(2), &:nth-child(3), &:nth-child(5), &:nth-child(6)
       width: 50%
     .list-category-item-bg
+      background-position: center
+      background-size: cover
+      background-repeat: no-repeat
       height: 100%
-      left: 50%
-      object-fit: cover
-      object-position: center
       position: absolute
       top: 50%
+      left: 50%
       transform: translate(-50%, -50%)
-      width: 100%
+      width: 100%!important
       z-index: 0
+      img
+        height: 100%
+        object-fit: cover
+        object-position: center
+        transition: all ease .5s
+        width: 100%
     .list-category-item-text
       color: white
       position: relative
@@ -54,21 +63,73 @@
   @media screen and(min-width: 1280px)
     .list-category-item
         .list-category-item-bg
-          border-radius: 10px
-          height: calc(100% - 20px)
-          width: calc(100% - 20px)
-.product-recommended
-  .product-recommended-header
-    height: 200px
-    overflow: hidden
-    padding: 0
-    img
-      height: 100%
-      object-fit: cover
-      object-position: center
-      width: 100%
-  .product-recommended-title
-    align-items: center
-    display: flex
-    justify-content: center
-    height: 70px
+
+.list-product-recommended-content
+  background-size: 100% auto
+  background-position: center bottom
+  background-repeat: no-repeat
+  background-attachment: fixed
+  .list-product-recommended
+    .list-product-heading
+      font-size: 2.2em!important
+      color: $blue
+      text-align: center
+      text-transform: uppercase
+    .product-recommended
+      box-shadow: 0 5px 25px rgba($dark, .1)
+      transition: all ease .3s
+      &:hover
+        box-shadow: 0 5px 15px rgba($dark, .5)
+        transform: translateY(-20px)
+        .product-recommended-header
+          img
+            transform: scale(1.3)
+      .product-recommended-header
+        height: 200px
+        overflow: hidden
+        padding: 0
+        img
+          height: 100%
+          object-fit: cover
+          object-position: center
+          transition: all ease .5s
+          width: 100%
+      .product-recommended-title
+        align-items: center
+        display: flex
+        justify-content: center
+        height: 70px
+  @media screen and(min-width:768px)
+    background-size: 100% 250px
+    .list-product-recommended
+      margin-top: -80px
+      .list-product-heading
+        font-size: 2.8em!important
+  @media screen and(min-width:1280px)
+    .list-product-recommended
+      margin-top: -130px
+      .list-product-heading
+        font-size: 3.1em!important
+
+.page-list-products-container
+  background-size: 150%
+  background-position: center bottom
+  background-attachment: fixed
+  background-repeat: no-repeat
+  @media screen and(min-width:768px)
+    background-size: 100%
+  @media screen and(min-width:1280px)
+    padding-left: 5% 
+    padding-right: 5% 
+  @media screen and(min-width:1440px)
+    padding-left: 10% 
+    padding-right: 10% 
+
+@keyframes animate-items-categories
+  0%
+    filter: blur(0) grayscale(0)
+  50%
+    transform: scale(2)
+  100%
+    transform: scale(2)
+    filter: blur(5px) grayscale(1)

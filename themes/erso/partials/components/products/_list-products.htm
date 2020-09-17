@@ -1,22 +1,38 @@
-<div class="bg-light py-5">
+{% if list.total > 0 %}
+<div class="page-list-products-container py-5" style="background-image: url({{ 'heads_head-5.png'|media }});">
   <div class="container-fluid">
     <div class="text-center">
-      <h6 class="text-muted text-left">Resultados totales: {{ list.total }}</h6>
+      <h2 class="text-dark text-left">Resultados totales: {{ list.total }}</h2>
       <hr class="my-2 mb-4">
     </div>
     <div class="row">
       {% for product in list %}
-        {% 
-          partial 'components/products/_product-item'
-          product= product
-        %}
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <product-item-browser :product="{{ product }}"></product-item-browser>
+        </div>
       {% endfor %}
     </div>
   </div>
-  <div class="container">
+  {% if list.last_page > 1 %}
+  <div class="container-fluid mt-5">
     <span class="h5 text-info text-left d-block">Páginas totales</span>
     <div class="erso-paginate">
       {{ list.render|raw }}
     </div>
   </div>
+  {% endif %}
 </div>
+{% else %}
+<div class="container">
+  <div class="row py-5 my-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card bg-light">
+        <div class="card-body">
+          <h1 class="text-danger display-2 text-center"><i class="fas fa-exclamation-triangle"></i></h1>
+          <h2 class="text-danger text-center">No existen resultados relacionados.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

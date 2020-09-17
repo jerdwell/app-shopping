@@ -1,8 +1,9 @@
 {% set branch_data = __SELF__.branch_data %}
+{% set branch = __SELF__.branch %}
 
 {%
   partial 'components/_step'
-  title = branch_data.branch_name
+  title = branch
   align= "center"
   type= "light"
   local= true

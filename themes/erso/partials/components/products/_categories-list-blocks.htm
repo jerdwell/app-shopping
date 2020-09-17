@@ -1,7 +1,9 @@
-<div class="list-category-content bg-light py-5">
+<div class="list-category-content bg-light">
   {% for category in categories %}
     <a href="/productos/{{ category.category_slug }}" class="list-category-item">
-      <img src="{{ category.category_cover|media }}" alt="{{ category.category_name }}" class="list-category-item-bg">
+      <div class="list-category-item-bg">
+        <img src="{{ category.category_cover|media }}" alt="{{ category.category_name }}">
+      </div>
       <div class="list-category-item-text h5">
         <span>{{ category.category_name }}</span>
         <div class="w-100 mt-3">

@@ -8,6 +8,7 @@ class Plugin extends PluginBase
     {
         return [
             'LoftonTi\Erso\Components\ListProducts' => 'ListProducts',
+            'LoftonTi\Erso\Components\ListCategories' => 'ListCategories',
             'LoftonTi\Erso\Components\ContactBranch' => 'ContactBranch'
         ];
     }

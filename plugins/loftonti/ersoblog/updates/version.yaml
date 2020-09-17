@@ -1,0 +1,11 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_ersoblog_posts'
+    - builder_table_create_loftonti_ersoblog_posts.php
+1.0.3:
+    - 'Created table loftonti_ersoblog_categories'
+    - builder_table_create_loftonti_ersoblog_categories.php
+1.0.4:
+    - 'Created table loftonti_ersoblog_post_category'
+    - builder_table_create_loftonti_ersoblog_post_category.php

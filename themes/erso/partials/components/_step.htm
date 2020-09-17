@@ -1,6 +1,6 @@
 <div class="step bg-{{type != '' ? type : ''}} {{ principal ? 'step-principal' : null }}">
   {% if img != '' %}
-  <img src="{{ local ? img|theme : img }}" alt="Refaccionarias ERSO" class="step-bg">
+  <img src="{{ img }}" alt="Refaccionarias ERSO" class="step-bg">
   {% endif %}
-  <h4 class="step-text text-{{align != '' ? align : 'center'}} text-{{color != '' ? color : 'dark'}}">{{ title }}</h4>
+  <h4 class="step-text text-center">{{ title }}</h4>
 </div>
