@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import { store } from './store'
 import Axios from 'axios'
+import DatePicker from 'vuejs-datepicker'
+import {en, es} from 'vuejs-datepicker/dist/locale' //lang for date-picker
+DatePicker.props.language.default = () => es
+Vue.component('datePicker', DatePicker)
 
 Axios.defaults.baseURL = '/api/v1'
 
@@ -30,6 +34,9 @@ import productItemBrowser from './components/cart/product-item-browser'
 import productsCarsFilter from './components/page-products/products-cars-filter'
 import productsYearsFilter from './components/page-products/products-years-filter'
 
+//blog
+import categoryFilterBlog from './components/blog/category-filter-blog'
+
 const app = new Vue({
   el: '#app',
   components: {
@@ -44,7 +51,8 @@ const app = new Vue({
     productHandler,
     productsCarsFilter,
     productsYearsFilter,
-    productItemBrowser
+    productItemBrowser,
+    categoryFilterBlog
   },
   template: '',
   store,

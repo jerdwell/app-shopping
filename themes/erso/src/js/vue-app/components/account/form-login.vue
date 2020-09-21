@@ -81,7 +81,8 @@ export default {
         })
         this.setDataAccount({
           name: login.data.name,
-          token: login.data.token
+          token: login.data.token,
+          expire: login.data.expire
         })
       } catch (error) {
         this.$swal({

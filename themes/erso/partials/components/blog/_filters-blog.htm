@@ -7,12 +7,5 @@
     <hr>
     <h4 class="text-muted text-center">Categorías</h4>
     <hr>
-    <ul class="list-group list-group-flush">
-        {% for category in categories %}
-        <li class="list-group-item bg-transparent">
-            <input type="checkbox" name="{{ category.slug }}" id="{{ category.slug }}">
-            <span>{{ category.name }}</span>
-        </li>
-        {% endfor %}
-    </ul>
+    <category-filter-blog :categories="{{ categories|json_encode() }}"></category-filter-blog>
 </div>

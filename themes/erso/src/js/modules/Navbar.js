@@ -12,6 +12,7 @@ const Navbar = {
 
   init(){
     let navbar = this.data.navbar
+    if(!document.querySelector('.navbar-main-erso')) return
     document.onscroll = () => this.toggleNavbar()
     this.data.icon_main_menu.addEventListener('click', () => this.toggleMainMenu())
   },

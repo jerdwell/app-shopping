@@ -1,7 +1,8 @@
 const state = {
   data_account: {
     name: '',
-    token: ''
+    token: '',
+    expire: ''
   },
   show_register: false
 }

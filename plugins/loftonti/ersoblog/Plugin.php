@@ -8,6 +8,8 @@ class Plugin extends PluginBase
     {
         return [
             'LoftonTi\ErsoBlog\Components\MainBlog' => 'MainBlog',
+            'LoftonTi\ErsoBlog\Components\BlogFilter' => 'BlogFilter',
+            'LoftonTi\ErsoBlog\Components\BlogDetail' => 'BlogDetail',
         ];
     }
 

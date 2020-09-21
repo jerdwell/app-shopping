@@ -1,19 +1,33 @@
 <template lang="pug">
-  .container-fluid.bg-light.py-5(v-if="get_token != ''")
-    .row
-      .col-md-3
-        h5 Menú
-      .col-md-9
-        h5 Contenido
+div(v-if="get_token != ''")
+  NavbarAccount
+  MenuAccount
+  .content-account
+    MyDataAccount(v-if="view == 'my-account'")
+
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import NavbarAccount from './navbar-account'
+import MenuAccount from './menu-account'
+import MyDataAccount from './data-account/my-data-account'
 export default {
   name: 'my-account',
+  components: {
+    NavbarAccount,
+    MenuAccount,
+    MyDataAccount
+  },
   watch: {
     get_token: (newData, oldData) => {
       if(newData == '') window.location.href = '/login'
+    }
+  },
+  data() {
+    return {
+      menu_active: false,
+      view: 'my-account'
     }
   },
   computed: {
@@ -26,3 +40,9 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+.content-account
+  padding-top: 100px
+  padding-bottom: 100px
+</style>

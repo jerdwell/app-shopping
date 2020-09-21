@@ -14,6 +14,14 @@ const getters = {
       items = items + e.quantity
     });
     return items
+  },
+
+  get_total_amount: state => {
+    let total = 0
+    state.cart_items.map(e => {
+      total += e.quantity * e.public_price
+    });
+    return total.toFixed(2)
   }
 
 }

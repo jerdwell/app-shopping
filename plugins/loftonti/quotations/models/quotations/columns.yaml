@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: id
+        type: number
+    created_at:
+        label: Creación
+        type: date
+    shipping_contact:
+        label: Usuario
+        type: text
+    shipping_date:
+        label: Entrega
+        type: date
+    shipping_address:
+        label: Dirección
+        type: text
+    items:
+        label: Productos
+        type: text

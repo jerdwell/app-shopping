@@ -23,7 +23,8 @@ class UsersAuth extends Model
       ];
       $token = [
         'name' => $user -> firstname . ' ' . $user -> lastname,
-        'token' => Crypt::encryptString(json_encode($data_token))
+        'token' => Crypt::encryptString(json_encode($data_token)),
+        'expire' => Carbon::now() -> addHour(4) -> format('Y-m-d H:i:s')
       ];
       return $token;
     } catch (\Exception $th) {

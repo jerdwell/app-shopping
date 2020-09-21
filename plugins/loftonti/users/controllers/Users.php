@@ -164,4 +164,108 @@ class Users extends Controller
         }
     }
 
+    public function dataAccount(Request $request)
+    {
+        $id_user = $request -> data_user['id'];
+        $user = ModelsUsers::find($id_user);
+        $user -> address;
+        $user -> makeHidden(['password', 'token_remember', 'updated_at', 'mail_confirm', 'deleted_at', 'created_at']);
+        return $user;
+    }
+
+    public function updateAccount(Request $request, $action)
+    {
+        try {
+            $user = ModelsUsers::find($request -> data_user['id']);
+            switch ($action) {
+                case 'personal-data':
+                    $validMail = false;
+                    $validPhone = false;
+                    if($user -> email != $request -> email) $validMail = true;
+                    if($user -> phone != $request -> phone) $validPhone = true;
+                    $this -> validPersonalData($request, $validMail, $validPhone);
+                    $user -> update([
+                        'firstname' => $request -> firstname,
+                        'lastname' => $request -> lastname,
+                        'email' => $request -> email,
+                        'phone' => $request -> phone,
+                    ]);
+                    break;
+                case 'address-data':
+                    $this -> validAddressData($request);
+                    $user ->address() -> update([
+                        'address1' => $request -> address1,
+                        'suburb' => $request -> suburb,
+                        'zip_code' => $request -> zip_code,
+                        'country' => $request -> country,
+                        'state' => $request -> state,
+                        'city' => $request -> city,
+                        'address2' => $request -> address2,
+                    ]);
+                    break;
+                
+                default:
+                    throw new \Exception('Error al intentar actualizar estos datos.');
+                    break;
+            }
+            return ['Datos actualizados exitosamente.'];
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(), 403);
+        }
+    }
+
+    public function validPersonalData($data, $validMail, $validPhone)
+    {
+        try {
+            $validPhone = $validPhone ? '|unique:loftonti_users_users,phone' : null;
+            $validMail = $validMail ? '|unique:loftonti_users_users,email' : null;
+            $valid = Validator::make($data -> all(), [
+                'firstname' => 'required|string|min:2|max:150',
+                'lastname' => 'required|string|min:2|max:150',
+                'email' => 'required|email' . $validMail,
+                'phone' => 'required' . $validPhone,
+            ], [
+                'firstname.*' => 'Lo sentimos, el nombre no es un dato válido',
+                'lastname.*' => 'Lo sentimos, el apellido no es un dato válido',
+                'email.*' => 'Lo sentimos, el correo no es un dato válido o no puede ser asignado',
+                'phone.*' => 'Lo sentimos, el teléfono no es un dato válido o no puede ser asignado',
+            ]);
+            if($valid -> fails()){
+                if($valid -> errors() -> has('firstname')) throw new \Exception($valid -> errors() -> get('firstname')[0]);
+                if($valid -> errors() -> has('lastname')) throw new \Exception($valid -> errors() -> get('lastname')[0]);
+                if($valid -> errors() -> has('email')) throw new \Exception($valid -> errors() -> get('email')[0]);
+                if($valid -> errors() -> has('phone')) throw new \Exception($valid -> errors() -> get('phone')[0]);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function validAddressData($data)
+    {
+        try {
+            return $data -> all();
+            $valid = Validator::make($data -> all(), [
+                'address1' => 'required|string|max:150|min:2',
+                'suburb' => 'required|string|max:150|min:2',
+                'zip_code' => 'required|string|max:5|min:2',
+                'country' => 'required|string|max:150|min:2',
+                'state' => 'required|string|max:150|min:2',
+                'city' => 'required|string|max:150|min:2',
+                'address2' => 'nullable|string|max:150|min:2',
+            ]);
+            if($valid -> fails()){
+                if($valid -> errors() -> has('address1')) throw new \Exception($valid -> errors() -> get('address1')[0]);
+                if($valid -> errors() -> has('suburb')) throw new \Exception($valid -> errors() -> get('suburb')[0]);
+                if($valid -> errors() -> has('zip_code')) throw new \Exception($valid -> errors() -> get('zip_code')[0]);
+                if($valid -> errors() -> has('country')) throw new \Exception($valid -> errors() -> get('country')[0]);
+                if($valid -> errors() -> has('state')) throw new \Exception($valid -> errors() -> get('state')[0]);
+                if($valid -> errors() -> has('city')) throw new \Exception($valid -> errors() -> get('city')[0]);
+                if($valid -> errors() -> has('address2')) throw new \Exception($valid -> errors() -> get('address2')[0]);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
 }

@@ -1,0 +1,11 @@
+plugin:
+    name: 'loftonti.quotations::lang.plugin.name'
+    description: 'loftonti.quotations::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-files-o
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Cotizaciones
+        url: loftonti/quotations/quotations
+        icon: icon-shopping-cart

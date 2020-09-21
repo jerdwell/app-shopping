@@ -2,9 +2,10 @@
 section.filters-search-products.bg-dark#filter-products(v-if="get_show_filters")
   .filters
     SelectTypeFilters
-    FilterByCar(v-if="type_filter == 'car'")
-    GeneralFilter(v-if="type_filter == 'general'")
-    FilterByCode(v-if="type_filter == 'code'")
+    div(v-if="get_branch_selected != ''")
+      FilterByCar(v-if="type_filter == 'car'")
+      GeneralFilter(v-if="type_filter == 'general'")
+      FilterByCode(v-if="type_filter == 'code'")
       
 </template>
 
@@ -36,6 +37,7 @@ export default {
     ...mapGetters([
       'get_list_products', //lista de productos encontrados
       'get_show_filters', //obtener parametro para mostrar los filtros
+      'get_branch_selected',//get branch selected
     ])
   },
   methods: {

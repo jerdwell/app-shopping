@@ -1,0 +1,48 @@
+<div>
+    <img src="{{'/themes/erso/assets/img/brand/brand_logo_erso_color.png'|app}}" style="width: 160px; display: inline-block; vertical-align: middle; margin-right: 20px;" alt="logo erso">
+    <h1 style="width: 200px; display: inline-block; vertical-align: middle;">Nueva orden de compra</h1>
+</div>
+<h2 style="color: #880F04;">¡Hola refaccionarias ERSO!</h2>
+<p>Es un placer informarte que se ha solicitado una nueva órden por parte del usuario {{ name }}, a continuación te dejamos sus datos de contacto:</p>
+<p><b>Número de órden: {{ id }}</b></p>
+<ul>
+    <li>Correo: {{ email }}</li>
+    <li>Teléfono: {{ phone }}</li>
+</ul>
+<p>Fecha de entrega solicitada: <b>{{ shipping_date }}</b></p>
+<p>Dirección de entrega:</p>
+<ul>
+    {% for item in shipping_address %}
+    <li>{{ item.item }} {{ item.value }}</li>
+    {% endfor %}
+</ul>
+<p style="text-align: center;"><b>Productos solicitados</b></p>
+<table style="width: 100%;">
+    <thead style="background-color: #20202b ; color: white">
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td><small>
+                {{ item.product_name }}
+                <br>
+                {{ item.model }}
+                <br>
+                {{ item.product_year }}
+            </small></td>
+            <td><small>{{ item.quantity }}</small></td>
+            <td><small>${{ item.public_price }}</small></td>
+            <td><small>${{ (item.public_price * item.quantity)|number_format(2,'.', ',') }}</small></td>
+        </tr>
+        {% endfor %}
+        <tr style="background-color: #ff9500; color: white;">
+            <td colspan="4" style="text-align: right;">Total de la compra: ${{ amount|number_format(2,'.', ',') }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -840,6 +840,7 @@ var Navbar = {
     var _this = this;
 
     var navbar = this.data.navbar;
+    if (!document.querySelector('.navbar-main-erso')) return;
 
     document.onscroll = function () {
       return _this.toggleNavbar();

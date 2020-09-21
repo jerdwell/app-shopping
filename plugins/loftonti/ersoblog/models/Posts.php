@@ -37,6 +37,16 @@ class Posts extends Model
     }
 
     /**
+     * scopes
+     */
+    
+    public function scopeFilterByCategories($query, $values){
+        return $query -> select('loftonti_ersoblog_posts.*') -> join('loftonti_ersoblog_post_category', 'loftonti_ersoblog_post_category.post_id', '=', 'loftonti_ersoblog_posts.id')
+                -> join('loftonti_ersoblog_categories', 'loftonti_ersoblog_categories.id', '=', 'loftonti_ersoblog_post_category.category_id')
+                ->whereIn('loftonti_ersoblog_categories.slug', $values);
+    }
+
+    /**
      * Events
      */
 
