@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Document</title>
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <table style="background-color: #f8f9fa; margin: 0; padding: 0; width: 100%;">
+    <thead>
+      <tr>
+        <th style="background-color: #880F04; color: white; text-align: center;" colspan="5">
+          <div style="text-align: center; width: 110px; display: inline-block; vertical-align: middle;">
+            <img src="{{ logo }}" style="width: 100px; margin:0; padding:0;" alt="logo erso">
+          </div>
+          <span style="display: inline-block; vertical-align: middle;">ERSO - {{ data_branch.branch_name }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5" style="text-align: center;">{{ data_branch.address1 }} colonia {{ data_branch.address2 }} {{ data_branch.zip_code }}</td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align: center;">{{ data_branch.state }}, {{ data_branch.country }}, {{ data_branch.city }}</td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align: center;">
+          {% for item in data_branch.contact_data %}
+            {% if item.type == 'phone' %}
+            <small> {{ item.data }} </small>
+            {% endif %}
+            {% if item.type == 'whatsapp' %}
+            <small> {{ item.data }} </small>
+            {% endif %}
+            {% if item.type == 'email' %}
+            <small> {{ item.data }} </small>
+            {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background: #f8f9fa; padding: 10px; padding: 10px; text-align: center;">Fecha de entrega: {{ data_quotation.shipping_date|split(' ')[0] }}</div>
+  
+  <div style="background: #f8f9fa;  width: 100%;">
+    <div style="display: inline-block; vertical-align: top; width: 30%;">
+      <table style="width: 50%;">
+        <thead>
+          <tr>
+            <th style="text-align: left; color: #880F04;">Cliente</th>
+          </tr>
+        </thead>
+        {% for item in data_quotation.shipping_contact %}
+          <tr>
+            <td>{{ item.item }}: {{ item.value }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div style="display: inline-block; vertical-align: top; width: 65%;">
+      <div style="width: 100%;">
+        <div style="color: #880F04; text-align: center;"><b>Dirección de entrega</b></div>
+        <div style="width: 100%; padding: 10px;">
+          <div style="display: inline-block; text-align: center; vertical-align: top;">{{ data_quotation.shipping_address[0].value }} colonia {{ data_quotation.shipping_address[1].value }}, C.P. {{ data_quotation.shipping_address[2].value }}, delegación {{ data_quotation.shipping_address[4].value }}, {{ data_quotation.shipping_address[5].value }}, {{ data_quotation.shipping_address[3].value }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <table style="margin-top: 20px; width: 100%;">
+    <thead style="background-color: #880F04; color: white; margin-top: 20px;">
+      <tr>
+        <th style="text-align: center;" colspan="4">Productos</th>
+      </tr>
+    </thead>
+    <thead style="background-color: #ff9500; color: white">
+      <tr>
+        <th style="padding: 5px;">Producto</th>
+        <th style="padding: 5px; text-align: center;">Cantidad</th>
+        <th style="padding: 5px; text-align: center;">P/Unitario</th>
+        <th style="padding: 5px; text-align: center;">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody style="font-size: 12px;">
+      {% for item in data_quotation.items %}
+      <tr>
+        <td style="border-bottom: solid 1px gray;">
+          <span>{{ item.product_name }}</span>
+          <br>
+          <small><b>{{ item.model }}</b></small>
+          <br>
+          <small><b>{{ item.product_year }}</b></small>
+        </td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: center;">{{ item.quantity }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ item.public_price|number_format(2, '.', ',') }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ (item.public_price * item.quantity)|number_format(2, '.', ',') }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="background-color: #880F04; color: white; font-size: 1.3em; text-align: right;">Total: <b>${{ data_quotation.amount|number_format(2,'.', ',') }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</body>
+</html>

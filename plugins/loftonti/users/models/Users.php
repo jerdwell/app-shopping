@@ -114,4 +114,12 @@ class Users extends Model
         'address' => [ 'LoftonTi\Users\Models\UserAddress', 'key' => 'user_id']
     ];
 
+    public $hasMany = [
+        'quotations' => [
+            'LoftonTi\Quotations\Models\Quotations',
+            'key' => 'id',
+            'otherKey' => 'user_id'
+        ]
+    ];
+
 }

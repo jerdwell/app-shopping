@@ -22,6 +22,7 @@ class Quotations extends Model
         'shipping_date',
         'shipping_contact',
         'branch',
+        'user_id',
         'created_at',
         'updated_at'
     ];
@@ -31,6 +32,25 @@ class Quotations extends Model
      */
     public $rules = [
     ];
+
+    /**
+     * mutators
+     */
+
+    function getShippingAddressAttribute($value)
+    {
+        return json_decode($value);
+    }
+    
+    function getShippingContactAttribute($value)
+    {
+        return json_decode($value);
+    }
+    
+    function getItemsAttribute($value)
+    {
+        return json_decode($value);
+    }
 
     /**
      * methods
@@ -85,5 +105,17 @@ class Quotations extends Model
         ];
         return $data_address_quotation;
     }
+
+    /**
+     * relations
+     */
+
+    public $hasOne = [
+        'quotations' => [
+            'LoftonTi\Users\Models\Users',
+            'key' => 'user_id',
+            'otherKey' => 'id'
+        ]
+    ];
 
 }

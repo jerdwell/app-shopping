@@ -3,8 +3,9 @@
     .row
         .col-md-10.offset-md-1
             .card.bg-light
+                .card-header.bg-dark
+                    h4.text-white.text-center.m-0 Mi cuenta
                 .card-body
-                    h4.text-muted.text-center.m-0 Mi cuenta
                     hr
                     nav.nav.nav-pills.nav-justified.mb-4
                         a.nav-item.nav-link(href="#" :class="view == 'personal-data' ? 'active' : null" @click.prevent="view = 'personal-data'") Datos personales

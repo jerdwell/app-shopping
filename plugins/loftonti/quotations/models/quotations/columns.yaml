@@ -7,13 +7,23 @@ columns:
         type: date
     shipping_contact:
         label: Usuario
-        type: text
+        type: partial
+        path: ~/plugins/loftonti/quotations/models/quotation_partials/user_data.htm
     shipping_date:
         label: Entrega
         type: date
     shipping_address:
         label: Dirección
-        type: text
+        type: partial
+        path: ~/plugins/loftonti/quotations/models/quotation_partials/address_shipping.htm
     items:
         label: Productos
-        type: text
+        type: partial
+        path: ~/plugins/loftonti/quotations/models/quotation_partials/items_quotations.htm
+    acciones:
+        label: Acciones
+        type: partial
+        path: ~/plugins/loftonti/quotations/models/quotation_partials/actions.htm
+    amount:
+        label: Valor de la cotización
+        type: Number

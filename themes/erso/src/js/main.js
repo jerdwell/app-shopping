@@ -7,3 +7,4 @@ Slide.init('main-slide', 8000)
 window.onload = function(){
   Navbar.init()
 }
+

@@ -42,6 +42,11 @@ const actions = {
     } catch (error) {
       return error.response.data
     }
+  },
+
+  signOut({ commit }){
+    commit('SIGN_OUT')
+    return true
   }
 
 }

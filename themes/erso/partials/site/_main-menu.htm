@@ -15,12 +15,7 @@ function onStart(){
       'item' => 'Contacto',
       'url' => '/contacto',
       'childs' => []
-    ],
-    [
-      'item' => 'Registro/Login',
-      'url' => '/login',
-      'childs' => []
-    ],
+    ]
   ];
 }
 ==
@@ -40,6 +35,7 @@ function onStart(){
       {% endif %}
     </li>
   {% endfor %}
+  <button-account-register></button-account-register>
   <div class="main-menu-item">
     <cart-button-state></cart-button-state>
   </div>

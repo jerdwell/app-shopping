@@ -6,12 +6,27 @@
       li
         a.text-dark(href="#" @click.prevent="$parent.view = 'quotations'") #[.fas.fa-file-alt.mr-2] Mis cotizaciones
       li
-        a.text-dark(href="#") #[.fas.fa-sign-out-alt.mr-2] Cerrar sesión
+        a.text-dark(href="#" @click.prevent="sign_out") #[.fas.fa-sign-out-alt.mr-2] Cerrar sesión
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'menu-account',
+  methods: {
+    ...mapActions([
+      'signOut', //signout
+    ]),
+    async sign_out(){
+      try {
+        let signout = await this.$swal('Cierre de sesión', 'Tu sesión se ha eliminado exitosamente.', 'success')
+        this.signOut()
+        window.location.assign('/')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
 }
 </script>
 
@@ -56,7 +71,7 @@ export default {
         width: auto
         a
           color: white!important
-          &:hover
+          &:hover,&:focus
             color: white!important
             text-decoration: none
   @media screen and(min-width: 1440px)

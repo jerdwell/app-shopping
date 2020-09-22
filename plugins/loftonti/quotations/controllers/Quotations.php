@@ -1,13 +1,17 @@
 <?php namespace LoftonTi\Quotations\Controllers;
 
 use Backend\Classes\Controller;
+use Backend\Facades\BackendAuth;
 use BackendMenu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Loftonti\Erso\Models\Branches;
 use LoftonTi\Quotations\Models\Quotations as ModelsQuotations;
+use Loftonti\Quotations\Models\QuotationsConstructor;
 use LoftonTi\Users\Models\Users;
+use LoftonTi\Users\Models\UsersAuth;
 
 class Quotations extends Controller
 {
@@ -34,6 +38,7 @@ class Quotations extends Controller
                 'shipping_date' => Carbon::parse($request -> shipping_date) -> format('Y-m-d'),
                 'shipping_contact' => json_encode(ModelsQuotations::setDataContactQuotation($user)),
                 'branch' => $request -> branch,
+                'user_id' => $request -> data_user['id'],
                 'created_at' => Carbon::now() -> format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now() -> format('Y-m-d H:i:s')
             ];
@@ -56,8 +61,8 @@ class Quotations extends Controller
                 'phone' => $user -> phone,
                 'id' => $quotation -> id,
                 'shipping_date' => $quotation -> shipping_date,
-                'shipping_address' => json_decode($quotation -> shipping_address),
-                'items' => json_decode($quotation -> items),
+                'shipping_address' => $quotation -> shipping_address,
+                'items' => $quotation -> items,
                 'amount' => $quotation -> amount
             ];
             Mail::send('loftonti.quotations::mail.quotation-created', $mail_data, function($message) use($mail_data, $mail_branch){
@@ -77,6 +82,57 @@ class Quotations extends Controller
             if($data['type'] == 'email') array_push($mails, $data['data']);
         }
         return $mails;
+    }
+
+    public function list(Request $request)
+    {
+        try {
+            $list = ModelsQuotations::where('user_id', $request -> data_user['id']) -> orderBy('id', 'desc') -> paginate(30);
+            return $list;
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(), 403);
+        }
+    }
+
+    public function get(Request $request, $id, $token)
+    {
+        try {
+            $request -> headers -> set('Authorization', $token);
+            UsersAuth::validRequest($request);
+            if(!$request -> data_user) throw new \Exception('Credenciales inválidas');
+            $quotation = ModelsQuotations::where('id', $id)
+            -> where('user_id', $request -> data_user['id'])
+            ->first();
+            $branch = Branches::where('slug', $quotation -> branch) -> first();
+            return QuotationsConstructor::buildQuotation($quotation, $branch, $view = 'download');
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(),404);
+            return response('Credenciales inválidas',404);
+        }
+    }
+
+    public function download($id)
+    {
+        try {
+            $quotation = ModelsQuotations::where('id', $id)->first();
+            $branch = Branches::where('slug', $quotation -> branch) -> first();
+            return QuotationsConstructor::buildQuotation($quotation, $branch, $view = 'stream');
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(),403);
+        }
+    }
+
+    public function onUpdateStatus()
+    {
+        try {
+            $status = Input::get('status');
+            $id = Input::get('id');
+            $quotation = ModelsQuotations::find($id);
+            $quotation -> update(['status' => $status]);
+            return ['Cotización actualizada exitosamente'];
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(), 403);
+        }
     }
 
 }

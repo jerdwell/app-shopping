@@ -16,7 +16,6 @@ const Slide = {
     if(!document.getElementById(this.data.target)) return
     this.data.time = time
     this.sizeSlide()
-    window.addEventListener('resize', this.sizeSlide())
     this.slideInterval()
     document.getElementById(this.data.next).addEventListener('click', () => { this.actionControls('next') })
     document.getElementById(this.data.prev).addEventListener('click', () => { this.actionControls('prev') })
@@ -82,8 +81,16 @@ const Slide = {
   sizeSlide(){
     let items = document.querySelectorAll(`.${this.data.slide_items}`)
     let nItems = items.length
+    items.forEach(e => e.style.width = document.body.clientWidth + 'px' )
     let container = document.querySelector(`.${this.data.slide_container}`)
     container.style.width = `${nItems * 100}%`
+    window.addEventListener('resize', () => {
+      let items = document.querySelectorAll(`.${this.data.slide_items}`)
+      let nItems = items.length
+      items.forEach(e => e.style.width = document.body.clientWidth + 'px' )
+      let container = document.querySelector(`.${this.data.slide_container}`)
+      container.style.width = `${nItems * 100}%`
+    })
   }
 
 }

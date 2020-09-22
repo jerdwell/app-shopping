@@ -900,7 +900,6 @@ var Slide = {
     if (!document.getElementById(this.data.target)) return;
     this.data.time = time;
     this.sizeSlide();
-    window.addEventListener('resize', this.sizeSlide());
     this.slideInterval();
     document.getElementById(this.data.next).addEventListener('click', function () {
       _this.actionControls('next');
@@ -978,10 +977,24 @@ var Slide = {
    * set the size in slide
    */
   sizeSlide: function sizeSlide() {
+    var _this3 = this;
+
     var items = document.querySelectorAll(".".concat(this.data.slide_items));
     var nItems = items.length;
+    items.forEach(function (e) {
+      return e.style.width = document.body.clientWidth + 'px';
+    });
     var container = document.querySelector(".".concat(this.data.slide_container));
     container.style.width = "".concat(nItems * 100, "%");
+    window.addEventListener('resize', function () {
+      var items = document.querySelectorAll(".".concat(_this3.data.slide_items));
+      var nItems = items.length;
+      items.forEach(function (e) {
+        return e.style.width = document.body.clientWidth + 'px';
+      });
+      var container = document.querySelector(".".concat(_this3.data.slide_container));
+      container.style.width = "".concat(nItems * 100, "%");
+    });
   }
 };
 module.exports = Slide; // TODO(erdwell): Add features to touch events

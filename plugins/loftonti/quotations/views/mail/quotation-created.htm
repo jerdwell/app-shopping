@@ -20,15 +20,15 @@
 <table style="width: 100%;">
     <thead style="background-color: #20202b ; color: white">
         <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio unitario</th>
-            <th>Subtotal</th>
+            <th style="text-align: left;">Producto</th>
+            <th style="text-align: center;">Cantidad</th>
+            <th style="text-align: center;">Precio unitario</th>
+            <th style="text-align: center;">Subtotal</th>
         </tr>
     </thead>
     <tbody>
         {% for item in items %}
-        <tr>
+        <tr style="text-align: left;">
             <td><small>
                 {{ item.product_name }}
                 <br>
@@ -36,9 +36,9 @@
                 <br>
                 {{ item.product_year }}
             </small></td>
-            <td><small>{{ item.quantity }}</small></td>
-            <td><small>${{ item.public_price }}</small></td>
-            <td><small>${{ (item.public_price * item.quantity)|number_format(2,'.', ',') }}</small></td>
+            <td style="text-align: center;"><small>{{ item.quantity }}</small></td>
+            <td style="text-align: center;"><small>${{ item.public_price|number_format(2,'.', ',') }}</small></td>
+            <td style="text-align: center;"><small>${{ (item.public_price * item.quantity)|number_format(2,'.', ',') }}</small></td>
         </tr>
         {% endfor %}
         <tr style="background-color: #ff9500; color: white;">

@@ -8,6 +8,11 @@ const mutations = {
   },
   SHOW_REGISTER: state => {
     state.show_register = !state.show_register
+  },
+  SIGN_OUT: state => {
+    state.data_account.name = ''
+    state.data_account.token = ''
+    state.data_account.expire = ''
   }
 }
 

@@ -3,21 +3,24 @@ function onStart(){
   $this['slide_items'] = [
     [
       'pos' => 0,
-      'img' => 'assets/img/slide_01.png',
+      'img' => 'cover_01.jpg',
+      'srcset' => ['cover_01_portrait.jpg', 'cover_01.jpg'],
       'title' => 'Conoce nuestros productos y cotiza rápidamente',
       'description' => null,
       'url' => null,
     ],
     [
       'pos' => 1,
-      'img' => 'assets/img/slide_02.png',
+      'img' => 'cover_02.jpg',
+      'srcset' => ['cover_02_portrait.jpg', 'cover_02.jpg'],
       'title' => 'Contamos con mas de 70 mil productos a tu alcance',
       'description' => null,
       'url' => null,
     ],
     [
       'pos' => 2,
-      'img' => 'assets/img/slide_03.png',
+      'img' => 'cover_03.jpg',
+      'srcset' => ['cover_03_portrait.jpg', 'cover_03.jpg'],
       'title' => 'Contacta con la sucursal más cerca de ti y resuelve tus dudas',
       'description' => null,
       'url' => null,
@@ -31,15 +34,15 @@ function onStart(){
   <div class="slide-container">
     {% for slide_item in slide_items %}
       <div class="slide-item">
-        <img class="slide-item-image" src="{{ slide_item['img']|theme }}" alt="">
+        <picture class="slide-item-image">
+          <source class="slide-item-image" media="(max-width: 767px)" srcset="{{ slide_item['srcset'][0]|media }}">
+          <source class="slide-item-image" media="(min-width: 768px)" srcset="{{ slide_item['srcset'][1]|media }}">
+          <img class="slide-item-image" style="background-attachment: fixed;" src="{{ slide_item['img']|media }}" alt="{{ slide_item['title'] }}">
+        </picture>
         {% if slide_item['title'] != null %}
-        <h3 class="slide-item-title">{{ slide_item['title'] }}</h3>
-        {% endif %}
-        {% if slide_item['description'] != null %}
-        <h3 class="slide-item-description">{{ slide_item['description'] }}</h3>
-        {% endif %}
-        {% if slide_item['url'] != null %}
-        <a class="slide-item-url" href="{{slide_item['url']}}"></a>
+        <div class="slide-item-title">
+          <h3 class="slide-item-title-text">{{ slide_item['title'] }}</h3>
+        </div>
         {% endif %}
       </div>
     {% endfor %}

@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import { store } from './store'
 import Axios from 'axios'
+import VueAwesomeSwiper from 'vue-awesome-swiper' //swiper
 import DatePicker from 'vuejs-datepicker'
 import {en, es} from 'vuejs-datepicker/dist/locale' //lang for date-picker
 DatePicker.props.language.default = () => es
 Vue.component('datePicker', DatePicker)
+
+import 'swiper/swiper-bundle.css'//styles for swiper
+Vue.use(VueAwesomeSwiper) //use swiper
 
 Axios.defaults.baseURL = '/api/v1'
 
@@ -12,6 +16,7 @@ Vue.prototype.$http = Axios
 
 //dashboard
 import butttonSearchProducts from './components/dashboard/button-search-products'
+import buttonAccountRegister from './components/dashboard/button-account-register'
 
 //filters
 import filtersSearchProducts from './components/filters/filters-search-products'
@@ -52,7 +57,8 @@ const app = new Vue({
     productsCarsFilter,
     productsYearsFilter,
     productItemBrowser,
-    categoryFilterBlog
+    categoryFilterBlog,
+    buttonAccountRegister
   },
   template: '',
   store,

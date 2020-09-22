@@ -15,7 +15,10 @@
     "bootstrap": "^4.5.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "laravel-mix": "^5.0.4",
+    "moment": "^2.29.0",
+    "swiper": "^6.2.0",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-swal": "^1.0.0",
     "vuejs-datepicker": "^1.6.2"
   },

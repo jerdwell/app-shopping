@@ -1,0 +1,25 @@
+<div style="width: 100%; min-width: 400px;">
+  <div style="width: 100%;">
+    <div style="display: inline-block; width: 21%;">Imagen</div>
+    <div style="display: inline-block; width: 21%;">Producto</div>
+    <div style="display: inline-block; width: 21%;">Cantidad</div>
+    <div style="display: inline-block; width: 21%;">Costo</div>
+  </div>
+  <div style="width: 100%;">
+    <?php forEach($record -> items as $item): ?>
+      <div style="display: inline-block; width: 21%; vertical-align: middle;">
+        <img style="width: 50px;" src="/storage/app/media/<?= $item -> product_cover ?>" alt="imagen">
+      </div>
+      <div style="display: inline-block; width: 21%; vertical-align: middle;">
+        <?= $item -> product_name ?>
+        <br>
+        <small><?= $item -> model ?></small>
+        <br>
+        <small><?= $item -> product_year ?></small>
+      </div>
+      <div style="display: inline-block; width: 21%; vertical-align: middle;"><?= $item -> quantity ?> </div>
+      <div style="display: inline-block; width: 21%; vertical-align: middle;">$<?= number_format($item -> public_price, '2') ?> </div>
+      <hr>
+      <?php endForEach ?>
+  </div>
+</div>

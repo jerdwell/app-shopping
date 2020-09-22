@@ -6,6 +6,7 @@ import VuexPerists from 'vuex-persist'
 import Cart from './cart'
 import Products from './products'
 import Account from './account'
+import Quotations from './quotations'
 
 const vuexLocal = new VuexPerists({
   storage: window.sessionStorage
@@ -18,6 +19,7 @@ export const store = new Vuex.Store({
     Cart,
     Products,
     Account,
+    Quotations
   },
   plugins: [ vuexLocal.plugin ]
 })
