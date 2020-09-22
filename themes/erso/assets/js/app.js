@@ -22358,67 +22358,69 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mt-3" }, [
-    _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table tablestriped" }, [
-        _vm._m(0),
-        _c(
-          "tbody",
-          _vm._l(_vm.list_quotations, function(quotation, index) {
-            return _c("tr", { key: index }, [
-              _c("td", [_vm._v(_vm._s(index + 1))]),
-              _c("td", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(quotation.created_at))
-              ]),
-              _c("td", { staticClass: "text-center" }, [
-                _vm._v(
-                  "$" +
-                    _vm._s(
-                      quotation.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    _vm.list_quotations.length > 0
+      ? _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table tablestriped" }, [
+            _vm._m(0),
+            _c(
+              "tbody",
+              _vm._l(_vm.list_quotations, function(quotation, index) {
+                return _c("tr", { key: index }, [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(quotation.created_at))
+                  ]),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "$" +
+                        _vm._s(
+                          quotation.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                        )
                     )
-                )
-              ]),
-              _c("td", { staticClass: "text-center" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "badge small",
-                    class: _vm.setDataItem(quotation.status).class
-                  },
-                  [_vm._v(_vm._s(_vm.setDataItem(quotation.status).text))]
-                )
-              ]),
-              _c("td", { staticClass: "text-center" }, [
-                quotation.status != "declined" &&
-                quotation.status != "successed"
-                  ? _c(
-                      "button",
-                      { staticClass: "btn btn-warning btn-sm mr-1 mb-1" },
-                      [_vm._v("Cancelar")]
-                    )
-                  : _vm._e(),
-                quotation.status != "declined"
-                  ? _c(
-                      "a",
+                  ]),
+                  _c("td", { staticClass: "text-center" }, [
+                    _c(
+                      "div",
                       {
-                        staticClass: "btn btn-info btn-sm",
-                        attrs: {
-                          href:
-                            "/api/v1/quotations/get/" +
-                            quotation.id +
-                            "/" +
-                            _vm.get_token
-                        }
+                        staticClass: "badge small",
+                        class: _vm.setDataItem(quotation.status).class
                       },
-                      [_vm._v("Descargar")]
+                      [_vm._v(_vm._s(_vm.setDataItem(quotation.status).text))]
                     )
-                  : _vm._e()
-              ])
-            ])
-          }),
-          0
-        )
-      ])
-    ])
+                  ]),
+                  _c("td", { staticClass: "text-center" }, [
+                    quotation.status != "declined" &&
+                    quotation.status != "successed"
+                      ? _c(
+                          "button",
+                          { staticClass: "btn btn-warning btn-sm mr-1 mb-1" },
+                          [_vm._v("Cancelar")]
+                        )
+                      : _vm._e(),
+                    quotation.status != "declined"
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-info btn-sm",
+                            attrs: {
+                              href:
+                                "/api/v1/quotations/get/" +
+                                quotation.id +
+                                "/" +
+                                _vm.get_token
+                            }
+                          },
+                          [_vm._v("Descargar")]
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [

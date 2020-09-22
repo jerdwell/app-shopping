@@ -1,6 +1,6 @@
 <template lang="pug">
 .mt-3
-  .table-responsive
+  .table-responsive(v-if="list_quotations.length > 0")
     table.table.tablestriped
       thead
         tr.bg-dark.text-light
