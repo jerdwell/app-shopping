@@ -3014,6 +3014,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "list-quotations",
@@ -22371,12 +22372,7 @@ var render = function() {
                     _vm._v(_vm._s(quotation.created_at))
                   ]),
                   _c("td", { staticClass: "text-center" }, [
-                    _vm._v(
-                      "$" +
-                        _vm._s(
-                          quotation.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                        )
-                    )
+                    _vm._v("$" + _vm._s(quotation.amount))
                   ]),
                   _c("td", { staticClass: "text-center" }, [
                     _c(
