@@ -48,7 +48,11 @@
           button.btn.btn-info(@click.prevent="sendOrder()" v-if="shipping_date")
             .oi.oi-check.mr-2
             span Solicitar pedido
-        button.btn.btn-sm.btn-dark.my-2
+        div(v-else)
+          h5.text-center.text-muted Para solicitar un pedido debes iniciar sesión
+          .text-center
+            a.btn.btn-info.px-3(href="/login") Iniciar sesión 
+        //- button.btn.btn-sm.btn-dark.my-2
           .oi.oi-data-transfer-download.mr-2
           span Descargar cotización
 </template>

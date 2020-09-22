@@ -3931,6 +3931,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cart-items',
@@ -23304,8 +23308,12 @@ var render = function() {
                       )
                     : _vm._e()
                 ])
-              : _vm._e(),
-            _vm._m(2)
+              : _c("div", [
+                  _c("h5", { staticClass: "text-center text-muted" }, [
+                    _vm._v("Para solicitar un pedido debes iniciar sesión")
+                  ]),
+                  _vm._m(2)
+                ])
           ])
         ])
   ])
@@ -23339,9 +23347,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-sm btn-dark my-2" }, [
-      _c("div", { staticClass: "oi oi-data-transfer-download mr-2" }),
-      _c("span", [_vm._v("Descargar cotización")])
+    return _c("div", { staticClass: "text-center" }, [
+      _c("a", { staticClass: "btn btn-info px-3", attrs: { href: "/login" } }, [
+        _vm._v("Iniciar sesión ")
+      ])
     ])
   }
 ]
