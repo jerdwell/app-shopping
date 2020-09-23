@@ -63,7 +63,6 @@ export default {
   @media screen and(min-width: 768px)
     bottom: 0
     border-radius: 0
-    // height: 100%
     right: 0
     max-height: none
     z-index: 2000

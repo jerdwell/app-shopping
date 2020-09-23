@@ -6,6 +6,8 @@ meta_title = "ERSO"
 is_hidden = 0
 
 [ListCategories]
+
+[ContactForm]
 ==
 {% partial 'components/_slide' %}
 {%
@@ -29,7 +31,7 @@ is_hidden = 0
     <p class="text-light text-center">Suspensión, Dirección, Tracción y Amortiguadores </p>
   </div>
   <!-- label form contact -->
-  {% partial 'components/contacto/_form-contact' %}
+  {% component 'ContactForm' %}
 </div>
 
 {% partial 'components/contacto/_branches' %}

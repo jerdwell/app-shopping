@@ -1,5 +1,5 @@
 <template lang="pug">
-  .text-center.mt-2
+  .text-center.mt-2(v-if="get_branch_selected")
     small.d-block.text-muted.mb-2.small Cotizar
     .row
       .col-8
@@ -25,6 +25,7 @@ export default {
   computed: {
     ...mapGetters([
       'find_item_in_cart', //check if product exists in cart shopping
+      'get_branch_selected', //Check if has a branch selected
     ])
   },
   methods: {

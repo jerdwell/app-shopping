@@ -44,6 +44,9 @@ import productsYearsFilter from './components/page-products/products-years-filte
 //blog
 import categoryFilterBlog from './components/blog/category-filter-blog'
 
+//contact forms
+import contactForm from './components/contact-forms/contact-form'
+
 const app = new Vue({
   el: '#app',
   components: {
@@ -60,7 +63,8 @@ const app = new Vue({
     productsYearsFilter,
     productItemBrowser,
     categoryFilterBlog,
-    buttonAccountRegister
+    buttonAccountRegister,
+    contactForm
   },
   template: '',
   store,
