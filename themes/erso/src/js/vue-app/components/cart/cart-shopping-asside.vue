@@ -2,16 +2,33 @@
 .cart-shopping-asside.cart-shopping-asside-hidden#cart-shopping-asside
   .close-shopping-cart-button.border-secondary(@click.prevent="toggleCart")
     .oi.oi-fullscreen-exit.text-secondary
-  cartItems
+  .text-center
+      h4.text-center.text-muted Mis productos
+      h6.text-center
+        span.text-muted Total de la cotización
+        br
+        big ${{ get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+      hr
+  cartItems(:heading="true")
+  .bg-dark.p-3
+    shippingDateComponent
 
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import cartItems from './cart-items'
+import shippingDateComponent from './shipping-date-component'
 export default {
   name: 'cart-shopping-asside',
   components: {
-    cartItems
+    cartItems,
+    shippingDateComponent
+  },
+  computed: {
+    ...mapGetters([
+      'get_total_amount', //get tootal amount quotation
+    ])
   },
   methods: {
     toggleCart(){

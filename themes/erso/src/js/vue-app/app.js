@@ -3,6 +3,7 @@ import { store } from './store'
 import Axios from 'axios'
 import VueAwesomeSwiper from 'vue-awesome-swiper' //swiper
 import DatePicker from 'vuejs-datepicker'
+import moment  from 'moment'
 import {en, es} from 'vuejs-datepicker/dist/locale' //lang for date-picker
 DatePicker.props.language.default = () => es
 Vue.component('datePicker', DatePicker)
@@ -13,6 +14,7 @@ Vue.use(VueAwesomeSwiper) //use swiper
 Axios.defaults.baseURL = '/api/v1'
 
 Vue.prototype.$http = Axios
+Vue.prototype.$moment = moment
 
 //dashboard
 import butttonSearchProducts from './components/dashboard/button-search-products'

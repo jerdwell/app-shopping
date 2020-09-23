@@ -1,11 +1,5 @@
 <template lang="pug">
   div
-    h4.text-center.text-muted Mis productos
-    h6.text-center
-      span.text-muted Total de la cotización
-      br
-      big ${{ get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
-    hr
     div(v-if="get_cart_items.length <= 0" )
       h5.text-info.text-center No tienes elementos agregados a la cotización
     div(v-else)
@@ -31,41 +25,13 @@
                   a.small.text-danger(href="#" @click.prevent="delete_cart_item(product)") Eliminar #[.fas.fa-times]
               td.text-center.text-dark
                 span.small {{ product.public_price != null ? '$' + product.public_price : 'sin dato' }}
-      .text-center
-        div(v-if="get_token")
-          .py-2
-            label.small.text-muted Selecciona una fecha de entrega
-            .input-group
-              .input-group-prepend
-                .input-group-text
-                  i.fas.fa-calendar-alt
-              datePicker.form-control.p-0.m-0.border-0(
-                v-model="shipping_date"
-                :full-month-name="true"
-                calendar-class="position-static w-100"
-                input-class="form-control"
-              )
-          button.btn.btn-info(@click.prevent="sendOrder()" v-if="shipping_date")
-            .oi.oi-check.mr-2
-            span Solicitar pedido
-        div(v-else)
-          h5.text-center.text-muted Para solicitar un pedido debes iniciar sesión
-          .text-center
-            a.btn.btn-info.px-3(href="/login") Iniciar sesión 
-        //- button.btn.btn-sm.btn-dark.my-2
-          .oi.oi-data-transfer-download.mr-2
-          span Descargar cotización
+      
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'cart-items',
-  data() {
-    return {
-      shipping_date: null
-    }
-  },
   computed: {
     ...mapGetters([
       'get_cart_items', //get list products in cart buy
@@ -78,40 +44,7 @@ export default {
       'add_cart_item', //add item to cart
       'remove_cart_item', //remove item to cart
       'delete_cart_item', //delete item to cart
-      'create_quotation', //create quotation
-      'clear_cart_data', //clear cart data
     ]),
-    async sendOrder(){
-      if(this.get_token != ''){
-        try {
-          let create = await this.create_quotation({shipping_date: this.shipping_date})
-          let send_order = await this.$swal({
-            title: 'Envío de orden',
-            text: 'Tu órden se ha enviado con éxito, revisa tu cuenta para poder visualizar tu pedido',
-            icon: 'success',
-            buttons: false,
-          })
-          this.clear_cart_data()
-        } catch (error) {
-          let send_order = await this.$swal({
-            title: 'Envío de orden',
-            text: error,
-            icon: 'error',
-            buttons: false,
-          })
-        }
-      }else{
-        let errors = this.$swal({
-          title: 'Envío de orden',
-          text: 'Para solicitar un pedido necesitar iniciar sesión.',
-          icon: 'warning',
-          buttons: ['cancelar', 'Ingresar'],
-          dangerMode: false
-        }).then(res => {
-          if(res) window.location.href = '/ingresar'
-        })
-      }
-    }
   },
 }
 </script>
@@ -124,4 +57,9 @@ export default {
   border-radius: 50%
   border: solid 1px
   vertical-align: middle
+.headig-cart-items
+  border: solid 1px red
+  left: 0
+  position: sticky
+  top: 0
 </style>

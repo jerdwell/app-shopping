@@ -13,8 +13,7 @@
         tr(v-for="(quotation, index) in list_quotations" :key="index")
           td {{ index + 1 }}
           td.text-center {{ quotation.created_at }}
-          td.text-center ${{ quotation.amount }}
-          //- td.text-center ${{ quotation.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+          td.text-center ${{ quotation.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
           td.text-center
             .badge.small(:class="setDataItem(quotation.status).class") {{ setDataItem(quotation.status).text }}
           td.text-center
