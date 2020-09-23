@@ -10,10 +10,9 @@
         datePicker.form-control.p-0.m-0.border-0(
           v-model="shipping_date",
           :full-month-name="true",
-          calendar-class="position-static w-100",
+          calendar-class="sipping-date-calendar w-100",
           :disabled-dates="disabledDates",
-          input-class="form-control"
-        )
+          input-class="form-control")
     button.btn.btn-info(
       @click.prevent="sendOrder()"
       v-if="shipping_date"
@@ -95,3 +94,9 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+  .sipping-date-calendar
+    bottom: 100%
+    top: auto
+</style>
