@@ -19,7 +19,7 @@
           br
           span.text-muted Código: {{ product.provider_code }}
           br
-          b.text-info.mb-0.pb-0.lead {{ product.public_price != null ? '$' + product.public_price : 'Precio no disponible' }}
+          b.text-info.mb-0.pb-0.lead {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
       .col-12
         product-handler(:product="product")
     

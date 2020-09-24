@@ -4,6 +4,8 @@
       h4.text-center.text-light.m-0.py-4
         span.align-middle Mis productos
         button.border-0.bg-transparent.fas.fa-times.text-danger.ml-4.align-middle(@click.prevent="closeCartShopping")
+      .text-center.text-light.mt-3
+        h6.p-0.m-0 Total de la cotización ${{ get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
     .cart-items
       cartItems(:heading="false")
     .cart-fixed-global-footer.bg-dark.p-3
@@ -19,6 +21,7 @@ export default {
     ...mapGetters([
       'get_show_filters', //get if show filters home
       'get_cart_items', //get cart items
+      'get_total_amount', //get total amount quotation
     ])
   },
   components:{
@@ -64,7 +67,7 @@ export default {
     bottom: 0
     border-radius: 0
     right: 0
-    max-height: none
+    max-height: 100vh
     z-index: 2000
 .cart-shoppng-fixed-global-hidden
   height: 0

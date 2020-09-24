@@ -5,6 +5,7 @@ use Backend\Facades\BackendAuth;
 use BackendMenu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Loftonti\Erso\Models\Branches;
@@ -30,18 +31,7 @@ class Quotations extends Controller
         try {
             $user = Users::find($request -> data_user['id']);
             $user -> address;
-            $data_quotation = [
-                'items' => json_encode($request -> items),
-                'amount' => $request -> amount,
-                'status' => 'active',
-                'shipping_address' => json_encode(ModelsQuotations::SetDataQuotationAddress($user -> address)),
-                'shipping_date' => Carbon::parse($request -> shipping_date) -> format('Y-m-d'),
-                'shipping_contact' => json_encode(ModelsQuotations::setDataContactQuotation($user)),
-                'branch' => $request -> branch,
-                'user_id' => $request -> data_user['id'],
-                'created_at' => Carbon::now() -> format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now() -> format('Y-m-d H:i:s')
-            ];
+            $data_quotation = $this -> setDataQuotation($request, $user);
             $branch = Branches::where('slug', $request -> branch)->first();
             $quotation = ModelsQuotations::create($data_quotation);
             $this -> sendNotification($user, $quotation, self::setMailBranch($branch));
@@ -50,6 +40,22 @@ class Quotations extends Controller
             return $th -> getMessage();
             return response($th -> getMessage(), 403);
         }
+    }
+
+    public function setDataQuotation($request, $user)
+    {
+        return [
+            'items' => json_encode($request -> items),
+            'amount' => $request -> amount,
+            'status' => isset($request -> data_user) ? 'active' : 'standby',
+            'shipping_address' => isset($request -> data_user) ? json_encode(ModelsQuotations::SetDataQuotationAddress($user -> address)) : null,
+            'shipping_date' => isset($request -> data_user) && isset($request -> shipping_date) ? Carbon::parse($request -> shipping_date) -> format('Y-m-d') : null,
+            'shipping_contact' => isset($request -> data_user) ? json_encode(ModelsQuotations::setDataContactQuotation($user)) : null,
+            'branch' => isset($request -> data_user) ? $request -> branch : null,
+            'user_id' => isset($request -> data_user) ? $request -> data_user['id'] : null,
+            'created_at' => Carbon::now() -> format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now() -> format('Y-m-d H:i:s')
+        ];
     }
 
     public function sendNotification($user, $quotation, $mail_branch)
@@ -132,6 +138,42 @@ class Quotations extends Controller
             return ['Cotización actualizada exitosamente'];
         } catch (\Throwable $th) {
             return response($th -> getMessage(), 403);
+        }
+    }
+
+    public function downloable(Request $request)
+    {
+        try {
+            $user = isset($request -> data_user) ? Users::find($request -> data_user['id']) : (object) []; 
+            $quotation = $this -> setDataQuotation($request, $user);
+            $branch = Branches::where('slug', $request -> branch)->first();
+            $data = [
+                $quotation,
+                $branch,
+                'download',
+                Carbon::now() -> addMinutes(3) -> format('Y-m-d H:i:s')
+            ];
+            $data = Crypt::encryptString(json_encode($data));
+            return [
+                "url" => "api/v1/quotations/download/temp/{$data}"
+            ];
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(), 403);
+        }
+    }
+
+    public function tempQuotation($data)
+    {
+        try {
+            $data = Crypt::decryptstring($data);
+            $data = json_decode($data);
+            if(Carbon::now() -> greaterThan($data[3])) throw new \Exception("Esta página ha expirado");
+            $data[0] -> items = json_decode($data[0] -> items);
+            if(isset($data[0] -> shipping_contact)) $data[0] -> shipping_contact = json_decode($data[0] -> shipping_contact);
+            if(isset($data[0] -> shipping_address)) $data[0] -> shipping_address = json_decode($data[0] -> shipping_address);
+            return QuotationsConstructor::buildQuotation($data[0], $data[1], $data[2]);
+        } catch (\Throwable $th) {
+            return  redirect('/');
         }
     }
 

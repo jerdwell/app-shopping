@@ -13,14 +13,14 @@
       {% endfor %}
     </div>
   </div>
-  {% if list.last_page > 1 %}
-  <div class="container-fluid mt-5">
+</div>
+<div class="bg-dark">
+  <div class="container py-3">
     <span class="h5 text-info text-left d-block">Páginas totales</span>
     <div class="erso-paginate">
       {{ list.render|raw }}
     </div>
   </div>
-  {% endif %}
 </div>
 {% else %}
 <div class="container">

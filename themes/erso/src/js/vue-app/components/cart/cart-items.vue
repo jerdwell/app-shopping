@@ -24,7 +24,7 @@
                 .text-center
                   a.small.text-danger(href="#" @click.prevent="delete_cart_item(product)") Eliminar #[.fas.fa-times]
               td.text-center.text-dark
-                span.small {{ product.public_price != null ? '$' + product.public_price : 'sin dato' }}
+                span.small {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'sin dato' }}
       
 </template>
 

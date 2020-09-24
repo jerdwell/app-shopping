@@ -5,7 +5,7 @@
     i.fas.fa-search.icon-button-filter
   button.button-filters(v-show="get_show_filters" @click="toggleSearch")
     span.text-yellow Cancelar
-    i.oi.oi-x.icon-button-filter.text-yellow.border-yellow
+    i.fas.fa-times.icon-button-filter.text-yellow.border-yellow
 </template>
 
 <script>

@@ -1,6 +1,8 @@
 <template lang="pug">
 .text-center
-  div(v-if="get_token")
+  div(v-if="get_branch_selected")
+    buttonDownloadQuotationGuest
+  div(v-if="get_token && get_branch_selected")
     .py-2
       h5.text-muted Selecciona una fecha de entrega
       .input-group
@@ -21,18 +23,23 @@
       .oi.oi-check.mr-2.align-middle(v-else)
       span.align-middle Solicitar pedido
   div(v-else)
-    h5.text-center.text-muted Para solicitar un pedido debes iniciar sesión
-    .text-center
-      a.btn.btn-info.px-3(href="/login") Iniciar sesión
-  //- button.btn.btn-sm.btn-dark.my-2
-    .oi.oi-data-transfer-download.mr-2
-    span Descargar cotización
+    div(v-if="!get_token")
+      h5.text-center.text-muted Para solicitar un pedido debes iniciar sesión.
+      .text-center
+        a.btn.btn-info.px-3(href="/login") Iniciar sesión
+    div(v-if="!get_branch_selected")
+      h5.text-center.text-muted Para descargar tu cotización selecciona una sucursal.
+
 </template>
 
 <script>
+import buttonDownloadQuotationGuest from './button-download-quotation-guest'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'shipping-date-component',
+  components: {
+    buttonDownloadQuotationGuest,
+  },
   data() {
     return {
       shipping_date: null,
@@ -42,6 +49,7 @@ export default {
   computed: {
     ...mapGetters([
       'get_token', //get token user
+      'get_branch_selected', //get branch selected
     ]),
     disabledDates() {
       this.$moment.locale();

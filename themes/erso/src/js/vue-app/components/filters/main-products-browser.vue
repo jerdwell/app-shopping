@@ -7,7 +7,7 @@
             .d-flex.justify-content-between.align-items-center
               h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
               button.btn.btn-close-product-browser.bg-yellow(@click.prevent="clearProducts")
-                i.oi.oi-x
+                i.fas.fa-times
             hr.border-dark
             .container
               .row
@@ -19,12 +19,12 @@
       ul.pagination.justify-content-center
         li.page-item(v-if="get_list_products.prev_page_url != null")
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.prev_page_url)")
-            .oi.oi-caret-left
+            .fas.fa-caret-left
         li.page-item(v-for="page in get_list_products.last_page" :key="page" :class="get_list_products.current_page == page ? 'active' : '' ")
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.path ,page)") {{ page }}
         li.page-item(v-if="get_list_products.next_page_url != null")
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.next_page_url)")
-            .oi.oi-caret-right
+            .fas.fa-caret-right
             
 </template>
 

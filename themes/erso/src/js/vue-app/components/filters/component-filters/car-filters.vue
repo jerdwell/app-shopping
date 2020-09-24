@@ -4,12 +4,12 @@
     .input-group.mb-3.rounded-pill(style="overflow:hidden;")
       .input-group-prepend
         .input-group-text
-          i.oi.oi-magnifying-glass(v-if="!$parent.car_model_selected.model_id")
-          i.oi.oi-x.text-danger(v-else)
+          i.fas.fa-search(v-if="!$parent.car_model_selected.model_id")
+          i.fas.fa-times.text-danger(v-else)
       input.form-control.form-control-sm(
         type="search"
         placeholder="Buscar"
-        @change="serach_cars"
+        @input="serach_cars"
         v-model="car_search"
         v-if="!$parent.car_model_selected.model_id")
       input.form-control.form-control-sm(
@@ -42,7 +42,7 @@
               td.text-white {{ car_model.shipowner_name }}
               td.text-white {{ car_model.model_name }}
 
-      li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="carsModels.data && carsModels.data.length <= 0") #[span.oi.oi-circle-x] No existen resultados
+      li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="carsModels.data && carsModels.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
 
 
 </template>
