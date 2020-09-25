@@ -2,12 +2,22 @@
 
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Validator;
+use Loftonti\Erso\Models\CarsModels;
 use Loftonti\Erso\Models\Categories;
 use Loftonti\Erso\Models\Products;
+use Loftonti\Erso\Models\Shipowners;
 
 class ListProducts extends ComponentBase
 {
-    public $list, $limit, $category, $categories, $model, $shipowner, $year;
+    public
+        $list,
+        $limit,
+        $category,
+        $categories,
+        $model,
+        $shipowner,
+        $year,
+        $model_shipowner;
 
     public function componentDetails()
     {
@@ -51,6 +61,10 @@ class ListProducts extends ComponentBase
             $this -> limit = $this->property('limit') ? $this->property('limit') : 20;
             $this -> validData();
             $this -> list = $this -> getList();
+            $this -> categories = Categories::all() -> makeHidden(['deleted_at', 'id', 'category_cover']);
+            $shipowner = $this -> shipowner ? Shipowners::find($this -> shipowner) : false;
+            $model = $this -> model ? CarsModels::find($this -> model) : false;
+            $this -> model_shipowner = $this -> shipowner && $this -> model ? $shipowner -> shipowner_name . ' ' . $model -> model_name : false;
         } catch (\Exception $th) {
             $this -> list = [];
         }
@@ -80,8 +94,8 @@ class ListProducts extends ComponentBase
     public function getList()
     {
         if($this -> model == null || $this -> shipowner == null || $this -> year == null){
-            $this -> categories = '';
-            return Products::filterByCategory($this -> category)
+            // $this -> categories = '';
+            return Products::filterByCategory('')
                 ->with([
                     'brand',
                     'category',

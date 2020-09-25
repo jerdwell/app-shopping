@@ -1,9 +1,20 @@
 {% set list = __SELF__.list %}
 {% set category = __SELF__.category %}
+{% set model = __SELF__.shipowner %}
+{% set shipowner = __SELF__.model %}
 {% set categories = __SELF__.categories %}
+{% set year = __SELF__.year %}
+{% set model_shipowner = __SELF__.model_shipowner %}
 
 {% if category %}
-{% partial 'components/products/_filters' category=category %}
+{% partial 'components/products/_filters'
+  category=category
+  categories=categories
+  year=year
+  model_shipowner=model_shipowner
+  model=model
+  shipowner=shipowner
+  %}
 {% partial 'components/products/_list-products' list=list  %}
 {% endif %}
 

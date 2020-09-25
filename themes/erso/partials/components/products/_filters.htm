@@ -5,17 +5,28 @@
       <div class="col-12 col-md-4 col-lg-3 py-3">
         <h5 class="text-light">Filtrar productos: <a href="/productos" class="text-light"><i class="fas fa-home"></i></a></h5>
       </div>
+
+      <div class="col-12 col-md-3  py-3 text-light">
+        <products-category-filter
+          :categories="{{ categories }}"
+          category="{{ category|upper }}"
+          model="{{ model }}"
+          shipowner="{{ shipowner }}"
+          year="{{ year }}"
+          ></products-category-filter>
+      </div>
       
-      <div class="col-12 col-md-2 col-xl-2 py-3"><products-cars-filter></products-cars-filter></div>
+      <div class="col-12 col-md-2 col-xl-2 py-3">
+        <products-cars-filter
+          model_shipowner="{{ model_shipowner}}"></products-cars-filter>
+      </div>
       
-      <div class="col-12 col-md-2 col-xl-2 py-3"><products-years-filter category="{{ category }}"></products-years-filter></div>
-      
-      <div class="col-12 col-md-4  py-3 text-light">
-        <span>Categoría</span>
-        <i class="fas fa-chevron-right mr-2"></i>
-        <a href="/productos/{{ category|slug }}" class="text-light">
-          <span class="text-a">{{ category|upper }}</span>
-        </a>
+      <div class="col-12 col-md-2 col-xl-2 py-3">
+        <products-years-filter
+          category="{{ category }}"
+          year="{{ year }}"
+          shipowner="{{shipowner}}"
+          model={{model}}></products-years-filter>
       </div>
   
     </div>

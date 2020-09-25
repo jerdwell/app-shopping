@@ -40,6 +40,7 @@ import productItemBrowser from './components/cart/product-item-browser'
 //products
 import productsCarsFilter from './components/page-products/products-cars-filter'
 import productsYearsFilter from './components/page-products/products-years-filter'
+import productsCategoryFilter from './components/page-products/products-category-filter'
 
 //blog
 import categoryFilterBlog from './components/blog/category-filter-blog'
@@ -61,6 +62,7 @@ const app = new Vue({
     productHandler,
     productsCarsFilter,
     productsYearsFilter,
+    productsCategoryFilter,
     productItemBrowser,
     categoryFilterBlog,
     buttonAccountRegister,

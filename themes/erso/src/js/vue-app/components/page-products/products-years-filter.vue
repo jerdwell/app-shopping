@@ -1,6 +1,6 @@
 <template lang="pug">
 .cars-types-container
-  a.text-light(href="#" v-show="!year_selected" @click.prevent="getYears") Año #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
+  a.text-light(href="#" v-show="!year_selected" @click.prevent="getYears(false)") {{year ? year : 'Año'}} #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
   div(v-show="year_selected")
     a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ year_selected }}
     input.form-control(type="hidden" name="year-selected" id="year-selected" v-model="year_selected")
@@ -21,7 +21,12 @@
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'products-years-filter',
-  props:[ 'category' ],
+  props:[
+    'category',
+    'year',
+    'model',
+    'shipowner'
+  ],
   data() {
     return {
       data_search: '',
@@ -29,18 +34,24 @@ export default {
       show_pop: false,
       year_selected: '',
       alias: '',
-      errors: ''
+      errors: '',
     }
   },
   components: {
     popUpSearcheable
   },
   methods: {
-    async getYears(){
+    async getYears(data = false){
       try {
-        let car = document.getElementById('car-selected')
-        if(!car || car.value == '') return false
-        car = car.value.split('-')
+        let car;
+        if(!this.model && !this.shipowner){
+          car = document.getElementById('car-selected').value
+          if(!car || car.value == '') return false
+        }else{
+         car = this.shipowner + '-' + this.model
+        }
+        console.log(car)
+        car = car.split('-')
         let results = await this.$http.get(`search-products/${car[0]}/${car[1]}`)
         if(!results.data || results.data.years.length <= 0) throw 'No existen resultados'
         let years = []
@@ -51,7 +62,10 @@ export default {
         let min = Math.min(...years)
         let max = Math.max(...years)
         while (min <= max) range.push(min++)
-        this.show_pop = true
+        console.log(data);
+        if(!data) {
+          this.show_pop = true
+        }
         this.years = range
       } catch (error) {
         this.errors = error
@@ -59,15 +73,26 @@ export default {
     },
     setYearSelected(){
       this.show_pop = false
-      let car = document.getElementById('car-selected')
-      if(!car || car.value == '') return false
-      let url = `/productos/${this.category}/${car.value.replace('-', '/')}/${this.year_selected}`
+      let car;
+      if(!this.model && !this.shipowner){
+        car = document.getElementById('car-selected').value
+        if(!car || car.value == '') return false
+      }else{
+        car = this.shipowner + '-' + this.model
+      }
+      let url = `/productos/${this.category}/${car.replace('-', '/')}/${this.year_selected}`
+      console.log(url)
       location.assign(url)
     },
     resetDefault(){
       this.show_pop = true
       this.year_selected = ''
       this.alias = ''
+    }
+  },
+  mounted() {
+    if(this.model && this.shipowner){
+      this.getYears(true)
     }
   },
 }

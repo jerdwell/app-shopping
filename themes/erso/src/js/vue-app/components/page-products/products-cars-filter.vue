@@ -1,6 +1,6 @@
 <template lang="pug">
 .cars-types-container
-  a.text-light(href="#" v-show="!car_selected && !alias" @click.prevent="show_pop = !show_pop") Auto #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
+  a.text-light(href="#" v-show="!car_selected && !alias" @click.prevent="show_pop = !show_pop") {{ model_shipowner ? model_shipowner :'Auto'}} #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
   div(v-show="car_selected && alias")
     a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ alias }}
     input.form-control(type="hidden" id="car-selected" v-model="car_selected")
@@ -39,6 +39,9 @@ export default {
       errors: ''
     }
   },
+  props: [
+    'model_shipowner',
+  ],
   components: {
     popUpSearcheable
   },
@@ -66,7 +69,7 @@ export default {
       this.car_selected = ''
       this.alias = ''
     }
-  },
+  }
 }
 </script>
 
