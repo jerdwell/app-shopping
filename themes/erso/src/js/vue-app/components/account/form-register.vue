@@ -119,7 +119,7 @@ export default {
         let register = await this.$http.post('/account/register', data)
         let swal = await this.$swal({
           title: 'Registro de usuario',
-          text: `Usuario registrado con éxito, revisa tu bandeja de entrada.`,
+          text: `Usuario registrado con éxito, para activar tu cuenta revisa tu bandeja de entrada.`,
           icon: 'success'
         })
         window.location.reload()

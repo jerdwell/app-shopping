@@ -71,8 +71,8 @@ export default {
         try {
           let create = await this.create_quotation({shipping_date: this.shipping_date})
           let send_order = await this.$swal({
-            title: 'Envío de orden',
-            text: 'Tu órden se ha enviado con éxito, revisa tu cuenta para poder visualizar tu pedido',
+            title: 'Solicitud de pedido',
+            text: 'Tu pedido se ha solicitado con éxito, revisa tu cuenta para poder descargar la información tu pedido.',
             icon: 'success',
             buttons: false,
           })
@@ -80,7 +80,7 @@ export default {
           this.loading = false
         } catch (error) {
           let send_order = await this.$swal({
-            title: 'Envío de orden',
+            title: 'Solicitud de pedido',
             text: error,
             icon: 'error',
             buttons: false,

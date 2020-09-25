@@ -95,7 +95,7 @@ class Users extends Controller
                 'lastname' => 'required|string|min:2|max:130',
                 'email' => 'required|email|unique:loftonti_users_users,email',
                 'phone' => 'required|digits:10|unique:loftonti_users_users,phone',
-                'password' => 'required|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\[\]\{\}\$%\^&\*])(?=.{8,})/',
+                'password' => 'required|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.\-!@#_\[\]\{\}\$%\^&\*])(?=.{8,})/',
                 'address1' => 'required|string|min:4|max:150',
                 'suburb' => 'required|string|min:4|max:150',
                 'zip_code' => 'required|digits:5|',

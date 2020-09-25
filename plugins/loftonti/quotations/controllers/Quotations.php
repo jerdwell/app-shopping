@@ -75,6 +75,10 @@ class Quotations extends Controller
                 $message->to($mail_branch, $mail_data['name']);
                 $message->subject('Nueva órden de compra.');
             });
+            Mail::send('loftonti.quotations::mail.quotation-created-user', $mail_data, function($message) use($mail_data, $mail_branch){
+                $message->to($mail_data['email'], $mail_data['name']);
+                $message->subject('Nueva órden de compra.');
+            });
         } catch (\Throwable $th) {
             throw $th;
             return false;

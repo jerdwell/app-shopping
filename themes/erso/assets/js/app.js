@@ -3436,7 +3436,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 9;
                 return _this2.$swal({
                   title: 'Registro de usuario',
-                  text: "Usuario registrado con \xE9xito, revisa tu bandeja de entrada.",
+                  text: "Usuario registrado con \xE9xito, para activar tu cuenta revisa tu bandeja de entrada.",
                   icon: 'success'
                 });
 
@@ -4283,8 +4283,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 create = _context.sent;
                 _context.next = 8;
                 return _this.$swal({
-                  title: 'Envío de orden',
-                  text: 'Tu órden se ha enviado con éxito, revisa tu cuenta para poder visualizar tu pedido',
+                  title: 'Solicitud de pedido',
+                  text: 'Tu pedido se ha solicitado con éxito, revisa tu cuenta para poder descargar la información tu pedido.',
                   icon: 'success',
                   buttons: false
                 });
@@ -4303,7 +4303,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.t0 = _context["catch"](2);
                 _context.next = 17;
                 return _this.$swal({
-                  title: 'Envío de orden',
+                  title: 'Solicitud de pedido',
                   text: _context.t0,
                   icon: 'error',
                   buttons: false
