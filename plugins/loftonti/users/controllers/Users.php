@@ -214,6 +214,17 @@ class Users extends Controller
         }
     }
 
+    public function passwordUpdate(Request $request)
+    {
+        try {
+            $user = ModelsUsers::find($request -> data_user['id']);
+            $user -> update(['password' => Hash::make($request -> password)]);
+            return ['Contraseña actualizada exitosamente'];
+        } catch (\Throwable $th) {
+            return response($th -> getMessage(), 403);
+        }
+    }
+
     public function validPersonalData($data, $validMail, $validPhone)
     {
         try {

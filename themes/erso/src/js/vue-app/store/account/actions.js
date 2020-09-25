@@ -44,6 +44,18 @@ const actions = {
     }
   },
 
+  async change_password({ getters }, data){
+    try {
+      let headers = {
+        Authorization: 'Bearer ' + getters.get_token
+      }
+      let updated = await vm.prototype.$http.post('/account/password', { password: data },  { headers })
+      return updated.data[0]
+    } catch (error) {
+      throw error
+    }
+  },
+
   signOut({ commit }){
     commit('SIGN_OUT')
     return true

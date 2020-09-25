@@ -2674,6 +2674,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2692,8 +2707,93 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'form-password'
+  name: 'form-password',
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['change_password' //change password
+  ])), {}, {
+    changePassword: function changePassword() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var input_password, input_password_confirm, feedback_password, pattern, errors, update, notification;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                input_password = document.getElementById('password');
+                input_password_confirm = document.getElementById('confirm-password');
+                feedback_password = document.getElementById('valid-password');
+                pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[._\-\{\}!@#\$%\^&\*"'\[\]\?\¡\¿\(\)\/])(?=.{8,})/;
+                errors = false;
+                _context.prev = 5;
+                input_password.classList.remove('is-invalid');
+                input_password_confirm.classList.remove('is-invalid');
+                feedback_password.classList.remove('d-block');
+                feedback_password.innerHTML = '';
+
+                if (pattern.test(input_password.value)) {
+                  _context.next = 12;
+                  break;
+                }
+
+                throw 'invalid_secure';
+
+              case 12:
+                if (!(input_password.value != input_password_confirm.value)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                throw 'invalid_coincidence';
+
+              case 14:
+                _context.next = 16;
+                return _this.change_password(input_password.value);
+
+              case 16:
+                update = _context.sent;
+                input_password.value = '';
+                input_password_confirm.value = '';
+                _context.next = 21;
+                return _this.$swal('Actualización de datos', update, 'success');
+
+              case 21:
+                notification = _context.sent;
+                _context.next = 28;
+                break;
+
+              case 24:
+                _context.prev = 24;
+                _context.t0 = _context["catch"](5);
+
+                if (_context.t0 == 'invalid_secure') {
+                  input_password.classList.add('is-invalid');
+                  feedback_password.classList.add('d-block');
+                  feedback_password.innerHTML = 'La contraseña no cumple con los parámetros de seguridad.';
+                } else if (_context.t0 == 'invalid_coincidence') {
+                  input_password_confirm.classList.add('is-invalid');
+                  feedback_password.classList.add('d-block');
+                  feedback_password.innerHTML = 'Las contraseñas no coinciden.';
+                  input_password.classList.add('is-invalid');
+                } else {
+                  _this.$swal('Actualización de datos', 'Lo sentimos, no se puede actualizar tu coontraseña', 'success');
+                }
+
+                errors = true;
+
+              case 28:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[5, 24]]);
+      }))();
+    }
+  })
 });
 
 /***/ }),
@@ -43891,63 +43991,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h5", { staticClass: "text-muted text-center mb-3" }, [
+      _vm._v("Contraseña ")
+    ]),
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._m(1),
+      _vm._m(2),
+      _c("div", { staticClass: "col-12" }, [
+        _c("hr"),
+        _c(
+          "div",
+          {
+            staticClass: "text-center py-4",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.changePassword($event)
+              }
+            }
+          },
+          [_c("button", { staticClass: "btn btn-info" }, [_vm._v("Guardar")])]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h5", { staticClass: "text-muted text-center mb-3" }, [
-        _vm._v("Contraseña ")
-      ]),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6 mb-2" }, [
-          _c("label", { staticClass: "small label text-muted" }, [
-            _vm._v("Contraseña:")
-          ]),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "password",
-              name: "password",
-              id: "password",
-              autocomplete: "off",
-              required: ""
-            }
-          }),
-          _c("div", {
-            staticClass: "invalid-feedback",
-            attrs: { id: "valid-password" }
-          })
-        ]),
-        _c("div", { staticClass: "col-md-6 mb-2" }, [
-          _c("label", { staticClass: "small label text-muted" }, [
-            _vm._v("Confirma la contraseña:")
-          ]),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "password",
-              name: "confirm-password",
-              id: "confirm-password",
-              autocomplete: "off",
-              required: ""
-            }
-          }),
-          _c("div", {
-            staticClass: "invalid-feedback",
-            attrs: { id: "valid-confirm-password" }
-          })
-        ]),
-        _c("div", { staticClass: "col-12" }, [
-          _c("hr"),
-          _c("div", { staticClass: "text-center py-4" }, [
-            _c("button", { staticClass: "btn btn-info" }, [_vm._v("Guardar")])
-          ])
+    return _c("div", { staticClass: "col-12 mb-3" }, [
+      _c("div", { staticClass: "alert alert-light" }, [
+        _c("small", { staticClass: "text-info" }, [
+          _vm._v(
+            "*La contraseña de contener almenos 8 caracteres, mayúsculas y minúsculas, números y simbolos."
+          )
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 mb-2" }, [
+      _c("label", { staticClass: "small label text-muted" }, [
+        _vm._v("Contraseña: ")
+      ]),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "password",
+          name: "password",
+          id: "password",
+          autocomplete: "off",
+          required: ""
+        }
+      }),
+      _c("div", {
+        staticClass: "invalid-feedback",
+        attrs: { id: "valid-password" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 mb-2" }, [
+      _c("label", { staticClass: "small label text-muted" }, [
+        _vm._v("Confirma la contraseña:")
+      ]),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "password",
+          name: "confirm-password",
+          id: "confirm-password",
+          autocomplete: "off",
+          required: ""
+        }
+      }),
+      _c("div", {
+        staticClass: "invalid-feedback",
+        attrs: { id: "valid-confirm-password" }
+      })
     ])
   }
 ]
@@ -67331,8 +67462,44 @@ var actions = {
       }, _callee2, null, [[1, 17]]);
     }))();
   },
-  signOut: function signOut(_ref5) {
-    var commit = _ref5.commit;
+  change_password: function change_password(_ref5, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var getters, headers, updated;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              getters = _ref5.getters;
+              _context3.prev = 1;
+              headers = {
+                Authorization: 'Bearer ' + getters.get_token
+              };
+              _context3.next = 5;
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.post('/account/password', {
+                password: data
+              }, {
+                headers: headers
+              });
+
+            case 5:
+              updated = _context3.sent;
+              return _context3.abrupt("return", updated.data[0]);
+
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](1);
+              throw _context3.t0;
+
+            case 12:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 9]]);
+    }))();
+  },
+  signOut: function signOut(_ref6) {
+    var commit = _ref6.commit;
     commit('SIGN_OUT');
     return true;
   }
