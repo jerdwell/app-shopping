@@ -1,0 +1,27 @@
+{% set product = __SELF__.product %}
+
+<div class="container py-5">
+  <div class="row">
+    
+    <div class="col-md-4">
+      <img class="w-100" src="{{ product.product_cover|media }}" alt="">
+    </div>
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-info">{{ product.product_name }}</h2>
+          <h5 class="text-muted">{{ product.shipowner.shipowner_name }} - {{ product.car.model_name }}</h5>
+          <p class="text-muted">{{ product.product_year }}</p>
+          <p class="text-muted">{{ product.erso_code.erso_code }}</p>
+          <p class="text-muted">{{ product.provider_code }}</p>
+          <p class="text-muted">{{ product.public_price }}</p>
+          <p class="text-muted">{{ product.category.category_name }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

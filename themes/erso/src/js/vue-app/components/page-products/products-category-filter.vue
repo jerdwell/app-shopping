@@ -44,9 +44,6 @@ export default {
         location.assign(url)
       }
     }
-  },
-  mounted(){
-    console.log(this.categories);
   }
 }
 </script>

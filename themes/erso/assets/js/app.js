@@ -5631,22 +5631,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
                 _this.cars = cars.data;
-                console.log(cars);
-                _context.next = 17;
+                _context.next = 15;
                 break;
 
-              case 13:
-                _context.prev = 13;
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](0);
                 _this.errors = _context.t0;
-                console.log(_context.t0);
 
-              case 17:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 13]]);
+        }, _callee, null, [[0, 12]]);
       }))();
     },
     setCarSelected: function setCarSelected(car) {
@@ -5713,9 +5711,6 @@ __webpack_require__.r(__webpack_exports__);
         location.assign(url);
       }
     }
-  },
-  mounted: function mounted() {
-    console.log(this.categories);
   }
 });
 
@@ -5823,22 +5818,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 car = _this.shipowner + '-' + _this.model;
 
               case 9:
-                console.log(car);
                 car = car.split('-');
-                _context.next = 13;
+                _context.next = 12;
                 return _this.$http.get("search-products/".concat(car[0], "/").concat(car[1]));
 
-              case 13:
+              case 12:
                 results = _context.sent;
 
                 if (!(!results.data || results.data.years.length <= 0)) {
-                  _context.next = 16;
+                  _context.next = 15;
                   break;
                 }
 
                 throw 'No existen resultados';
 
-              case 16:
+              case 15:
                 years = [];
                 results.data.years.map(function (e) {
                   years = [].concat(_toConsumableArray(e.product_year.split('-')), _toConsumableArray(years));
@@ -5851,27 +5845,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   range.push(min++);
                 }
 
-                console.log(data);
-
                 if (!data) {
                   _this.show_pop = true;
                 }
 
                 _this.years = range;
-                _context.next = 30;
+                _context.next = 28;
                 break;
 
-              case 27:
-                _context.prev = 27;
+              case 25:
+                _context.prev = 25;
                 _context.t0 = _context["catch"](1);
                 _this.errors = _context.t0;
 
-              case 30:
+              case 28:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 27]]);
+        }, _callee, null, [[1, 25]]);
       }))();
     },
     setYearSelected: function setYearSelected() {
@@ -5886,7 +5878,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       var url = "/productos/".concat(this.category, "/").concat(car.replace('-', '/'), "/").concat(this.year_selected);
-      console.log(url);
       location.assign(url);
     },
     resetDefault: function resetDefault() {
@@ -45693,9 +45684,7 @@ var render = function() {
                 "a",
                 {
                   staticClass: "link text-info mb-4",
-                  attrs: {
-                    href: "products/product/" + _vm.product.product_slug
-                  }
+                  attrs: { href: "/productos/producto/" + _vm.product.id }
                 },
                 [
                   _c("img", {
@@ -45720,9 +45709,7 @@ var render = function() {
                 {
                   staticClass: "link text-info mb-4",
                   staticStyle: { "text-decoration": "none" },
-                  attrs: {
-                    href: "/products/product/" + _vm.product.product_slug
-                  }
+                  attrs: { href: "/productos/producto/" + _vm.product.id }
                 },
                 [
                   _c("span", { staticClass: "h6 text-info" }, [

@@ -53,10 +53,8 @@ export default {
         let cars = await this.$http.get(`/search-car-model/${this.data_search}`)
         if(cars.data.length <= 0) return this.errors = 'No existen coincidencias'
         this.cars = cars.data
-        console.log(cars)
       } catch (error) {
         this.errors = error
-        console.log(error)
       }
     },
     setCarSelected(car){

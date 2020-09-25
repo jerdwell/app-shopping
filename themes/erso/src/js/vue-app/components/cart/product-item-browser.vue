@@ -5,10 +5,10 @@
   )
     .row.py-3.bg-light.rounded-sm.product-item-browser
       .col-4.col-md-4.col-lg-8.offset-lg-2.p-2
-        a.link.text-info.mb-4(:href="`products/product/${product.product_slug}`")
+        a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`")
           img.w-100(:src="'/storage/app/media/' + product.product_cover")
       .col-8.col-md-8.p-0.col-lg-12.pl-2.text-lg-center.pt-lg-3
-        a.link.text-info.mb-4(:href="`/products/product/${product.product_slug}`" style="text-decoration:none;")
+        a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`" style="text-decoration:none;")
           span.h6.text-info {{ product.product_name }}
         p.mb-0.small
           span.text-muted Aplicación: {{ product.product_description }}

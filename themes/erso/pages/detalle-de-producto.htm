@@ -1,0 +1,19 @@
+title = "Detalle de producto"
+url = "/productos/producto/:id"
+layout = "_default"
+is_hidden = 0
+
+[ProductDetail]
+id = "{{ :id }}"
+==
+{%
+  partial 'components/_step'
+  title = this.param.category != null ? this.param.category|capitalize : "Detalle del producto"
+  align= "center"
+  type= "light"
+  local= true
+  color= "dark"
+  principal = true
+  img= "steps11.jpg"|media
+%}
+{% component 'ProductDetail' %}

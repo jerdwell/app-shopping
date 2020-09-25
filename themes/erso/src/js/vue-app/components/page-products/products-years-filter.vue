@@ -50,7 +50,6 @@ export default {
         }else{
          car = this.shipowner + '-' + this.model
         }
-        console.log(car)
         car = car.split('-')
         let results = await this.$http.get(`search-products/${car[0]}/${car[1]}`)
         if(!results.data || results.data.years.length <= 0) throw 'No existen resultados'
@@ -62,7 +61,6 @@ export default {
         let min = Math.min(...years)
         let max = Math.max(...years)
         while (min <= max) range.push(min++)
-        console.log(data);
         if(!data) {
           this.show_pop = true
         }
@@ -81,7 +79,6 @@ export default {
         car = this.shipowner + '-' + this.model
       }
       let url = `/productos/${this.category}/${car.replace('-', '/')}/${this.year_selected}`
-      console.log(url)
       location.assign(url)
     },
     resetDefault(){
