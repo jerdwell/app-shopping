@@ -8,7 +8,7 @@ class Posts extends Controller
     public $implement = [
         'Backend\Behaviors\ListController',
         'Backend\Behaviors\FormController',
-        'Backend\Behaviors\relationController'
+        'Backend\Behaviors\RelationController'
     ];
     
     public $listConfig = 'config_list.yaml';
