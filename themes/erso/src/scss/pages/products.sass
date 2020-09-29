@@ -133,3 +133,35 @@
   100%
     transform: scale(2)
     filter: blur(5px) grayscale(1)
+
+.single-product-container
+  background-size: 100% auto
+  background-repeat: no-repeat
+  background-position: bottom left
+  background-attachment: fixed
+  .single-product-image
+    width: 100%
+    img
+      width: 100%
+  .single-product-data
+    background: $dark
+    padding: 80px 20px
+  @media screen and (min-width: 768px)
+    align-content: center
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    .single-product-image
+      align-items: center
+      display: flex
+      padding: 60px 0
+      justify-content: center
+      width: 60%
+      img
+        border-radius: 5px
+        box-shadow: 0 10px 20px rgba($dark, .9)
+        max-width: 450px
+        width: 80%
+    .single-product-data
+      width: 40%
+

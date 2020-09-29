@@ -26,6 +26,18 @@ const actions = {
     } catch (error) {
       throw error
     }
+  },
+
+  cancel_order: async ({ getters }, data) => {
+    try {
+      let headers = {
+        Authorization: 'Bearer ' + getters.get_token
+      }
+      let cancel  = await vm.prototype.$http.delete('/quotations/cancel', { headers, data })
+      return cancel
+    } catch (error) {
+      throw error.response.data[0]
+    }
   }
 }
 

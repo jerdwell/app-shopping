@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Loftonti\Erso\Models\Branches;
 use LoftonTi\Quotations\Models\Quotations as ModelsQuotations;
 use Loftonti\Quotations\Models\QuotationsConstructor;
@@ -118,6 +119,41 @@ class Quotations extends Controller
         } catch (\Throwable $th) {
             return response($th -> getMessage(),404);
             return response('Credenciales inválidas',404);
+        }
+    }
+
+    public function cancelQuotation(Request $request)
+    {
+        try {
+            $valid = Validator::make($request -> all(), [
+                'id' => 'required|integer|exists:loftonti_quotations_quotations,id',
+                'message' => 'required|string|min:10|max:250'
+            ]);
+            if($valid -> fails()) throw new \Exception('Esta órden no se puede cancelar, revisa los parámetros de la misma.');
+            $order = ModelsQuotations::find($request -> id);
+            if($order -> status != 'active') throw new \Exception('Esta órden no se puede cancelar.');
+            if($order -> user_id  != $request -> data_user['id']) throw new \Exception('Esta órden no se puede cancelar.');
+            $created_at = (string)($order -> created_at);
+            if(Carbon::now() -> greaterThan(Carbon::parse($created_at)->addHours(3))) throw new \Exception('Esta órden no puede ser cancelada, em tiempo máximo de cancelación es de 3 horas.');
+            $branch = Branches::where('slug', $order -> branch)->first();
+            $user = Users::find($request -> data_user['id']);
+            $mails = self::setMailBranch($branch);
+            $mail_data = [
+                'id' => $order ->id,
+                'message_cancel' => $request -> message,
+                'name' => $request -> data_user['name'],
+                'email' => $user -> email,
+                'phone' => $user -> phone,
+                'branch' => $branch -> branch_name
+            ];
+            $order -> update(['status' => 'declined']);
+            Mail::send('loftonti.quotations::mail.order-canceled', $mail_data, function($mail) use($mails, $branch) {
+                $mail->to($mails, 'ERSO ' . $branch -> branch_name);
+                $mail->subject('Cancelación de órden.');
+            });
+            return ['Órden cancelada exitosamente.'];
+        } catch (\Throwable $th) {
+            return response([$th -> getMessage()], 403);
         }
     }
 

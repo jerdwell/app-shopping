@@ -17,7 +17,13 @@
           td.text-center
             .badge.small(:class="setDataItem(quotation.status).class") {{ setDataItem(quotation.status).text }}
           td.text-center
-            button.btn.btn-warning.btn-sm.mr-1.mb-1(v-if="quotation.status != 'declined' && quotation.status != 'successed'") Cancelar
+            .d-inline-block.p-0.m-0.mr-1.mb-1(v-if="quotation.status != 'declined' && quotation.status != 'successed'")
+              button.btn.btn-warning.btn-sm(
+                v-if="setButtonState(quotation.created_at)"
+                :disabled="loading && loading == quotation.id"
+                @click.prevent="cancelOrder(quotation.id, quotation.created_at)")
+                  .spinner-border.spinner-border-sm.mr-2.align-middle(v-if="loading && loading == quotation.id")
+                  span.align-middle Cancelar
             a.btn.btn-info.btn-sm(:href="`/api/v1/quotations/get/${quotation.id}/${get_token}`" v-if="quotation.status != 'declined'") Descargar
 </template>
 
@@ -28,6 +34,7 @@ export default {
   data() {
     return {
       list_quotations: [],
+      loading: false
     };
   },
   computed: {
@@ -38,6 +45,7 @@ export default {
   methods: {
     ...mapActions([
       "get_list_quotations", //lista de cotizaciones
+      "cancel_order", //Cancelar cotizaciones
     ]),
     async getListQuotations(url) {
       try {
@@ -72,6 +80,48 @@ export default {
           break;
       }
       return data
+    },
+    async cancelOrder(id, created){
+      try {
+        let answer = await this.$swal({
+          title: 'Cancelación de órden',
+          text: 'Por favor, captura el motivo de tu cancelación.',
+          icon: 'warning',
+          content: 'input',
+          buttons: {
+            cancel: 'cancelar',
+            confirm: {
+              value: '',
+            },
+          }
+        })
+        if(!answer) return false
+        this.loading = id
+        if(answer.replace(/\s/g, '').length <= 10) throw 'Necesitas un motivo para cancelar esta órden, almenos 10 caracteres.'
+        let cancel = await this.cancel_order({id: id, message: answer})
+        let notification = await this.$swal({
+          title: 'Cancelación de órden',
+          text: 'La órden se ha cancelado exitosamente',
+          icon: 'success',
+          button: 'Aceptar'
+        })
+        this.getListQuotations(null)
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+        this.$swal(
+          'Cancelación de órden',
+          error,
+          'error'
+        )
+      }
+    },
+    setButtonState(created){
+      let expire = this.$moment(created).add(3,'hours').format()
+      if(this.$moment(this.$moment().format()).isAfter(expire)){
+        return false
+      }
+      return true
     }
   },
   mounted() {

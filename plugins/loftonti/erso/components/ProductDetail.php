@@ -5,7 +5,7 @@ use Loftonti\Erso\Models\Products;
 
 class ProductDetail extends ComponentBase
 {
-    public $product;
+    public $product, $related;
     public function componentDetails()
     {
         return [
@@ -39,6 +39,10 @@ class ProductDetail extends ComponentBase
             $product -> car;
             $product -> erso_code;
             $this -> product = $product;
+            $this -> related = Products::where('model_id', $this -> product -> model_id)
+             -> where('shipowner_id', $this -> product -> shipowner_id)
+             -> with(['shipowner', 'car', 'category'])
+             ->paginate(8);
         } catch (\Throwable $th) {
             //throw $th;
             return [$th -> getMessage()];

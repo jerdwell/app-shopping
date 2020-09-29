@@ -11,7 +11,8 @@
             hr.border-dark
             .container
               .row
-                productItemBrowser.col-md-6.col-lg-3.mb-3(v-for="(product, i) in get_list_products.data" :key="i" :product="product" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+                .col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+                  productItemBrowser(:product="product")
         .col-xl-3
           cartShoppingAsside
 

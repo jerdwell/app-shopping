@@ -5,8 +5,11 @@ import VueAwesomeSwiper from 'vue-awesome-swiper' //swiper
 import DatePicker from 'vuejs-datepicker'
 import moment  from 'moment'
 import {en, es} from 'vuejs-datepicker/dist/locale' //lang for date-picker
+import ZoomOnHover from 'vue-zoom-on-hover'
 DatePicker.props.language.default = () => es
 Vue.component('datePicker', DatePicker)
+
+Vue.use(ZoomOnHover)
 
 import 'swiper/swiper-bundle.css'//styles for swiper
 Vue.use(VueAwesomeSwiper) //use swiper
