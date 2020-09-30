@@ -47,6 +47,7 @@ import productsCategoryFilter from './components/page-products/products-category
 
 //blog
 import categoryFilterBlog from './components/blog/category-filter-blog'
+import blogSearch from './components/blog/blog-search'
 
 //contact forms
 import contactForm from './components/contact-forms/contact-form'
@@ -69,7 +70,8 @@ const app = new Vue({
     productItemBrowser,
     categoryFilterBlog,
     buttonAccountRegister,
-    contactForm
+    contactForm,
+    blogSearch
   },
   template: '',
   store,

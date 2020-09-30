@@ -1,7 +1,9 @@
 <?php namespace LoftonTi\ErsoBlog\Controllers;
 
 use Backend\Classes\Controller;
+use Illuminate\Http\Request;
 use BackendMenu;
+use LoftonTi\ErsoBlog\Models\Posts as ModelsPosts;
 
 class Posts extends Controller
 {
@@ -23,6 +25,16 @@ class Posts extends Controller
     public function formExtendModel($model)
     {
         $this->initRelation($model);
+    }
+
+    public function search(Request $request)
+    {
+        try {
+            $posts = ModelsPosts::where('title', 'like', "%{$request->data}%") -> with(['cover']) -> take(10) -> get();
+            return $posts;
+        } catch (\Throwable $th) {
+            return response([$th -> getMessage()], 403);
+        }
     }
     
 }
