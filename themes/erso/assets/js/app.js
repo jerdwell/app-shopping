@@ -4834,9 +4834,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'button-search-products',
@@ -5652,8 +5649,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -6428,7 +6423,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".filters-search-products[data-v-aa49bf0a] {\n  padding: 80px 5% 20px;\n}\n@media screen and (min-width: 768px) {\n.filters-search-products[data-v-aa49bf0a] {\n    padding-top: 150px;\n}\n}\n", ""]);
+exports.push([module.i, ".filters-search-products[data-v-aa49bf0a] {\n  padding: 80px 5% 20px;\n  left: 0;\n  top: 0;\n  width: 100%;\n}\n@media screen and (min-width: 768px) {\n.filters-search-products[data-v-aa49bf0a] {\n    padding-top: 150px;\n}\n}\n", ""]);
 
 // exports
 
@@ -6447,7 +6442,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".main-products-browser[data-v-372a9e92] {\n  transition: all ease .5s;\n  width: 100%;\n}\n.btn-close-product-browser[data-v-372a9e92] {\n  align-items: center;\n  border-radius: 50%;\n  height: 40px;\n  display: inline-flex;\n  font-size: 20px;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  transition: all ease .5s;\n  right: 0;\n  width: 40px;\n}\n", ""]);
+exports.push([module.i, ".main-products-browser[data-v-372a9e92] {\n  background: white;\n  background-image: url(\"/storage/app/media/footer_02.png\");\n  background-size: 100% auto;\n  background-position: left bottom;\n  background-attachment: fixed;\n  background-repeat: no-repeat;\n  transition: all ease .5s;\n  width: 100%;\n}\n.btn-close-product-browser[data-v-372a9e92] {\n  align-items: center;\n  border-radius: 50%;\n  height: 40px;\n  display: inline-flex;\n  font-size: 20px;\n  justify-content: center;\n  margin: 0;\n  padding: 0;\n  transition: all ease .5s;\n  right: 0;\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -46476,34 +46471,11 @@ var render = function() {
           }
         ],
         staticClass: "button-filters",
-        attrs: { href: "#filter-products" },
-        on: { click: _vm.toggleSearch }
+        attrs: { href: "/cotizador-erso" }
       },
       [
         _c("span", [_vm._v("Cotizar productos")]),
         _c("i", { staticClass: "fas fa-search icon-button-filter" })
-      ]
-    ),
-    _c(
-      "button",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.get_show_filters,
-            expression: "get_show_filters"
-          }
-        ],
-        staticClass: "button-filters",
-        on: { click: _vm.toggleSearch }
-      },
-      [
-        _c("span", { staticClass: "text-yellow" }, [_vm._v("Cancelar")]),
-        _c("i", {
-          staticClass:
-            "fas fa-times icon-button-filter text-yellow border-yellow"
-        })
       ]
     )
   ])
@@ -47137,38 +47109,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.get_show_filters
-    ? _c(
-        "section",
-        {
-          staticClass: "filters-search-products bg-dark",
-          attrs: { id: "filter-products" }
-        },
+  return _c(
+    "section",
+    {
+      staticClass: "filters-search-products bg-dark",
+      attrs: { id: "filter-products" }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "filters" },
         [
-          _c(
-            "div",
-            { staticClass: "filters" },
-            [
-              _c("SelectTypeFilters"),
-              _vm.get_branch_selected != ""
-                ? _c(
-                    "div",
-                    [
-                      _vm.type_filter == "car" ? _c("FilterByCar") : _vm._e(),
-                      _vm.type_filter == "general"
-                        ? _c("GeneralFilter")
-                        : _vm._e(),
-                      _vm.type_filter == "code" ? _c("FilterByCode") : _vm._e()
-                    ],
-                    1
-                  )
-                : _vm._e()
-            ],
-            1
-          )
-        ]
+          _c("SelectTypeFilters"),
+          _vm.get_branch_selected != ""
+            ? _c(
+                "div",
+                [
+                  _vm.type_filter == "car" ? _c("FilterByCar") : _vm._e(),
+                  _vm.type_filter == "general" ? _c("GeneralFilter") : _vm._e(),
+                  _vm.type_filter == "code" ? _c("FilterByCode") : _vm._e()
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
       )
-    : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47282,17 +47250,6 @@ var render = function() {
   return _c(
     "div",
     {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value:
-            this.get_list_products.data &&
-            this.get_list_products.data.length > 0,
-          expression:
-            "this.get_list_products.data && this.get_list_products.data.length > 0"
-        }
-      ],
       staticClass: "main-products-browser pt-5",
       attrs: { id: "list-products-finded" }
     },
@@ -47320,19 +47277,6 @@ var render = function() {
                         _vm._v("total: " + _vm._s(_vm.get_list_products.total))
                       ])
                     ]
-                  ),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-close-product-browser bg-yellow",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.clearProducts($event)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "fas fa-times" })]
                   )
                 ]
               ),

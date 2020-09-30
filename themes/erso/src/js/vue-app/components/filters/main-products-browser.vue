@@ -1,13 +1,11 @@
 <template lang="pug">
-  .main-products-browser#list-products-finded.pt-5(v-show="this.get_list_products.data && this.get_list_products.data.length > 0")
+  .main-products-browser#list-products-finded.pt-5
     .container-fluid
       .row
         .col-xl-9
           .container
             .d-flex.justify-content-between.align-items-center
               h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
-              button.btn.btn-close-product-browser.bg-yellow(@click.prevent="clearProducts")
-                i.fas.fa-times
             hr.border-dark
             .container
               .row
@@ -79,6 +77,12 @@ export default {
 
 <style lang="sass" scoped>
 .main-products-browser
+  background: white
+  background-image: url('/storage/app/media/footer_02.png')
+  background-size: 100% auto
+  background-position: left bottom
+  background-attachment: fixed
+  background-repeat: no-repeat
   transition: all ease .5s
   width: 100%
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-section.filters-search-products.bg-dark#filter-products(v-if="get_show_filters")
+section.filters-search-products.bg-dark#filter-products
   .filters
     SelectTypeFilters
     div(v-if="get_branch_selected != ''")
@@ -25,7 +25,7 @@ export default {
     MainProductsBrowser,
     SelectTypeFilters,
     GeneralFilter,
-    Codefilter,
+    Codefilter
   },
   data(){
     return {
@@ -62,6 +62,9 @@ export default {
 <style lang="sass" scoped>
 .filters-search-products
   padding: 80px 5% 20px
+  left: 0
+  top: 0
+  width: 100%
   @media screen and( min-width: 768px)
     padding-top: 150px
 

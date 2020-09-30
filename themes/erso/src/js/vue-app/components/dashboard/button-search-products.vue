@@ -1,11 +1,8 @@
 <template lang="pug">
 .controll-filters
-  a.button-filters(v-show="!get_show_filters" @click="toggleSearch" href="#filter-products")
+  a.button-filters(v-show="!get_show_filters" href="/cotizador-erso")
     span Cotizar productos
     i.fas.fa-search.icon-button-filter
-  button.button-filters(v-show="get_show_filters" @click="toggleSearch")
-    span.text-yellow Cancelar
-    i.fas.fa-times.icon-button-filter.text-yellow.border-yellow
 </template>
 
 <script>
