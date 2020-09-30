@@ -10,6 +10,7 @@ class Plugin extends PluginBase
             'LoftonTi\ErsoBlog\Components\MainBlog' => 'MainBlog',
             'LoftonTi\ErsoBlog\Components\BlogFilter' => 'BlogFilter',
             'LoftonTi\ErsoBlog\Components\BlogDetail' => 'BlogDetail',
+            'LoftonTi\ErsoBlog\Components\ListBlogsHome' => 'ListBlogsHome',
         ];
     }
 

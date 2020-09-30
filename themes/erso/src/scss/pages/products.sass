@@ -20,9 +20,9 @@
       .list-category-item-bg
         img
           animation: animate-items-categories .5s forwards
-          
-    &:nth-child(2), &:nth-child(3), &:nth-child(5), &:nth-child(6)
-      width: 50%
+      .list-category-item-text
+        &::before
+          background: rgba(#000, .9)
     .list-category-item-bg
       background-position: center
       background-size: cover
@@ -41,14 +41,42 @@
         transition: all ease .5s
         width: 100%
     .list-category-item-text
+      align-items: center
+      align-content: center
       color: white
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      height: 100%
+      margin: 0!important
+      overflow: hidden
+      padding: 0!important
       position: relative
       text-align: center
       text-shadow: 0 0 10px rgba(0,0,0,.5)
       width: 100%
       z-index: 1
+      &::before
+        background: rgba(#000, .5)
+        left: 0
+        content: ''
+        display: inline-block
+        height: 100%
+        position: absolute
+        top: 0
+        transition: all ease .5s
+        width: 100%
+        z-index: -1
   @media screen and(min-width: 768px)
     .list-category-item
+      background: $dark
+      padding: 10px
+      .list-category-item-bg
+        overflow: hidden!important
+        height: calc(100% - 20px)!important
+        width: calc(100% - 20px)!important
+      &:nth-child(2), &:nth-child(3), &:nth-child(5), &:nth-child(6)
+        width: 50%
       &:nth-child(4), &:nth-child(5), &:nth-child(6)
         width: calc(100% / 3)
       .list-category-item-text
@@ -127,12 +155,12 @@
 
 @keyframes animate-items-categories
   0%
-    filter: blur(0) grayscale(0)
+    filter: grayscale(0)
   50%
     transform: scale(2)
   100%
     transform: scale(2)
-    filter: blur(5px) grayscale(1)
+    filter: grayscale(1)
 
 .single-product-container
   background-size: 100% auto

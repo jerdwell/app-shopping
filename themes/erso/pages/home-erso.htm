@@ -8,6 +8,9 @@ is_hidden = 0
 [ListCategories]
 
 [ContactForm]
+
+[ListBlogsHome]
+per_page = 5
 ==
 {% partial 'components/_slide' %}
 {%
@@ -47,5 +50,4 @@ is_hidden = 0
   color= "dark"
   img= "steps10.jpg"|media
 %}
-
-{% partial 'components/blog/_blog-block' %}
+{% component 'ListBlogsHome' %}
