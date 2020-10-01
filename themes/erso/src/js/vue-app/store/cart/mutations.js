@@ -13,6 +13,7 @@ const mutations = {
         provider_code: data.provider_code,
         product_cover: data.product_cover,
         public_price: data.public_price,
+        provider_price: data.provider_price,
         brand_name: data.brand.brand_name,
         model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
       }

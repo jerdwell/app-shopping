@@ -21,18 +21,25 @@
             br
             span.text-muted Código: {{ product.provider_code }}
             br
-            b.text-info.mb-0.pb-0.lead {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
+            b.text-info.mb-0.pb-0.lead(v-if="!get_token") {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
+            b.text-info.mb-0.pb-0.lead(v-else) {{ product.provider_price != null ? '$' + product.provider_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
         .col-12.bg-light.py-2.pb-3.mt-2
           product-handler(:product="product")
     
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import productHandler from './product-handler'
 export default {
   props: [
     'product'
   ],
+  computed: {
+    ...mapGetters([
+      'get_token', //get token user
+    ])
+  },
   components: {
     productHandler
   }

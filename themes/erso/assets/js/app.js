@@ -4320,6 +4320,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cart-items',
@@ -4447,7 +4448,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _product_handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./product-handler */ "./themes/erso/src/js/vue-app/components/cart/product-handler.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _product_handler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product-handler */ "./themes/erso/src/js/vue-app/components/cart/product-handler.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
 //
 //
 //
@@ -4478,10 +4487,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token' //get token user
+  ])),
   components: {
-    productHandler: _product_handler__WEBPACK_IMPORTED_MODULE_0__["default"]
+    productHandler: _product_handler__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -45900,19 +45912,33 @@ var render = function() {
                       ])
                     ]),
                     _c("td", { staticClass: "text-center text-dark" }, [
-                      _c("span", { staticClass: "small" }, [
-                        _vm._v(
-                          _vm._s(
-                            product.public_price != null
-                              ? "$" +
-                                  product.public_price.replace(
-                                    /\B(?=(\d{3})+(?!\d))/g,
-                                    ","
-                                  )
-                              : "sin dato"
-                          )
-                        )
-                      ])
+                      !_vm.get_token
+                        ? _c("span", { staticClass: "small" }, [
+                            _vm._v(
+                              _vm._s(
+                                product.public_price != null
+                                  ? "$" +
+                                      product.public_price.replace(
+                                        /\B(?=(\d{3})+(?!\d))/g,
+                                        ","
+                                      )
+                                  : "sin dato"
+                              )
+                            )
+                          ])
+                        : _c("span", { staticClass: "small" }, [
+                            _vm._v(
+                              _vm._s(
+                                product.provider_price != null
+                                  ? "$" +
+                                      product.provider_price.replace(
+                                        /\B(?=(\d{3})+(?!\d))/g,
+                                        ","
+                                      )
+                                  : "sin dato"
+                              )
+                            )
+                          ])
                     ])
                   ])
                 }),
@@ -46194,19 +46220,33 @@ var render = function() {
                   _vm._v("Código: " + _vm._s(_vm.product.provider_code))
                 ]),
                 _c("br"),
-                _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm.product.public_price != null
-                        ? "$" +
-                            _vm.product.public_price.replace(
-                              /\B(?=(\d{3})+(?!\d))/g,
-                              ","
-                            )
-                        : "Precio no disponible"
-                    )
-                  )
-                ])
+                !_vm.get_token
+                  ? _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.product.public_price != null
+                            ? "$" +
+                                _vm.product.public_price.replace(
+                                  /\B(?=(\d{3})+(?!\d))/g,
+                                  ","
+                                )
+                            : "Precio no disponible"
+                        )
+                      )
+                    ])
+                  : _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.product.provider_price != null
+                            ? "$" +
+                                _vm.product.provider_price.replace(
+                                  /\B(?=(\d{3})+(?!\d))/g,
+                                  ","
+                                )
+                            : "Precio no disponible"
+                        )
+                      )
+                    ])
               ])
             ]),
             _c(
@@ -68880,10 +68920,10 @@ var getters = {
     });
     return items;
   },
-  get_total_amount: function get_total_amount(state) {
+  get_total_amount: function get_total_amount(state, getters) {
     var total = 0;
     state.cart_items.map(function (e) {
-      total += e.quantity * e.public_price;
+      total += e.quantity * (!getters.get_token ? e.public_price : e.provider_price);
     });
     return total.toFixed(2);
   }
@@ -68942,6 +68982,7 @@ var mutations = {
         provider_code: data.provider_code,
         product_cover: data.product_cover,
         public_price: data.public_price,
+        provider_price: data.provider_price,
         brand_name: data.brand.brand_name,
         model: "".concat(data.shipowner.shipowner_name, " ").concat(data.car.model_name)
       };
