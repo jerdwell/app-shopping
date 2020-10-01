@@ -4572,7 +4572,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['get_token', //get token user
-  'get_branch_selected' //get branch selected
+  'get_branch_selected', //get branch selected
+  'get_cart_items' //get car items
   ])), {}, {
     disabledDates: function disabledDates() {
       this.$moment.locale();
@@ -4597,7 +4598,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 if (!(_this.get_token != '')) {
-                  _context.next = 21;
+                  _context.next = 22;
                   break;
                 }
 
@@ -4620,17 +4621,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 8:
                 send_order = _context.sent;
+                _this.shipping_date = null;
 
                 _this.clear_cart_data();
 
                 _this.loading = false;
-                _context.next = 19;
+                _context.next = 20;
                 break;
 
-              case 13:
-                _context.prev = 13;
+              case 14:
+                _context.prev = 14;
                 _context.t0 = _context["catch"](2);
-                _context.next = 17;
+                _context.next = 18;
                 return _this.$swal({
                   title: 'Solicitud de pedido',
                   text: _context.t0,
@@ -4638,15 +4640,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   buttons: false
                 });
 
-              case 17:
+              case 18:
                 _send_order = _context.sent;
                 _this.loading = false;
 
-              case 19:
-                _context.next = 22;
+              case 20:
+                _context.next = 23;
                 break;
 
-              case 21:
+              case 22:
                 errors = _this.$swal({
                   title: 'Envío de orden',
                   text: 'Para solicitar un pedido necesitar iniciar sesión.',
@@ -4657,12 +4659,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   if (res) window.location.href = '/ingresar';
                 });
 
-              case 22:
+              case 23:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 13]]);
+        }, _callee, null, [[2, 14]]);
       }))();
     }
   })
@@ -45666,7 +45668,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.get_cart_items.ength > 0
+  return _vm.get_cart_items.length > 0
     ? _c(
         "button",
         {
@@ -46284,7 +46286,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center" }, [
-    _vm.get_branch_selected
+    _vm.get_branch_selected && _vm.get_cart_items.length > 0
       ? _c("div", [_c("buttonDownloadQuotationGuest")], 1)
       : _vm._e(),
     _vm.get_token && _vm.get_branch_selected
@@ -46318,7 +46320,7 @@ var render = function() {
               1
             )
           ]),
-          _vm.shipping_date
+          _vm.shipping_date && _vm.get_cart_items.length > 0
             ? _c(
                 "button",
                 {

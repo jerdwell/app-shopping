@@ -1,6 +1,6 @@
 <template lang="pug">
 .text-center
-  div(v-if="get_branch_selected")
+  div(v-if="get_branch_selected && get_cart_items.length > 0")
     buttonDownloadQuotationGuest
   div(v-if="get_token && get_branch_selected")
     .py-2
@@ -17,7 +17,7 @@
           input-class="form-control")
     button.btn.btn-info(
       @click.prevent="sendOrder()"
-      v-if="shipping_date"
+      v-if="shipping_date && get_cart_items.length > 0"
       :disabled="loading")
       .spinner-border.spinner-border-sm.mr-2.align-middle(v-if="loading")
       .oi.oi-check.mr-2.align-middle(v-else)
@@ -50,6 +50,7 @@ export default {
     ...mapGetters([
       'get_token', //get token user
       'get_branch_selected', //get branch selected
+      'get_cart_items', //get car items
     ]),
     disabledDates() {
       this.$moment.locale();
@@ -76,6 +77,7 @@ export default {
             icon: 'success',
             buttons: false,
           })
+          this.shipping_date = null
           this.clear_cart_data()
           this.loading = false
         } catch (error) {
