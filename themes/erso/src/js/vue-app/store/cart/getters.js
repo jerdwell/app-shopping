@@ -19,7 +19,7 @@ const getters = {
   get_total_amount: (state, getters) => {
     let total = 0
     state.cart_items.map(e => {
-      total += e.quantity * (!getters.get_token ? e.public_price : e.provider_price)
+      total += e.quantity * (!getters.get_token ? e.public_price : e.customer_price)
     });
     return total.toFixed(2)
   }

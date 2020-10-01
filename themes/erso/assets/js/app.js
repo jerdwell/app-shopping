@@ -45929,9 +45929,9 @@ var render = function() {
                         : _c("span", { staticClass: "small" }, [
                             _vm._v(
                               _vm._s(
-                                product.provider_price != null
+                                product.customer_price != null
                                   ? "$" +
-                                      product.provider_price.replace(
+                                      product.customer_price.replace(
                                         /\B(?=(\d{3})+(?!\d))/g,
                                         ","
                                       )
@@ -46237,9 +46237,9 @@ var render = function() {
                   : _c("b", { staticClass: "text-info mb-0 pb-0 lead" }, [
                       _vm._v(
                         _vm._s(
-                          _vm.product.provider_price != null
+                          _vm.product.customer_price != null
                             ? "$" +
-                                _vm.product.provider_price.replace(
+                                _vm.product.customer_price.replace(
                                   /\B(?=(\d{3})+(?!\d))/g,
                                   ","
                                 )
@@ -68923,7 +68923,7 @@ var getters = {
   get_total_amount: function get_total_amount(state, getters) {
     var total = 0;
     state.cart_items.map(function (e) {
-      total += e.quantity * (!getters.get_token ? e.public_price : e.provider_price);
+      total += e.quantity * (!getters.get_token ? e.public_price : e.customer_price);
     });
     return total.toFixed(2);
   }
@@ -68982,7 +68982,7 @@ var mutations = {
         provider_code: data.provider_code,
         product_cover: data.product_cover,
         public_price: data.public_price,
-        provider_price: data.provider_price,
+        customer_price: data.customer_price,
         brand_name: data.brand.brand_name,
         model: "".concat(data.shipowner.shipowner_name, " ").concat(data.car.model_name)
       };

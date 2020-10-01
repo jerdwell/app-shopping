@@ -81,3 +81,9 @@
 1.0.28:
     - 'Created table loftonti_erso_recommended'
     - builder_table_create_loftonti_erso_recommended.php
+1.0.29:
+    - 'Updated table loftonti_erso_products'
+    - builder_table_update_loftonti_erso_products_15.php
+1.0.30:
+    - 'Updated table loftonti_erso_products'
+    - builder_table_update_loftonti_erso_products_16.php

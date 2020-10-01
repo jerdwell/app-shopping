@@ -33,8 +33,8 @@ tabs:
             span: left
             type: number
             tab: Producto
-        provider_price:
-            label: 'Precio de proveedor'
+        customer_price:
+            label: 'Precio de cliente'
             span: right
             type: number
             tab: Producto
