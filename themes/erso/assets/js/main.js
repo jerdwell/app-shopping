@@ -789,6 +789,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Navbar */ "./themes/erso/src/js/modules/Navbar.js");
 /* harmony import */ var _modules_Navbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_Navbar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_AOS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/AOS */ "./themes/erso/src/js/modules/AOS.js");
+/* harmony import */ var _modules_BlogBrowserFixer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/BlogBrowserFixer */ "./themes/erso/src/js/modules/BlogBrowserFixer.js");
+
 
 
 
@@ -796,6 +798,10 @@ _modules_Slide__WEBPACK_IMPORTED_MODULE_0___default.a.init('main-slide', 8000);
 
 window.onload = function () {
   _modules_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a.init();
+};
+
+window.onload = function () {
+  _modules_BlogBrowserFixer__WEBPACK_IMPORTED_MODULE_3__["default"].fixBrowser();
 };
 
 /***/ }),
@@ -816,6 +822,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 aos__WEBPACK_IMPORTED_MODULE_0___default.a.init();
+
+/***/ }),
+
+/***/ "./themes/erso/src/js/modules/BlogBrowserFixer.js":
+/*!********************************************************!*\
+  !*** ./themes/erso/src/js/modules/BlogBrowserFixer.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var BlogBrowserFixer = {
+  data: {
+    target: 'blog-filters'
+  },
+  fixBrowser: function fixBrowser() {
+    var element = document.getElementById(this.data.target);
+    if (!element) return false;
+    window.scrollTo(0, 0);
+    var parent = document.querySelector('.blog-filters-container');
+    var height = element.offsetHeight;
+    var parent_width = parent.offsetWidth;
+    var position = element.getBoundingClientRect();
+
+    window.onscroll = function () {
+      if (window.scrollY > position.top + height) {
+        if (!element.classList.contains('blog-filters-fixed')) {
+          element.style.width = parent_width + 'px';
+          element.classList.add('blog-filters-fixed');
+        }
+      } else {
+        if (element.classList.contains('blog-filters-fixed')) {
+          element.classList.remove('blog-filters-fixed');
+          element.style.width = 'auto';
+        }
+      }
+    };
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (BlogBrowserFixer);
 
 /***/ }),
 

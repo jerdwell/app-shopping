@@ -1,8 +1,10 @@
-<div class="py-5">
-    <h4 class="text-muted text-center">Búsqueda</h4>
-    <blog-search></blog-search>
-    <hr>
-    <h4 class="text-muted text-center">Categorías</h4>
-    <hr>
-    <category-filter-blog :categories="{{ categories|json_encode() }}"></category-filter-blog>
+<div class="py-5 blog-filters-container">
+    <div id="blog-filters">
+        <h4 class="text-muted text-center">Búsqueda</h4>
+        <blog-search></blog-search>
+        <hr>
+        <h4 class="text-muted text-center">Categorías</h4>
+        <hr>
+        <category-filter-blog :categories="{{ categories|json_encode() }}"></category-filter-blog>
+    </div>
 </div>

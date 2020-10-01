@@ -314,6 +314,13 @@
   }
 }
 
+.blog-filters-fixed {
+  right: 20px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .navbar-main-erso {
   background-image: linear-gradient(rgba(32, 32, 43, 0.5) 60%, transparent 100%);
   z-index: 1000;
