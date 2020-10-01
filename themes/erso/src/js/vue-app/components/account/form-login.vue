@@ -77,7 +77,6 @@ export default {
           title: 'inicio de sesión',
           text: `Bienvenido, has iniciado sesión: ${login.data.name}`,
           icon: 'success',
-          buttons: false
         })
         this.setDataAccount({
           name: login.data.name,
@@ -89,7 +88,7 @@ export default {
           title: 'Inicio de sesión',
           text: `Error al intentar ingresar: ${error.response.data}`,
           icon: 'error',
-          buttons: false
+          buttons: true
         })
       }
       this.loading = false

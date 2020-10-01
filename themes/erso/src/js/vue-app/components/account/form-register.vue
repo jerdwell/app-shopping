@@ -127,7 +127,8 @@ export default {
         this.$swal({
           title: 'Registro de usuario',
           text: `Error al registrar el usuario: ${error.response.data}`,
-          icon: 'error'
+          icon: 'error',
+          buttons: true
         })
       }
       this.loading = false

@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.btn.btn-sm.btn-dark.my-2(@click.prevent="downLoadQuotation")
+  button.btn.btn-sm.btn-dark.my-2(@click.prevent="downLoadQuotation" v-if="get_cart_items.ength > 0")
     .spinner-border.spinner-border-sm.mr-2(v-if="loading")
     .fas.fa-download.mr-2(v-else)
     span Descargar cotización
@@ -17,6 +17,7 @@ export default {
   computed: {
     ...mapGetters([
       'get_token', //get token user
+      'get_cart_items', //get car items
     ]),
   },
   methods: {

@@ -3440,8 +3440,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this.$swal({
                   title: 'inicio de sesión',
                   text: "Bienvenido, has iniciado sesi\xF3n: ".concat(login.data.name),
-                  icon: 'success',
-                  buttons: false
+                  icon: 'success'
                 });
 
               case 7:
@@ -3464,7 +3463,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   title: 'Inicio de sesión',
                   text: "Error al intentar ingresar: ".concat(_context.t0.response.data),
                   icon: 'error',
-                  buttons: false
+                  buttons: true
                 });
 
               case 14:
@@ -3655,7 +3654,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this2.$swal({
                   title: 'Registro de usuario',
                   text: "Error al registrar el usuario: ".concat(_context.t0.response.data),
-                  icon: 'error'
+                  icon: 'error',
+                  buttons: true
                 });
 
               case 16:
@@ -4131,7 +4131,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loading: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_token' //get token user
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_token', //get token user
+  'get_cart_items' //get car items
   ])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['clear_cart_data', //clear cart data
   'download_quotations_guest' //download quotation without account
@@ -45643,24 +45644,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "btn btn-sm btn-dark my-2",
-      on: {
-        click: function($event) {
-          $event.preventDefault()
-          return _vm.downLoadQuotation($event)
-        }
-      }
-    },
-    [
-      _vm.loading
-        ? _c("div", { staticClass: "spinner-border spinner-border-sm mr-2" })
-        : _c("div", { staticClass: "fas fa-download mr-2" }),
-      _c("span", [_vm._v("Descargar cotización")])
-    ]
-  )
+  return _vm.get_cart_items.ength > 0
+    ? _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-dark my-2",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.downLoadQuotation($event)
+            }
+          }
+        },
+        [
+          _vm.loading
+            ? _c("div", {
+                staticClass: "spinner-border spinner-border-sm mr-2"
+              })
+            : _c("div", { staticClass: "fas fa-download mr-2" }),
+          _c("span", [_vm._v("Descargar cotización")])
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
