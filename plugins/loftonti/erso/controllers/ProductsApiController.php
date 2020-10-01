@@ -86,9 +86,9 @@ class ProductsApiController extends Controller {
       array_push($codes_filtered, $code -> id);
     }
     $products = Products::whereIn('erso_code_id', $codes_filtered)
-      ->with(['shipowner', 'car', 'brand', 'category'])
+      ->with(['shipowner', 'car', 'brand', 'category', 'erso_code'])
       ->paginate(20);
-    $products -> makeHidden(['model_id', 'enterprise_id', 'shipowner_id', 'category_id', 'brand_id', 'provider_price', 'provider_code']);
+    $products -> makeHidden(['model_id', 'enterprise_id', 'shipowner_id', 'category_id', 'brand_id', 'provider_price']);
     return $products;
   }
 

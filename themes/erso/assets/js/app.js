@@ -69105,29 +69105,28 @@ var actions = {
                 url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year, "/category/").concat(data.category);
               }
 
-              console.log(url);
-              _context.next = 9;
+              _context.next = 8;
               return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get(url);
 
-            case 9:
+            case 8:
               response = _context.sent;
               dispatch('setListProducts', response.data.products);
               dispatch('setYearsRelated', response.data.years);
               dispatch('setCategoriesRelated', response.data.categories);
-              _context.next = 18;
+              _context.next = 17;
               break;
 
-            case 15:
-              _context.prev = 15;
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 18:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 15]]);
+      }, _callee, null, [[1, 14]]);
     }));
 
     function serachProductModelShipowner(_x, _x2) {

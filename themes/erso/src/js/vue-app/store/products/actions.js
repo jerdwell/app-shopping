@@ -44,7 +44,6 @@ const actions = {
       }else{
         url = `search-products/${model_id}/${shipowner_id}/year/${data.year}/category/${data.category}`
       }
-      console.log(url)  
       let response = await vm.prototype.$http.get(url)
       dispatch('setListProducts', response.data.products)
       dispatch('setYearsRelated', response.data.years)
