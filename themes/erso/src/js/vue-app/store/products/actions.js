@@ -2,8 +2,14 @@ import vm from 'vue'
 const actions = {
 
   //setear la susucrsal seleccionada
-  setBranchSelected: ({ commit }, data) => {
-    commit('SET_BRANCH_SELECTED', data)
+  setBranchSelected: ({ commit, getters }, data) => {
+    try {
+      if(getters.get_cart_items.length > 0) vm.prototype.$swal('Cambio de sucursal', 'Al actualizar la sucursal tus productos han sido eliminados del carrito.', 'warning')
+      commit('SET_BRANCH_SELECTED', data)
+      commit('CLEAR_CART_DATA')
+      commit('CLEAR_PRODUCTS')
+    } catch (error) {
+    }
   },
 
   // setear el listado de producto

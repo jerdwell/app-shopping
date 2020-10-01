@@ -3,14 +3,24 @@
     .container-fluid
       .row
         .col-xl-9
-          .container
-            .d-flex.justify-content-between.align-items-center
-              h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
-            hr.border-dark
-            .container
-              .row
-                .col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
-                  productItemBrowser(:product="product")
+          .container(v-if="get_list_products.data")
+            div(v-if="get_list_products.data.length > 0")
+              .d-flex.justify-content-between.align-items-center
+                h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
+              hr.border-dark
+              .container
+                .row
+                  .col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
+                    productItemBrowser(:product="product")
+            .card(v-else)
+              .card-body
+                h4.text-muted.text-center Lo sentimos, no existen resultados relacionados
+
+          .container.py-5(v-else)
+            .card
+              .card-body
+                h4.text-muted.text-center Por favor usa los filtros para encontrar tus productos
+        
         .col-xl-3
           cartShoppingAsside
 

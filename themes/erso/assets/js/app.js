@@ -5650,6 +5650,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47262,54 +47272,69 @@ var render = function() {
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-xl-9" }, [
-            _c("div", { staticClass: "container" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "d-flex justify-content-between align-items-center"
-                },
-                [
-                  _c(
-                    "h5",
-                    {
-                      staticClass:
-                        "text-dark text-center m-0 p-0 align-items-center"
-                    },
-                    [
-                      _vm._v("Resultados "),
-                      _c("small", { staticClass: "small" }, [
-                        _vm._v("total: " + _vm._s(_vm.get_list_products.total))
-                      ])
-                    ]
-                  )
-                ]
-              ),
-              _c("hr", { staticClass: "border-dark" }),
-              _c("div", { staticClass: "container" }, [
-                _c(
-                  "div",
-                  { staticClass: "row" },
-                  _vm._l(_vm.get_list_products.data, function(product, i) {
-                    return (_vm.year_filter == "all"
-                    ? true
-                    : product.product_year == _vm.year_filter)
-                      ? _c(
+            _vm.get_list_products.data
+              ? _c("div", { staticClass: "container" }, [
+                  _vm.get_list_products.data.length > 0
+                    ? _c("div", [
+                        _c(
                           "div",
-                          { key: i, staticClass: "col-md-6 col-lg-4 mb-3" },
+                          {
+                            staticClass:
+                              "d-flex justify-content-between align-items-center"
+                          },
                           [
-                            _c("productItemBrowser", {
-                              attrs: { product: product }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  }),
-                  0
-                )
-              ])
-            ])
+                            _c(
+                              "h5",
+                              {
+                                staticClass:
+                                  "text-dark text-center m-0 p-0 align-items-center"
+                              },
+                              [
+                                _vm._v("Resultados "),
+                                _c("small", { staticClass: "small" }, [
+                                  _vm._v(
+                                    "total: " +
+                                      _vm._s(_vm.get_list_products.total)
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
+                        _c("hr", { staticClass: "border-dark" }),
+                        _c("div", { staticClass: "container" }, [
+                          _c(
+                            "div",
+                            { staticClass: "row" },
+                            _vm._l(_vm.get_list_products.data, function(
+                              product,
+                              i
+                            ) {
+                              return (_vm.year_filter == "all"
+                              ? true
+                              : product.product_year == _vm.year_filter)
+                                ? _c(
+                                    "div",
+                                    {
+                                      key: i,
+                                      staticClass: "col-md-6 col-lg-4 mb-3"
+                                    },
+                                    [
+                                      _c("productItemBrowser", {
+                                        attrs: { product: product }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            }),
+                            0
+                          )
+                        ])
+                      ])
+                    : _c("div", { staticClass: "card" }, [_vm._m(0)])
+                ])
+              : _c("div", { staticClass: "container py-5" }, [_vm._m(1)])
           ]),
           _c("div", { staticClass: "col-xl-3" }, [_c("cartShoppingAsside")], 1)
         ])
@@ -47393,7 +47418,30 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h4", { staticClass: "text-muted text-center" }, [
+        _vm._v("Lo sentimos, no existen resultados relacionados")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("h4", { staticClass: "text-muted text-center" }, [
+          _vm._v("Por favor usa los filtros para encontrar tus productos")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -69006,8 +69054,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var actions = {
   //setear la susucrsal seleccionada
   setBranchSelected: function setBranchSelected(_ref, data) {
-    var commit = _ref.commit;
-    commit('SET_BRANCH_SELECTED', data);
+    var commit = _ref.commit,
+        getters = _ref.getters;
+
+    try {
+      if (getters.get_cart_items.length > 0) vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$swal('Cambio de sucursal', 'Al actualizar la sucursal tus productos han sido eliminados del carrito.', 'warning');
+      commit('SET_BRANCH_SELECTED', data);
+      commit('CLEAR_CART_DATA');
+      commit('CLEAR_PRODUCTS');
+    } catch (error) {}
   },
   // setear el listado de producto
   setListProducts: function setListProducts(_ref2, data) {
