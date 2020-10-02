@@ -51,3 +51,14 @@ erso_code:
   manage:
     form: $/loftonti/erso/models/ersocodes/fields.yaml
     list: $/loftonti/erso/models/ersocodes/columns.yaml
+
+branches:
+  label: Sucursales
+  view:
+    list: $/loftonti/erso/models/products/columns_pivot.yaml
+    toolbarButtons: link|unlink
+  manage:
+    list: $/loftonti/erso/models/branches/columns.yaml
+  pivot:
+    form: $/loftonti/erso/models/products/fields_pivot.yaml
+    # list: $/loftonti/erso/models/branches/columns.yaml

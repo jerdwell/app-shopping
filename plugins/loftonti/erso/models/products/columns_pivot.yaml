@@ -1,0 +1,9 @@
+columns:
+  stock: 
+    label: Stock
+    type: text
+    select: loftonti_erso_product_branch.stock 
+  branch: 
+    label: Sucursal
+    type: text
+    select: loftonti_erso_branches.branch_name

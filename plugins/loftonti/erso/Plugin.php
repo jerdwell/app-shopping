@@ -12,6 +12,7 @@ class Plugin extends PluginBase
             'LoftonTi\Erso\Components\ContactBranch' => 'ContactBranch',
             'LoftonTi\Erso\Components\ContactForm' => 'ContactForm',
             'LoftonTi\Erso\Components\ProductDetail' => 'ProductDetail',
+            'LoftonTi\Erso\Components\SelectBranch' => 'SelectBranch',
         ];
     }
 

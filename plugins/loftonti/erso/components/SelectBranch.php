@@ -1,17 +1,16 @@
-<?php namespace Loftonti\Erso\Components;
+<?php namespace Loftonti\erso\Components;
 
 use Cms\Classes\ComponentBase;
-use Loftonti\Erso\Models\Categories;
+use Loftonti\Erso\Models\Branches;
 
-class ListCategories extends ComponentBase
+class SelectBranch extends ComponentBase
 {
-    public $list_categories, $branch;
-
+    public $branches;
     public function componentDetails()
     {
         return [
-            'name'        => 'Categories list',
-            'description' => 'Listado de categorías por bloque'
+            'name'        => 'Select Branch',
+            'description' => 'Select branch to get list of categries or products'
         ];
     }
 
@@ -23,13 +22,12 @@ class ListCategories extends ComponentBase
                 'description' => 'ERSO branch to get stock',
                 'type' => 'string',
                 'validationPattern' => '^[a-z0-9-]+$'
-            ]
+            ],
         ];
     }
 
     public function onRun()
     {
-        $this -> branch = $this -> property('branch');
-        $this -> list_categories = Categories::all();
+        $this -> branches = Branches::all();
     }
 }

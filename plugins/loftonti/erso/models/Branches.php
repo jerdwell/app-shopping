@@ -46,4 +46,18 @@ class Branches extends Model
     {
         $this -> slug = Str::slug($this->branch_name);
     }
+
+    /**
+     * @var array belongsToMany set the relationships into the model
+     */
+    public $belongsToMany = [
+        'products' => [
+            'Loftonti\Erso\Models\Products',
+            'table' => 'loftonti_erso_product_branch',
+            'key' => 'branch_id',
+            'otherKey' => 'product_id',
+            'pivot' => ['stock']
+        ],
+    ];
+
 }

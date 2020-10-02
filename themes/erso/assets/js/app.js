@@ -5928,7 +5928,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'products-category-filter',
-  props: ['category', 'categories', 'model', 'shipowner', 'year'],
+  props: ['category', 'categories', 'model', 'shipowner', 'year', 'branch'],
   components: {
     popUpSearcheable: _components_dashboard_pop_up_searcheable__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -5941,7 +5941,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     goToCategory: function goToCategory() {
       if (this.category_fiter) {
-        var url = "/productos/".concat(this.category_fiter);
+        var url = "/productos/".concat(this.branch, "/").concat(this.category_fiter);
         if (this.shipowner) url += "/".concat(this.shipowner);
         if (this.model) url += "/".concat(this.model);
         if (this.year) url += "/".concat(this.year);
@@ -6005,7 +6005,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'products-years-filter',
-  props: ['category', 'year', 'model', 'shipowner'],
+  props: ['category', 'year', 'model', 'shipowner', 'branch'],
   data: function data() {
     return {
       data_search: '',
@@ -6114,7 +6114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         car = this.shipowner + '-' + this.model;
       }
 
-      var url = "/productos/".concat(this.category, "/").concat(car.replace('-', '/'), "/").concat(this.year_selected);
+      var url = "/productos/".concat(this.branch, "/").concat(this.category, "/").concat(car.replace('-', '/'), "/").concat(this.year_selected);
       location.assign(url);
     },
     resetDefault: function resetDefault() {

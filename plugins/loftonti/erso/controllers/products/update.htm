@@ -11,7 +11,13 @@
 
         <div class="layout-row">
             <div class="col-md-9">
-                <?= $this->formRender() ?>
+                <div>
+                    <?= $this->formRender() ?>
+                </div>
+                <div>
+                    <h4 class="text-center text-muted">Sucursales/Stock</h4>
+                    <?= $this->relationRender('branches') ?>
+                </div>
             </div>
             <div class="col-md-3">
                 <h4 class="text-center text-muted">Marca</h4>

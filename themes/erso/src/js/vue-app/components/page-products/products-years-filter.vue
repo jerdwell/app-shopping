@@ -25,7 +25,8 @@ export default {
     'category',
     'year',
     'model',
-    'shipowner'
+    'shipowner',
+    'branch'
   ],
   data() {
     return {
@@ -78,7 +79,7 @@ export default {
       }else{
         car = this.shipowner + '-' + this.model
       }
-      let url = `/productos/${this.category}/${car.replace('-', '/')}/${this.year_selected}`
+      let url = `/productos/${this.branch}/${this.category}/${car.replace('-', '/')}/${this.year_selected}`
       location.assign(url)
     },
     resetDefault(){

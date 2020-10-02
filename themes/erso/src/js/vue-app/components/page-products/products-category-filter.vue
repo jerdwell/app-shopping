@@ -24,6 +24,7 @@ export default {
     'model',
     'shipowner',
     'year',
+    'branch',
   ],
   components: {
     popUpSearcheable
@@ -37,7 +38,7 @@ export default {
   methods: {
     goToCategory(){
       if(this.category_fiter) {
-        let url = `/productos/${this.category_fiter}`
+        let url = `/productos/${this.branch}/${this.category_fiter}`
         if(this.shipowner) url += `/${this.shipowner}`
         if(this.model) url += `/${this.model}`
         if(this.year) url += `/${this.year}`

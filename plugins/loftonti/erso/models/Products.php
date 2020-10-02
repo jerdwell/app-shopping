@@ -136,4 +136,14 @@ class Products extends Model
         'erso_code' => [ 'Loftonti\Erso\Models\ErsoCodes', 'key' => 'erso_code_id' ],
     ];
 
+    public $belongsToMany = [
+        'branches' => [
+            'Loftonti\Erso\Models\Branches',
+            'table' => 'loftonti_erso_product_branch',
+            'key' => 'product_id',
+            'otherKey' => 'branch_id',
+            'pivot' => ['stock']
+        ],
+    ];
+
 }

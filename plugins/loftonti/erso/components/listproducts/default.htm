@@ -5,16 +5,18 @@
 {% set categories = __SELF__.categories %}
 {% set year = __SELF__.year %}
 {% set model_shipowner = __SELF__.model_shipowner %}
+{% set branch = __SELF__.branch %}
 
 {% if category %}
-{% partial 'components/products/_filters'
-  category=category
-  categories=categories
-  year=year
-  model_shipowner=model_shipowner
-  model=model
-  shipowner=shipowner
-  %}
-{% partial 'components/products/_list-products' list=list  %}
+  {% partial 'components/products/_filters'
+    category=category
+    categories=categories
+    year=year
+    model_shipowner=model_shipowner
+    model=model
+    shipowner=shipowner
+    branch=branch
+    %}
+  {% partial 'components/products/_list-products' list=list  %}
 {% endif %}
 

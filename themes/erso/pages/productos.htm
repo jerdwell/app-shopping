@@ -1,17 +1,21 @@
 title = "Productos"
-url = "/productos/:category?/:model?/:shipowner?/:year?"
+url = "/productos/:branch?/:category?/:model?/:shipowner?/:year?"
 layout = "_default"
 is_hidden = 0
 
 [ListProducts]
+branch = "{{ :branch }}"
 category = "{{ :category }}"
 model = "{{ :model }}"
 shipowner = "{{ :shipowner }}"
 year = "{{ :year }}"
 
 [ListCategories]
-==
+branch = "{{ :branch }}"
 
+[SelectBranch]
+branch = "{{ :branch }}"
+==
 {%
     partial 'components/_step'
     title = this.param.category != null ? this.param.category|capitalize : "Nuestros productos"
@@ -23,7 +27,11 @@ year = "{{ :year }}"
     img= "cover_01.jpg"|media
 %}
 
-{% if( this.param.category == '') %}
+{% if (this.param.branch == '') %}
+    {% component 'SelectBranch' %}
+{% endif %}
+
+{% if (this.param.category == '') and (this.param.branch != '') %}
     {% component 'ListCategories' %}
     <!-- {% partial 'components/products/_recommended' %} -->
 {% endif %}
