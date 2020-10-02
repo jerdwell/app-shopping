@@ -6,11 +6,12 @@
 </div>
 <div class="select-branch-content" style="background-image: url({{ 'footer_02.png'|media }});">
   {% for branch in branches %}
-    <a href="/productos/{{ branch.slug }}" class="branch-item my-3">
+    <select-branch :branch="{{ branch }}"></select-branch>
+    <!-- <a href="/productos/{{ branch.slug }}" class="branch-item my-3">
       <div class="branch-item-icon bg-primary">
         <div class="fas fa-map-marker-alt text-white"></div>
       </div>
       <h3 class="branch-item-name text-center mt-3">{{ branch.branch_name }}</h3>
-    </a>
+    </a> -->
   {% endfor %}
 </div>

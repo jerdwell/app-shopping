@@ -44,6 +44,7 @@ import productItemBrowser from './components/cart/product-item-browser'
 import productsCarsFilter from './components/page-products/products-cars-filter'
 import productsYearsFilter from './components/page-products/products-years-filter'
 import productsCategoryFilter from './components/page-products/products-category-filter'
+import selectBranch from './components/page-products/select-branch'
 
 //blog
 import categoryFilterBlog from './components/blog/category-filter-blog'
@@ -71,7 +72,8 @@ const app = new Vue({
     categoryFilterBlog,
     buttonAccountRegister,
     contactForm,
-    blogSearch
+    blogSearch,
+    selectBranch
   },
   template: '',
   store,
