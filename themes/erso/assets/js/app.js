@@ -46517,7 +46517,7 @@ var render = function() {
             staticClass: "text-light main-menu-item-link",
             attrs: { href: "/login" }
           },
-          [_c("span", [_vm._v("Registro/login")])]
+          [_c("span", [_vm._v("Registro/Login")])]
         )
       : _c(
           "a",
@@ -46525,7 +46525,7 @@ var render = function() {
             staticClass: "text-light main-menu-item-link",
             attrs: { href: "/mi-cuenta" }
           },
-          [_c("span", [_vm._v("Mi cuenta")])]
+          [_c("span", [_vm._v("Mi Cuenta")])]
         )
   ])
 }

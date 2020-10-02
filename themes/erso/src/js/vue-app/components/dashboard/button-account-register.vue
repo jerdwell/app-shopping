@@ -1,9 +1,9 @@
 <template lang="pug">
 li.main-menu-item
   a.text-light.main-menu-item-link(href="/login" v-if="!get_token")
-    span Registro/login
+    span Registro/Login
   a.text-light.main-menu-item-link(href="/mi-cuenta" v-else)
-    span Mi cuenta
+    span Mi Cuenta
 </template>
 
 <script>
