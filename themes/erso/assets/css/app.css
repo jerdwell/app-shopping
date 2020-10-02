@@ -740,7 +740,7 @@
 
 @media screen and (min-width: 768px) {
   .step .step-text {
-    padding-top: 60px;
+    padding-top: 80px;
     min-height: 250px;
     font-size: 3em;
   }

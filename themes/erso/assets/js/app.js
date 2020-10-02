@@ -4432,10 +4432,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   ])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['add_cart_item', //add item to cart shopping or quotation
   'remove_cart_item' //remove item to cart shopping or quotation
-  ])),
-  mounted: function mounted() {
-    console.log(this.product);
-  }
+  ]))
 });
 
 /***/ }),
@@ -46153,7 +46150,7 @@ var render = function() {
     "div",
     {
       staticClass: "my-3 product-item-browser",
-      attrs: { "data-aos": "fade-up", "data-aos-offset": "200" }
+      attrs: { "data-aos": "fade-up", "data-aos-offset": "50" }
     },
     [
       _c("div", { staticClass: "card-product-item card" }, [

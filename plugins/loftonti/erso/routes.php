@@ -6,4 +6,5 @@
     Route::get('general-search-products/{branch}/{data}', 'Loftonti\Erso\Controllers\ProductsApiController@GeneralSearchProduct');
     Route::get('code-search-products/{branch}/{data}', 'Loftonti\Erso\Controllers\ProductsApiController@CodeSearchProduct');
     Route::post('contact-form', 'Loftonti\Erso\Controllers\ContactForm@contactForm');
+    // Route::get('relate-products-stock', 'Loftonti\Erso\Controllers\ContactForm@relateTest');
   });

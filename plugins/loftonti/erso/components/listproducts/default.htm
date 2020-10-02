@@ -6,6 +6,7 @@
 {% set year = __SELF__.year %}
 {% set model_shipowner = __SELF__.model_shipowner %}
 {% set branch = __SELF__.branch %}
+{% set limit = __SELF__.limit %}
 
 {% if category %}
   {% partial 'components/products/_filters'
@@ -17,6 +18,6 @@
     shipowner=shipowner
     branch=branch
     %}
-  {% partial 'components/products/_list-products' list=list  %}
+  {% partial 'components/products/_list-products' list=list limit=limit  %}
 {% endif %}
 

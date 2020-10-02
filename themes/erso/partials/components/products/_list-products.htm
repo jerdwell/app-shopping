@@ -1,3 +1,5 @@
+{{ list.last_page }}
+{{ list.path }}
 {% if list.total > 0 %}
 <div class="page-list-products-container py-5" style="background-image: url({{ 'footer_02.png'|media }});">
   <div class="container-fluid">
@@ -14,14 +16,16 @@
     </div>
   </div>
 </div>
-<div class="bg-dark">
-  <div class="container py-3">
-    <span class="h5 text-info text-left d-block">Páginas totales</span>
-    <div class="erso-paginate">
-      {{ list.render|raw }}
+  {% if list.total > limit %}
+  <div class="bg-dark">
+    <div class="container py-3">
+      <span class="h5 text-info text-left d-block">Páginas totales</span>
+      <div class="erso-paginate">
+        {{ list.render|raw }}
+      </div>
     </div>
   </div>
-</div>
+  {% endif %}
 {% else %}
 <div class="container">
   <div class="row py-5 my-5">

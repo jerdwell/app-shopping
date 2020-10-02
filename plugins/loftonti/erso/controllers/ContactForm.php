@@ -2,6 +2,7 @@
 
 use Backend\Classes\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -70,5 +71,20 @@ class ContactForm extends Controller
       if($valid -> errors() -> has('comments')) throw new \Exception('Los comentarios no son un dato válido');
     }
   }
+
+  
+  // function relateTest()
+  // {
+  //   $total = DB::table('loftonti_erso_products') -> selectRaw('count(*) as total') -> first();
+  //   // return [$total -> total];
+  //   $query = [];
+  //   for ($i=0; $i < $total -> total; $i++) { 
+  //     array_push($query, ['product_id' => $i, 'branch_id' => 1, 'stock' => random_int(0, 200)]);
+  //     array_push($query, ['product_id' => $i, 'branch_id' => 2, 'stock' => random_int(0, 200)]);
+  //     array_push($query, ['product_id' => $i, 'branch_id' => 3, 'stock' => random_int(0, 200)]);
+  //   }
+  //   // return $query;
+  //   return DB::table('loftonti_erso_product_branch') -> insert($query);
+  // }
 
 }

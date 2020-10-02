@@ -1,7 +1,7 @@
 <template lang="pug">
 .my-3.product-item-browser(
     data-aos="fade-up"
-    data-aos-offset="200"
+    data-aos-offset="50"
   )
   .card-product-item.card
     .card-header.p-0(stye="z-index:0; position: relative;")

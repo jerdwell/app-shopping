@@ -35,9 +35,6 @@ export default {
       'remove_cart_item', //remove item to cart shopping or quotation
     ])
 
-  },
-  mounted() {
-    console.log(this.product);
-  },
+  }
 }
 </script>
