@@ -66,6 +66,7 @@ class ListProducts extends ComponentBase
         try {
             $this -> branch = $this->property('branch') ? $this->property('branch') : null;
             $this -> category = $this->property('category') ? $this->property('category') : null;
+            if($this -> branch == null || $this -> category == null) return;
             $this -> model = $this->property('model') ? $this->property('model') : null;
             $this -> shipowner = $this->property('shipowner') ? $this->property('shipowner') : null;
             $this -> year = $this->property('year') ? $this->property('year') : null;
@@ -110,14 +111,15 @@ class ListProducts extends ComponentBase
     public function validBranch()
     {
         $branch = Branches::where('slug', $this -> property('branch')) -> first();
-        if(empty($branch)) throw new \Exception("Esta sucursal no existe");   
+        if(empty($branch)) throw new \Exception("Esta sucursal no existe");
     }
 
     public function getList()
     {
+        $branch = $this -> property('branch');
         if($this -> model == null || $this -> shipowner == null || $this -> year == null){
             // $this -> categories = '';
-            return Products::filterByCategory('')
+            return Products::filterByCategory($this -> category, $branch)
                 ->with([
                     'brand',
                     'category',
@@ -130,7 +132,7 @@ class ListProducts extends ComponentBase
                 -> paginate($this -> limit);
         }else{
             $category = Categories::where('category_slug', $this -> category) -> first();
-            return Products::filterCars( $this -> model, $this -> shipowner, 'category', $category -> id, 'year', $this -> year )
+            return Products::filterCars($branch, $this -> model, $this -> shipowner, 'category', $category -> id, 'year', $this -> year )
             -> paginate($this -> limit);
         }
     }

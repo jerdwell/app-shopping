@@ -10,7 +10,7 @@
           @change="changeBranch")
           option(value="") Selecciona una opción
           option(value="tlalnepantla") Tlalnepantla
-          option(value="izcalli") Cuautitlán Izcalli
+          option(value="cuautitlan-izcalli") Cuautitlán Izcalli
           option(value="coacalco") Coacalco
 
 </template>

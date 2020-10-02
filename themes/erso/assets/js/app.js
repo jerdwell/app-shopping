@@ -6057,7 +6057,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 9:
                 car = car.split('-');
                 _context.next = 12;
-                return _this.$http.get("search-products/".concat(car[0], "/").concat(car[1]));
+                return _this.$http.get("search-products/".concat(_this.branch, "/").concat(car[0], "/").concat(car[1]));
 
               case 12:
                 results = _context.sent;
@@ -46617,7 +46617,7 @@ var render = function() {
             _c("option", { attrs: { value: "tlalnepantla" } }, [
               _vm._v("Tlalnepantla")
             ]),
-            _c("option", { attrs: { value: "izcalli" } }, [
+            _c("option", { attrs: { value: "cuautitlan-izcalli" } }, [
               _vm._v("Cuautitlán Izcalli")
             ]),
             _c("option", { attrs: { value: "coacalco" } }, [_vm._v("Coacalco")])
@@ -69125,13 +69125,14 @@ var actions = {
   //busqueda por modelo / armadora
   serachProductModelShipowner: function () {
     var _serachProductModelShipowner = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref5, data) {
-      var dispatch, model_id, shipowner_id, url, response;
+      var dispatch, getters, model_id, shipowner_id, url, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref5.dispatch;
+              dispatch = _ref5.dispatch, getters = _ref5.getters;
               _context.prev = 1;
+              console.log(getters.get_branch_selected);
               model_id = data.model_id;
               shipowner_id = data.shipowner_id;
               url = '';
@@ -69139,37 +69140,38 @@ var actions = {
               if (data.url) {
                 url = data.url;
               } else if (!data.year && !data.category) {
-                url = "search-products/".concat(model_id, "/").concat(shipowner_id);
+                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id);
               } else if (data.year && !data.category) {
-                url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year);
+                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year);
               } else if (!data.year && data.category) {
-                url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/category/").concat(data.category);
+                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/category/").concat(data.category);
               } else {
-                url = "search-products/".concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year, "/category/").concat(data.category);
+                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year, "/category/").concat(data.category);
               }
 
-              _context.next = 8;
+              _context.next = 9;
               return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get(url);
 
-            case 8:
+            case 9:
               response = _context.sent;
+              console.log(response);
               dispatch('setListProducts', response.data.products);
               dispatch('setYearsRelated', response.data.years);
               dispatch('setCategoriesRelated', response.data.categories);
-              _context.next = 17;
+              _context.next = 19;
               break;
 
-            case 14:
-              _context.prev = 14;
+            case 16:
+              _context.prev = 16;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 17:
+            case 19:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 14]]);
+      }, _callee, null, [[1, 16]]);
     }));
 
     function serachProductModelShipowner(_x, _x2) {

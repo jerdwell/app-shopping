@@ -15,18 +15,18 @@ class ProductsApiController extends Controller {
     return $shipowners;
   }
 
-  public function searchCars($model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null)
+  public function searchCars($branch, $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null)
   {
     $products = Products::filterCars(
-      $model, $shipowner, $filter1, $value1, $filter2, $value2
+      $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2
     )->paginate(20);
     
     $years = Products::filterYear(
-      $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null
+      $branch,$model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null
       )->get();
 
     $categories = Products::filterCategories(
-      $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null
+      $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null, $branch
     )
     ->with(['category'])
     ->get();

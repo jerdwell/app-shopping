@@ -52,7 +52,9 @@ export default {
          car = this.shipowner + '-' + this.model
         }
         car = car.split('-')
-        let results = await this.$http.get(`search-products/${car[0]}/${car[1]}`)
+        let results = await this.$http.get(`search-products/${this.branch}/${car[0]}/${car[1]}`)
+        // console.log(results)
+        // return
         if(!results.data || results.data.years.length <= 0) throw 'No existen resultados'
         let years = []
         results.data.years.map(e => {

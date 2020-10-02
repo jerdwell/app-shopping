@@ -28,23 +28,25 @@ const actions = {
   },
 
   //busqueda por modelo / armadora
-  serachProductModelShipowner: async ({ dispatch }, data) => {
+  serachProductModelShipowner: async ({ dispatch, getters }, data) => {
     try {
+      console.log(getters.get_branch_selected);
       let model_id = data.model_id
       let shipowner_id = data.shipowner_id
       let url = ''
       if(data.url){
         url = data.url
       }else if(!data.year && !data.category){
-        url = `search-products/${model_id}/${shipowner_id}`
+        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}`
       }else if(data.year && !data.category){
-        url = `search-products/${model_id}/${shipowner_id}/year/${data.year}`
+        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/year/${data.year}`
       }else if(!data.year && data.category){
-        url = `search-products/${model_id}/${shipowner_id}/category/${data.category}`
+        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/category/${data.category}`
       }else{
-        url = `search-products/${model_id}/${shipowner_id}/year/${data.year}/category/${data.category}`
+        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/year/${data.year}/category/${data.category}`
       }
       let response = await vm.prototype.$http.get(url)
+      console.log(response)
       dispatch('setListProducts', response.data.products)
       dispatch('setYearsRelated', response.data.years)
       dispatch('setCategoriesRelated', response.data.categories)

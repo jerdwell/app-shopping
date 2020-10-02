@@ -41,9 +41,12 @@ class Products extends Model
 
     /** Scopes */
 
-    public function scopeFilterCars($query, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
     {
         $query -> where('shipowner_id', $shipowner)
+        -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
+            -> where('loftonti_erso_branches.slug', $branch)
         ->where('model_id', $model)
         ->when($filter1, function($q) use($filter1, $value1){
             if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
@@ -67,9 +70,12 @@ class Products extends Model
         return $query;
     }
 
-    public function scopeFilterYear($query, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    public function scopeFilterYear($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
     {
         $query -> select('product_year')
+            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
+            -> where('loftonti_erso_branches.slug', $branch)
             ->groupBy('product_year')
             ->where('shipowner_id', $shipowner)
             ->where('model_id', $model)
@@ -89,9 +95,12 @@ class Products extends Model
         return $query;
     }
 
-    public function scopeFilterCategories($query, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    public function scopeFilterCategories($query, $model, $shipowner, $filter1, $value1, $filter2, $value2, $branch)
     {
         $query -> select('category_id')
+            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
+            -> where('loftonti_erso_branches.slug', $branch)
         ->where('shipowner_id', $shipowner)
         ->where('model_id', $model)
         ->when($filter1, function($q) use($filter1, $value1){
@@ -114,13 +123,16 @@ class Products extends Model
     /**
      * Scope for list products categories
      */
-    public function scopeFilterByCategory($query, $category)
+    public function scopeFilterByCategory($query, $category, $branch)
     {
         $query -> selectRaw('loftonti_erso_products.*')
-            -> when($category != null, function($q) use($category){
+            -> when($category != null, function($q) use($category, $branch){
                 $q -> leftJoin('loftonti_erso_categories', 'loftonti_erso_categories.id','=', 'loftonti_erso_products.category_id')
                 -> where('loftonti_erso_categories.category_name', $category);
             })
+            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
+            -> where('loftonti_erso_branches.slug', $branch)
             ->orderBy('loftonti_erso_products.category_id');
         return $query;
     }
