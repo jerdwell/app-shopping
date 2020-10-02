@@ -41,6 +41,8 @@ export default {
   },
   props: [
     'model_shipowner',
+    'branch',
+    'category',
   ],
   components: {
     popUpSearcheable
@@ -61,6 +63,7 @@ export default {
       this.show_pop = false
       this.car_selected =  car.model_id + '-' + car.shipowner_id
       this.alias = car.model_name + '-' + car.shipowner_name
+      location.assign(`/productos/${this.branch}/${this.category}/${this.car_selected.replace('-','/')}`)
     },
     resetDefault(){
       this.show_pop = true

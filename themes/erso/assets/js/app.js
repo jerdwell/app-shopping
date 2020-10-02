@@ -5826,7 +5826,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       errors: ''
     };
   },
-  props: ['model_shipowner'],
+  props: ['model_shipowner', 'branch', 'category'],
   components: {
     popUpSearcheable: _components_dashboard_pop_up_searcheable__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -5886,6 +5886,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.show_pop = false;
       this.car_selected = car.model_id + '-' + car.shipowner_id;
       this.alias = car.model_name + '-' + car.shipowner_name;
+      location.assign("/productos/".concat(this.branch, "/").concat(this.category, "/").concat(this.car_selected.replace('-', '/')));
     },
     resetDefault: function resetDefault() {
       this.show_pop = true;
