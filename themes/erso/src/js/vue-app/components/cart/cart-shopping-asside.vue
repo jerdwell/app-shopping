@@ -1,5 +1,5 @@
 <template lang="pug">
-.cart-shopping-asside.cart-shopping-asside-hidden#cart-shopping-asside
+.cart-shopping-asside#cart-shopping-asside
   .close-shopping-cart-button.border-secondary(@click.prevent="toggleCart")
     .oi.oi-fullscreen-exit.text-secondary
   .text-center
@@ -41,6 +41,7 @@ export default {
 
 <style lang="sass" scoped>
 .cart-shopping-asside
+  display: none
   background: #f1f1ff
   bottom: 20px
   border-radius: 5px
@@ -56,7 +57,10 @@ export default {
   z-index: 10
   @media screen and (min-width: 1024px)
     max-height: 70vh
+    position: static
+    max-height: none
   @media screen and (min-width: 1280px)
+    display: block
     border-radius: 0
     box-shadow: none
     position: static

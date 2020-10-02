@@ -49,7 +49,7 @@ class ProductsApiController extends Controller {
     return $products;
   }
 
-  public function GeneralSearchProduct($data)
+  public function GeneralSearchProduct($branch, $data)
   {
     try {
       $shipowners = Shipowners::selectRaw('group_concat(id separator ",") as shipowners') -> where('shipowner_slug', 'like', "%{$data}%") -> first();
@@ -58,27 +58,29 @@ class ProductsApiController extends Controller {
       $shipowners = explode(',', $shipowners-> shipowners);
       $models = explode(',', $models-> models);
       $brands = explode(',', $brands-> brands);
-      $products = Products::where('product_name', 'like', "%{$data}%")
+      $products = Products::where('loftonti_erso_products.product_name', 'like', "%{$data}%")
         -> when(!empty($shipowners), function($q) use($shipowners){
-          return $q -> orWhereIn('shipowner_id', $shipowners);
+          return $q -> orWhereIn('loftonti_erso_products.shipowner_id', $shipowners);
         })
         ->when(!empty($models), function($q) use($models){
-          return $q->orWhereIn('model_id',$models);
+          return $q -> orWhereIn('loftonti_erso_products.model_id',$models);
         })
         ->when(!empty($brands), function($q) use($brands){
-          return $q->orWhereIn('brand_id',$brands);
+          return $q -> orWhereIn('loftonti_erso_products.brand_id',$brands);
         })
+        ->leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+        -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
+        -> where('loftonti_erso_branches.slug', $branch)
         ->with([ 'car', 'shipowner', 'brand' ])
-        ->orderBy('category_id')
+        ->orderBy('loftonti_erso_products.category_id')
         ->paginate(20);
       return ['products' => $products];
     } catch (\Throwable $th) {
-      print_r($th -> getMessage());
       return response(['Error, datos no localizados', 503]);
     }
   }
 
-  public function CodeSearchProduct($data)
+  public function CodeSearchProduct($branch, $data)
   {
     $codes = ErsoCodes::where('erso_code', 'like', "%{$data}%")->get() -> take(30);
     $codes_filtered = [];
@@ -86,6 +88,9 @@ class ProductsApiController extends Controller {
       array_push($codes_filtered, $code -> id);
     }
     $products = Products::whereIn('erso_code_id', $codes_filtered)
+      ->leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+      -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
+      -> where('loftonti_erso_branches.slug', $branch)
       ->with(['shipowner', 'car', 'brand', 'category', 'erso_code'])
       ->paginate(20);
     $products -> makeHidden(['model_id', 'enterprise_id', 'shipowner_id', 'category_id', 'brand_id']);

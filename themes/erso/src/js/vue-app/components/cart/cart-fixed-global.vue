@@ -33,9 +33,6 @@ export default {
       ''
     ]),
     closeCartShopping(){
-      let cart_aside = document.getElementById('cart-shopping-asside')
-      if(cart_aside) cart_aside.classList.toggle('cart-shopping-asside-hidden')
-      
       let cart_global = document.getElementById('cart-shoppng-fixed-global')
       if(cart_global) cart_global.classList.toggle('cart-shoppng-fixed-global-hidden')
     }

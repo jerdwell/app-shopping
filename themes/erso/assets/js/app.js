@@ -4209,7 +4209,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     showCarFilters: function showCarFilters() {
       var cart_aside = document.getElementById('cart-shopping-asside');
-      if (cart_aside) cart_aside.classList.toggle('cart-shopping-asside-hidden');
+      if (cart_aside) return;
       var cart_global = document.getElementById('cart-shoppng-fixed-global');
       if (cart_global) cart_global.classList.toggle('cart-shoppng-fixed-global-hidden');
     }
@@ -4264,8 +4264,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])([''])), {}, {
     closeCartShopping: function closeCartShopping() {
-      var cart_aside = document.getElementById('cart-shopping-asside');
-      if (cart_aside) cart_aside.classList.toggle('cart-shopping-asside-hidden');
       var cart_global = document.getElementById('cart-shoppng-fixed-global');
       if (cart_global) cart_global.classList.toggle('cart-shoppng-fixed-global-hidden');
     }
@@ -4434,7 +4432,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   ])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['add_cart_item', //add item to cart shopping or quotation
   'remove_cart_item' //remove item to cart shopping or quotation
-  ]))
+  ])),
+  mounted: function mounted() {
+    console.log(this.product);
+  }
 });
 
 /***/ }),
@@ -6315,7 +6316,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".cart-shopping-asside[data-v-43b16530] {\n  background: #f1f1ff;\n  bottom: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);\n  max-height: 80vh;\n  max-width: 300px;\n  overflow-y: auto;\n  position: fixed;\n  padding: 10px;\n  transition: all ease .5s;\n  right: 20px;\n  width: 90%;\n  z-index: 10;\n}\n@media screen and (min-width: 1024px) {\n.cart-shopping-asside[data-v-43b16530] {\n    max-height: 70vh;\n}\n}\n@media screen and (min-width: 1280px) {\n.cart-shopping-asside[data-v-43b16530] {\n    border-radius: 0;\n    box-shadow: none;\n    position: static;\n    max-height: 90vh;\n    width: 100%;\n}\n}\n.close-shopping-cart-button[data-v-43b16530] {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  border-radius: 50%;\n  border: solid 2px;\n  cursor: pointer;\n  font-size: 15px;\n  height: 30px;\n  justify-content: center;\n  margin: 0;\n  position: absolute;\n  right: 5px;\n  padding: 0;\n  top: 5px;\n  width: 30px;\n}\n.close-shopping-cart-button .oi[data-v-43b16530] {\n  position: static;\n}\n@media screen and (min-width: 1280px) {\n.close-shopping-cart-button[data-v-43b16530] {\n    display: none;\n}\n}\n@media screen and (max-width: 1279px) {\n.cart-shopping-asside-hidden[data-v-43b16530] {\n    padding: 0;\n    height: 100px;\n    width: 0;\n}\n}\n", ""]);
+exports.push([module.i, ".cart-shopping-asside[data-v-43b16530] {\n  display: none;\n  background: #f1f1ff;\n  bottom: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);\n  max-height: 80vh;\n  max-width: 300px;\n  overflow-y: auto;\n  position: fixed;\n  padding: 10px;\n  transition: all ease .5s;\n  right: 20px;\n  width: 90%;\n  z-index: 10;\n}\n@media screen and (min-width: 1024px) {\n.cart-shopping-asside[data-v-43b16530] {\n    max-height: 70vh;\n    position: static;\n    max-height: none;\n}\n}\n@media screen and (min-width: 1280px) {\n.cart-shopping-asside[data-v-43b16530] {\n    display: block;\n    border-radius: 0;\n    box-shadow: none;\n    position: static;\n    max-height: 90vh;\n    width: 100%;\n}\n}\n.close-shopping-cart-button[data-v-43b16530] {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  border-radius: 50%;\n  border: solid 2px;\n  cursor: pointer;\n  font-size: 15px;\n  height: 30px;\n  justify-content: center;\n  margin: 0;\n  position: absolute;\n  right: 5px;\n  padding: 0;\n  top: 5px;\n  width: 30px;\n}\n.close-shopping-cart-button .oi[data-v-43b16530] {\n  position: static;\n}\n@media screen and (min-width: 1280px) {\n.close-shopping-cart-button[data-v-43b16530] {\n    display: none;\n}\n}\n@media screen and (max-width: 1279px) {\n.cart-shopping-asside-hidden[data-v-43b16530] {\n    padding: 0;\n    height: 100px;\n    width: 0;\n}\n}\n", ""]);
 
 // exports
 
@@ -45991,7 +45992,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "cart-shopping-asside cart-shopping-asside-hidden",
+      staticClass: "cart-shopping-asside",
       attrs: { id: "cart-shopping-asside" }
     },
     [
@@ -69132,7 +69133,6 @@ var actions = {
             case 0:
               dispatch = _ref5.dispatch, getters = _ref5.getters;
               _context.prev = 1;
-              console.log(getters.get_branch_selected);
               model_id = data.model_id;
               shipowner_id = data.shipowner_id;
               url = '';
@@ -69149,29 +69149,28 @@ var actions = {
                 url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year, "/category/").concat(data.category);
               }
 
-              _context.next = 9;
+              _context.next = 8;
               return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get(url);
 
-            case 9:
+            case 8:
               response = _context.sent;
-              console.log(response);
               dispatch('setListProducts', response.data.products);
               dispatch('setYearsRelated', response.data.years);
               dispatch('setCategoriesRelated', response.data.categories);
-              _context.next = 19;
+              _context.next = 17;
               break;
 
-            case 16:
-              _context.prev = 16;
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 19:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 16]]);
+      }, _callee, null, [[1, 14]]);
     }));
 
     function serachProductModelShipowner(_x, _x2) {
@@ -69183,12 +69182,12 @@ var actions = {
   //búsqueda general de productos
   generalSearch: function () {
     var _generalSearch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref6, data) {
-      var dispatch, products;
+      var dispatch, getters, products;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              dispatch = _ref6.dispatch;
+              dispatch = _ref6.dispatch, getters = _ref6.getters;
 
               if (!(data.replace(/\s+/g, '').length <= 0)) {
                 _context2.next = 3;
@@ -69200,7 +69199,7 @@ var actions = {
             case 3:
               _context2.prev = 3;
               _context2.next = 6;
-              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/general-search-products/".concat(data));
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/general-search-products/".concat(getters.get_branch_selected, "/").concat(data));
 
             case 6:
               products = _context2.sent;
@@ -69230,12 +69229,12 @@ var actions = {
   //búsqueda de productos por código
   searchByCode: function () {
     var _searchByCode = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref7, data) {
-      var dispatch, products;
+      var dispatch, getters, products;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              dispatch = _ref7.dispatch;
+              dispatch = _ref7.dispatch, getters = _ref7.getters;
 
               if (!(data.replace(/\s+/g, '').length <= 0)) {
                 _context3.next = 3;
@@ -69247,7 +69246,7 @@ var actions = {
             case 3:
               _context3.prev = 3;
               _context3.next = 6;
-              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/code-search-products/".concat(data));
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/code-search-products/".concat(getters.get_branch_selected, "/").concat(data));
 
             case 6:
               products = _context3.sent;
