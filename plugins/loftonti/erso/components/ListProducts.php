@@ -80,8 +80,8 @@ class ListProducts extends ComponentBase
             $model = $this -> model ? CarsModels::find($this -> model) : false;
             $this -> model_shipowner = $this -> shipowner && $this -> model ? $shipowner -> shipowner_name . ' ' . $model -> model_name : false;
         } catch (\Exception $th) {
-            // return Redirect::to('/productos');
-            return [$th -> getMessage()];
+            return Redirect::to('/productos');
+            // return [$th -> getMessage()];
         }
     }
 
