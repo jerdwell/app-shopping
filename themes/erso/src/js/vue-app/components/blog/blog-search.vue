@@ -1,12 +1,16 @@
 <template lang="pug">
 .blog-search
-  label.label Buscar
-  input.form-control(
-    type="search"
-    name="blog-search"
-    id="blog-search"
-    v-model="data_search"
-    @input="blogSearch")
+  label.label.text-light Buscar
+  .input-group.rounded-pill(style="overflow: hidden;")
+    .input-group-prepend.border-0
+      .input-group-text.bg-yellow
+        .fas.fa-search.text-white
+    input.form-control.border-0(
+      type="search"
+      name="blog-search"
+      id="blog-search"
+      v-model="data_search"
+      @input="blogSearch")
   .text-center(v-if="loading")
     .spinner-border.spinner-border-sm
   popUpSearcheable.search-results(v-if="show_pop")

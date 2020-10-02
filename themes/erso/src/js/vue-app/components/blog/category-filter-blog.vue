@@ -1,9 +1,9 @@
 <template lang="pug">
 div
     ul.list-group.list-group-flush
-        li.list-group-item.bg-transparent(v-for="(category, index ) in categories.data" :key="category.id")
+        li.list-group-item.bg-transparent.border-yellow(v-for="(category, index ) in categories.data" :key="category.id")
             input.mr-2(type="checkbox" :value="category.slug" name="category" :id="category.slug" v-model="filter")
-            span {{ category.name }}
+            span.text-light {{ category.name }}
     div.text-center.mt-5
         button.btn.btn-block.btn-info(@click.prevent="filterPosts") Filtrar
 </template>

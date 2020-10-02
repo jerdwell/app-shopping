@@ -3983,6 +3983,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'blog-search',
@@ -45521,31 +45525,41 @@ var render = function() {
     "div",
     { staticClass: "blog-search" },
     [
-      _c("label", { staticClass: "label" }, [_vm._v("Buscar")]),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.data_search,
-            expression: "data_search"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "search", name: "blog-search", id: "blog-search" },
-        domProps: { value: _vm.data_search },
-        on: {
-          input: [
-            function($event) {
-              if ($event.target.composing) {
-                return
+      _c("label", { staticClass: "label text-light" }, [_vm._v("Buscar")]),
+      _c(
+        "div",
+        {
+          staticClass: "input-group rounded-pill",
+          staticStyle: { overflow: "hidden" }
+        },
+        [
+          _vm._m(0),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data_search,
+                expression: "data_search"
               }
-              _vm.data_search = $event.target.value
-            },
-            _vm.blogSearch
-          ]
-        }
-      }),
+            ],
+            staticClass: "form-control border-0",
+            attrs: { type: "search", name: "blog-search", id: "blog-search" },
+            domProps: { value: _vm.data_search },
+            on: {
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.data_search = $event.target.value
+                },
+                _vm.blogSearch
+              ]
+            }
+          })
+        ]
+      ),
       _vm.loading
         ? _c("div", { staticClass: "text-center" }, [
             _c("div", { staticClass: "spinner-border spinner-border-sm" })
@@ -45638,7 +45652,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend border-0" }, [
+      _c("div", { staticClass: "input-group-text bg-yellow" }, [
+        _c("div", { staticClass: "fas fa-search text-white" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45667,7 +45692,10 @@ var render = function() {
       _vm._l(_vm.categories.data, function(category, index) {
         return _c(
           "li",
-          { key: category.id, staticClass: "list-group-item bg-transparent" },
+          {
+            key: category.id,
+            staticClass: "list-group-item bg-transparent border-yellow"
+          },
           [
             _c("input", {
               directives: [
@@ -45708,7 +45736,9 @@ var render = function() {
                 }
               }
             }),
-            _c("span", [_vm._v(_vm._s(category.name))])
+            _c("span", { staticClass: "text-light" }, [
+              _vm._v(_vm._s(category.name))
+            ])
           ]
         )
       }),
