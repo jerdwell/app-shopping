@@ -18,7 +18,7 @@
             .badge.small(:class="setDataItem(quotation.status).class") {{ setDataItem(quotation.status).text }}
           td.text-center
             .d-inline-block.p-0.m-0.mr-1.mb-1(v-if="quotation.status != 'declined' && quotation.status != 'successed'")
-              button.btn.btn-warning.btn-sm(
+              //- button.btn.btn-warning.btn-sm(
                 v-if="setButtonState(quotation.created_at)"
                 :disabled="loading && loading == quotation.id"
                 @click.prevent="cancelOrder(quotation.id, quotation.created_at)")

@@ -45206,47 +45206,9 @@ var render = function() {
                   _c("td", { staticClass: "text-center" }, [
                     quotation.status != "declined" &&
                     quotation.status != "successed"
-                      ? _c(
-                          "div",
-                          { staticClass: "d-inline-block p-0 m-0 mr-1 mb-1" },
-                          [
-                            _vm.setButtonState(quotation.created_at)
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-warning btn-sm",
-                                    attrs: {
-                                      disabled:
-                                        _vm.loading &&
-                                        _vm.loading == quotation.id
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.cancelOrder(
-                                          quotation.id,
-                                          quotation.created_at
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm.loading && _vm.loading == quotation.id
-                                      ? _c("div", {
-                                          staticClass:
-                                            "spinner-border spinner-border-sm mr-2 align-middle"
-                                        })
-                                      : _vm._e(),
-                                    _c(
-                                      "span",
-                                      { staticClass: "align-middle" },
-                                      [_vm._v("Cancelar")]
-                                    )
-                                  ]
-                                )
-                              : _vm._e()
-                          ]
-                        )
+                      ? _c("div", {
+                          staticClass: "d-inline-block p-0 m-0 mr-1 mb-1"
+                        })
                       : _vm._e(),
                     quotation.status != "declined"
                       ? _c(
