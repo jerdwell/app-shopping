@@ -1,6 +1,6 @@
 <template lang="pug">
 .text-center
-  div(v-if="get_branch_selected && get_cart_items.length > 0")
+  div(v-if="get_branch_selected")
     buttonDownloadQuotationGuest
   div(v-if="get_token && get_branch_selected")
     .py-2
@@ -12,6 +12,7 @@
         datePicker.form-control.p-0.m-0.border-0(
           v-model="shipping_date",
           :full-month-name="true",
+          :use-utc="true"
           calendar-class="sipping-date-calendar w-100",
           :disabled-dates="disabledDates",
           input-class="form-control")
@@ -54,9 +55,13 @@ export default {
     ]),
     disabledDates() {
       this.$moment.locale();
+      let day = this.$moment().format('dddd')
+      let max_time = day != 'Sunday' ? this.$moment('17:30', 'h:mma') : this.$moment('15:30', 'h:mma')
+      let date_compared = this.$moment().isBefore(max_time) ? this.$moment().format('YYYY-MM-DD') : this.$moment().add('1', 'day').format('YYYY-MM-DD')
+      let min_shipping_date = new Date(date_compared)
       return {
-        to: new Date(this.$moment()),
-        from: new Date(this.$moment().add('2', 'week')),
+        to: min_shipping_date,
+        from: new Date(this.$moment().add('1', 'week')),
         days: [6, 0],
       }
     }
@@ -101,7 +106,7 @@ export default {
         })
       }
     }
-  },
+  }
 }
 </script>
 

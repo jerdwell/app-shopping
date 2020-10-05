@@ -4382,7 +4382,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cartItems: _cart_items__WEBPACK_IMPORTED_MODULE_1__["default"],
     shippingDateComponent: _shipping_date_component__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_total_amount' //get tootal amount quotation
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_total_amount', //get tootal amount quotation
+  'get_cart_items' //get cart items
   ])),
   methods: {
     toggleCart: function toggleCart() {
@@ -4560,6 +4561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4579,9 +4581,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   ])), {}, {
     disabledDates: function disabledDates() {
       this.$moment.locale();
+      var day = this.$moment().format('dddd');
+      var max_time = day != 'Sunday' ? this.$moment('17:30', 'h:mma') : this.$moment('15:30', 'h:mma');
+      var date_compared = this.$moment().isBefore(max_time) ? this.$moment().format('YYYY-MM-DD') : this.$moment().add('1', 'day').format('YYYY-MM-DD');
+      var min_shipping_date = new Date(date_compared);
       return {
-        to: new Date(this.$moment()),
-        from: new Date(this.$moment().add('2', 'week')),
+        to: min_shipping_date,
+        from: new Date(this.$moment().add('1', 'week')),
         days: [6, 0]
       };
     }
@@ -46442,12 +46448,14 @@ var render = function() {
         _c("hr")
       ]),
       _c("cartItems", { attrs: { heading: true } }),
-      _c(
-        "div",
-        { staticClass: "bg-dark p-3" },
-        [_c("shippingDateComponent")],
-        1
-      )
+      _vm.get_cart_items.length > 0
+        ? _c(
+            "div",
+            { staticClass: "bg-dark p-3" },
+            [_c("shippingDateComponent")],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -46694,7 +46702,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center" }, [
-    _vm.get_branch_selected && _vm.get_cart_items.length > 0
+    _vm.get_branch_selected
       ? _c("div", [_c("buttonDownloadQuotationGuest")], 1)
       : _vm._e(),
     _vm.get_token && _vm.get_branch_selected
@@ -46712,6 +46720,7 @@ var render = function() {
                   staticClass: "form-control p-0 m-0 border-0",
                   attrs: {
                     "full-month-name": true,
+                    "use-utc": true,
                     "calendar-class": "sipping-date-calendar w-100",
                     "disabled-dates": _vm.disabledDates,
                     "input-class": "form-control"

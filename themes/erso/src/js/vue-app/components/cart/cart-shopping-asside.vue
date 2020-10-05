@@ -10,7 +10,7 @@
         big ${{ get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
       hr
   cartItems(:heading="true")
-  .bg-dark.p-3
+  .bg-dark.p-3(v-if="get_cart_items.length > 0")
     shippingDateComponent
 
 </template>
@@ -28,6 +28,7 @@ export default {
   computed: {
     ...mapGetters([
       'get_total_amount', //get tootal amount quotation
+      'get_cart_items', //get cart items
     ])
   },
   methods: {
