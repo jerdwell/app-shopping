@@ -4489,12 +4489,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product'],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token' //get token user
-  ])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token', //get token user
+  'get_branch_selected' //get branch selected
+  ])), {}, {
+    stockProduct: function stockProduct() {
+      var _this = this;
+
+      var stock = this.product.branches.find(function (item) {
+        return item.slug == _this.get_branch_selected;
+      });
+      return stock.pivot.stock;
+    }
+  }),
   components: {
     productHandler: _product_handler__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
@@ -46578,13 +46590,15 @@ var render = function() {
               ),
               _c("p", { staticClass: "mb-0 small" }, [
                 _c("span", { staticClass: "text-muted" }, [
-                  _vm._v(
-                    "Aplicación: " + _vm._s(_vm.product.product_description)
-                  )
+                  _vm._v("Marca: " + _vm._s(_vm.product.brand.brand_name))
                 ]),
                 _c("br"),
                 _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Año: " + _vm._s(_vm.product.product_year))
+                  _vm._v("Nota: " + _vm._s(_vm.product.product_note))
+                ]),
+                _c("br"),
+                _c("span", { staticClass: "text-muted" }, [
+                  _vm._v("Stock: " + _vm._s(_vm.stockProduct) + "pz")
                 ]),
                 _c("br"),
                 _c("span", { staticClass: "text-muted" }, [

@@ -885,7 +885,6 @@ var Navbar = {
     var _this = this;
 
     var navbar = this.data.navbar;
-    console.log('ok');
     if (!document.querySelector('.navbar-main-erso')) return;
 
     document.onscroll = function () {
@@ -901,7 +900,6 @@ var Navbar = {
 
     if (scroll >= this.data.max_scroll) {
       if (!this.data.navbar.classList.contains(this.data.class_navbar_fixed)) this.data.navbar.classList.add(this.data.class_navbar_fixed);
-      console.log('agregar');
     } else {
       if (this.data.navbar.classList.contains(this.data.class_navbar_fixed)) this.data.navbar.classList.remove(this.data.class_navbar_fixed);
     }

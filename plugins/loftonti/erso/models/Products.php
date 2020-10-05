@@ -67,6 +67,7 @@ class Products extends Model
             'brand',
             'car',
             'category',
+            'branches'
         ]);
         return $query;
     }

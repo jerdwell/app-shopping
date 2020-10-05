@@ -13,9 +13,11 @@
           a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`" style="text-decoration:none;")
             span.h6.text-info {{ product.product_name }}
           p.mb-0.small
-            span.text-muted Aplicación: {{ product.product_description }}
+            span.text-muted Marca: {{ product.brand.brand_name }}
             br
-            span.text-muted Año: {{ product.product_year }}
+            span.text-muted Nota: {{ product.product_note }}
+            br
+            span.text-muted Stock: {{ stockProduct }}pz
             br
             span.text-muted Auto: {{ product.shipowner.shipowner_name }} - {{ product.car.model_name }}
             br
@@ -38,7 +40,12 @@ export default {
   computed: {
     ...mapGetters([
       'get_token', //get token user
-    ])
+      'get_branch_selected', //get branch selected
+    ]),
+    stockProduct(){
+      let stock = this.product.branches.find(item => item.slug == this.get_branch_selected)
+      return stock.pivot.stock
+    }
   },
   components: {
     productHandler
