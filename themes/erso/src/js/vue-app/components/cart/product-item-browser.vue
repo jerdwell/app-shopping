@@ -21,7 +21,7 @@
             br
             span.text-muted Auto: {{ product.shipowner.shipowner_name }} - {{ product.car.model_name }}
             br
-            span.text-muted Código: {{ product.provider_code }}
+            span.text-muted Código: {{ product.erso_code.erso_code }}
             br
             b.text-info.mb-0.pb-0.lead(v-if="!get_token") {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
             b.text-info.mb-0.pb-0.lead(v-else) {{ product.customer_price != null ? '$' + product.customer_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}

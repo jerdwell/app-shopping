@@ -67,7 +67,8 @@ class Products extends Model
             'brand',
             'car',
             'category',
-            'branches'
+            'branches',
+            'erso_code'
         ]);
         return $query;
     }

@@ -46611,7 +46611,7 @@ var render = function() {
                 ]),
                 _c("br"),
                 _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Código: " + _vm._s(_vm.product.provider_code))
+                  _vm._v("Código: " + _vm._s(_vm.product.erso_code.erso_code))
                 ]),
                 _c("br"),
                 !_vm.get_token
