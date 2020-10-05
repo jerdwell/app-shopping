@@ -30,6 +30,6 @@ class ListCategories extends ComponentBase
     public function onRun()
     {
         $this -> branch = $this -> property('branch');
-        $this -> list_categories = Categories::all();
+        $this -> list_categories = Categories::orderBy('order') -> get();
     }
 }

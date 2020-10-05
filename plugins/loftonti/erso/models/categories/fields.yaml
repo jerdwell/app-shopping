@@ -8,3 +8,8 @@ fields:
         span: auto
         mode: image
         type: mediafinder
+    order:
+        label: Orden
+        span: auto
+        required: 1
+        type: number

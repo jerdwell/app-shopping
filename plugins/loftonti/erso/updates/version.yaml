@@ -90,3 +90,9 @@
 1.0.31:
     - 'Created table loftonti_erso_product_branch'
     - builder_table_create_loftonti_erso_product_branch.php
+1.0.32:
+    - 'Updated table loftonti_erso_categories'
+    - builder_table_update_loftonti_erso_categories_2.php
+1.0.33:
+    - 'Updated table loftonti_erso_categories'
+    - builder_table_update_loftonti_erso_categories_3.php
