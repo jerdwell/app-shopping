@@ -787,7 +787,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Slide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Slide */ "./themes/erso/src/js/modules/Slide.js");
 /* harmony import */ var _modules_Slide__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_Slide__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Navbar */ "./themes/erso/src/js/modules/Navbar.js");
-/* harmony import */ var _modules_Navbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_Navbar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_AOS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/AOS */ "./themes/erso/src/js/modules/AOS.js");
 /* harmony import */ var _modules_BlogBrowserFixer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/BlogBrowserFixer */ "./themes/erso/src/js/modules/BlogBrowserFixer.js");
 
@@ -795,10 +794,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _modules_Slide__WEBPACK_IMPORTED_MODULE_0___default.a.init('main-slide', 8000);
-
-window.onload = function () {
-  _modules_Navbar__WEBPACK_IMPORTED_MODULE_1___default.a.init();
-};
+_modules_Navbar__WEBPACK_IMPORTED_MODULE_1__["default"].init();
 
 window.onload = function () {
   _modules_BlogBrowserFixer__WEBPACK_IMPORTED_MODULE_3__["default"].fixBrowser();
@@ -870,9 +866,11 @@ var BlogBrowserFixer = {
 /*!**********************************************!*\
   !*** ./themes/erso/src/js/modules/Navbar.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 var Navbar = {
   data: {
     class_navbar_fixed: 'navbar-main-erso-fixed',
@@ -887,6 +885,7 @@ var Navbar = {
     var _this = this;
 
     var navbar = this.data.navbar;
+    console.log('ok');
     if (!document.querySelector('.navbar-main-erso')) return;
 
     document.onscroll = function () {
@@ -902,6 +901,7 @@ var Navbar = {
 
     if (scroll >= this.data.max_scroll) {
       if (!this.data.navbar.classList.contains(this.data.class_navbar_fixed)) this.data.navbar.classList.add(this.data.class_navbar_fixed);
+      console.log('agregar');
     } else {
       if (this.data.navbar.classList.contains(this.data.class_navbar_fixed)) this.data.navbar.classList.remove(this.data.class_navbar_fixed);
     }
@@ -918,7 +918,7 @@ var Navbar = {
     }
   }
 };
-module.exports = Navbar;
+/* harmony default export */ __webpack_exports__["default"] = (Navbar);
 
 /***/ }),
 
