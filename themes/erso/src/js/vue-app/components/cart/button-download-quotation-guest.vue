@@ -29,7 +29,7 @@ export default {
       this.loading = true
       try {
         let quotation = await this.download_quotations_guest()
-        this.$swal('Creación de cotización', 'Esta cotización no será guardada en nuestro sistema, para poder realizar un pedido inicia sesión y genera un pedido.', 'warning')
+        this.$swal('Creación de cotización', 'Esta cotización no será guardada en nuestro sistema, para poder realizar un pedido inicia sesión y genera un pedido, Cotización sujeta a cambios sin previo aviso.', 'warning')
         this.loading = false
       } catch (error) {
         this.loading = false

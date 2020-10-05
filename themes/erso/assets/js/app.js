@@ -4158,7 +4158,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 4:
                 quotation = _context.sent;
 
-                _this.$swal('Creación de cotización', 'Esta cotización no será guardada en nuestro sistema, para poder realizar un pedido inicia sesión y genera un pedido.', 'warning');
+                _this.$swal('Creación de cotización', 'Esta cotización no será guardada en nuestro sistema, para poder realizar un pedido inicia sesión y genera un pedido, Cotización sujeta a cambios sin previo aviso.', 'warning');
 
                 _this.loading = false;
                 _context.next = 13;
