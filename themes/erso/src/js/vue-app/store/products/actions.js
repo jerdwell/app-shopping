@@ -27,8 +27,8 @@ const actions = {
     commit('SET_CATEGORIES_RELATED', data)
   },
 
-  //busqueda por modelo / armadora
-  serachProductModelShipowner: async ({ dispatch, getters }, data) => {
+  //busqueda por modelo
+  serachProductModel: async ({ dispatch, getters }, data) => {
     try {
       let model_id = data.model_id
       let shipowner_id = data.shipowner_id

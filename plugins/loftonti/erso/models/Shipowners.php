@@ -21,7 +21,7 @@ class Shipowners extends Model
 
     /** Scopes **/
 
-    public function scopeGetCarModels($query, $car)
+    public function scopeGetCarShipowner($query, $car)
     {
         $models = $query -> where('shipowner_name', 'like', "%{$car}%") -> get();
         $filter = [];

@@ -43,7 +43,8 @@ class Products extends Model
 
     public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
     {
-        $query -> where('shipowner_id', $shipowner)
+        $query -> select('loftonti_erso_products.*')
+        -> where('shipowner_id', $shipowner)
         -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
             -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
             -> where('loftonti_erso_branches.slug', $branch)

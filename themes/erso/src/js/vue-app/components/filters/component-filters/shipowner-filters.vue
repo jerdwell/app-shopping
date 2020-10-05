@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    label.text-center.text-light Auto:
+    label.text-center.text-light Armadora:
     .input-group.mb-3.rounded-pill(style="overflow:hidden;")
       .input-group-prepend
         .input-group-text
@@ -10,7 +10,7 @@
         type="search"
         placeholder="Buscar"
         @input="serach_cars"
-        v-model="car_search"
+        v-model="shipowner_search"
         v-if="!$parent.car_model_selected.model_id")
       input.form-control.form-control-sm(
         type="text"
@@ -23,7 +23,7 @@
       .spinner-border
     
     ul.list-group.bg-transparent.small.list-models-searchable(v-if="results && !$parent.car_model_selected.model_id")
-      li.list-group-item.bg-transparent.border-light.p-0(v-if="carsModels.data && carsModels.data.length > 0")
+      li.list-group-item.bg-transparent.border-light.p-0(v-if="shipowners.data && shipowners.data.length > 0")
         table.table.table-results
           thead
             tr
@@ -31,7 +31,7 @@
               th.bg-yellow.text-light Marca
               th.bg-yellow.text-light Auto
           tbody
-            tr(v-for="(car_model, index) in carsModels.data" :key="index")
+            tr(v-for="(car_model, index) in shipowners.data" :key="index")
               td
                 input.form-control-checkbox.mr-2(
                   type="radio"
@@ -42,7 +42,7 @@
               td.text-white {{ car_model.shipowner_name }}
               td.text-white {{ car_model.model_name }}
 
-      li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="carsModels.data && carsModels.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
+      li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="shipowners.data && shipowners.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
 
 
 </template>
@@ -55,8 +55,8 @@ export default {
     return {
       loading: false,
       results: false,
-      carsModels: [],
-      car_search: ''
+      shipowners: [],
+      shipowner_search: ''
     }
   },
   methods: {
@@ -64,16 +64,16 @@ export default {
       'serachProductModel', //sel tis products finded
     ]),
     async serach_cars(){
-      if(this.car_search.replace(/\s/g, '').length <= 0) {
-        this.carsModels = []
+      if(this.shipowner_search.replace(/\s/g, '').length <= 0) {
+        this.shipowners = []
         return false
       }
       this.loading = true
       try {
-        let carsModels = await this.$http.get(`/search-car-model/${this.car_search}`)
+        let shipowners = await this.$http.get(`/search-shipowner/${this.shipowner_search}`)
         this.loading = false
         this.results = true
-        this.carsModels = carsModels
+        this.shipowners = shipowners
       } catch (error) {
         console.log(errors);
       }
@@ -89,7 +89,7 @@ export default {
     getCarModel(){
       let model_id = this.$parent.car_model_selected.model_id
       let shipowner_id = this.$parent.car_model_selected.shipowner_id
-      let data = this.carsModels.data.find(i => i.model_id == model_id && i.shipowner_id == shipowner_id)
+      let data = this.shipowners.data.find(i => i.model_id == model_id && i.shipowner_id == shipowner_id)
       return data.shipowner_name + ' - ' + data.model_name
     }
   },

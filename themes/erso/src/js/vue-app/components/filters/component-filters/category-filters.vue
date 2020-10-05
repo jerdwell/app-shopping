@@ -27,11 +27,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'serachProductModelShipowner', //search products
+      'serachProductModel', //search products
     ]),
     addCategoryToFilter(){
       this.$parent.car_model_selected['category'] = this.$parent.category_selected
-      this.serachProductModelShipowner(this.$parent.car_model_selected)
+      this.serachProductModel(this.$parent.car_model_selected)
     }
   }
 }

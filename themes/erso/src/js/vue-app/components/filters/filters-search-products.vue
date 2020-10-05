@@ -4,6 +4,7 @@ section.filters-search-products.bg-dark#filter-products
     SelectTypeFilters
     div(v-if="get_branch_selected != ''")
       FilterByCar(v-if="type_filter == 'car'")
+      FilterByShipowner(v-if="type_filter == 'shipowner'")
       GeneralFilter(v-if="type_filter == 'general'")
       FilterByCode(v-if="type_filter == 'code'")
       
@@ -14,6 +15,7 @@ import { mapActions, mapGetters } from 'vuex'
 import MainProductsBrowser from './main-products-browser'
 import SelectTypeFilters from './select-type-filters'
 import FilterByCar from './filter-by-car'
+import FilterByShipowner from './filter-by-shipowner'
 import FilterByCode from './filter-by-code'
 import GeneralFilter from './general-filter'
 import Codefilter from './code-filter'
@@ -25,7 +27,8 @@ export default {
     MainProductsBrowser,
     SelectTypeFilters,
     GeneralFilter,
-    Codefilter
+    Codefilter,
+    FilterByShipowner
   },
   data(){
     return {

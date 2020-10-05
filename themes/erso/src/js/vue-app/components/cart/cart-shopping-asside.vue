@@ -64,7 +64,7 @@ export default {
     border-radius: 0
     box-shadow: none
     position: static
-    max-height: 90vh
+    max-height: none
     width: 100%
 
 .close-shopping-cart-button

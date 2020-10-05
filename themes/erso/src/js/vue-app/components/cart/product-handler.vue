@@ -35,6 +35,6 @@ export default {
       'remove_cart_item', //remove item to cart shopping or quotation
     ])
 
-  }
+  },
 }
 </script>

@@ -11,7 +11,14 @@ class ProductsApiController extends Controller {
   public function serachCarsModels($car)
   {
     $car = Str::slug($car);
-    $shipowners = Shipowners::getCarModels($car) -> groupBy('model_id') -> get();
+    $shipowners = CarsModels::getCarModels($car) -> groupBy('model_id') -> get();
+    return $shipowners;
+  }
+
+  public function serachShipowners($shipowner)
+  {
+    $shipowner = Str::slug($shipowner);
+    $shipowners = Shipowners::getCarShipowner($shipowner) -> groupBy('model_id') -> get();
     return $shipowners;
   }
 
@@ -71,7 +78,7 @@ class ProductsApiController extends Controller {
         ->leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
         -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
         -> where('loftonti_erso_branches.slug', $branch)
-        ->with([ 'car', 'shipowner', 'brand' ])
+        ->with([ 'car', 'shipowner', 'brand', 'category' ])
         ->orderBy('loftonti_erso_products.category_id')
         ->paginate(20);
       return ['products' => $products];
@@ -87,7 +94,8 @@ class ProductsApiController extends Controller {
     foreach ($codes as $code) {
       array_push($codes_filtered, $code -> id);
     }
-    $products = Products::whereIn('erso_code_id', $codes_filtered)
+    $products = Products::select('loftonti_erso_products.*')
+      -> whereIn('loftonti_erso_products.erso_code_id', $codes_filtered)
       ->leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
       -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
       -> where('loftonti_erso_branches.slug', $branch)
