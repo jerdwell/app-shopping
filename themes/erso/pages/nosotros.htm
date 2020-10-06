@@ -1,5 +1,105 @@
 title = "nosotros"
 url = "/nosotros"
+layout = "_default"
 is_hidden = 0
 ==
-<h1>Hola mundo</h1>
+{%
+  partial 'components/_step'
+  title = "Nosotros"
+  align= "center"
+  type= "light"
+  local= true
+  color= "dark"
+  img= "steps1.jpg"|media
+%}
+
+<div class="bg-dark">
+  <div class="container py-5">
+    <h2 class="text-muted text-center">¿Quiénes somos?</h2>
+    <hr class="border-light mb-5">
+    <p class="text-light">Somos una empresa que comercializa autopartes de suspensión, dirección, amortiguadores y tracción para autos, crossover, surs y pickups .En toda la zona norte del Estado De México, ofrecemos el servicio de entrega a domicilio a llanteras, talleres y refaccionarias. También contamos con ventas a mostrador.</p>
+    <p class="text-light">Somos una empresa que comercializa autopartes de suspensión, dirección, amortiguadores y tracción para autos, crossover, surs y pickups .En toda la zona norte del Estado De México, ofrecemos el servicio de entrega a domicilio a llanteras, talleres y refaccionarias. También contamos con ventas a mostrador.</p>
+  </div>
+</div>
+
+<div class="mision-vision">
+
+  <div class="mision-vision-item" style="background-image: url('{{ '4-a.jpg'|media }}');">
+    <div class="mision-vision-item-content">
+      <h2 data-aos="fade-up" data-aos-offset="250" class="mision-vision-item-title text-white m-0 p-0">Misión</h2>
+      <hr data-aos="fade-up" data-aos-offset="250" class="border-white">
+      <p data-aos="fade-up" data-aos-offset="250" class="mision-vision-item-text text-white lead">Ofrecer el mejor servicio a nuestros clientes, crear oportunidades de desarrollo para nuestros colaboradores y generar utilidades para financiar nuestro crecimiento.</p>
+    </div>
+  </div>
+  
+  <div class="mision-vision-item" style="background-image: url('{{ '6-a.jpg'|media }}');">
+    <div class="mision-vision-item-content">
+      <h2 data-aos="fade-up" data-aos-offset="250" class="mision-vision-item-title text-white m-0 p-0">Visión</h2>
+      <hr data-aos="fade-up" data-aos-offset="250" class="border-white">
+      <p data-aos="fade-up" data-aos-offset="250" class="mision-vision-item-text text-white lead">Ser la refaccionaria más admirada del Estado de México por clientes, colaboradores, proveedores y competidores y ser una empresa más humana.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="bg-blue text-white">
+  <div class="container py-5">
+    <div class="h3 text-center">Nuestros Valores</div>
+    <hr class="border-white">
+    <div class="row">
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Honestidad</div>
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Lealtad</div>
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Puntualidad</div>
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Sensatez</div>
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Disciplina</div>
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Responsabilidad</div>
+      <div class="col-sm-4 col-lg-4 col-xl-3 p-2"><i class="fas fa-check-square lead mr-2"></i>Inclusión  </div>
+    </div>
+  </div>
+</div>
+
+<div class="us-purpose" style="background-image: url({{ 'footer_02.png'|media }});">
+  <div class="container py-5">
+    <h3 class="text-center text-yellow">Nuestro propósito</h3>
+    <hr class="border-yellow mb-5">
+    <p class="lead text-muted">
+      Nuestro propósito en <b class="text-primary">REFACCIONARIAS ERSO</b> es hacer una empresa más humana. Donde no solo se ha puesto énfasis en los resultados económicos sino también en el impacto social que nuestras decisiones y nuestra labor generan.
+    </p>
+    <ul class="list-purpose">
+      <li data-aos="fade-right" data-aos-offset="150" class="list-purpose-item">En REFACCIONARIAS ERSO nos levantamos cada mañana con la ilusión de poner el alma a todo lo que hacemos.</li>
+      <li data-aos="fade-left" data-aos-offset="150" class="list-purpose-item">Somos perseverantes, disciplinados y permanentemente pensamos en los demás, en el otro, en su dignidad. Hemos decidido ser una empresa que ha optado por aportar ideas sociales y comprendemos que hay un ejercicio, más allá del mero   ejercicio económico.</li>
+      <li data-aos="fade-right" data-aos-offset="150" class="list-purpose-item">Tenemos la firme convicción de convertir cada búsqueda y cada decisión, en una visión positiva.</li>
+      <li data-aos="fade-left" data-aos-offset="150" class="list-purpose-item">Transmitimos y alentamos una visión de integridad y ética en cada una de nuestras acciones para fortalecer la solidez y la confianza de nuestra empresa.</li>
+      <li data-aos="fade-right" data-aos-offset="150" class="list-purpose-item">Además de eficiente y rentable económicamente, generamos equidad social, inclusión social.</li>
+      <li data-aos="fade-left" data-aos-offset="150" class="list-purpose-item">Nuestra aspiración  en REFACCIONARIAS ERSO es que seamos una empresa en crecimiento, rentable, eficiente y sostenible, basada evidentemente en las personas.</li>
+      <li data-aos="fade-right" data-aos-offset="150" class="list-purpose-item">Siempre hemos, sabido que en cada acción que realizamos, debemos dejar una huella positiva en cada una de las personas con las cuales nos relacionáramos, bien fuera empleado, cliente o cualquier otro integrante de la sociedad y en esa relación ofrecemos cercanía, calidez, respeto y la inclusión.</li>
+      <li data-aos="fade-left" data-aos-offset="150" class="list-purpose-item">Soñamos y pensamos diferente: Humanización, no con la pretensión de apropiarnos del concepto, si no de difundirlo, pues al fin y al cabo, lo primero que debe pasar entre seres humanos, es ser humano.</li>
+    </ul>
+    <p class="lead text-muted my-5">Estamos apegados al propósito de alcanzar una empresa más humana, a tener una actitud de servicio permanente donde el respeto entre nosotros y hacia los demás, sea la clave y nuestra tarea es hacerla realidad todos los días. Es una senda de coherencia entre lo que pensamos, decimos y hacemos. Somos unos convencidos que la rentabilidad no es solo cuantitativa, sino también cualitativa, las ganancias no son una cifra, son el resultado de algo bien hecho. Nuestro objetivo no es únicamente generar utilidades, es ante todo generar y crear valor, porque los valores, siguen siendo los principios fundamentales en la conformación de nuestra identidad, para el rescate de nuestro patrimonio moral, el único que tiene sentido desear, perseguir y alcanzar. Por eso no nos cabe la menor duda, que integridad y alto desempeño son compatibles, llevamos nuestros valores al trabajo para que cada acción nuestra logre transformar el entorno y ese es nuestro desafío.</p>
+    <h4 class="text-muted text-center">Estamos en la búsqueda del progreso individual y colectivo pero con un fin, <span class="text-primary">SERVIR MEJOR</span>.</h4>
+  </div>
+</div>
+
+<div class="bg-light">
+  <div class="container py-5 my-5">
+    <h3 class="text-muted text-center mb-3">PILARES FUNDAMENTALES</h3>
+    <hr class="mb-5">
+    <div class="row">
+      
+      <div class="col-md-4 text-center">
+        <h4 class="text-primary">Stock completo.</h4>
+        <p class="lead">Ofrecer a los clientes el mayor surtido, con diversas marcas y precios para que pueda elegir la opción que sea más acorde a sus necesidades.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <h4 class="text-primary">Servicio.</h4>
+        <p class="lead">Es el principal objetivo de nuestra empresa es darle una atención amable, especializada y rápida al cliente.  El servicio nos distingue de la competencia.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <h4 class="text-primary">Entrega Express.</h4>
+        <p class="lead">Hacer llegar al cliente lo que solicitó de una manera ágil, rápida y amable.  No basta con entregar la mercancía. Es cuestión de actitud y buen trato, eso nos hace diferentes y permite que los clientes regresen.</p>
+      </div>
+  
+    </div>
+
+  </div>
+</div>

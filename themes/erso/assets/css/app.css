@@ -926,6 +926,91 @@
   }
 }
 
+.list-purpose {
+  margin: 30px 0;
+  padding: 0;
+  width: 100%;
+}
+
+.list-purpose .list-purpose-item {
+  list-style: none;
+  border-left: solid 7px #ff9500;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .list-purpose .list-purpose-item {
+    margin-bottom: 30px;
+  }
+}
+
+.mision-vision {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.mision-vision .mision-vision-item {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 300px;
+  width: 100%;
+}
+
+.mision-vision .mision-vision-item .mision-vision-item-content {
+  align-content: center;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.7) 100%);
+  background-size: 5px 5px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 100px 30px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  width: 100%;
+}
+
+.mision-vision .mision-vision-item .mision-vision-item-content .mision-vision-item-title {
+  text-align: center;
+  width: 100%;
+}
+
+.mision-vision .mision-vision-item .mision-vision-item-content hr {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.mision-vision .mision-vision-item .mision-vision-item-content .mision-vision-item-text {
+  text-align: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .mision-vision .mision-vision-item {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .mision-vision .mision-vision-item .mision-vision-item-content {
+    padding: 100px;
+  }
+}
+
+.us-purpose {
+  background: white;
+  background-attachment: fixed;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  overflow: hidden;
+  width: 100%;
+}
+
 .list-category-content {
   background: #20202b;
   display: flex;
