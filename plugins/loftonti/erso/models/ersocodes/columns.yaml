@@ -1,6 +1,0 @@
-columns:
-    erso_code:
-        label: Código
-        type: number
-        searchable: true
-        sortable: true

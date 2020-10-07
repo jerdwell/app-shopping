@@ -10,10 +10,6 @@ class Products extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
-    use \October\Rain\Database\Traits\SoftDelete;
-
-    protected $dates = ['deleted_at'];
-
     /*
      * Disable timestamps by default.
      * Remove this line if timestamps are defined in the database table.
@@ -145,10 +141,6 @@ class Products extends Model
     public $belongsTo = [
         'brand' => [ 'Loftonti\Erso\Models\Brands' ],
         'category' => [ 'Loftonti\Erso\Models\Categories' ],
-        'shipowner' => [ 'Loftonti\Erso\Models\Shipowners' ],
-        'enterprise' => [ 'Loftonti\Erso\Models\Enterprises' ],
-        'car' => [ 'Loftonti\Erso\Models\CarsModels', 'key' => 'model_id' ],
-        'erso_code' => [ 'Loftonti\Erso\Models\ErsoCodes', 'key' => 'erso_code_id' ],
     ];
 
     public $belongsToMany = [
@@ -157,7 +149,7 @@ class Products extends Model
             'table' => 'loftonti_erso_product_branch',
             'key' => 'product_id',
             'otherKey' => 'branch_id',
-            'pivot' => ['stock']
+            'pivot' => ['stock', 'enterprise_id']
         ],
     ];
 

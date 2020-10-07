@@ -1,5 +1,8 @@
-fields:
+fields:    
   pivot[loftonti_erso_product_branch.stock]:
     label: Stock
     type: number
     select: loftonti_erso_product_branch.stock
+  pivot[loftonti_erso_product_branch.enterprise_id]:
+    label: Empresa
+    type: productstock

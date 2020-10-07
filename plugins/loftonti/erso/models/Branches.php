@@ -33,6 +33,14 @@ class Branches extends Model
     ];
 
     /**
+     * events
+     */
+    public function beforeFetch()
+    {
+        $this -> branches = 'ok'; 
+    }
+
+    /**
      * @var array jsonable to asign json data in database
      */
     public $jsonable = [
@@ -56,7 +64,7 @@ class Branches extends Model
             'table' => 'loftonti_erso_product_branch',
             'key' => 'branch_id',
             'otherKey' => 'product_id',
-            'pivot' => ['stock']
+            'pivot' => ['stock', 'enterprise_id']
         ],
     ];
 

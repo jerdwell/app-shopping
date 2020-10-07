@@ -96,3 +96,33 @@
 1.0.33:
     - 'Updated table loftonti_erso_categories'
     - builder_table_update_loftonti_erso_categories_3.php
+1.0.34:
+    - 'Updated table loftonti_erso_products'
+    - builder_table_update_loftonti_erso_products_17.php
+1.0.35:
+    - 'Updated table loftonti_erso_products'
+    - builder_table_update_loftonti_erso_products_18.php
+1.0.36:
+    - 'Updated table loftonti_erso_products'
+    - builder_table_update_loftonti_erso_products_19.php
+1.0.37:
+    - 'Updated table loftonti_erso_product_branch'
+    - builder_table_update_loftonti_erso_product_branch.php
+1.0.38:
+    - 'Created table loftonti_erso_application'
+    - builder_table_create_loftonti_erso_application.php
+1.0.39:
+    - 'Updated table loftonti_erso_models'
+    - builder_table_update_loftonti_erso_cars.php
+1.0.40:
+    - 'Updated table loftonti_erso_cars'
+    - builder_table_update_loftonti_erso_cars_2.php
+1.0.41:
+    - 'Updated table loftonti_erso_product_branch'
+    - builder_table_update_loftonti_erso_product_stock_branch.php
+1.0.42:
+    - 'Updated table loftonti_erso_product_stock_branch'
+    - builder_table_update_loftonti_erso_product_branch_2.php
+1.0.43:
+    - 'Updated table loftonti_erso_product_branch'
+    - builder_table_update_loftonti_erso_product_branch_3.php

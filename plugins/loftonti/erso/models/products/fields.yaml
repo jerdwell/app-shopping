@@ -2,24 +2,21 @@ tabs:
     fields:
         product_name:
             label: Producto
-            span: full
+            span: left
             required: 1
             type: text
             tab: Producto
-        product_note:
-            label: Nota
+        product_status:
+            label: Status
             span: auto
-            type: text
+            default: 1
+            required: 1
+            type: switch
             tab: Producto
-        product_description:
-            label: Descripción
-            size: ''
-            span: full
-            type: richeditor
-            tab: Producto
-        product_year:
-            label: Año
+        erso_code:
+            label: 'Código erso'
             span: auto
+            required: 1
             type: text
             tab: Producto
         provider_code:

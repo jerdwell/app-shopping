@@ -13,8 +13,4 @@ columns:
         type: text
         searchable: true
         sortable: true
-    product_year:
-        label: Año
-        type: number
-        searchable: true
-        sortable: true
+

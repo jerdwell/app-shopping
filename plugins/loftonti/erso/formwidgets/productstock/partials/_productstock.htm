@@ -1,0 +1,20 @@
+<?php $enterprises = $this -> vars['enterprises']; ?>
+
+<?php if ($this->previewMode): ?>
+    <div class="form-control">
+        <?= $value ?>
+    </div>
+<?php else: ?>
+
+    <select
+        name="<?= $name ?>"
+        id="<?= $this->getId('input') ?>"
+        value="<?= $model -> pivot -> enterprise_id ?>"
+        class="form-control">
+    <option value="">Selecciona una opción</option>
+    <?php forEach($enterprises as $enterprise): ?>
+        <option <?= $enterprise -> id == $model -> pivot -> enterprise_id ? 'selected' : '' ?> value="<?= $enterprise -> id ?>"><?= $enterprise -> enterprise_name ?></option>
+    <?php endforEach ?>
+    </select>
+
+<?php endif ?>
