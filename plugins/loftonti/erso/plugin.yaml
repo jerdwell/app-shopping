@@ -35,13 +35,9 @@ navigation:
                 url: loftonti/erso/enterprises
                 icon: icon-building
             side-menu-item7:
-                label: Modelos
+                label: Autos
                 url: loftonti/erso/carsmodels
                 icon: icon-automobile
-            side-menu-item8:
-                label: 'Códigos ERSO'
-                url: loftonti/erso/ersocodes
-                icon: icon-barcode
             side-menu-item9:
                 label: Recomendados
                 url: loftonti/erso/recommended

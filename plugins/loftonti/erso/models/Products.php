@@ -143,6 +143,14 @@ class Products extends Model
         'category' => [ 'Loftonti\Erso\Models\Categories' ],
     ];
 
+    public $hasMany = [
+        'applications' => [
+            'Loftonti\Erso\Models\Applications',
+            'key' => 'product_id',
+            'otherKey' => 'id',
+        ],
+    ];
+
     public $belongsToMany = [
         'branches' => [
             'Loftonti\Erso\Models\Branches',

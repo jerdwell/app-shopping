@@ -1,6 +1,7 @@
 <?php namespace Loftonti\Erso\Models;
 
 use Model;
+use Illuminate\Support\Str;
 
 /**
  * Model
@@ -18,6 +19,14 @@ class Shipowners extends Model
      * Remove this line if timestamps are defined in the database table.
      */
     public $timestamps = false;
+
+    /**
+     * Events
+     */
+    public function beforeSave()
+    {
+        $this -> shipowner_slug = Str::slug($this -> shipowner_name);
+    }
 
     /** Scopes **/
 

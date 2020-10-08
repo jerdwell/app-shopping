@@ -19,7 +19,9 @@ class Plugin extends PluginBase
     public function registerFormWidgets(){
         return [
             'LoftonTi\Erso\FormWidgets\Recommended' => 'recommended',
-            'LoftonTi\Erso\FormWidgets\ProductStock' => 'productstock'
+            'LoftonTi\Erso\FormWidgets\ProductStock' => 'productstock',
+            'LoftonTi\Erso\FormWidgets\ApplicationCar' => 'applicationCar',
+            'LoftonTi\Erso\FormWidgets\ApplicationShipowner' => 'applicationShipowner'
         ];
     }
 

@@ -1,0 +1,15 @@
+columns:
+    shipowner_id:
+        label: Armadora
+        type: text
+        select: (select loftonti_erso_shipowners.shipowner_name from loftonti_erso_shipowners where loftonti_erso_shipowners.id = loftonti_erso_application.shipowner_id)
+    car_id:
+        label: Auto
+        type: text
+        select: (select loftonti_erso_cars.car_name from loftonti_erso_cars where loftonti_erso_cars.id = loftonti_erso_application.car_id)
+    note:
+        label: Nota
+        type: text
+    year:
+        label: Año
+        type: text

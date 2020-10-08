@@ -2,6 +2,7 @@
 
 use Model;
 use Loftonti\Erso\Models\Products;
+use Illuminate\Support\Str;
 
 /**
  * Model
@@ -24,13 +25,20 @@ class CarsModels extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'loftonti_erso_models';
+    public $table = 'loftonti_erso_cars';
 
     /**
      * @var array Validation rules
      */
     public $rules = [
     ];
+    /**
+     * events
+     */
+    public function beforeSave()
+    {
+        $this -> car_slug = Str::slug($this -> car_name);
+    }
 
     /**
      * Scopes

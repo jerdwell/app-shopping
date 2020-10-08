@@ -1,0 +1,17 @@
+<?php
+    $car_name = $car_name ? $car_name : '';
+    $id = $model ? $model -> id : '';
+?>
+<label>Buscar auto</label>
+<input class="form-control" type="text" id="search-car" value="<?= $car_name ?>" oninput="searchCar.searchCarModel()">
+<input
+    class="form-control"
+    name="Applications[car_id]"
+    id="id-car-selected"
+    type="hidden"
+    value="<?= $id ?>"
+    readonly>
+
+<ul id="cars-results" style="display:none;">
+    <h5 class="text-center text-muted">Selecciona una opción</h5>
+</ul>

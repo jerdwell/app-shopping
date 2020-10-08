@@ -1,5 +1,5 @@
 fields:
-    model_name:
+    car_name:
         label: Modelo
         span: auto
         required: 1

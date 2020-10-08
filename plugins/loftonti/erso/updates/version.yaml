@@ -126,3 +126,12 @@
 1.0.43:
     - 'Updated table loftonti_erso_product_branch'
     - builder_table_update_loftonti_erso_product_branch_3.php
+1.0.44:
+    - 'Drop table loftonti_erso_codes'
+    - builder_table_delete_loftonti_erso_codes.php
+1.0.45:
+    - 'Updated table loftonti_erso_application'
+    - builder_table_update_loftonti_erso_application.php
+1.0.46:
+    - 'Updated table loftonti_erso_application'
+    - builder_table_update_loftonti_erso_application_2.php

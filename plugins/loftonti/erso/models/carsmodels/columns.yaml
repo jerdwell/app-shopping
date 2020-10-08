@@ -3,8 +3,8 @@ columns:
         label: id
         type: number
         sortable: true
-    model_name:
-        label: Modelo
+    car_name:
+        label: Auto
         type: text
         searchable: true
         sortable: true

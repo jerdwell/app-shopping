@@ -5,14 +5,10 @@ use Model;
 /**
  * Model
  */
-class ErsoCodes extends Model
+class Applications extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
-    use \October\Rain\Database\Traits\SoftDelete;
-
-    protected $dates = ['deleted_at'];
-
     /*
      * Disable timestamps by default.
      * Remove this line if timestamps are defined in the database table.
@@ -23,7 +19,7 @@ class ErsoCodes extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'loftonti_erso_codes';
+    public $table = 'loftonti_erso_application';
 
     /**
      * @var array Validation rules
@@ -32,17 +28,17 @@ class ErsoCodes extends Model
     ];
 
     /**
-     * Relations
+     * @var array belongs to many to set relation many to many
      */
 
-    /**
-     * @var array hasMany to get relationships
-     */
-    public $hasMany = [
-        'products' => [
-            'Loftonti\Erso\Models\Products',
-            'key' => 'erso_code_id',
-            'otherKey' => 'id',
-        ]
+    public $belongstoMany = [
+        // 'products' => [
+        //     'Loftonti\Erso\Models\Branches',
+        //     'table' => 'loftonti_erso_product_branch',
+        //     'key' => 'product_id',
+        //     'otherKey' => 'branch_id',
+        //     'pivot' => ['stock', 'enterprise_id']
+        // ],
     ];
+
 }

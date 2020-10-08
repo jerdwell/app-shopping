@@ -16,42 +16,6 @@ category:
     form: $/loftonti/erso/models/categories/fields_product_relation.yaml
     list: $/loftonti/erso/models/categories/columns.yaml
 
-# shipowner:
-#   label: Armadoras
-#   view:
-#     form: $/loftonti/erso/models/shipowners/fields_relation_products.yaml
-#     toolbarButtons: link
-#   manage:
-#     form: $/loftonti/erso/models/shipowners/fields_relation_products.yaml
-#     list: $/loftonti/erso/models/shipowners/columns.yaml
-
-# enterprise:
-#   label: Empresa
-#   view:
-#     form: $/loftonti/erso/models/enterprises/fields.yaml
-#     toolbarButtons: link
-#   manage:
-#     form: $/loftonti/erso/models/enterprises/fields.yaml
-#     list: $/loftonti/erso/models/enterprises/columns.yaml
-
-# car:
-#   label: Modelos
-#   view:
-#     form: $/loftonti/erso/models/carsmodels/fields.yaml
-#     toolbarButtons: link
-#   manage:
-#     form: $/loftonti/erso/models/carsmodels/fields.yaml
-#     list: $/loftonti/erso/models/carsmodels/columns.yaml
-
-# erso_code:
-#   label: Código ERSO
-#   view:
-#     form: $/loftonti/erso/models/ersocodes/fields.yaml
-#     toolbarButtons: link
-#   manage:
-#     form: $/loftonti/erso/models/ersocodes/fields.yaml
-#     list: $/loftonti/erso/models/ersocodes/columns.yaml
-
 branches:
   label: Sucursales
   view:
@@ -61,4 +25,12 @@ branches:
     list: $/loftonti/erso/models/branches/columns.yaml
   pivot:
     form: $/loftonti/erso/models/products/fields_pivot.yaml
-    # list: $/loftonti/erso/models/branches/columns.yaml
+
+applications:
+  label: Aplicaciones
+  manage:
+    form: $/loftonti/erso/models/applications/fields.yaml
+    list: $/loftonti/erso/models/applications/columns.yaml
+  view:
+    list: $/loftonti/erso/models/applications/columns.yaml
+    toolbarButtons: create|delete
