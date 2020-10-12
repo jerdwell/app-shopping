@@ -42,3 +42,7 @@ navigation:
                 label: Recomendados
                 url: loftonti/erso/recommended
                 icon: icon-star
+            side-menu-item8:
+                label: aplicaciones
+                url: loftonti/erso/applications
+                icon: icon-sitemap

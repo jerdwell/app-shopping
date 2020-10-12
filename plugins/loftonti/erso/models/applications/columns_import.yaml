@@ -1,0 +1,11 @@
+columns:
+  product_id:
+    label: Producto
+  car:
+    label: Auto
+  shipowner:
+    label: Armadora
+  year:
+    label: Año
+  note:
+    label: Nota

@@ -15,6 +15,14 @@ class Applications extends Model
      */
     public $timestamps = false;
 
+    public $fillable = [
+        'product_id',
+        'car_id',
+        'shipowner_id',
+        'year',
+        'note'
+    ];
+
 
     /**
      * @var string The database table used by the model.

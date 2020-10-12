@@ -15,8 +15,8 @@ class CarsModelsImport extends ImportModel
     foreach ($results as $row => $data) {
       try {
         $car = new CarsModels;
-        $car -> model_name = $data['model_name'];
-        $car -> model_slug = Str::slug($data['model_name']);
+        $car -> car_name = $data['car_name'];
+        $car -> car_slug = Str::slug($data['car_name']);
         $car -> deleted_at = null;
         $car -> save();
         $this->logCreated();

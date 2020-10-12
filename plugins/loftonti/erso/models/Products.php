@@ -16,6 +16,18 @@ class Products extends Model
      */
     public $timestamps = false;
 
+    public $fillable = [
+        'erso_code',
+        'provider_code',
+        'product_name',
+        'product_slug',
+        'category_id',
+        'brand_id',
+        'public_price',
+        'customer_price',
+        'product_cover'
+    ];
+
 
     /**
      * @var string The database table used by the model.
