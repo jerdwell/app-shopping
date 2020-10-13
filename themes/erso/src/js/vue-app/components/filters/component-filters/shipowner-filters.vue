@@ -36,11 +36,11 @@
                 input.form-control-checkbox.mr-2(
                   type="radio"
                   :name="car_model.shipowner_slug"
-                  :value="{model_id:car_model.model_id, shipowner_id: car_model.shipowner_id}"
+                  :value="{model_id:car_model.car.id, shipowner_id: car_model.shipowner.id}"
                   v-model="$parent.car_model_selected"
                   @change="getListProductsFiletered")
-              td.text-white {{ car_model.shipowner_name }}
-              td.text-white {{ car_model.model_name }}
+              td.text-white {{ car_model.shipowner.shipowner_name }}
+              td.text-white {{ car_model.car.car_name }}
 
       li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="shipowners.data && shipowners.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
 
@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'car-filters',
+  name: 'shipowner-filters',
   data(){
     return {
       loading: false,
@@ -58,6 +58,11 @@ export default {
       shipowners: [],
       shipowner_search: ''
     }
+  },
+  computed:{
+    ...mapGetters([
+      'get_branch_selected', //get branch selected
+    ])
   },
   methods: {
     ...mapActions([
@@ -70,12 +75,13 @@ export default {
       }
       this.loading = true
       try {
-        let shipowners = await this.$http.get(`/search-shipowner/${this.shipowner_search}`)
+        let shipowners = await this.$http.get(`/search-shipowner/${this.get_branch_selected}/${this.shipowner_search}`)
         this.loading = false
         this.results = true
+        console.log(shipowners)
         this.shipowners = shipowners
       } catch (error) {
-        console.log(errors);
+        error
       }
     },
     async getListProductsFiletered(){
@@ -89,8 +95,9 @@ export default {
     getCarModel(){
       let model_id = this.$parent.car_model_selected.model_id
       let shipowner_id = this.$parent.car_model_selected.shipowner_id
-      let data = this.shipowners.data.find(i => i.model_id == model_id && i.shipowner_id == shipowner_id)
-      return data.shipowner_name + ' - ' + data.model_name
+      let data = this.shipowners.data.find(i => i.car.id == model_id && i.shipowner.id == shipowner_id)
+      console.log(data)
+      return data.shipowner.shipowner_name + ' - ' + data.car.car_name
     }
   },
 }

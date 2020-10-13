@@ -16,10 +16,10 @@
             i.fas.fa-search
         input.form-control.form-control-sm(type="search" placeholder="Buscar auto" @keypress="filterCar" v-model="data_search")
       ul.list-cars.list-group.list-group-flush.mt-3(v-if="cars.length > 0")
-        li.list-group-item.p-1(v-for="(car, index) in cars" :key="car.model_id")
+        li.list-group-item.p-1(v-for="(car, index) in cars" :key="car.id")
           label
             input.form-control-checkbox.mr-2(type="checkbox" @click="setCarSelected(car)")
-            .small.d-inline-block {{ car.shipowner_name }} - {{ car.model_name }}
+            .small.d-inline-block {{ car.car.car_name }} - {{ car.shipowner.shipowner_name }}
       .mt-3(v-if="errors")
         .border.border-warning.p-2.rounded-lg.text-muted {{ errors }}
 
@@ -53,6 +53,7 @@ export default {
         this.cars = []
         if (this.data_search.length <= 0) return
         let cars = await this.$http.get(`/search-car-model/${this.data_search}`)
+        console.log(cars);
         if(cars.data.length <= 0) return this.errors = 'No existen coincidencias'
         this.cars = cars.data
       } catch (error) {
@@ -60,9 +61,10 @@ export default {
       }
     },
     setCarSelected(car){
+      console.log(car)
       this.show_pop = false
-      this.car_selected =  car.model_id + '-' + car.shipowner_id
-      this.alias = car.model_name + '-' + car.shipowner_name
+      this.car_selected =  car.car.id + '-' + car.shipowner.id
+      this.alias = car.car.car_name + '-' + car.shipowner.shipowner_name
       location.assign(`/productos/${this.branch}/${this.category}/${this.car_selected.replace('-','/')}`)
     },
     resetDefault(){
@@ -70,7 +72,10 @@ export default {
       this.car_selected = ''
       this.alias = ''
     }
-  }
+  },
+  mounted() {
+    console.log(this.model_shipowner);
+  },
 }
 </script>
 

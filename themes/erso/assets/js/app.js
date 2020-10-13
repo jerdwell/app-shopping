@@ -4491,6 +4491,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4498,13 +4500,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token', //get token user
   'get_branch_selected' //get branch selected
   ])), {}, {
-    stockProduct: function stockProduct() {
-      var _this = this;
-
-      var stock = this.product.branches.find(function (item) {
-        return item.slug == _this.get_branch_selected;
+    product_notes: function product_notes() {
+      var notes = '';
+      this.product.applications.forEach(function (note) {
+        if (note.note != '') notes += note.note + '\n';
       });
-      return stock.pivot.stock;
+      return notes;
+    },
+    car_shipowner: function car_shipowner() {
+      var car_shipowner = [];
+      this.product.applications.forEach(function (e) {
+        car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name);
+      });
+      return car_shipowner.join(',');
     }
   }),
   components: {
@@ -5067,7 +5075,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.loading = true;
                 _context.prev = 4;
                 _context.next = 7;
-                return _this.$http.get("/search-car-model/".concat(_this.car_search));
+                return _this.$http.get("/search-car-model/".concat(encodeURI(_this.car_search)));
 
               case 7:
                 carsModels = _context.sent;
@@ -5133,9 +5141,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var model_id = this.$parent.car_model_selected.model_id;
       var shipowner_id = this.$parent.car_model_selected.shipowner_id;
       var data = this.carsModels.data.find(function (i) {
-        return i.model_id == model_id && i.shipowner_id == shipowner_id;
+        return i.car.id == model_id && i.shipowner.id == shipowner_id;
       });
-      return data.shipowner_name + ' - ' + data.model_name;
+      return data.shipowner.shipowner_name + ' - ' + data.car.car_name;
     }
   })
 });
@@ -5266,7 +5274,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'car-filters',
+  name: 'shipowner-filters',
   data: function data() {
     return {
       loading: false,
@@ -5275,6 +5283,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       shipowner_search: ''
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_branch_selected' //get branch selected
+  ])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['serachProductModel' //sel tis products finded
   ])), {}, {
     serach_cars: function serach_cars() {
@@ -5298,27 +5308,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.loading = true;
                 _context.prev = 4;
                 _context.next = 7;
-                return _this.$http.get("/search-shipowner/".concat(_this.shipowner_search));
+                return _this.$http.get("/search-shipowner/".concat(_this.get_branch_selected, "/").concat(_this.shipowner_search));
 
               case 7:
                 shipowners = _context.sent;
                 _this.loading = false;
                 _this.results = true;
+                console.log(shipowners);
                 _this.shipowners = shipowners;
-                _context.next = 16;
+                _context.next = 17;
                 break;
 
-              case 13:
-                _context.prev = 13;
+              case 14:
+                _context.prev = 14;
                 _context.t0 = _context["catch"](4);
-                console.log(errors);
+                _context.t0;
 
-              case 16:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[4, 13]]);
+        }, _callee, null, [[4, 14]]);
       }))();
     },
     getListProductsFiletered: function getListProductsFiletered() {
@@ -5364,9 +5375,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var model_id = this.$parent.car_model_selected.model_id;
       var shipowner_id = this.$parent.car_model_selected.shipowner_id;
       var data = this.shipowners.data.find(function (i) {
-        return i.model_id == model_id && i.shipowner_id == shipowner_id;
+        return i.car.id == model_id && i.shipowner.id == shipowner_id;
       });
-      return data.shipowner_name + ' - ' + data.model_name;
+      console.log(data);
+      return data.shipowner.shipowner_name + ' - ' + data.car.car_name;
     }
   })
 });
@@ -5425,7 +5437,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     years: function years() {
       var years = [];
       this.get_years_related.map(function (e) {
-        years = [].concat(_toConsumableArray(e.product_year.split('-')), _toConsumableArray(years));
+        years = [].concat(_toConsumableArray(e.year.split('-')), _toConsumableArray(years));
       });
       var range = [];
       var min = Math.min.apply(Math, _toConsumableArray(years));
@@ -5526,9 +5538,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
 //
 //
 //
@@ -5792,9 +5801,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'general-filter',
@@ -5839,34 +5845,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 8:
                 products = _context.sent;
                 _this.loading = false;
+                return _context.abrupt("return");
 
-                if (!(_this.get_list_products.data.length > 0)) {
-                  _context.next = 13;
-                  break;
-                }
-
-                _this.no_results = false;
-                return _context.abrupt("return", _this.$parent.searchProduct = false);
-
-              case 13:
+              case 14:
                 _this.no_results = true;
                 setTimeout(function () {
                   _this.no_results = false;
                 }, 3000);
-                _context.next = 20;
+                _context.next = 21;
                 break;
 
-              case 17:
-                _context.prev = 17;
+              case 18:
+                _context.prev = 18;
                 _context.t0 = _context["catch"](4);
                 console.log(_context.t0);
 
-              case 20:
+              case 21:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[4, 17]]);
+        }, _callee, null, [[4, 18]]);
       }))();
     }
   }),
@@ -6122,36 +6121,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 cars = _context.sent;
+                console.log(cars);
 
                 if (!(cars.data.length <= 0)) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
 
                 return _context.abrupt("return", _this.errors = 'No existen coincidencias');
 
-              case 9:
+              case 10:
                 _this.cars = cars.data;
-                _context.next = 15;
+                _context.next = 16;
                 break;
 
-              case 12:
-                _context.prev = 12;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](0);
                 _this.errors = _context.t0;
 
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[0, 13]]);
       }))();
     },
     setCarSelected: function setCarSelected(car) {
+      console.log(car);
       this.show_pop = false;
-      this.car_selected = car.model_id + '-' + car.shipowner_id;
-      this.alias = car.model_name + '-' + car.shipowner_name;
+      this.car_selected = car.car.id + '-' + car.shipowner.id;
+      this.alias = car.car.car_name + '-' + car.shipowner.shipowner_name;
       location.assign("/productos/".concat(this.branch, "/").concat(this.category, "/").concat(this.car_selected.replace('-', '/')));
     },
     resetDefault: function resetDefault() {
@@ -6159,6 +6160,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.car_selected = '';
       this.alias = '';
     }
+  },
+  mounted: function mounted() {
+    console.log(this.model_shipowner);
   }
 });
 
@@ -6337,7 +6341,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 15:
                 years = [];
                 results.data.years.map(function (e) {
-                  years = [].concat(_toConsumableArray(e.product_year.split('-')), _toConsumableArray(years));
+                  years = [].concat(_toConsumableArray(e.year.split('-')), _toConsumableArray(years));
                 });
                 range = [];
                 min = Math.min.apply(Math, _toConsumableArray(years));
@@ -6352,15 +6356,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this.years = range;
-                _context.next = 28;
+                _context.next = 29;
                 break;
 
               case 25:
                 _context.prev = 25;
                 _context.t0 = _context["catch"](1);
+                console.log(_context.t0);
                 _this.errors = _context.t0;
 
-              case 28:
+              case 29:
               case "end":
                 return _context.stop();
             }
@@ -6636,7 +6641,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  height: 200px;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n", ""]);
+exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  height: 200px;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 300px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 100px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n", ""]);
 
 // exports
 
@@ -46564,7 +46569,10 @@ var render = function() {
                   staticClass: "product-item-image bg-white",
                   attrs: {
                     "img-normal":
-                      "/storage/app/media/" + _vm.product.product_cover
+                      "/storage/app/media/products/" +
+                      (_vm.product.product_cover != ""
+                        ? _vm.product.product_cover
+                        : "no_disponible.jpg")
                   }
                 })
               ],
@@ -46574,44 +46582,53 @@ var render = function() {
         ),
         _c("div", { staticClass: "card-body p-0" }, [
           _c("div", { staticClass: "product-item-data py-3 bg-dark" }, [
-            _c("div", { staticClass: "text-lg-center pt-lg-3" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "link text-info mb-4",
-                  staticStyle: { "text-decoration": "none" },
-                  attrs: { href: "/productos/producto/" + _vm.product.id }
-                },
-                [
-                  _c("span", { staticClass: "h6 text-info" }, [
-                    _vm._v(_vm._s(_vm.product.product_name))
+            _c(
+              "div",
+              {
+                staticClass:
+                  "product-item-data-description text-lg-center pt-lg-3"
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "link text-info mb-4",
+                    staticStyle: { "text-decoration": "none" },
+                    attrs: { href: "/productos/producto/" + _vm.product.id }
+                  },
+                  [
+                    _c("span", { staticClass: "h6 text-info" }, [
+                      _vm._v(_vm._s(_vm.product.product_name))
+                    ])
+                  ]
+                ),
+                _c("p", { staticClass: "mb-0 small" }, [
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v("Marca: " + _vm._s(_vm.product.brand.brand_name))
+                  ]),
+                  _c("br"),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v("Nota: " + _vm._s(_vm.product_notes))
+                  ]),
+                  _c("br"),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v(
+                      "Stock: " +
+                        _vm._s(this.product.branches[0].pivot.stock) +
+                        "pz"
+                    )
+                  ]),
+                  _c("br"),
+                  _vm._m(0),
+                  _c("br")
+                ]),
+                _c("div", { staticClass: "car-shipowner-description" }, [
+                  _c("small", { staticClass: "small text-light" }, [
+                    _vm._v(_vm._s(_vm.car_shipowner))
                   ])
-                ]
-              ),
-              _c("p", { staticClass: "mb-0 small" }, [
-                _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Marca: " + _vm._s(_vm.product.brand.brand_name))
                 ]),
-                _c("br"),
                 _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Nota: " + _vm._s(_vm.product.product_note))
-                ]),
-                _c("br"),
-                _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Stock: " + _vm._s(_vm.stockProduct) + "pz")
-                ]),
-                _c("br"),
-                _c("span", { staticClass: "text-muted" }, [
-                  _vm._v(
-                    "Auto: " +
-                      _vm._s(_vm.product.shipowner.shipowner_name) +
-                      " - " +
-                      _vm._s(_vm.product.car.model_name)
-                  )
-                ]),
-                _c("br"),
-                _c("span", { staticClass: "text-muted" }, [
-                  _vm._v("Código: " + _vm._s(_vm.product.erso_code.erso_code))
+                  _vm._v("Código: " + _vm._s(_vm.product.erso_code))
                 ]),
                 _c("br"),
                 !_vm.get_token
@@ -46640,9 +46657,10 @@ var render = function() {
                             : "Precio no disponible"
                         )
                       )
-                    ])
-              ])
-            ]),
+                    ]),
+                _c("p")
+              ]
+            ),
             _c(
               "div",
               { staticClass: "col-12 bg-light py-2 pb-3 mt-2" },
@@ -46655,7 +46673,19 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-muted" }, [
+      _c("b", { staticClass: "text-yellow text-center" }, [
+        _vm._v("Auto - Armadora")
+      ]),
+      _vm._v(":")
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -47163,14 +47193,14 @@ var render = function() {
                                 },
                                 domProps: {
                                   value: {
-                                    model_id: car_model.model_id,
-                                    shipowner_id: car_model.shipowner_id
+                                    model_id: car_model.car.id,
+                                    shipowner_id: car_model.shipowner.id
                                   },
                                   checked: _vm._q(
                                     _vm.$parent.car_model_selected,
                                     {
-                                      model_id: car_model.model_id,
-                                      shipowner_id: car_model.shipowner_id
+                                      model_id: car_model.car.id,
+                                      shipowner_id: car_model.shipowner.id
                                     }
                                   )
                                 },
@@ -47181,8 +47211,8 @@ var render = function() {
                                         _vm.$parent,
                                         "car_model_selected",
                                         {
-                                          model_id: car_model.model_id,
-                                          shipowner_id: car_model.shipowner_id
+                                          model_id: car_model.car.id,
+                                          shipowner_id: car_model.shipowner.id
                                         }
                                       )
                                     },
@@ -47192,10 +47222,10 @@ var render = function() {
                               })
                             ]),
                             _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.shipowner_name))
+                              _vm._v(_vm._s(car_model.shipowner.shipowner_name))
                             ]),
                             _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.model_name))
+                              _vm._v(_vm._s(car_model.car.car_name))
                             ])
                           ])
                         }),
@@ -47303,8 +47333,8 @@ var render = function() {
         _vm._l(_vm.get_categories_related, function(category, index) {
           return _c(
             "option",
-            { key: index, domProps: { value: category.category.id } },
-            [_vm._v(_vm._s(category.category.category_name))]
+            { key: index, domProps: { value: category.id } },
+            [_vm._v(_vm._s(category.category_name))]
           )
         })
       ],
@@ -47450,14 +47480,14 @@ var render = function() {
                                 },
                                 domProps: {
                                   value: {
-                                    model_id: car_model.model_id,
-                                    shipowner_id: car_model.shipowner_id
+                                    model_id: car_model.car.id,
+                                    shipowner_id: car_model.shipowner.id
                                   },
                                   checked: _vm._q(
                                     _vm.$parent.car_model_selected,
                                     {
-                                      model_id: car_model.model_id,
-                                      shipowner_id: car_model.shipowner_id
+                                      model_id: car_model.car.id,
+                                      shipowner_id: car_model.shipowner.id
                                     }
                                   )
                                 },
@@ -47468,8 +47498,8 @@ var render = function() {
                                         _vm.$parent,
                                         "car_model_selected",
                                         {
-                                          model_id: car_model.model_id,
-                                          shipowner_id: car_model.shipowner_id
+                                          model_id: car_model.car.id,
+                                          shipowner_id: car_model.shipowner.id
                                         }
                                       )
                                     },
@@ -47479,10 +47509,10 @@ var render = function() {
                               })
                             ]),
                             _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.shipowner_name))
+                              _vm._v(_vm._s(car_model.shipowner.shipowner_name))
                             ]),
                             _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.model_name))
+                              _vm._v(_vm._s(car_model.car.car_name))
                             ])
                           ])
                         }),
@@ -47669,12 +47699,15 @@ var render = function() {
           attrs: { type: "search", placeholder: "Capturar código" },
           domProps: { value: _vm.data_search },
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.data_search = $event.target.value
-            }
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.data_search = $event.target.value
+              },
+              _vm.searchProducts
+            ]
           }
         }),
         _c(
@@ -47691,25 +47724,6 @@ var render = function() {
             staticClass: "list-group"
           },
           [_vm._m(0)]
-        ),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-info mt-4",
-            attrs: { disabled: _vm.loading },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.searchProducts($event)
-              }
-            }
-          },
-          [
-            _vm.loading
-              ? _c("div", { staticClass: "spinner-border" })
-              : _vm._e(),
-            _c("span", [_vm._v("Buscar")])
-          ]
         )
       ])
     ])
@@ -47857,36 +47871,20 @@ var render = function() {
           attrs: { type: "search", placeholder: "Buscar productos" },
           domProps: { value: _vm.data_search },
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.data_search = $event.target.value
-            }
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.data_search = $event.target.value
+              },
+              _vm.generalFilter
+            ]
           }
         }),
         _vm.no_results
           ? _c("div", { staticClass: "list-group mt-3" }, [_vm._m(0)])
-          : _vm._e(),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-info mt-4",
-            attrs: { disabled: _vm.loading },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.generalFilter($event)
-              }
-            }
-          },
-          [
-            _vm.loading
-              ? _c("div", { staticClass: "spinner-border mr-2" })
-              : _vm._e(),
-            _c("span", [_vm._v("Buscar")])
-          ]
-        )
+          : _vm._e()
       ])
     ])
   ])
@@ -48494,7 +48492,7 @@ var render = function() {
                   _vm._l(_vm.cars, function(car, index) {
                     return _c(
                       "li",
-                      { key: car.model_id, staticClass: "list-group-item p-1" },
+                      { key: car.id, staticClass: "list-group-item p-1" },
                       [
                         _c("label", [
                           _c("input", {
@@ -48508,9 +48506,9 @@ var render = function() {
                           }),
                           _c("div", { staticClass: "small d-inline-block" }, [
                             _vm._v(
-                              _vm._s(car.shipowner_name) +
+                              _vm._s(car.car.car_name) +
                                 " - " +
-                                _vm._s(car.model_name)
+                                _vm._s(car.shipowner.shipowner_name)
                             )
                           ])
                         ])
@@ -69944,15 +69942,17 @@ var mutations = {
       var item = {
         id: data.id,
         product_name: data.product_name,
-        product_year: data.product_year,
+        // product_year: data.product_year,
         category_name: data.category.category_name,
         provider_code: data.provider_code,
+        erso_code: data.erso_code,
         product_cover: data.product_cover,
         public_price: data.public_price,
         customer_price: data.customer_price,
-        brand_name: data.brand.brand_name,
-        model: "".concat(data.shipowner.shipowner_name, " ").concat(data.car.model_name)
+        brand_name: data.brand.brand_name // model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
+
       };
+      console.log(data);
       item.quantity = 1;
       state.cart_items.push(item);
     } else {
@@ -70163,25 +70163,26 @@ var actions = {
             case 3:
               _context2.prev = 3;
               _context2.next = 6;
-              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/general-search-products/".concat(getters.get_branch_selected, "/").concat(data));
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/general-search-products/".concat(getters.get_branch_selected, "/").concat(encodeURI(data)));
 
             case 6:
               products = _context2.sent;
-              dispatch('setListProducts', products.data.products);
-              _context2.next = 13;
+              console.log(products);
+              dispatch('setListProducts', products.data);
+              _context2.next = 14;
               break;
 
-            case 10:
-              _context2.prev = 10;
+            case 11:
+              _context2.prev = 11;
               _context2.t0 = _context2["catch"](3);
               console.log(_context2.t0);
 
-            case 13:
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[3, 10]]);
+      }, _callee2, null, [[3, 11]]);
     }));
 
     function generalSearch(_x3, _x4) {
@@ -70210,25 +70211,26 @@ var actions = {
             case 3:
               _context3.prev = 3;
               _context3.next = 6;
-              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/code-search-products/".concat(getters.get_branch_selected, "/").concat(data));
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/code-search-products/".concat(getters.get_branch_selected, "/").concat(encodeURI(data)));
 
             case 6:
               products = _context3.sent;
+              console.log(products);
               dispatch('setListProducts', products.data);
-              _context3.next = 13;
+              _context3.next = 14;
               break;
 
-            case 10:
-              _context3.prev = 10;
+            case 11:
+              _context3.prev = 11;
               _context3.t0 = _context3["catch"](3);
               console.log(_context3.t0);
 
-            case 13:
+            case 14:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[3, 10]]);
+      }, _callee3, null, [[3, 11]]);
     }));
 
     function searchByCode(_x5, _x6) {

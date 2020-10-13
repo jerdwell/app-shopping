@@ -78,10 +78,10 @@ class ListProducts extends ComponentBase
             $this -> categories = Categories::all() -> makeHidden(['deleted_at', 'id', 'category_cover']);
             $shipowner = $this -> shipowner ? Shipowners::find($this -> shipowner) : false;
             $model = $this -> model ? CarsModels::find($this -> model) : false;
-            $this -> model_shipowner = $this -> shipowner && $this -> model ? $shipowner -> shipowner_name . ' ' . $model -> model_name : false;
+            $this -> model_shipowner = $this -> shipowner && $this -> model ? $model -> car_name : false;
         } catch (\Exception $th) {
-            return Redirect::to('/productos');
-            // return [$th -> getMessage()];
+            // return Redirect::to('/productos');
+            return [$th -> getMessage()];
         }
     }
 
@@ -118,16 +118,18 @@ class ListProducts extends ComponentBase
     {
         $branch = $this -> property('branch');
         if($this -> model == null || $this -> shipowner == null || $this -> year == null){
-            // $this -> categories = '';
+            // $this -> categories = ''; 
             return Products::filterByCategory($this -> category, $branch)
                 ->with([
                     'brand',
                     'category',
-                    'shipowner',
-                    'enterprise',
-                    'car',
-                    'erso_code',
-                    'branches'
+                    'applications',
+                    'applications.car',
+                    'applications.shipowner',
+                    'branches' => function($q) use($branch) {
+                        $q -> where('loftonti_erso_branches.slug', $branch)
+                        ->select('id');
+                    }
                 ])
                 -> paginate($this -> limit);
         }else{

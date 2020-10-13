@@ -6,7 +6,7 @@ div
     @change="addCategoryToFilter"
     :disabled="$parent.model_selected != '' ? false :true")
     option(value="") Selecciona una opción
-    option(v-for="(category, index) in get_categories_related" :key="index" :value="category.category.id") {{ category.category.category_name }}
+    option(v-for="(category, index) in get_categories_related" :key="index" :value="category.id") {{ category.category_name }}
   .list-group.mt-3(v-if="no_results")
     .list-group-item.border-danger.p-1.bg-transparent.text-danger #[i.oi.oi-x] No existen resultados
 </template>
@@ -33,6 +33,6 @@ export default {
       this.$parent.car_model_selected['category'] = this.$parent.category_selected
       this.serachProductModel(this.$parent.car_model_selected)
     }
-  }
+  },
 }
 </script>

@@ -53,12 +53,10 @@ export default {
         }
         car = car.split('-')
         let results = await this.$http.get(`search-products/${this.branch}/${car[0]}/${car[1]}`)
-        // console.log(results)
-        // return
         if(!results.data || results.data.years.length <= 0) throw 'No existen resultados'
         let years = []
         results.data.years.map(e => {
-          years = [...e.product_year.split('-'), ...years]
+          years = [...e.year.split('-'), ...years]
         })
         let range = []
         let min = Math.min(...years)
@@ -69,6 +67,7 @@ export default {
         }
         this.years = range
       } catch (error) {
+        console.log(error)
         this.errors = error
       }
     },

@@ -3,12 +3,9 @@
     .row.w-100
       .col-md-4
         label.text-light Buscar Producto
-        input.form-control.rounded-pill(type="search" placeholder="Buscar productos" v-model="data_search")
+        input.form-control.rounded-pill(type="search" placeholder="Buscar productos" v-model="data_search" @input="generalFilter")
         .list-group.mt-3(v-if="no_results")
           .list-group-item.bg-transparent.border-danger.text-danger.p-1 #[i.oi.oi-x] No existen coincidencias
-        button.btn.btn-info.mt-4(@click.prevent="generalFilter" :disabled="loading")
-          .spinner-border.mr-2(v-if="loading")
-          span Buscar
 </template>
 
 <script>
@@ -44,6 +41,7 @@ export default {
         this.loading = true
         let products = await this.generalSearch(this.data_search)
         this.loading = false
+        return
         if(this.get_list_products.data.length > 0){
           this.no_results = false
           return this.$parent.searchProduct = false

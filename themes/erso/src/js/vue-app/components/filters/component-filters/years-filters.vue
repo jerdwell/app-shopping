@@ -26,7 +26,7 @@ export default {
     years(){
       let years = []
       this.get_years_related.map(e => {
-        years = [...e.product_year.split('-'), ...years]
+        years = [...e.year.split('-'), ...years]
       })
       let range = []
       let min = Math.min(...years)

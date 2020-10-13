@@ -2,6 +2,7 @@
 
 use Model;
 use Illuminate\Support\Str;
+use Loftonti\Erso\Models\Applications;
 
 /**
  * Model
@@ -30,17 +31,21 @@ class Shipowners extends Model
 
     /** Scopes **/
 
-    public function scopeGetCarShipowner($query, $car)
+    public function scopeGetCarShipowner($query, $branch, $car)
     {
-        $models = $query -> where('shipowner_name', 'like', "%{$car}%") -> get();
+        $branch = Branches::where('slug',$branch)->first();
+        $models = $query -> where('shipowner_name', 'like', "%{$car}%")
+        -> get();
         $filter = [];
         foreach ($models as $key) {
             array_push($filter, $key -> id);
         }
-        $products = Products::selectRaw('loftonti_erso_models.id as model_id, loftonti_erso_models.model_name, loftonti_erso_products.shipowner_id, loftonti_erso_shipowners.shipowner_name')
-        -> leftJoin('loftonti_erso_models','loftonti_erso_models.id','=','loftonti_erso_products.model_id')
-        -> leftJoin('loftonti_erso_shipowners','loftonti_erso_shipowners.id','=','loftonti_erso_products.shipowner_id')
-        -> whereIn('shipowner_id',$filter);
+        $products = Applications::select('loftonti_erso_application.*')
+            -> whereIn('loftonti_erso_application.shipowner_id', $filter)
+            -> leftJoin('loftonti_erso_products','loftonti_erso_products.id','loftonti_erso_application.product_id')
+            -> leftJoin('loftonti_erso_product_branch','loftonti_erso_product_branch.product_id','loftonti_erso_products.id')
+            ->where('loftonti_erso_product_branch.branch_id', $branch -> id)
+            -> with(['car','shipowner']);
         return $products;
     }
 

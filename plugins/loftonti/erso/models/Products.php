@@ -2,6 +2,8 @@
 
 use Model;
 use Illuminate\Support\Str;
+use Loftonti\Erso\Models\Applications;
+use Loftonti\Erso\Models\Categories;
 
 /**
  * Model
@@ -51,84 +53,72 @@ class Products extends Model
 
     public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
     {
-        $query -> select('loftonti_erso_products.*')
-        -> where('shipowner_id', $shipowner)
-        -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
-            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
-            -> where('loftonti_erso_branches.slug', $branch)
-        ->where('model_id', $model)
-        ->when($filter1, function($q) use($filter1, $value1){
-            if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
-            if($filter1 == 'category') return $q -> where("category_id", $value1);
-        })
-        ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
-            if($filter1 == 'year') {
-                $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
-                    -> where("category_id", $value2);
-            }else{
-                $q -> whereRaw("{$value2} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
-                    -> where("category_id", $value1);
+        try {
+            $applications = Applications::select('loftonti_erso_application.product_id')
+                ->where('loftonti_erso_application.shipowner_id', $shipowner)
+                ->where('loftonti_erso_application.car_id', $model)
+                ->when($filter1 && !$filter2, function($q) use($filter1, $value1){
+                    if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)");
+                    if($filter1 == 'category'){
+                        $q -> leftJoin('loftonti_erso_products', 'loftonti_erso_products.id','=','loftonti_erso_application.product_id')
+                        ->where('loftonti_erso_products.category_id',$value1);
+                    }
+                })
+                ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
+                    if($filter1 == 'year') {
+                        $q -> whereRaw("{$value1} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)")
+                            -> leftJoin('loftonti_erso_products', 'loftonti_erso_products.id','=','loftonti_erso_application.product_id')
+                            ->where('loftonti_erso_products.category_id',$value1);
+                    }else{
+                        $q -> whereRaw("{$value2} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)")
+                        -> leftJoin('loftonti_erso_products', 'loftonti_erso_products.id','=','loftonti_erso_application.product_id')
+                        ->where('loftonti_erso_products.category_id',$value1);
+                    }
+                })
+                -> get();
+            $ids = [];
+            foreach ($applications as $application) {
+                array_push($ids, $application -> product_id);
             }
-        })
-        -> with([
-            'shipowner',
-            'brand',
-            'car',
-            'category',
-            'branches',
-            'erso_code'
-        ]);
-        return $query;
-    }
-
-    public function scopeFilterYear($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
-    {
-        $query -> select('product_year')
-            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
-            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
-            -> where('loftonti_erso_branches.slug', $branch)
-            ->groupBy('product_year')
-            ->where('shipowner_id', $shipowner)
-            ->where('model_id', $model)
-            ->when($filter1, function($q) use($filter1, $value1){
-                if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
-                if($filter1 == 'category') return $q -> where("category_id", $value1);
-            })
-            ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
-                if($filter1 == 'year') {
-                    $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
-                        -> where("category_id", $value2);
-                }else{
-                    $q -> whereRaw("{$value2} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
-                        -> where("category_id", $value1);
-                }
-            });
-        return $query;
+            $query -> select('loftonti_erso_products.*')
+            -> whereIn('loftonti_erso_products.id', $ids)
+            ->leftJoin('loftonti_erso_product_branch','loftonti_erso_product_branch.product_id','loftonti_erso_products.id')
+            ->leftJoin('loftonti_erso_branches','loftonti_erso_branches.id','loftonti_erso_product_branch.branch_id')
+            ->where('loftonti_erso_branches.slug',$branch)
+            ->orderBy('loftonti_erso_products.product_name','asc')
+            -> with([
+                'brand',
+                'category',
+                'branches',
+                'branches',
+                'applications',
+                'applications.shipowner',
+                'applications.car',
+            ]);
+            return $query;
+        } catch (\Throwable $th) {
+            return [$th -> getMessage()];
+        }
     }
 
     public function scopeFilterCategories($query, $model, $shipowner, $filter1, $value1, $filter2, $value2, $branch)
     {
-        $query -> select('category_id')
-            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
-            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
-            -> where('loftonti_erso_branches.slug', $branch)
-        ->where('shipowner_id', $shipowner)
-        ->where('model_id', $model)
-        ->when($filter1, function($q) use($filter1, $value1){
-            if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)");
-            if($filter1 == 'category') return $q -> where("category_id", $value1);
-        })
-        ->when($filter1 && $filter2, function($q) use ($filter1, $value1, $value2){
-            if($filter1 == 'year') {
-                $q -> whereRaw("{$value1} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
-                    -> where("category_id", $value2);
-            }else{
-                $q -> whereRaw("{$value2} between substring_index(product_year, '-', 1) AND substring_index(product_year, '-', -1)")
-                    -> where("category_id", $value1);
-            }
-        })
-        ->groupBy('category_id');
-        return $query;
+        $applications = Applications::select('product_id')
+            -> where('shipowner_id', $shipowner)
+            -> where('car_id', $model) -> get();
+        $ids = [];
+        foreach ($applications as $application) {
+            array_push($ids, $application -> product_id);
+        }
+        $products = Products::select('category_id')
+            ->whereIn('id', $ids)
+            ->groupBy('category_id')
+            ->get();
+        $categories = [];
+        foreach ($products as $product) {
+            array_push($categories, $product -> category_id);
+        }
+        return Categories::whereIn('id', $categories);
     }
 
     /**
@@ -137,12 +127,12 @@ class Products extends Model
     public function scopeFilterByCategory($query, $category, $branch)
     {
         $query -> selectRaw('loftonti_erso_products.*')
+            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
+            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
             -> when($category != null, function($q) use($category, $branch){
                 $q -> leftJoin('loftonti_erso_categories', 'loftonti_erso_categories.id','=', 'loftonti_erso_products.category_id')
                 -> where('loftonti_erso_categories.category_name', $category);
             })
-            -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
-            -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
             -> where('loftonti_erso_branches.slug', $branch)
             ->orderBy('loftonti_erso_products.category_id');
         return $query;

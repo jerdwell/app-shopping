@@ -57,8 +57,9 @@ const actions = {
   generalSearch: async({ dispatch, getters }, data) => {
     if( data.replace(/\s+/g, '').length <= 0 )return false
     try {
-      let products = await vm.prototype.$http.get(`/general-search-products/${getters.get_branch_selected}/${data}`)
-      dispatch('setListProducts', products.data.products)
+      let products = await vm.prototype.$http.get(`/general-search-products/${getters.get_branch_selected}/${encodeURI(data)}`)
+      console.log(products);
+      dispatch('setListProducts', products.data)
     } catch (error) {
       console.log(error)
     }
@@ -68,7 +69,8 @@ const actions = {
   searchByCode: async({ dispatch, getters }, data) => {
     if( data.replace(/\s+/g, '').length <= 0 )return false
     try {
-      let products = await vm.prototype.$http.get(`/code-search-products/${getters.get_branch_selected}/${data}`)
+      let products = await vm.prototype.$http.get(`/code-search-products/${getters.get_branch_selected}/${encodeURI(data)}`)
+      console.log(products);
       dispatch('setListProducts', products.data)
     } catch (error) {
       console.log(error)

@@ -6,22 +6,24 @@
   .card-product-item.card
     .card-header.p-0(stye="z-index:0; position: relative;")
       a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`")
-        zoom-on-hover.product-item-image.bg-white(:img-normal="'/storage/app/media/' + product.product_cover")
+        zoom-on-hover.product-item-image.bg-white(:img-normal="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
-        .text-lg-center.pt-lg-3
+        .product-item-data-description.text-lg-center.pt-lg-3
           a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`" style="text-decoration:none;")
             span.h6.text-info {{ product.product_name }}
           p.mb-0.small
             span.text-muted Marca: {{ product.brand.brand_name }}
             br
-            span.text-muted Nota: {{ product.product_note }}
+            span.text-muted Nota: {{ product_notes }}
             br
-            span.text-muted Stock: {{ stockProduct }}pz
+            span.text-muted Stock: {{ this.product.branches[0].pivot.stock }}pz
             br
-            span.text-muted Auto: {{ product.shipowner.shipowner_name }} - {{ product.car.model_name }}
+            span.text-muted #[b.text-yellow.text-center Auto - Armadora]:
             br
-            span.text-muted Código: {{ product.erso_code.erso_code }}
+            div.car-shipowner-description
+              small.small.text-light {{ car_shipowner }}
+            span.text-muted Código: {{ product.erso_code }}
             br
             b.text-info.mb-0.pb-0.lead(v-if="!get_token") {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
             b.text-info.mb-0.pb-0.lead(v-else) {{ product.customer_price != null ? '$' + product.customer_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
@@ -42,9 +44,19 @@ export default {
       'get_token', //get token user
       'get_branch_selected', //get branch selected
     ]),
-    stockProduct(){
-      let stock = this.product.branches.find(item => item.slug == this.get_branch_selected)
-      return stock.pivot.stock
+    product_notes(){
+      let notes = '' 
+      this.product.applications.forEach(note => {
+        if(note.note != '') notes += note.note + '\n' 
+      })
+      return notes
+    },
+    car_shipowner(){
+      let car_shipowner = []
+      this.product.applications.forEach(e => {
+        car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name)
+      })
+      return car_shipowner.join(',')
     }
   },
   components: {
@@ -68,6 +80,12 @@ export default {
     border-radius: 30px 30px 5px 5px
     padding-bottom: 0!important
     position: relative
+    .product-item-data-description
+      height: 300px
+      .car-shipowner-description
+        max-height: 100px!important
+        overflow: hidden
+        overflow-y: auto
   @media screen and(min-width: 1024px)
     .product-item-image
       height: 250px
