@@ -4493,30 +4493,62 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      show_complements: false
+    };
+  },
   props: ['product'],
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token', //get token user
   'get_branch_selected' //get branch selected
   ])), {}, {
     product_notes: function product_notes() {
-      var notes = '';
+      var notes = [];
       this.product.applications.forEach(function (note) {
-        if (note.note != '') notes += note.note + '\n';
+        if (note.note != '') {
+          if (notes.indexOf(note.note) < 0) notes.push(note.note);
+        }
       });
-      return notes;
+      return notes.length <= 0 ? 'N/A' : notes.join(',');
     },
     car_shipowner: function car_shipowner() {
       var car_shipowner = [];
+      var complements = [];
+      var i = 0;
       this.product.applications.forEach(function (e) {
-        car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name);
+        if (i < 3) {
+          car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name);
+        }
+
+        complements.push(e.car.car_name + ' ' + e.shipowner.shipowner_name);
+        i++;
       });
-      return car_shipowner.join(',');
+      return {
+        preview: car_shipowner.join(', '),
+        complements: complements
+      };
     }
   }),
   components: {
     productHandler: _product_handler__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: {
+    toggleModalComplements: function toggleModalComplements() {
+      this.show_complements = !this.show_complements;
+    }
   }
 });
 
@@ -6638,7 +6670,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  height: 200px;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 300px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 100px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n", ""]);
+exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 100px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n", ""]);
 
 // exports
 
@@ -46400,7 +46432,7 @@ var render = function() {
       ),
       _c("div", { staticClass: "text-center" }, [
         _c("h4", { staticClass: "text-center text-muted" }, [
-          _vm._v("Mis productos")
+          _vm._v("Mis producto")
         ]),
         _c(
           "h6",
@@ -46600,15 +46632,39 @@ var render = function() {
                   ]
                 ),
                 _c("p", { staticClass: "mb-0 small" }, [
-                  _c("span", { staticClass: "text-muted" }, [
+                  _c("span", { staticClass: "text-light" }, [
                     _vm._v("Marca: " + _vm._s(_vm.product.brand.brand_name))
                   ]),
                   _c("br"),
-                  _c("span", { staticClass: "text-muted" }, [
-                    _vm._v("Nota: " + _vm._s(_vm.product_notes))
+                  _c("span", { staticClass: "text-light" }, [
+                    _vm._v("Nota: "),
+                    _vm.product_notes != "N/A"
+                      ? _c("span", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.product_notes.length < 60
+                                ? _vm.product_notes
+                                : _vm.product_notes.substring(0, 60) + "..."
+                            ) + " "
+                          ),
+                          _vm.product_notes.length > 60
+                            ? _c(
+                                "a",
+                                {
+                                  staticClass: "text-info small",
+                                  attrs: {
+                                    href:
+                                      "/productos/producto/" + _vm.product.id
+                                  }
+                                },
+                                [_vm._v("Ver más")]
+                              )
+                            : _vm._e()
+                        ])
+                      : _c("span", [_vm._v(_vm._s(_vm.product_notes))])
                   ]),
                   _c("br"),
-                  _c("span", { staticClass: "text-muted" }, [
+                  _c("span", { staticClass: "text-light" }, [
                     _vm._v(
                       "Stock: " +
                         _vm._s(this.product.branches[0].pivot.stock) +
@@ -46621,10 +46677,32 @@ var render = function() {
                 ]),
                 _c("div", { staticClass: "car-shipowner-description" }, [
                   _c("small", { staticClass: "small text-light" }, [
-                    _vm._v(_vm._s(_vm.car_shipowner))
-                  ])
+                    _vm._v(_vm._s(_vm.car_shipowner.preview))
+                  ]),
+                  _vm.car_shipowner.complements.length > 3
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "text-yellow small",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.toggleModalComplements($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "  ... ver todos (" +
+                              _vm._s(_vm.car_shipowner.complements.length) +
+                              " más)"
+                          )
+                        ]
+                      )
+                    : _vm._e()
                 ]),
-                _c("span", { staticClass: "text-muted" }, [
+                _c("span", { staticClass: "small text-light" }, [
                   _vm._v("Código: " + _vm._s(_vm.product.erso_code))
                 ]),
                 _c("br"),
@@ -46666,7 +46744,53 @@ var render = function() {
             )
           ])
         ])
-      ])
+      ]),
+      _vm.show_complements
+        ? _c("div", { staticClass: "complements-applications bg-dark" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "close-complements-applications-container bg-dark p-2 text-right"
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "close-complements-applications border-danger bg-dark",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.toggleModalComplements($event)
+                      }
+                    }
+                  },
+                  [_c("div", { staticClass: "fas fa-times text-danger" })]
+                )
+              ]
+            ),
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.car_shipowner.complements, function(
+                complement,
+                index
+              ) {
+                return _c(
+                  "li",
+                  {
+                    key: index,
+                    staticClass: "list-group-item text-yellow bg-transparent"
+                  },
+                  [_vm._v(_vm._s(complement))]
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e()
     ]
   )
 }
@@ -46675,7 +46799,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-muted" }, [
+    return _c("span", { staticClass: "text-light" }, [
       _c("b", { staticClass: "text-yellow text-center" }, [
         _vm._v("Auto - Armadora")
       ]),
@@ -70483,7 +70607,7 @@ var actions = {
 
             case 7:
               downloable = _context2.sent;
-              window.open(downloable.data.url);
+              window.open('/' + downloable.data.url);
               _context2.next = 14;
               break;
 

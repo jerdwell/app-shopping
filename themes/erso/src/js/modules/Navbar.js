@@ -7,7 +7,7 @@ const Navbar = {
     icon_main_menu: document.querySelector('.icon-menu-navbar-erso'),
     main_menu: document.querySelector('.main-menu-erso'),
     main_menu_inactive: 'navbar-main-inactive-erso',
-    max_scroll: 300
+    max_scroll: 50
   },
 
   init(){

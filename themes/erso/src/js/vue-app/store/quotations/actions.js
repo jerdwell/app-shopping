@@ -22,7 +22,7 @@ const actions = {
         amount: getters.get_total_amount,
       }
       let downloable = await vm.prototype.$http.post('/quotations/download/guest', data, { headers })
-      window.open(downloable.data.url)
+      window.open('/' + downloable.data.url)
     } catch (error) {
       throw error
     }

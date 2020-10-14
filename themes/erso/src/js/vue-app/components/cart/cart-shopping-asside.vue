@@ -3,7 +3,7 @@
   .close-shopping-cart-button.border-secondary(@click.prevent="toggleCart")
     .oi.oi-fullscreen-exit.text-secondary
   .text-center
-      h4.text-center.text-muted Mis productos
+      h4.text-center.text-muted Mis producto
       h6.text-center
         span.text-muted Total de la cotización
         br

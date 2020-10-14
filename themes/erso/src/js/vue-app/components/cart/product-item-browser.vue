@@ -6,36 +6,51 @@
   .card-product-item.card
     .card-header.p-0(stye="z-index:0; position: relative;")
       a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`")
-        zoom-on-hover.product-item-image.bg-white(:img-normal="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
+        zoom-on-hover.product-item-image.bg-white(
+          :img-normal="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
         .product-item-data-description.text-lg-center.pt-lg-3
           a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`" style="text-decoration:none;")
             span.h6.text-info {{ product.product_name }}
           p.mb-0.small
-            span.text-muted Marca: {{ product.brand.brand_name }}
+            span.text-light Marca: {{ product.brand.brand_name }}
             br
-            span.text-muted Nota: {{ product_notes }}
+            span.text-light Nota: 
+              span(v-if="product_notes != 'N/A'") {{ product_notes.length < 60 ? product_notes : product_notes.substring(0,60) + '...' }} #[a.text-info.small(v-if="product_notes.length > 60" :href="`/productos/producto/${product.id}`") Ver más]
+              span(v-else) {{ product_notes }}
             br
-            span.text-muted Stock: {{ this.product.branches[0].pivot.stock }}pz
+            span.text-light Stock: {{ this.product.branches[0].pivot.stock }}pz
             br
-            span.text-muted #[b.text-yellow.text-center Auto - Armadora]:
+            span.text-light #[b.text-yellow.text-center Auto - Armadora]:
             br
             div.car-shipowner-description
-              small.small.text-light {{ car_shipowner }}
-            span.text-muted Código: {{ product.erso_code }}
+              small.small.text-light {{ car_shipowner.preview }}
+              a.text-yellow.small(v-if="car_shipowner.complements.length > 3" href="#" @click.prevent="toggleModalComplements") &nbsp; ... ver todos ({{car_shipowner.complements.length}} más)
+
+            span.small.text-light Código: {{ product.erso_code }}
             br
             b.text-info.mb-0.pb-0.lead(v-if="!get_token") {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
             b.text-info.mb-0.pb-0.lead(v-else) {{ product.customer_price != null ? '$' + product.customer_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'Precio no disponible' }}
         .col-12.bg-light.py-2.pb-3.mt-2
           product-handler(:product="product")
-    
+  .complements-applications.bg-dark(v-if="show_complements")
+    .close-complements-applications-container.bg-dark.p-2.text-right
+      a.close-complements-applications.border-danger.bg-dark(href="#" @click.prevent="toggleModalComplements")
+        .fas.fa-times.text-danger
+    ul.list-group
+      li.list-group-item.text-yellow.bg-transparent(v-for="(complement, index) in car_shipowner.complements" :key="index") {{ complement }}
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import productHandler from './product-handler'
 export default {
+  data() {
+    return {
+      show_complements: false
+    }
+  },
   props: [
     'product'
   ],
@@ -45,23 +60,39 @@ export default {
       'get_branch_selected', //get branch selected
     ]),
     product_notes(){
-      let notes = '' 
+      let notes = []
       this.product.applications.forEach(note => {
-        if(note.note != '') notes += note.note + '\n' 
+        if(note.note != ''){
+          if(notes.indexOf(note.note) < 0) notes.push(note.note)
+        }
       })
-      return notes
+      return (notes.length <= 0) ? 'N/A' : notes.join(',')
     },
     car_shipowner(){
       let car_shipowner = []
+      let complements = []
+      let i = 0
       this.product.applications.forEach(e => {
-        car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name)
+        if(i < 3){
+          car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name)
+        }
+        complements.push(e.car.car_name + ' ' + e.shipowner.shipowner_name)
+        i ++
       })
-      return car_shipowner.join(',')
+      return {
+        preview: car_shipowner.join(', '),
+        complements: complements
+      }
     }
   },
   components: {
     productHandler
-  }
+  },
+  methods: {
+    toggleModalComplements(){
+      this.show_complements = !this.show_complements
+    }
+  },
 }
 </script>
 
@@ -72,7 +103,11 @@ export default {
   overflow: hidden!important
   box-shadow: 0 5px 15px rgba(0,0,0,.3)
   .product-item-image
+    align-items: center
     height: 200px
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
     width: 100%
   .product-item-data
     margin-top: -20px
@@ -81,7 +116,7 @@ export default {
     padding-bottom: 0!important
     position: relative
     .product-item-data-description
-      height: 300px
+      height: 250px
       .car-shipowner-description
         max-height: 100px!important
         overflow: hidden
@@ -89,4 +124,29 @@ export default {
   @media screen and(min-width: 1024px)
     .product-item-image
       height: 250px
+.complements-applications
+  left: 50%
+  max-height: 60%
+  max-width: 400px
+  overflow: hidden
+  overflow-y: auto
+  position: fixed
+  top: 50%
+  transform: translate(-50%,-50%)
+  width: 90%
+  z-index: 900
+  .close-complements-applications-container
+    left: 0
+    position: sticky
+    top: 0
+    z-index: 900
+    .close-complements-applications
+      align-items: center
+      border: solid 2px
+      border-radius: 50%
+      display: inline-flex
+      flex-wrap: wrap
+      justify-content: center
+      height: 25px
+      width: 25px
 </style>
