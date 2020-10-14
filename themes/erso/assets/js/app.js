@@ -4813,9 +4813,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[1, 15]]);
       }))();
-    },
-    testLoad: function testLoad() {
-      console.log('ok');
     }
   }
 });
@@ -46844,8 +46841,7 @@ var render = function() {
         staticClass: "g-recaptcha mb-3",
         attrs: {
           "data-sitekey": "6LcauM8ZAAAAAEGNjVwatYy_lg-s5YOfr4HbGgCN",
-          "data-theme": "dark",
-          "data-callback": "testLoad"
+          "data-theme": "dark"
         }
       }),
       _c(
