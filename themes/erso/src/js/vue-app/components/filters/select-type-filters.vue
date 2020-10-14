@@ -12,7 +12,7 @@
           label.m-0.text-light
             input.form-check-input.m-0.mr-2.position-static(type="radio" name="typeSearch" v-model="$parent.type_filter" value="shipowner")
             span Armadora
-        li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'general' ? 'bg-yellow nav-item-active' : null")
+        //- li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'general' ? 'bg-yellow nav-item-active' : null")
           label.m-0.text-light
             input.form-check-input.m-0.mr-2.position-static(type="radio" name="typeSearch" v-model="$parent.type_filter" value="general")
             span General

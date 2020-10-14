@@ -48435,45 +48435,6 @@ var render = function() {
                 {
                   staticClass: "nav-item border-yellow px-3 py-2",
                   class:
-                    _vm.$parent.type_filter == "general"
-                      ? "bg-yellow nav-item-active"
-                      : null
-                },
-                [
-                  _c("label", { staticClass: "m-0 text-light" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$parent.type_filter,
-                          expression: "$parent.type_filter"
-                        }
-                      ],
-                      staticClass: "form-check-input m-0 mr-2 position-static",
-                      attrs: {
-                        type: "radio",
-                        name: "typeSearch",
-                        value: "general"
-                      },
-                      domProps: {
-                        checked: _vm._q(_vm.$parent.type_filter, "general")
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(_vm.$parent, "type_filter", "general")
-                        }
-                      }
-                    }),
-                    _c("span", [_vm._v("General")])
-                  ])
-                ]
-              ),
-              _c(
-                "li",
-                {
-                  staticClass: "nav-item border-yellow px-3 py-2",
-                  class:
                     _vm.$parent.type_filter == "code"
                       ? "bg-yellow nav-item-active"
                       : null
