@@ -5,16 +5,21 @@
     h3.branch-item-name.text-center.text-white.mt-3 {{ branch.branch_name }}
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'select-branch',
   props: ['branch'],
+  computed: {
+    ...mapGetters([
+      'get_branch_selected', //get branch selected
+    ])
+  },
   methods: {
     ...mapActions([
       'setBranchSelected', //set branch selected
     ]),
     setBranch(){
-      this.setBranchSelected(this.branch.slug)
+      if(this.get_branch_selected != this.branch.slug) this.setBranchSelected(this.branch.slug)
       location.assign('/productos/' + this.branch.slug)
     }
   },

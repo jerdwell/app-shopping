@@ -1,4 +1,6 @@
 <template lang="pug">
+div
+  CartButtonState.account-cart
   menu.menu-account(:class="!$parent.menu_active ? 'menu-account-disabled' : null")
     ul
       li
@@ -6,13 +8,19 @@
       li
         a.text-dark(href="#" @click.prevent="$parent.view = 'quotations'") #[.fas.fa-file-alt.mr-2] Mis cotizaciones
       li
+        a.text-dark(href="/productos") #[.fas.fa-box-open.mr-2] Productos
+      li
         a.text-dark(href="#" @click.prevent="sign_out") #[.fas.fa-sign-out-alt.mr-2] Cerrar sesión
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import CartButtonState from '../cart/cart-button-state'
 export default {
   name: 'menu-account',
+  components: {
+    CartButtonState
+  },
   methods: {
     ...mapActions([
       'signOut', //signout
@@ -74,6 +82,8 @@ export default {
           &:hover,&:focus
             color: white!important
             text-decoration: none
+  @media screen and(min-width: 1024px)
+    margin-right: 5%
   @media screen and(min-width: 1440px)
     right: 15%
 
@@ -82,4 +92,15 @@ export default {
   @media screen and(min-width: 768px)
     top: auto
 
+.account-cart
+  bottom: 30px
+  right: 30px
+  position: fixed!important
+  z-index: 999
+  @media screen and(min-width:1024px)
+    top: 10px
+    right: 5%
+    z-index: 1001
+  @media screen and(min-width:1440px)
+    right: 15%
 </style>

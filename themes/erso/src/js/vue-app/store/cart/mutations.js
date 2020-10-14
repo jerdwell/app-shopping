@@ -17,10 +17,11 @@ const mutations = {
         brand_name: data.brand.brand_name,
         // model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
       }
-      console.log(data);
+      if(data.branches[0].pivot.stock <= 0) return
       item.quantity = 1
       state.cart_items.push(item)
     }else{
+      if(item_in_cart.quantity < data.branches[0].pivot.stock)
       item_in_cart.quantity ++
     }
 

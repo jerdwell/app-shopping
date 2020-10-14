@@ -74,9 +74,9 @@ export default {
       let i = 0
       this.product.applications.forEach(e => {
         if(i < 3){
-          car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name)
+          car_shipowner.push(e.car.car_name)
         }
-        complements.push(e.car.car_name + ' ' + e.shipowner.shipowner_name)
+        complements.push(e.car.car_name + ' / ' + e.shipowner.shipowner_name)
         i ++
       })
       return {
@@ -118,7 +118,7 @@ export default {
     .product-item-data-description
       height: 250px
       .car-shipowner-description
-        max-height: 100px!important
+        max-height: 80px!important
         overflow: hidden
         overflow-y: auto
   @media screen and(min-width: 1024px)

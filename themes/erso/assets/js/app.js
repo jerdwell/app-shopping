@@ -3686,6 +3686,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _cart_cart_button_state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../cart/cart-button-state */ "./themes/erso/src/js/vue-app/components/cart/cart-button-state.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3709,9 +3710,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'menu-account',
+  components: {
+    CartButtonState: _cart_cart_button_state__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['signOut' //signout
   ])), {}, {
     sign_out: function sign_out() {
@@ -4530,10 +4539,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var i = 0;
       this.product.applications.forEach(function (e) {
         if (i < 3) {
-          car_shipowner.push(e.car.car_name + ' ' + e.shipowner.shipowner_name);
+          car_shipowner.push(e.car.car_name);
         }
 
-        complements.push(e.car.car_name + ' ' + e.shipowner.shipowner_name);
+        complements.push(e.car.car_name + ' / ' + e.shipowner.shipowner_name);
         i++;
       });
       return {
@@ -6457,10 +6466,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'select-branch',
   props: ['branch'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_branch_selected' //get branch selected
+  ])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['setBranchSelected' //set branch selected
   ])), {}, {
     setBranch: function setBranch() {
-      this.setBranchSelected(this.branch.slug);
+      if (this.get_branch_selected != this.branch.slug) this.setBranchSelected(this.branch.slug);
       location.assign('/productos/' + this.branch.slug);
     }
   })
@@ -6518,7 +6529,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".menu-account {\n  background: gainsboro;\n  border-radius: 0 0 30px 30px;\n  boxshadow: 0 5px 5px rgba(0, 0, 0, 0.5);\n  left: 50%;\n  margin: 0;\n  padding: 50px 10%;\n  position: fixed;\n  top: 66px;\n  transform: translateX(-50%);\n  transition: all ease .2s;\n  width: 100%;\n  z-index: 999;\n}\n.menu-account ul {\n  margin: 0;\n  padding: 0;\n}\n.menu-account ul li {\n  border-bottom: solid 1px rgba(0, 0, 0, 0.5);\n  list-style: none;\n  padding: 10px 0px;\n}\n.menu-account ul li:last-child {\n  border-bottom: none;\n}\n@media screen and (min-width: 768px) {\n.menu-account {\n    background: transparent;\n    left: auto;\n    padding: 0;\n    right: 5%;\n    transform: translateX(0);\n    top: 20px !important;\n    width: auto;\n    z-index: 1000;\n}\n.menu-account ul {\n    test-align: right;\n}\n.menu-account ul li {\n    border-bottom: none;\n    display: inline-block;\n    padding: 0 10px;\n    width: auto;\n}\n.menu-account ul li a {\n    color: white !important;\n}\n.menu-account ul li a:hover, .menu-account ul li a:focus {\n    color: white !important;\n    text-decoration: none;\n}\n}\n@media screen and (min-width: 1440px) {\n.menu-account {\n    right: 15%;\n}\n}\n.menu-account-disabled {\n  top: -100%;\n}\n@media screen and (min-width: 768px) {\n.menu-account-disabled {\n    top: auto;\n}\n}\n", ""]);
+exports.push([module.i, ".menu-account {\n  background: gainsboro;\n  border-radius: 0 0 30px 30px;\n  boxshadow: 0 5px 5px rgba(0, 0, 0, 0.5);\n  left: 50%;\n  margin: 0;\n  padding: 50px 10%;\n  position: fixed;\n  top: 66px;\n  transform: translateX(-50%);\n  transition: all ease .2s;\n  width: 100%;\n  z-index: 999;\n}\n.menu-account ul {\n  margin: 0;\n  padding: 0;\n}\n.menu-account ul li {\n  border-bottom: solid 1px rgba(0, 0, 0, 0.5);\n  list-style: none;\n  padding: 10px 0px;\n}\n.menu-account ul li:last-child {\n  border-bottom: none;\n}\n@media screen and (min-width: 768px) {\n.menu-account {\n    background: transparent;\n    left: auto;\n    padding: 0;\n    right: 5%;\n    transform: translateX(0);\n    top: 20px !important;\n    width: auto;\n    z-index: 1000;\n}\n.menu-account ul {\n    test-align: right;\n}\n.menu-account ul li {\n    border-bottom: none;\n    display: inline-block;\n    padding: 0 10px;\n    width: auto;\n}\n.menu-account ul li a {\n    color: white !important;\n}\n.menu-account ul li a:hover, .menu-account ul li a:focus {\n    color: white !important;\n    text-decoration: none;\n}\n}\n@media screen and (min-width: 1024px) {\n.menu-account {\n    margin-right: 5%;\n}\n}\n@media screen and (min-width: 1440px) {\n.menu-account {\n    right: 15%;\n}\n}\n.menu-account-disabled {\n  top: -100%;\n}\n@media screen and (min-width: 768px) {\n.menu-account-disabled {\n    top: auto;\n}\n}\n.account-cart {\n  bottom: 30px;\n  right: 30px;\n  position: fixed !important;\n  z-index: 999;\n}\n@media screen and (min-width: 1024px) {\n.account-cart {\n    top: 10px;\n    right: 5%;\n    z-index: 1001;\n}\n}\n@media screen and (min-width: 1440px) {\n.account-cart {\n    right: 15%;\n}\n}\n", ""]);
 
 // exports
 
@@ -6670,7 +6681,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 100px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n", ""]);
+exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 80px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n", ""]);
 
 // exports
 
@@ -45530,75 +45541,95 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "menu",
-    {
-      staticClass: "menu-account",
-      class: !_vm.$parent.menu_active ? "menu-account-disabled" : null
-    },
+    "div",
     [
-      _c("ul", [
-        _c("li", [
-          _c(
-            "a",
-            {
-              staticClass: "text-dark",
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.$parent.view = "my-account"
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "fas fa-user mr-2" }),
-              _vm._v(" Mi cuenta")
-            ]
-          )
-        ]),
-        _c("li", [
-          _c(
-            "a",
-            {
-              staticClass: "text-dark",
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.$parent.view = "quotations"
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "fas fa-file-alt mr-2" }),
-              _vm._v(" Mis cotizaciones")
-            ]
-          )
-        ]),
-        _c("li", [
-          _c(
-            "a",
-            {
-              staticClass: "text-dark",
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.sign_out($event)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "fas fa-sign-out-alt mr-2" }),
-              _vm._v(" Cerrar sesión")
-            ]
-          )
-        ])
-      ])
-    ]
+      _c("CartButtonState", { staticClass: "account-cart" }),
+      _c(
+        "menu",
+        {
+          staticClass: "menu-account",
+          class: !_vm.$parent.menu_active ? "menu-account-disabled" : null
+        },
+        [
+          _c("ul", [
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass: "text-dark",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.$parent.view = "my-account"
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "fas fa-user mr-2" }),
+                  _vm._v(" Mi cuenta")
+                ]
+              )
+            ]),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass: "text-dark",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.$parent.view = "quotations"
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "fas fa-file-alt mr-2" }),
+                  _vm._v(" Mis cotizaciones")
+                ]
+              )
+            ]),
+            _vm._m(0),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass: "text-dark",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.sign_out($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "fas fa-sign-out-alt mr-2" }),
+                  _vm._v(" Cerrar sesión")
+                ]
+              )
+            ])
+          ])
+        ]
+      )
+    ],
+    1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "text-dark", attrs: { href: "/productos" } }, [
+        _c("div", { staticClass: "fas fa-box-open mr-2" }),
+        _vm._v(" Productos")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -70072,11 +70103,11 @@ var mutations = {
         brand_name: data.brand.brand_name // model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
 
       };
-      console.log(data);
+      if (data.branches[0].pivot.stock <= 0) return;
       item.quantity = 1;
       state.cart_items.push(item);
     } else {
-      item_in_cart.quantity++;
+      if (item_in_cart.quantity < data.branches[0].pivot.stock) item_in_cart.quantity++;
     }
   },
   REMOVE_CART_ITEM: function REMOVE_CART_ITEM(state, id) {
