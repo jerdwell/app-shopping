@@ -12,7 +12,7 @@ class ContactForm extends Controller
   public function contactForm(Request $request)
   {
       try {
-        // $this -> validCaptcha($request);
+        $this -> validCaptcha($request);
         $this -> validFormData($request);
         $FORM_CONTACT_MAIL = config('formcontact.FORM_CONTACT_MAIL');
         $mail_data = [
