@@ -82,9 +82,9 @@ export default {
             icon: 'success',
             buttons: false,
           })
+          this.loading = false
           this.shipping_date = null
           this.clear_cart_data()
-          this.loading = false
         } catch (error) {
           let send_order = await this.$swal({
             title: 'Solicitud de pedido',

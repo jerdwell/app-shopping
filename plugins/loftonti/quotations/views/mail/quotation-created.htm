@@ -32,9 +32,7 @@
             <td><small>
                 {{ item.product_name }}
                 <br>
-                {{ item.model }}
-                <br>
-                {{ item.product_year }}
+                Código: <b>{{ item.erso_code }}</b>
             </small></td>
             <td style="text-align: center;"><small>{{ item.quantity }}</small></td>
             <td style="text-align: center;"><small>${{ item.customer_price|number_format(2,'.', ',') }}</small></td>

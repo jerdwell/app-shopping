@@ -4690,11 +4690,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 8:
                 send_order = _context.sent;
+                _this.loading = false;
                 _this.shipping_date = null;
 
                 _this.clear_cart_data();
 
-                _this.loading = false;
                 _context.next = 20;
                 break;
 

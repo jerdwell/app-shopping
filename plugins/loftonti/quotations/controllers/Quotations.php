@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Loftonti\Erso\Models\Applications;
 use Loftonti\Erso\Models\Branches;
+use Loftonti\Erso\Models\Products;
 use LoftonTi\Quotations\Models\Quotations as ModelsQuotations;
 use Loftonti\Quotations\Models\QuotationsConstructor;
 use LoftonTi\Users\Models\Users;
 use LoftonTi\Users\Models\UsersAuth;
+use Illuminate\Support\Facades\DB;
 
 class Quotations extends Controller
 {
@@ -32,6 +35,7 @@ class Quotations extends Controller
         try {
             $user = Users::find($request -> data_user['id']);
             $user -> address;
+            $this -> updateStock($request);
             $data_quotation = $this -> setDataQuotation($request, $user);
             $branch = Branches::where('slug', $request -> branch)->first();
             $quotation = ModelsQuotations::create($data_quotation);
@@ -57,6 +61,28 @@ class Quotations extends Controller
             'created_at' => Carbon::now() -> format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now() -> format('Y-m-d H:i:s')
         ];
+    }
+
+    protected function updateStock($data)
+    {
+        try {
+            $branch = Branches::where('slug', $data -> branch) -> first();
+            foreach ($data -> items as $item) {
+                $product = DB::table('loftonti_erso_product_branch')
+                 -> where('product_id', $item['id'])
+                 -> where('branch_id', $branch -> id)
+                 -> limit(1)
+                 -> get();
+                $product = $product[0] -> stock;
+                $stock = $product - $item ['quantity'];
+                DB::table('loftonti_erso_product_branch')
+                 -> where('product_id', $item['id'])
+                 -> where('branch_id', $branch -> id)
+                 ->update(['stock' => $stock]);
+            }
+        } catch (\Throwable $th) {
+            throw $th -> getMessage();
+        }
     }
 
     public function sendNotification($user, $quotation, $mail_branch)
