@@ -54,7 +54,8 @@ class Products extends Model
     public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
     {
         try {
-            $applications = Applications::select('loftonti_erso_application.product_id')
+            // return [$branch, $model, $shipowner, $filter1, $value1, $filter2, $value2];
+            $applications = Applications::selectRaw('group_concat(loftonti_erso_application.product_id) as ids')
                 ->where('loftonti_erso_application.shipowner_id', $shipowner)
                 ->where('loftonti_erso_application.car_id', $model)
                 ->when($filter1 && !$filter2, function($q) use($filter1, $value1){
@@ -68,18 +69,15 @@ class Products extends Model
                     if($filter1 == 'year') {
                         $q -> whereRaw("{$value1} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)")
                             -> leftJoin('loftonti_erso_products', 'loftonti_erso_products.id','=','loftonti_erso_application.product_id')
-                            ->where('loftonti_erso_products.category_id',$value1);
+                            ->where('loftonti_erso_products.category_id',$value2);
                     }else{
                         $q -> whereRaw("{$value2} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)")
                         -> leftJoin('loftonti_erso_products', 'loftonti_erso_products.id','=','loftonti_erso_application.product_id')
-                        ->where('loftonti_erso_products.category_id',$value1);
+                        ->where('loftonti_erso_products.category_id',$value2);
                     }
                 })
-                -> get();
-            $ids = [];
-            foreach ($applications as $application) {
-                array_push($ids, $application -> product_id);
-            }
+                -> first();
+            $ids = explode(',', $applications -> ids);
             $query -> select('loftonti_erso_products.*')
             -> whereIn('loftonti_erso_products.id', $ids)
             ->leftJoin('loftonti_erso_product_branch','loftonti_erso_product_branch.product_id','loftonti_erso_products.id')
