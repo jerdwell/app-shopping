@@ -213,6 +213,7 @@ class Quotations extends Controller
             if(isset($data[0] -> shipping_address)) $data[0] -> shipping_address = json_decode($data[0] -> shipping_address);
             return QuotationsConstructor::buildQuotation($data[0], $data[1], $data[2]);
         } catch (\Throwable $th) {
+            return response() -> json([$th -> getMessage()], 403);
             return  redirect('/');
         }
     }
