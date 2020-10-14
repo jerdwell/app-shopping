@@ -4649,7 +4649,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return {
         to: min_shipping_date,
         from: new Date(this.$moment().add('1', 'week')),
-        days: [6, 0]
+        days: [7, 0]
       };
     }
   }),
