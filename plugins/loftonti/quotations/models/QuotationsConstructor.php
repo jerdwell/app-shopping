@@ -12,7 +12,7 @@ class QuotationsConstructor extends Model
     $data_quotation = [
       'data_quotation' => $quotation,
       'data_branch' => $branch,
-      'logo' => app_path() . '\var\www\erso\themes\erso\assets\img\brand\brand_logo_erso_white.png'
+      'logo' => '/var/www/erso/themes/erso/assets/img/brand/brand_logo_erso_white.png'
     ];
     $pdf = PDF::loadView('loftonti.quotations::pdf.quotation', $data_quotation);
     if($view == 'download'){
