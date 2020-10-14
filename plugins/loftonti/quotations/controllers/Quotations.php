@@ -190,7 +190,7 @@ class Quotations extends Controller
             $data = [
                 $quotation,
                 $branch,
-                'stream',
+                'download',
                 Carbon::now() -> addMinutes(3) -> format('Y-m-d H:i:s')
             ];
             $data = Crypt::encryptString(json_encode($data));
