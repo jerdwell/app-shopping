@@ -28,19 +28,19 @@
           thead
             tr
               th.bg-yellow.text-light
-              th.bg-yellow.text-light Marca
               th.bg-yellow.text-light Auto
+              th.bg-yellow.text-light Armadora
           tbody
             tr(v-for="(car_model, index) in carsModels.data" :key="index")
               td
                 input.form-control-checkbox.mr-2(
                   type="radio"
-                  :name="car_model.shipowner_slug"
+                  :name="car_model.id"
                   :value="{model_id:car_model.car.id, shipowner_id: car_model.shipowner.id}"
                   v-model="$parent.car_model_selected"
                   @change="getListProductsFiletered")
-              td.text-white {{ car_model.shipowner.shipowner_name }}
-              td.text-white {{ car_model.car.car_name }}
+              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.car.car_name }}
+              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.shipowner.shipowner_name }}
 
       li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="carsModels.data && carsModels.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
 
@@ -91,6 +91,10 @@ export default {
       let shipowner_id = this.$parent.car_model_selected.shipowner_id
       let data = this.carsModels.data.find(i => i.car.id == model_id && i.shipowner.id == shipowner_id)
       return data.shipowner.shipowner_name + ' - ' + data.car.car_name
+    },
+    toggleCheckboxBtn(id){
+      let input = document.getElementsByName(id)[0]
+      input.click()
     }
   },
 }
@@ -114,4 +118,8 @@ export default {
           position: sticky
           top: 0
           left: 0
+    tbody
+      tr
+        td
+          cursor: pointer
 </style>

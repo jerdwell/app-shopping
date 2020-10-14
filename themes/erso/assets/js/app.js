@@ -5182,6 +5182,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return i.car.id == model_id && i.shipowner.id == shipowner_id;
       });
       return data.shipowner.shipowner_name + ' - ' + data.car.car_name;
+    },
+    toggleCheckboxBtn: function toggleCheckboxBtn(id) {
+      var input = document.getElementsByName(id)[0];
+      input.click();
     }
   })
 });
@@ -5346,28 +5350,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.loading = true;
                 _context.prev = 4;
                 _context.next = 7;
-                return _this.$http.get("/search-shipowner/".concat(_this.get_branch_selected, "/").concat(_this.shipowner_search));
+                return _this.$http.get("/search-shipowner/".concat(_this.get_branch_selected, "/").concat(encodeURI(_this.shipowner_search)));
 
               case 7:
                 shipowners = _context.sent;
                 _this.loading = false;
                 _this.results = true;
-                console.log(shipowners);
                 _this.shipowners = shipowners;
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
-              case 14:
-                _context.prev = 14;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](4);
                 _context.t0;
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[4, 14]]);
+        }, _callee, null, [[4, 13]]);
       }))();
     },
     getListProductsFiletered: function getListProductsFiletered() {
@@ -5417,6 +5420,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       console.log(data);
       return data.shipowner.shipowner_name + ' - ' + data.car.car_name;
+    },
+    toggleCheckboxBtn: function toggleCheckboxBtn(id) {
+      var input = document.getElementsByName(id)[0];
+      input.click();
     }
   })
 });
@@ -6159,31 +6166,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 cars = _context.sent;
-                console.log(cars);
 
                 if (!(cars.data.length <= 0)) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
                 return _context.abrupt("return", _this.errors = 'No existen coincidencias');
 
-              case 10:
+              case 9:
                 _this.cars = cars.data;
-                _context.next = 16;
+                _context.next = 15;
                 break;
 
-              case 13:
-                _context.prev = 13;
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](0);
                 _this.errors = _context.t0;
 
-              case 16:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 13]]);
+        }, _callee, null, [[0, 12]]);
       }))();
     },
     setCarSelected: function setCarSelected(car) {
@@ -6776,7 +6782,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../../node_
 
 
 // module
-exports.push([module.i, ".input-group-prepend[data-v-0dab4002] {\n  cursor: pointer;\n}\ninput[data-v-0dab4002]:focus {\n  border: none;\n  box-shadow: none;\n}\n.list-models-searchable[data-v-0dab4002] {\n  max-height: 200px;\n  overflow-y: auto;\n}\n.table-results[data-v-0dab4002] {\n  position: relative;\n}\n.table-results thead tr th[data-v-0dab4002] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  left: 0;\n}\n", ""]);
+exports.push([module.i, ".input-group-prepend[data-v-0dab4002] {\n  cursor: pointer;\n}\ninput[data-v-0dab4002]:focus {\n  border: none;\n  box-shadow: none;\n}\n.list-models-searchable[data-v-0dab4002] {\n  max-height: 200px;\n  overflow-y: auto;\n}\n.table-results[data-v-0dab4002] {\n  position: relative;\n}\n.table-results thead tr th[data-v-0dab4002] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  left: 0;\n}\n.table-results tbody tr td[data-v-0dab4002] {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -6795,7 +6801,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../../node_
 
 
 // module
-exports.push([module.i, ".input-group-prepend[data-v-315b93a5] {\n  cursor: pointer;\n}\ninput[data-v-315b93a5]:focus {\n  border: none;\n  box-shadow: none;\n}\n.list-models-searchable[data-v-315b93a5] {\n  max-height: 200px;\n  overflow-y: auto;\n}\n.table-results[data-v-315b93a5] {\n  position: relative;\n}\n.table-results thead tr th[data-v-315b93a5] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  left: 0;\n}\n", ""]);
+exports.push([module.i, ".input-group-prepend[data-v-315b93a5] {\n  cursor: pointer;\n}\ninput[data-v-315b93a5]:focus {\n  border: none;\n  box-shadow: none;\n}\n.list-models-searchable[data-v-315b93a5] {\n  max-height: 200px;\n  overflow-y: auto;\n}\n.table-results[data-v-315b93a5] {\n  position: relative;\n}\n.table-results thead tr th[data-v-315b93a5] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  left: 0;\n}\n.table-results tbody tr td[data-v-315b93a5] {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -47338,10 +47344,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control-checkbox mr-2",
-                                attrs: {
-                                  type: "radio",
-                                  name: car_model.shipowner_slug
-                                },
+                                attrs: { type: "radio", name: car_model.id },
                                 domProps: {
                                   value: {
                                     model_id: car_model.car.id,
@@ -47372,12 +47375,36 @@ var render = function() {
                                 }
                               })
                             ]),
-                            _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.shipowner.shipowner_name))
-                            ]),
-                            _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.car.car_name))
-                            ])
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-white",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.toggleCheckboxBtn(car_model.id)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(car_model.car.car_name))]
+                            ),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-white",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.toggleCheckboxBtn(car_model.id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(car_model.shipowner.shipowner_name)
+                                )
+                              ]
+                            )
                           ])
                         }),
                         0
@@ -47412,8 +47439,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { staticClass: "bg-yellow text-light" }),
-        _c("th", { staticClass: "bg-yellow text-light" }, [_vm._v("Marca")]),
-        _c("th", { staticClass: "bg-yellow text-light" }, [_vm._v("Auto")])
+        _c("th", { staticClass: "bg-yellow text-light" }, [_vm._v("Auto")]),
+        _c("th", { staticClass: "bg-yellow text-light" }, [_vm._v("Armadora")])
       ])
     ])
   }
@@ -47625,10 +47652,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control-checkbox mr-2",
-                                attrs: {
-                                  type: "radio",
-                                  name: car_model.shipowner_slug
-                                },
+                                attrs: { type: "radio", name: car_model.id },
                                 domProps: {
                                   value: {
                                     model_id: car_model.car.id,
@@ -47659,12 +47683,36 @@ var render = function() {
                                 }
                               })
                             ]),
-                            _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.shipowner.shipowner_name))
-                            ]),
-                            _c("td", { staticClass: "text-white" }, [
-                              _vm._v(_vm._s(car_model.car.car_name))
-                            ])
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-white",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.toggleCheckboxBtn(car_model.id)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(car_model.shipowner.shipowner_name)
+                                )
+                              ]
+                            ),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-white",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.toggleCheckboxBtn(car_model.id)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(car_model.car.car_name))]
+                            )
                           ])
                         }),
                         0

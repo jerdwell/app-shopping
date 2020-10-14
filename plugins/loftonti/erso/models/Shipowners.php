@@ -1,5 +1,6 @@
 <?php namespace Loftonti\Erso\Models;
 
+use Illuminate\Support\Facades\DB;
 use Model;
 use Illuminate\Support\Str;
 use Loftonti\Erso\Models\Applications;
@@ -40,13 +41,16 @@ class Shipowners extends Model
         foreach ($models as $key) {
             array_push($filter, $key -> id);
         }
-        $products = Applications::select('loftonti_erso_application.*')
-            -> whereIn('loftonti_erso_application.shipowner_id', $filter)
-            -> leftJoin('loftonti_erso_products','loftonti_erso_products.id','loftonti_erso_application.product_id')
-            -> leftJoin('loftonti_erso_product_branch','loftonti_erso_product_branch.product_id','loftonti_erso_products.id')
+        $products = DB::table('loftonti_erso_product_branch')
+            ->selectRaw('group_concat(loftonti_erso_product_branch.product_id) as id')
             ->where('loftonti_erso_product_branch.branch_id', $branch -> id)
+            ->first();
+        $products = explode(',', $products -> id);
+        $applications = Applications::select('loftonti_erso_application.*')
+            -> whereIn('loftonti_erso_application.shipowner_id', $filter)
+            -> whereIn('loftonti_erso_application.product_id', $products)
             -> with(['car','shipowner']);
-        return $products;
+        return $applications;
     }
 
     /** Scopes **/

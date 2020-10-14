@@ -53,7 +53,6 @@ export default {
         this.cars = []
         if (this.data_search.length <= 0) return
         let cars = await this.$http.get(`/search-car-model/${this.data_search}`)
-        console.log(cars);
         if(cars.data.length <= 0) return this.errors = 'No existen coincidencias'
         this.cars = cars.data
       } catch (error) {
