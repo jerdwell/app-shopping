@@ -6,8 +6,8 @@
   .card-product-item.card
     .card-header.p-0(stye="z-index:0; position: relative;")
       a.link.text-info.mb-4(:href="`/productos/${get_branch_selected}/producto/${product.id}`")
-        zoom-on-hover.product-item-image.bg-white(
-          :img-normal="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
+        .product-item-image.bg-white
+          img.w-100(:src="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
         .product-item-data-description.text-lg-center.pt-lg-3
@@ -101,7 +101,7 @@ export default {
 .product-item-browser
   border-radius: 30px!important
   overflow: hidden!important
-  box-shadow: 0 5px 15px rgba(0,0,0,.3)
+  box-shadow: 0 5px 15px rgba(0,0,0,.6)
   .product-item-image
     align-items: center
     height: 200px

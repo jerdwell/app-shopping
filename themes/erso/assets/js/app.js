@@ -6821,7 +6821,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 80px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n", ""]);
+exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  margin-top: -20px;\n  z-index: 10;\n  border-radius: 30px 30px 5px 5px;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 80px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n", ""]);
 
 // exports
 
@@ -46764,18 +46764,19 @@ var render = function() {
                 }
               },
               [
-                _c("zoom-on-hover", {
-                  staticClass: "product-item-image bg-white",
-                  attrs: {
-                    "img-normal":
-                      "/storage/app/media/products/" +
-                      (_vm.product.product_cover != ""
-                        ? _vm.product.product_cover
-                        : "no_disponible.jpg")
-                  }
-                })
-              ],
-              1
+                _c("div", { staticClass: "product-item-image bg-white" }, [
+                  _c("img", {
+                    staticClass: "w-100",
+                    attrs: {
+                      src:
+                        "/storage/app/media/products/" +
+                        (_vm.product.product_cover != ""
+                          ? _vm.product.product_cover
+                          : "no_disponible.jpg")
+                    }
+                  })
+                ])
+              ]
             )
           ]
         ),
