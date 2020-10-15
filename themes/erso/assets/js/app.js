@@ -70264,7 +70264,8 @@ var mutations = {
         product_cover: data.product_cover,
         public_price: data.public_price,
         customer_price: data.customer_price,
-        brand_name: data.brand.brand_name // model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
+        brand_name: data.brand.brand_name,
+        branches: data.branches // model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
 
       };
       if (data.branches[0].pivot.stock <= 0) return;
