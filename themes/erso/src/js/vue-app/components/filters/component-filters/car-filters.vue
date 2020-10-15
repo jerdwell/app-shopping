@@ -20,7 +20,7 @@
       )
     
     .text-center(v-if="loading")
-      .spinner-border
+      .spinner-border.text-light
     
     ul.list-group.bg-transparent.small.list-models-searchable(v-if="results && !$parent.car_model_selected.model_id")
       li.list-group-item.bg-transparent.border-light.p-0(v-if="carsModels.data && carsModels.data.length > 0")
@@ -83,8 +83,11 @@ export default {
       this.$parent.year_selected = ''
       if(this.$parent.car_model_selected.model_id == '' && this.$parent.car_model_selected.shipowner_id == '') return false
       try{
+        this.loading = true
         let products = await this.serachProductModel(this.$parent.car_model_selected)
+        this.loading = false
       }catch(error){
+        this.loading = false
         console.log(error)
       }
     },

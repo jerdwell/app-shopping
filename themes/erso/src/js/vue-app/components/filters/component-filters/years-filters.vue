@@ -7,6 +7,8 @@
       @change="addYearsToFilter")
       option(value="") Selecciona una opción
       option(v-for="(year, index) in years" :key="index" :value="year") {{ year }}
+    .text-center(v-if="loading")
+      .spinner-border.text-light
 
 </template>
 
@@ -16,7 +18,8 @@ export default {
   name: 'years-filters',
   data() {
     return {
-      models: []
+      models: [],
+      loading: false
     }
   },
   computed: {
@@ -39,9 +42,11 @@ export default {
     ...mapActions([
       'serachProductModel', //search products
     ]),
-    addYearsToFilter(){
+    async addYearsToFilter(){
+      this.loading = true
       this.$parent.car_model_selected['year'] = this.$parent.year_selected
-      this.serachProductModel(this.$parent.car_model_selected)
+      await this.serachProductModel(this.$parent.car_model_selected)
+      this.loading = false
     }
   }
 }

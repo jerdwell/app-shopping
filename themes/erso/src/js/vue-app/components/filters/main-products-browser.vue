@@ -1,6 +1,6 @@
 <template lang="pug">
   .main-products-browser#list-products-finded.pt-5
-    .container-fluid
+    .container-fluid.mt-5
       .row
         .col-xl-9
           .container(v-if="get_list_products.data")

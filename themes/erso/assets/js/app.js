@@ -5222,25 +5222,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 4:
                 _context2.prev = 4;
-                _context2.next = 7;
+                _this2.loading = true;
+                _context2.next = 8;
                 return _this2.serachProductModel(_this2.$parent.car_model_selected);
 
-              case 7:
+              case 8:
                 products = _context2.sent;
-                _context2.next = 13;
+                _this2.loading = false;
+                _context2.next = 16;
                 break;
 
-              case 10:
-                _context2.prev = 10;
+              case 12:
+                _context2.prev = 12;
                 _context2.t0 = _context2["catch"](4);
+                _this2.loading = false;
                 console.log(_context2.t0);
 
-              case 13:
+              case 16:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[4, 10]]);
+        }, _callee2, null, [[4, 12]]);
       }))();
     },
     getCarModel: function getCarModel() {
@@ -5269,7 +5272,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5289,20 +5300,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'category-filters',
   data: function data() {
     return {
-      no_results: false
+      no_results: false,
+      loading: false
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_categories_related'])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['serachProductModel' //search products
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_categories_related'])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['serachProductModel' //search products
   ])), {}, {
     addCategoryToFilter: function addCategoryToFilter() {
-      this.$parent.car_model_selected['category'] = this.$parent.category_selected;
-      this.serachProductModel(this.$parent.car_model_selected);
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.$parent.car_model_selected['category'] = _this.$parent.category_selected;
+                _this.loading = true;
+                _context.next = 4;
+                return _this.serachProductModel(_this.$parent.car_model_selected);
+
+              case 4:
+                _this.loading = false;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   })
 });
@@ -5510,7 +5544,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5541,15 +5583,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'years-filters',
   data: function data() {
     return {
-      models: []
+      models: [],
+      loading: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_years_related'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_years_related'])), {}, {
     years: function years() {
       var years = [];
       this.get_years_related.map(function (e) {
@@ -5566,11 +5611,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return range;
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['serachProductModel' //search products
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['serachProductModel' //search products
   ])), {}, {
     addYearsToFilter: function addYearsToFilter() {
-      this.$parent.car_model_selected['year'] = this.$parent.year_selected;
-      this.serachProductModel(this.$parent.car_model_selected);
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.loading = true;
+                _this.$parent.car_model_selected['year'] = _this.$parent.year_selected;
+                _context.next = 4;
+                return _this.serachProductModel(_this.$parent.car_model_selected);
+
+              case 4:
+                _this.loading = false;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   })
 });
@@ -47387,7 +47452,7 @@ var render = function() {
     ),
     _vm.loading
       ? _c("div", { staticClass: "text-center" }, [
-          _c("div", { staticClass: "spinner-border" })
+          _c("div", { staticClass: "spinner-border text-light" })
         ])
       : _vm._e(),
     _vm.results && !_vm.$parent.car_model_selected.model_id
@@ -47599,6 +47664,11 @@ var render = function() {
     ),
     _vm.no_results
       ? _c("div", { staticClass: "list-group mt-3" }, [_vm._m(0)])
+      : _vm._e(),
+    _vm.loading
+      ? _c("div", { staticClass: "text-center" }, [
+          _c("div", { staticClass: "spinner-border text-light" })
+        ])
       : _vm._e()
   ])
 }
@@ -47900,7 +47970,12 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm.loading
+      ? _c("div", { staticClass: "text-center" }, [
+          _c("div", { staticClass: "spinner-border text-light" })
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -48210,7 +48285,7 @@ var render = function() {
       attrs: { id: "list-products-finded" }
     },
     [
-      _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "container-fluid mt-5" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-xl-9" }, [
             _vm.get_list_products.data
@@ -70363,20 +70438,21 @@ var actions = {
               dispatch('setListProducts', response.data.products);
               dispatch('setYearsRelated', response.data.years);
               dispatch('setCategoriesRelated', response.data.categories);
-              _context.next = 17;
+              window.location.href = '#list-products-finded';
+              _context.next = 18;
               break;
 
-            case 14:
-              _context.prev = 14;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 17:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 14]]);
+      }, _callee, null, [[1, 15]]);
     }));
 
     function serachProductModel(_x, _x2) {

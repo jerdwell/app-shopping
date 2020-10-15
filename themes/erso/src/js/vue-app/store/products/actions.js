@@ -48,6 +48,7 @@ const actions = {
       dispatch('setListProducts', response.data.products)
       dispatch('setYearsRelated', response.data.years)
       dispatch('setCategoriesRelated', response.data.categories)
+      window.location.href = '#list-products-finded'
     } catch (error) {
       console.log(error);
     }
