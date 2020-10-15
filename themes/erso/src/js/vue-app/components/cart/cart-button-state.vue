@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.btn.btn-dark.btn-cart-state(v-show="count_cart_items > 0" @click.prevent="showCarFilters")
+  button.btn.btn-dark.btn-cart-state#car-state-button(v-show="count_cart_items > 0" @click.prevent="showCarFilters")
     .oi.oi-cart
     span.cart-items-count.bg-success {{count_cart_items <= 10 ? count_cart_items : '+10'}}
 </template>

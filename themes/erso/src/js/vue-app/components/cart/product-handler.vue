@@ -12,7 +12,7 @@
           @click.prevent="remove_cart_item(product.id)"
           :disabled="find_item_in_cart(product.id) == 0")
           i.oi.oi-minus
-        button.btn.btn-info.btn-sm.bg-transparent.text-info.rounded-circle(@click.prevent="add_cart_item(product)")
+        button.btn.btn-info.btn-sm.bg-transparent.text-info.rounded-circle(@click.prevent="addProduct(product)")
           i.oi.oi-plus
 </template>
 <script>
@@ -33,7 +33,16 @@ export default {
     ...mapActions([
       'add_cart_item', //add item to cart shopping or quotation
       'remove_cart_item', //remove item to cart shopping or quotation
-    ])
+    ]),
+
+    async addProduct(product){
+      await this.add_cart_item(product)
+      let carButton = document.getElementById('car-state-button')
+      let cart = document.getElementById('cart-shoppng-fixed-global')
+      if(carButton){
+        if(cart && cart.classList.contains('cart-shoppng-fixed-global-hidden')) carButton.click()
+      }
+    }
 
   },
 }
