@@ -12688,3 +12688,8 @@ h6,
   font-weight: 700 !important;
 }
 
+footer.main-footer {
+  position: relative;
+  z-index: 100;
+}
+

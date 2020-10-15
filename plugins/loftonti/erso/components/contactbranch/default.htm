@@ -1,9 +1,16 @@
 {% set branch_data = __SELF__.branch_data %}
 {% set branch = __SELF__.branch %}
+{% if branch_data.branch_name == 'Cuautitlán Izcalli'|upper %}
+{% set branch_title = 'Casa Matríz'|upper %}
+{% elseif branch_data.branch_name == '' %}
+{% set branch_title = 'Contacto' %}
+{% else %}
+{% set branch_title = branch_data.branch_name %}
+{% endif %}
 
 {%
   partial 'components/_step'
-  title = branch_data.branch_name != '' ? branch_data.branch_name : 'Contacto'
+  title =  branch_title
   align= "center"
   type= "light"
   local= true
