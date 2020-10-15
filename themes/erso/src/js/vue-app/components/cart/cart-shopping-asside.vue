@@ -1,16 +1,15 @@
 <template lang="pug">
-.cart-shopping-asside#cart-shopping-asside
-  .close-shopping-cart-button.border-secondary(@click.prevent="toggleCart")
+.cart-shopping-asside.cart-shopping-asside-hidden#cart-shopping-asside
+  //- .close-shopping-cart-button.border-secondary(@click.prevent="toggleCart")
     .oi.oi-fullscreen-exit.text-secondary
-  .text-center
-      h4.text-center.text-muted Mis producto
+  .text-center.bg-dark.pb-1.cart-shopping-asside-heading
+      h4.text-center.text-light Mis productos
       h6.text-center
-        span.text-muted Total de la cotización
+        span.text-light Total de la cotización
         br
-        big ${{ get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
-      hr
+        big.text-info ${{ get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
   cartItems(:heading="true")
-  .bg-dark.p-3(v-if="get_cart_items.length > 0")
+  .bg-dark.p-3.cart-shopping-asside-footer(v-if="get_cart_items.length > 0")
     shippingDateComponent
 
 </template>
@@ -35,37 +34,60 @@ export default {
     toggleCart(){
       let item = document.getElementById('cart-shopping-asside')
       if(item) item.classList.toggle('cart-shopping-asside-hidden')
+    },
+    fixedCar(){
+      window.scrollTo(0,0)
+      let cart = document.getElementById('cart-shopping-asside')
+      let h = cart.offsetHeight
+      let position = cart.getBoundingClientRect()
+      let class_fixed = 'cart-shopping-asside-fixed'
+      window.onscroll = () => {
+        if(window.scrollY > (position.top + h)){
+          if(!cart.classList.contains(class_fixed)){
+            cart.classList.add(class_fixed)
+          }
+        }else{
+          console.log('quitar');
+          if(cart.classList.contains(class_fixed)){
+            cart.classList.remove(class_fixed)
+          }
+        }
+      }
     }
+  },
+  mounted() {
+    this.fixedCar()
   },
 }
 </script>
 
 <style lang="sass" scoped>
 .cart-shopping-asside
-  display: none
+  // display: none
   background: #f1f1ff
   bottom: 20px
   border-radius: 5px
   box-shadow: 0 0 10px rgba(0,0,0, .7)
-  max-height: 80vh
+  max-height: 80vh!important
   max-width: 300px
   overflow-y: auto
   position: fixed
-  padding: 10px
   transition: all ease .5s
   right: 20px
   width: 90%
   z-index: 10
-  @media screen and (min-width: 1024px)
-    max-height: 70vh
-    position: static
-    max-height: none
+  .cart-shopping-asside-heading, .cart-shopping-asside-footer
+    left: 0
+    position: sticky
+    top: 0
+  .cart-shopping-asside-footer
+    bottom: 0
+    top: auto
   @media screen and (min-width: 1280px)
     display: block
     border-radius: 0
     box-shadow: none
     position: static
-    max-height: none
     width: 100%
 
 .close-shopping-cart-button
@@ -89,11 +111,22 @@ export default {
     position: static
     // top: 0
   @media screen and (min-width: 1280px)
-    display: none
+    // display: none
 
 .cart-shopping-asside-hidden
   @media screen and (max-width:1279px)
     padding: 0
     height: 100px
     width: 0
+
+.cart-shopping-asside-fixed
+  box-shadow: -10px 5px 15px rgba(#000,.8)
+  border-radius: 30px
+  right: 0px
+  height: 70%
+  position: fixed
+  top: 50%
+  transform: translateY(-50%)
+  z-index: 999
+
 </style>

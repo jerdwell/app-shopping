@@ -4222,9 +4222,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     showCarFilters: function showCarFilters() {
       var cart_aside = document.getElementById('cart-shopping-asside');
-      if (cart_aside) return;
       var cart_global = document.getElementById('cart-shoppng-fixed-global');
-      if (cart_global) cart_global.classList.toggle('cart-shoppng-fixed-global-hidden');
+
+      if (cart_aside) {
+        cart_aside.classList.toggle('cart-shopping-asside-hidden');
+        return;
+      } else {
+        if (cart_global) cart_global.classList.toggle('cart-shoppng-fixed-global-hidden');
+      }
     }
   }
 });
@@ -4381,7 +4386,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -4398,7 +4402,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     toggleCart: function toggleCart() {
       var item = document.getElementById('cart-shopping-asside');
       if (item) item.classList.toggle('cart-shopping-asside-hidden');
+    },
+    fixedCar: function fixedCar() {
+      window.scrollTo(0, 0);
+      var cart = document.getElementById('cart-shopping-asside');
+      var h = cart.offsetHeight;
+      var position = cart.getBoundingClientRect();
+      var class_fixed = 'cart-shopping-asside-fixed';
+
+      window.onscroll = function () {
+        if (window.scrollY > position.top + h) {
+          if (!cart.classList.contains(class_fixed)) {
+            cart.classList.add(class_fixed);
+          }
+        } else {
+          console.log('quitar');
+
+          if (cart.classList.contains(class_fixed)) {
+            cart.classList.remove(class_fixed);
+          }
+        }
+      };
     }
+  },
+  mounted: function mounted() {
+    this.fixedCar();
   }
 });
 
@@ -6711,7 +6739,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".cart-shopping-asside[data-v-43b16530] {\n  display: none;\n  background: #f1f1ff;\n  bottom: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);\n  max-height: 80vh;\n  max-width: 300px;\n  overflow-y: auto;\n  position: fixed;\n  padding: 10px;\n  transition: all ease .5s;\n  right: 20px;\n  width: 90%;\n  z-index: 10;\n}\n@media screen and (min-width: 1024px) {\n.cart-shopping-asside[data-v-43b16530] {\n    max-height: 70vh;\n    position: static;\n    max-height: none;\n}\n}\n@media screen and (min-width: 1280px) {\n.cart-shopping-asside[data-v-43b16530] {\n    display: block;\n    border-radius: 0;\n    box-shadow: none;\n    position: static;\n    max-height: none;\n    width: 100%;\n}\n}\n.close-shopping-cart-button[data-v-43b16530] {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  border-radius: 50%;\n  border: solid 2px;\n  cursor: pointer;\n  font-size: 15px;\n  height: 30px;\n  justify-content: center;\n  margin: 0;\n  position: absolute;\n  right: 5px;\n  padding: 0;\n  top: 5px;\n  width: 30px;\n}\n.close-shopping-cart-button .oi[data-v-43b16530] {\n  position: static;\n}\n@media screen and (min-width: 1280px) {\n.close-shopping-cart-button[data-v-43b16530] {\n    display: none;\n}\n}\n@media screen and (max-width: 1279px) {\n.cart-shopping-asside-hidden[data-v-43b16530] {\n    padding: 0;\n    height: 100px;\n    width: 0;\n}\n}\n", ""]);
+exports.push([module.i, ".cart-shopping-asside[data-v-43b16530] {\n  background: #f1f1ff;\n  bottom: 20px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);\n  max-height: 80vh !important;\n  max-width: 300px;\n  overflow-y: auto;\n  position: fixed;\n  transition: all ease .5s;\n  right: 20px;\n  width: 90%;\n  z-index: 10;\n}\n.cart-shopping-asside .cart-shopping-asside-heading[data-v-43b16530], .cart-shopping-asside .cart-shopping-asside-footer[data-v-43b16530] {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n}\n.cart-shopping-asside .cart-shopping-asside-footer[data-v-43b16530] {\n  bottom: 0;\n  top: auto;\n}\n@media screen and (min-width: 1280px) {\n.cart-shopping-asside[data-v-43b16530] {\n    display: block;\n    border-radius: 0;\n    box-shadow: none;\n    position: static;\n    width: 100%;\n}\n}\n.close-shopping-cart-button[data-v-43b16530] {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  border-radius: 50%;\n  border: solid 2px;\n  cursor: pointer;\n  font-size: 15px;\n  height: 30px;\n  justify-content: center;\n  margin: 0;\n  position: absolute;\n  right: 5px;\n  padding: 0;\n  top: 5px;\n  width: 30px;\n}\n.close-shopping-cart-button .oi[data-v-43b16530] {\n  position: static;\n}\n@media screen and (max-width: 1279px) {\n.cart-shopping-asside-hidden[data-v-43b16530] {\n    padding: 0;\n    height: 100px;\n    width: 0;\n}\n}\n.cart-shopping-asside-fixed[data-v-43b16530] {\n  box-shadow: -10px 5px 15px rgba(0, 0, 0, 0.8);\n  border-radius: 30px;\n  right: 0px;\n  height: 70%;\n  position: fixed;\n  top: 50%;\n  transform: translateY(-50%);\n  z-index: 999;\n}\n", ""]);
 
 // exports
 
@@ -46494,53 +46522,45 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "cart-shopping-asside",
+      staticClass: "cart-shopping-asside cart-shopping-asside-hidden",
       attrs: { id: "cart-shopping-asside" }
     },
     [
       _c(
         "div",
         {
-          staticClass: "close-shopping-cart-button border-secondary",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.toggleCart($event)
-            }
-          }
+          staticClass: "text-center bg-dark pb-1 cart-shopping-asside-heading"
         },
-        [_c("div", { staticClass: "oi oi-fullscreen-exit text-secondary" })]
+        [
+          _c("h4", { staticClass: "text-center text-light" }, [
+            _vm._v("Mis productos")
+          ]),
+          _c(
+            "h6",
+            { staticClass: "text-center" },
+            [
+              _c("span", { staticClass: "text-light" }, [
+                _vm._v("Total de la cotización")
+              ]),
+              _c("br"),
+              _c("big", { staticClass: "text-info" }, [
+                _vm._v(
+                  "$" +
+                    _vm._s(
+                      _vm.get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    )
+                )
+              ])
+            ],
+            1
+          )
+        ]
       ),
-      _c("div", { staticClass: "text-center" }, [
-        _c("h4", { staticClass: "text-center text-muted" }, [
-          _vm._v("Mis producto")
-        ]),
-        _c(
-          "h6",
-          { staticClass: "text-center" },
-          [
-            _c("span", { staticClass: "text-muted" }, [
-              _vm._v("Total de la cotización")
-            ]),
-            _c("br"),
-            _c("big", [
-              _vm._v(
-                "$" +
-                  _vm._s(
-                    _vm.get_total_amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                  )
-              )
-            ])
-          ],
-          1
-        ),
-        _c("hr")
-      ]),
       _c("cartItems", { attrs: { heading: true } }),
       _vm.get_cart_items.length > 0
         ? _c(
             "div",
-            { staticClass: "bg-dark p-3" },
+            { staticClass: "bg-dark p-3 cart-shopping-asside-footer" },
             [_c("shippingDateComponent")],
             1
           )
