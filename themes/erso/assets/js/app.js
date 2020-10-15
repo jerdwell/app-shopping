@@ -4416,8 +4416,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             cart.classList.add(class_fixed);
           }
         } else {
-          console.log('quitar');
-
           if (cart.classList.contains(class_fixed)) {
             cart.classList.remove(class_fixed);
           }

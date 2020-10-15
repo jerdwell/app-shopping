@@ -47,7 +47,6 @@ export default {
             cart.classList.add(class_fixed)
           }
         }else{
-          console.log('quitar');
           if(cart.classList.contains(class_fixed)){
             cart.classList.remove(class_fixed)
           }
