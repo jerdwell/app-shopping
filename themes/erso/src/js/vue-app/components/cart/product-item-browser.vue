@@ -5,13 +5,13 @@
   )
   .card-product-item.card
     .card-header.p-0(stye="z-index:0; position: relative;")
-      a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`")
+      a.link.text-info.mb-4(:href="`/productos/${get_branch_selected}/producto/${product.id}`")
         zoom-on-hover.product-item-image.bg-white(
           :img-normal="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
         .product-item-data-description.text-lg-center.pt-lg-3
-          a.link.text-info.mb-4(:href="`/productos/producto/${product.id}`" style="text-decoration:none;")
+          a.link.text-info.mb-4(:href="`/productos/${get_branch_selected}/producto/${product.id}`" style="text-decoration:none;")
             span.h6.text-info {{ product.product_name }}
           p.mb-0.small
             span.text-light Marca: {{ product.brand.brand_name }}
@@ -20,7 +20,7 @@
               span(v-if="product_notes != 'N/A'") {{ product_notes.length < 60 ? product_notes : product_notes.substring(0,60) + '...' }} #[a.text-info.small(v-if="product_notes.length > 60" :href="`/productos/producto/${product.id}`") Ver más]
               span(v-else) {{ product_notes }}
             br
-            span.text-light Stock: {{ this.product.branches[0].pivot.stock != 0 this.product.branches[0].pivot.stock + 'pz' : 'No disponible' }}
+            span.text-light Stock: {{ this.product.branches[0].pivot.stock != 0 ? this.product.branches[0].pivot.stock + 'pz' : 'No disponible' }}
             br
             span.text-light #[b.text-yellow.text-center Auto - Armadora]:
             br

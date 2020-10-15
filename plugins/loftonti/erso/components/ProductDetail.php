@@ -2,6 +2,7 @@
 
 use Cms\Classes\ComponentBase;
 use Loftonti\Erso\Models\Products;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductDetail extends ComponentBase
 {
@@ -23,25 +24,53 @@ class ProductDetail extends ComponentBase
                 'type' => 'string',
                 'validationPattern' => '^[0-9-]'
             ],
+            'branch' => [
+                'title' => 'branch',
+                'description' => 'branch to get product',
+                'type' => 'string',
+                'validationPattern' => '^[0-9-]'
+            ],
         ];
     }
 
     public function onRun()
     {
         try {
+            $branch = $this -> property('branch');
             $id = $this -> property('id'); 
-            $product = Products::find($id);
+            $product = Products::where('id', $id)
+                -> whereHas('branches', function(Builder $q) use($branch){
+                    $q -> where('slug', $branch);
+                })
+                ->with([
+                    'brand',
+                    'branches',
+                    'category',
+                    'applications',
+                    'applications.car',
+                    'applications.shipowner',
+                ])
+                -> first();
             if(empty($product)) throw new \Exception(null);
-            $product -> brand;
-            $product -> category;
-            $product -> shipowner;
-            $product -> enterprise;
-            $product -> car;
-            $product -> erso_code;
             $this -> product = $product;
-            $this -> related = Products::where('model_id', $this -> product -> model_id)
-             -> where('shipowner_id', $this -> product -> shipowner_id)
-             -> with(['shipowner', 'car', 'category'])
+            $this -> related = Products::whereHas('applications', function(Builder $q) use($product){
+                $q -> where('shipowner_id', $product -> applications[0] -> shipowner_id)
+                ->where('car_id', $product -> applications[0] -> car_id);
+            })
+            -> whereHas('branches', function(Builder $q) use($branch){
+                $q -> where('slug', $branch);
+            })
+             -> with([
+                'brand',
+                'category',
+                'applications',
+                'applications.car',
+                'applications.shipowner',
+                'branches' => function($q) use($branch) {
+                    $q -> where('loftonti_erso_branches.slug', $branch)
+                    ->select('id');
+                }
+            ])
              ->paginate(8);
         } catch (\Throwable $th) {
             //throw $th;

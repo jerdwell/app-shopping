@@ -1,10 +1,11 @@
 title = "Detalle de producto"
-url = "/productos/producto/:id"
+url = "/productos/:branch/producto/:id"
 layout = "_default"
 is_hidden = 0
 
 [ProductDetail]
 id = "{{ :id }}"
+branch = "{{ :branch }}"
 ==
 {%
   partial 'components/_step'
