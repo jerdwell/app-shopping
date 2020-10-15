@@ -5145,34 +5145,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _this2.$parent.category_selected = '';
+                _this2.$parent.year_selected = '';
+
                 if (!(_this2.$parent.car_model_selected.model_id == '' && _this2.$parent.car_model_selected.shipowner_id == '')) {
-                  _context2.next = 2;
+                  _context2.next = 4;
                   break;
                 }
 
                 return _context2.abrupt("return", false);
 
-              case 2:
-                _context2.prev = 2;
-                _context2.next = 5;
+              case 4:
+                _context2.prev = 4;
+                _context2.next = 7;
                 return _this2.serachProductModel(_this2.$parent.car_model_selected);
 
-              case 5:
+              case 7:
                 products = _context2.sent;
-                _context2.next = 11;
+                _context2.next = 13;
                 break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](2);
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](4);
                 console.log(_context2.t0);
 
-              case 11:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[2, 8]]);
+        }, _callee2, null, [[4, 10]]);
       }))();
     },
     getCarModel: function getCarModel() {
@@ -5382,34 +5385,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _this2.$parent.category_selected = '';
+                _this2.$parent.year_selected = '';
+
                 if (!(_this2.$parent.car_model_selected.model_id == '' && _this2.$parent.car_model_selected.shipowner_id == '')) {
-                  _context2.next = 2;
+                  _context2.next = 4;
                   break;
                 }
 
                 return _context2.abrupt("return", false);
 
-              case 2:
-                _context2.prev = 2;
-                _context2.next = 5;
+              case 4:
+                _context2.prev = 4;
+                _context2.next = 7;
                 return _this2.serachProductModel(_this2.$parent.car_model_selected);
 
-              case 5:
+              case 7:
                 products = _context2.sent;
-                _context2.next = 11;
+                _context2.next = 13;
                 break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](2);
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](4);
                 console.log(_context2.t0);
 
-              case 11:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[2, 8]]);
+        }, _callee2, null, [[4, 10]]);
       }))();
     },
     getCarModel: function getCarModel() {

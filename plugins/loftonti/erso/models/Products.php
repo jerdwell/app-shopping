@@ -54,7 +54,6 @@ class Products extends Model
     public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
     {
         try {
-            // return [$branch, $model, $shipowner, $filter1, $value1, $filter2, $value2];
             $applications = Applications::selectRaw('group_concat(loftonti_erso_application.product_id) as ids')
                 ->where('loftonti_erso_application.shipowner_id', $shipowner)
                 ->where('loftonti_erso_application.car_id', $model)

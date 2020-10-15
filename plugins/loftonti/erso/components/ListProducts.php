@@ -80,8 +80,7 @@ class ListProducts extends ComponentBase
             $model = $this -> model ? CarsModels::find($this -> model) : false;
             $this -> model_shipowner = $this -> shipowner && $this -> model ? $model -> car_name : false;
         } catch (\Exception $th) {
-            // return Redirect::to('/productos');
-            return [$th -> getMessage()];
+            return Redirect::to('/productos');
         }
     }
 
@@ -118,7 +117,6 @@ class ListProducts extends ComponentBase
     {
         $branch = $this -> property('branch');
         if($this -> model == null || $this -> shipowner == null || $this -> year == null){
-            // $this -> categories = ''; 
             return Products::filterByCategory($this -> category, $branch)
                 ->with([
                     'brand',
@@ -134,7 +132,7 @@ class ListProducts extends ComponentBase
                 -> paginate($this -> limit);
         }else{
             $category = Categories::where('category_slug', $this -> category) -> first();
-            return Products::filterCars($branch, $this -> model, $this -> shipowner, 'category', $category -> id, 'year', $this -> year )
+            return Products::filterCars($branch, $this -> model, $this -> shipowner, 'year', $this -> year, 'category', $category -> id )
             -> paginate($this -> limit);
         }
     }

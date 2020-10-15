@@ -84,6 +84,8 @@ export default {
       }
     },
     async getListProductsFiletered(){
+      this.$parent.category_selected = ''
+      this.$parent.year_selected = ''
       if(this.$parent.car_model_selected.model_id == '' && this.$parent.car_model_selected.shipowner_id == '') return false
       try{
         let products = await this.serachProductModel(this.$parent.car_model_selected)
