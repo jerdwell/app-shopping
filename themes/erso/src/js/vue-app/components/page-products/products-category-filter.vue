@@ -8,7 +8,7 @@ div
     template(slot="pop-header")
       a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
     template(slot="pop-content")
-      label.label.small.text-muted Seleccionar año
+      label.label.small.text-muted Seleccionar categoría
       select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="category_fiter" @change="goToCategory")
         option(value="") Selecciona una categoría
         option(v-for="(category, index) in categories" :key="category.slug" :value="category.category_slug") {{ category.category_name }}

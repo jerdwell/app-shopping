@@ -6883,7 +6883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".list-cars[data-v-2a429a42] {\n  max-height: 200px;\n  overflow: hidden;\n  overflow-y: auto;\n}\n", ""]);
+exports.push([module.i, ".list-cars[data-v-2a429a42] {\n  max-height: 200px;\n  overflow: hidden;\n  overflow-y: auto;\n}\n.list-search-car-item[data-v-2a429a42], .list-search-car-item label[data-v-2a429a42] {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -48658,7 +48658,10 @@ var render = function() {
                   _vm._l(_vm.cars, function(car, index) {
                     return _c(
                       "li",
-                      { key: car.id, staticClass: "list-group-item p-1" },
+                      {
+                        key: car.id,
+                        staticClass: "list-group-item p-1 list-search-car-item"
+                      },
                       [
                         _c("label", [
                           _c("input", {
@@ -48773,7 +48776,7 @@ var render = function() {
           ]),
           _c("template", { slot: "pop-content" }, [
             _c("label", { staticClass: "label small text-muted" }, [
-              _vm._v("Seleccionar año")
+              _vm._v("Seleccionar categoría")
             ]),
             _c(
               "select",

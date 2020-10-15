@@ -16,7 +16,7 @@
             i.fas.fa-search
         input.form-control.form-control-sm(type="search" placeholder="Buscar auto" @keypress="filterCar" v-model="data_search")
       ul.list-cars.list-group.list-group-flush.mt-3(v-if="cars.length > 0")
-        li.list-group-item.p-1(v-for="(car, index) in cars" :key="car.id")
+        li.list-group-item.p-1.list-search-car-item(v-for="(car, index) in cars" :key="car.id")
           label
             input.form-control-checkbox.mr-2(type="checkbox" @click="setCarSelected(car)")
             .small.d-inline-block {{ car.car.car_name }} - {{ car.shipowner.shipowner_name }}
@@ -83,4 +83,6 @@ export default {
   max-height: 200px
   overflow: hidden
   overflow-y: auto
+.list-search-car-item, .list-search-car-item label
+  cursor: pointer
 </style>
