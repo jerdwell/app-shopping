@@ -24,7 +24,7 @@
         .col-xl-3
           cartShoppingAsside
 
-    nav.paginator-browser.py-5
+    nav.paginator-browser.py-5(v-if="get_list_products.last_page && get_list_products.last_page <= 10")
       ul.pagination.justify-content-center
         li.page-item(v-if="get_list_products.prev_page_url != null")
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.prev_page_url)")
@@ -34,6 +34,14 @@
         li.page-item(v-if="get_list_products.next_page_url != null")
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.next_page_url)")
             .fas.fa-caret-right
+    
+    .container.my-5(v-if="get_list_products.last_page && get_list_products.last_page >= 10")
+      .row
+        .col-md-6.col-lg-4.col-xl-3
+          label Página:
+          select.form-control(@change="goToPage(get_list_products.path, page_selected)" v-model="page_selected")
+            option(value="") Selecciona una página
+            option(v-for="page in get_list_products.last_page" :key="page" :value="page") {{ page }}
             
 </template>
 
@@ -58,7 +66,8 @@ export default {
   data(){
     return {
       perPage: '',
-      year_filter: 'all'
+      year_filter: 'all',
+      page_selected: 1
     }
   },
   computed: {

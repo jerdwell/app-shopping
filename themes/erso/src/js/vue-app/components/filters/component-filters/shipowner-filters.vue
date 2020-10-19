@@ -11,7 +11,7 @@
         option(v-for="(shipowner,key) in listShipowners" :key="shipowner.id" :value="shipowner.id") {{ shipowner.shipowner_name }}
     
     .text-center(v-if="loading")
-      .spinner-border
+      .spinner-border.text-light
   
   .col-md-6
     label.text-center.text-light Auto:
@@ -21,31 +21,7 @@
           i.fas.fa-list
       select.form-control.form-control-sm(@change="getListProductsFiletered" v-model="$parent.car_model_selected.model_id")
         option(value="") Selecciona una opción
-        option(v-for="car in listCars" :key="car.id" :value="car.car.id") {{ car.shipowner.shipowner_name }} {{ car.car.car_name }}
-      
-    
-    //- ul.list-group.bg-transparent.small.list-models-searchable(v-if="results && !$parent.car_model_selected.model_id")
-    //-   li.list-group-item.bg-transparent.border-light.p-0(v-if="shipowners.data && shipowners.data.length > 0")
-    //-     table.table.table-results
-    //-       thead
-    //-         tr
-    //-           th.bg-yellow.text-light
-    //-           th.bg-yellow.text-light Marca
-    //-           th.bg-yellow.text-light Auto
-    //-       tbody
-    //-         tr(v-for="(car_model, index) in shipowners.data" :key="index")
-    //-           td
-    //-             input.form-control-checkbox.mr-2(
-    //-               type="radio"
-    //-               :name="car_model.id"
-    //-               :value="{model_id:car_model.car.id, shipowner_id: car_model.shipowner.id}"
-    //-               v-model="$parent.car_model_selected"
-    //-               @change="getListProductsFiletered")
-    //-           td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.shipowner.shipowner_name }}
-    //-           td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.car.car_name }}
-
-    //-   li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="shipowners.data && shipowners.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
-
+        option(v-for="car in listCars" :key="car.id" :value="car.car.id") {{ car.car.car_name }}
 
 </template>
 
@@ -92,9 +68,12 @@ export default {
       this.$parent.category_selected = ''
       this.$parent.year_selected = ''
       if(this.$parent.car_model_selected.model_id == '' && this.$parent.car_model_selected.shipowner_id == '') return false
+      this.loading = true
       try{
+        this.loading = false
         let products = await this.serachProductModel(this.$parent.car_model_selected)
       }catch(error){
+        this.loading = false
         console.log(error)
       }
     },

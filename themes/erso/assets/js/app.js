@@ -5392,30 +5392,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'shipowner-filters',
@@ -5498,26 +5474,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context2.abrupt("return", false);
 
               case 4:
-                _context2.prev = 4;
-                _context2.next = 7;
+                _this2.loading = true;
+                _context2.prev = 5;
+                _this2.loading = false;
+                _context2.next = 9;
                 return _this2.serachProductModel(_this2.$parent.car_model_selected);
 
-              case 7:
+              case 9:
                 products = _context2.sent;
-                _context2.next = 13;
+                _context2.next = 16;
                 break;
 
-              case 10:
-                _context2.prev = 10;
-                _context2.t0 = _context2["catch"](4);
+              case 12:
+                _context2.prev = 12;
+                _context2.t0 = _context2["catch"](5);
+                _this2.loading = false;
                 console.log(_context2.t0);
 
-              case 13:
+              case 16:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[4, 10]]);
+        }, _callee2, null, [[5, 12]]);
       }))();
     },
     getCarModel: function getCarModel() {
@@ -6189,6 +6168,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6208,7 +6195,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       perPage: '',
-      year_filter: 'all'
+      year_filter: 'all',
+      page_selected: 1
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['get_list_products' //lista de prodctos con paginado
@@ -47848,7 +47836,7 @@ var render = function() {
       ),
       _vm.loading
         ? _c("div", { staticClass: "text-center" }, [
-            _c("div", { staticClass: "spinner-border" })
+            _c("div", { staticClass: "spinner-border text-light" })
           ])
         : _vm._e()
     ]),
@@ -47903,13 +47891,7 @@ var render = function() {
                 return _c(
                   "option",
                   { key: car.id, domProps: { value: car.car.id } },
-                  [
-                    _vm._v(
-                      _vm._s(car.shipowner.shipowner_name) +
-                        " " +
-                        _vm._s(car.car.car_name)
-                    )
-                  ]
+                  [_vm._v(_vm._s(car.car.car_name))]
                 )
               })
             ],
@@ -48395,82 +48377,148 @@ var render = function() {
           _c("div", { staticClass: "col-xl-3" }, [_c("cartShoppingAsside")], 1)
         ])
       ]),
-      _c("nav", { staticClass: "paginator-browser py-5" }, [
-        _c(
-          "ul",
-          { staticClass: "pagination justify-content-center" },
-          [
-            _vm.get_list_products.prev_page_url != null
-              ? _c("li", { staticClass: "page-item" }, [
-                  _c(
-                    "a",
+      _vm.get_list_products.last_page && _vm.get_list_products.last_page <= 10
+        ? _c("nav", { staticClass: "paginator-browser py-5" }, [
+            _c(
+              "ul",
+              { staticClass: "pagination justify-content-center" },
+              [
+                _vm.get_list_products.prev_page_url != null
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.goToPage(
+                                _vm.get_list_products.prev_page_url
+                              )
+                            }
+                          }
+                        },
+                        [_c("div", { staticClass: "fas fa-caret-left" })]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._l(_vm.get_list_products.last_page, function(page) {
+                  return _c(
+                    "li",
                     {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
+                      key: page,
+                      staticClass: "page-item",
+                      class:
+                        _vm.get_list_products.current_page == page
+                          ? "active"
+                          : ""
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.goToPage(
+                                _vm.get_list_products.path,
+                                page
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(page))]
+                      )
+                    ]
+                  )
+                }),
+                _vm.get_list_products.next_page_url != null
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.goToPage(
+                                _vm.get_list_products.next_page_url
+                              )
+                            }
+                          }
+                        },
+                        [_c("div", { staticClass: "fas fa-caret-right" })]
+                      )
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          ])
+        : _vm._e(),
+      _vm.get_list_products.last_page && _vm.get_list_products.last_page >= 10
+        ? _c("div", { staticClass: "container my-5" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6 col-lg-4 col-xl-3" }, [
+                _c("label", [_vm._v("Página:")]),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.page_selected,
+                        expression: "page_selected"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.page_selected = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
                           return _vm.goToPage(
-                            _vm.get_list_products.prev_page_url
+                            _vm.get_list_products.path,
+                            _vm.page_selected
                           )
                         }
-                      }
-                    },
-                    [_c("div", { staticClass: "fas fa-caret-left" })]
-                  )
-                ])
-              : _vm._e(),
-            _vm._l(_vm.get_list_products.last_page, function(page) {
-              return _c(
-                "li",
-                {
-                  key: page,
-                  staticClass: "page-item",
-                  class:
-                    _vm.get_list_products.current_page == page ? "active" : ""
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.goToPage(_vm.get_list_products.path, page)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(page))]
-                  )
-                ]
-              )
-            }),
-            _vm.get_list_products.next_page_url != null
-              ? _c("li", { staticClass: "page-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.goToPage(
-                            _vm.get_list_products.next_page_url
-                          )
-                        }
-                      }
-                    },
-                    [_c("div", { staticClass: "fas fa-caret-right" })]
-                  )
-                ])
-              : _vm._e()
-          ],
-          2
-        )
-      ])
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Selecciona una página")
+                    ]),
+                    _vm._l(_vm.get_list_products.last_page, function(page) {
+                      return _c(
+                        "option",
+                        { key: page, domProps: { value: page } },
+                        [_vm._v(_vm._s(page))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ])
+          ])
+        : _vm._e()
     ]
   )
 }
