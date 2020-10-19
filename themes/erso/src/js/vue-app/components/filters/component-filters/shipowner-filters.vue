@@ -1,48 +1,50 @@
 <template lang="pug">
-  div
+.row
+  .col-md-6
     label.text-center.text-light Armadora:
     .input-group.mb-3.rounded-pill(style="overflow:hidden;")
       .input-group-prepend
         .input-group-text
-          i.fas.fa-search(v-if="!$parent.car_model_selected.model_id")
-          i.fas.fa-times.text-danger(v-else)
-      input.form-control.form-control-sm(
-        type="search"
-        placeholder="Buscar"
-        @input="serach_cars"
-        v-model="shipowner_search"
-        v-if="!$parent.car_model_selected.model_id")
-      input.form-control.form-control-sm(
-        type="text"
-        :value="getCarModel()"
-        v-on:click="$parent.car_model_selected = {}"
-        v-else
-      )
+          i.fas.fa-list
+      select.form-control.form-control-sm(@change="getListCarsShipowners" v-model="$parent.car_model_selected.shipowner_id")
+        option(value="") Selecciona una opción
+        option(v-for="(shipowner,key) in listShipowners" :key="shipowner.id" :value="shipowner.id") {{ shipowner.shipowner_name }}
     
     .text-center(v-if="loading")
       .spinner-border
+  
+  .col-md-6
+    label.text-center.text-light Auto:
+    .input-group.mb-3.rounded-pill(style="overflow:hidden;")
+      .input-group-prepend
+        .input-group-text
+          i.fas.fa-list
+      select.form-control.form-control-sm(@change="getListProductsFiletered" v-model="$parent.car_model_selected.model_id")
+        option(value="") Selecciona una opción
+        option(v-for="car in listCars" :key="car.id" :value="car.car.id") {{ car.shipowner.shipowner_name }} {{ car.car.car_name }}
+      
     
-    ul.list-group.bg-transparent.small.list-models-searchable(v-if="results && !$parent.car_model_selected.model_id")
-      li.list-group-item.bg-transparent.border-light.p-0(v-if="shipowners.data && shipowners.data.length > 0")
-        table.table.table-results
-          thead
-            tr
-              th.bg-yellow.text-light
-              th.bg-yellow.text-light Marca
-              th.bg-yellow.text-light Auto
-          tbody
-            tr(v-for="(car_model, index) in shipowners.data" :key="index")
-              td
-                input.form-control-checkbox.mr-2(
-                  type="radio"
-                  :name="car_model.id"
-                  :value="{model_id:car_model.car.id, shipowner_id: car_model.shipowner.id}"
-                  v-model="$parent.car_model_selected"
-                  @change="getListProductsFiletered")
-              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.shipowner.shipowner_name }}
-              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.car.car_name }}
+    //- ul.list-group.bg-transparent.small.list-models-searchable(v-if="results && !$parent.car_model_selected.model_id")
+    //-   li.list-group-item.bg-transparent.border-light.p-0(v-if="shipowners.data && shipowners.data.length > 0")
+    //-     table.table.table-results
+    //-       thead
+    //-         tr
+    //-           th.bg-yellow.text-light
+    //-           th.bg-yellow.text-light Marca
+    //-           th.bg-yellow.text-light Auto
+    //-       tbody
+    //-         tr(v-for="(car_model, index) in shipowners.data" :key="index")
+    //-           td
+    //-             input.form-control-checkbox.mr-2(
+    //-               type="radio"
+    //-               :name="car_model.id"
+    //-               :value="{model_id:car_model.car.id, shipowner_id: car_model.shipowner.id}"
+    //-               v-model="$parent.car_model_selected"
+    //-               @change="getListProductsFiletered")
+    //-           td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.shipowner.shipowner_name }}
+    //-           td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.car.car_name }}
 
-      li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="shipowners.data && shipowners.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
+    //-   li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="shipowners.data && shipowners.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
 
 
 </template>
@@ -56,7 +58,9 @@ export default {
       loading: false,
       results: false,
       shipowners: [],
-      shipowner_search: ''
+      shipowner_search: '',
+      listShipowners: [],
+      listCars: []
     }
   },
   computed:{
@@ -67,6 +71,7 @@ export default {
   methods: {
     ...mapActions([
       'serachProductModel', //sel tis products finded
+      'setListShipowners', //get list shipowners
     ]),
     async serach_cars(){
       if(this.shipowner_search.replace(/\s/g, '').length <= 0) {
@@ -100,11 +105,32 @@ export default {
       console.log(data)
       return data.shipowner.shipowner_name + ' - ' + data.car.car_name
     },
-    toggleCheckboxBtn(id){
-      let input = document.getElementsByName(id)[0]
-      input.click()
+    async getListShipowners(){
+      this.loading = true
+      try {
+        let list = await this.setListShipowners()
+        this.listShipowners = list.data
+        this.loading = false
+      } catch (error) {
+        console.log(error)
+        this.loading = false
+      }
+    },
+    async getListCarsShipowners() {
+      this.loading = true
+      try {
+        let listCars = await this.$http.get(`list-shipowners-cars/${this.$parent.car_model_selected.shipowner_id}`)
+        this.listCars = listCars.data
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+        console.log(error)
+      }
     }
-  }
+  },
+  mounted() {
+    this.getListShipowners()
+  },
 }
 </script>
 

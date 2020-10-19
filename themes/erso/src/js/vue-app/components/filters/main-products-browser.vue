@@ -69,13 +69,13 @@ export default {
   methods: {
     ...mapActions([
       'clearProducts', //limpiar listado de productos
-      'serachProductModelShipowner' //get products filtered
+      'serachProductModel' //get products filtered
     ]),
     goToPage(path, page){
       if(page){
-        this.serachProductModelShipowner({url: path + '?page=' + page})
+        this.serachProductModel({url: path + '?page=' + page})
       }else{
-        this.serachProductModelShipowner({url: path})
+        this.serachProductModel({url: path})
       }
     }
   },

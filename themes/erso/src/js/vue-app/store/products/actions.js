@@ -78,6 +78,11 @@ const actions = {
     }
   },
 
+  setListShipowners: async() => {
+    let list = await vm.prototype.$http.get(`/list-shipowners`)
+    return list
+  },
+
   //Limpiar state de productos
   clearProducts: ({ commit }) => {
     commit('CLEAR_PRODUCTS')

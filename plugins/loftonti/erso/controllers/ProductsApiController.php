@@ -9,7 +9,7 @@ class ProductsApiController extends Controller {
   public function serachCarsModels($car)
   {
     $car = Str::slug($car);
-    return $shipowners = CarsModels::getCarModels($car) -> with(['shipowner', 'car']) -> groupBy('car_id') ->get();
+    return $shipowners = CarsModels::getCarModels($car) -> with(['shipowner', 'car'])  ->get();
   }
 
   public function serachShipowners($branch, $shipowner)
@@ -103,6 +103,29 @@ class ProductsApiController extends Controller {
       ->take(30)
       ->paginate(20);
     return $products;
+  }
+
+  public function listShipowners()
+  {
+    $swhipownres = Shipowners::all();
+    return $swhipownres;
+  }
+
+  public function listShipownersCars($shipowner_id)
+  {
+    try {
+      $list_cars = Applications::select('id', 'product_id', 'shipowner_id', 'car_id')
+        -> where('shipowner_id', $shipowner_id)
+        -> with([
+          'car',
+          'shipowner'
+        ])
+        -> groupBy('car_id')
+        -> get();
+      return $list_cars;
+    } catch (\Throwable $th) {
+      return response() -> json([$th -> getMessage(), 403]);
+    }
   }
 
 }

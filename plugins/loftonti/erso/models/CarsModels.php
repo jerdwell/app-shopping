@@ -50,7 +50,7 @@ class CarsModels extends Model
         foreach ($models as $key) {
             array_push($filter, $key -> id);
         }
-        return $products = Applications::whereIn('car_id', $filter);
+        return $products = Applications::whereIn('car_id', $filter) -> groupBy('shipowner_id');
     }
 
     /** Relations */

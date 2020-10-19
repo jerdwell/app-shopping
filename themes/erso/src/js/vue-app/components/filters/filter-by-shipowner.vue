@@ -1,9 +1,9 @@
 <template lang="pug">
  .container
     .row
-      ShipownerFilters.col-md-4
-      YearsFilters.col-md-4
-      CategoryFilters.col-md-4
+      ShipownerFilters.col-lg-6
+      YearsFilters.col-md-6.col-lg-3
+      CategoryFilters.col-md-6.col-lg-3
 
 </template>
 
@@ -21,7 +21,10 @@ export default {
   },
   data() {
     return {
-      car_model_selected: {},
+      car_model_selected: {
+        shipowner_id: '',
+        model_id: ''
+      },
       category_selected: '',
       year_selected: '',
     }

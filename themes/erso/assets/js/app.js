@@ -5414,6 +5414,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'shipowner-filters',
@@ -5422,12 +5424,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loading: false,
       results: false,
       shipowners: [],
-      shipowner_search: ''
+      shipowner_search: '',
+      listShipowners: [],
+      listCars: []
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_branch_selected' //get branch selected
   ])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['serachProductModel' //sel tis products finded
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['serachProductModel', //sel tis products finded
+  'setListShipowners' //get list shipowners
   ])), {}, {
     serach_cars: function serach_cars() {
       var _this = this;
@@ -5524,11 +5529,80 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log(data);
       return data.shipowner.shipowner_name + ' - ' + data.car.car_name;
     },
-    toggleCheckboxBtn: function toggleCheckboxBtn(id) {
-      var input = document.getElementsByName(id)[0];
-      input.click();
+    getListShipowners: function getListShipowners() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var list;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.loading = true;
+                _context3.prev = 1;
+                _context3.next = 4;
+                return _this3.setListShipowners();
+
+              case 4:
+                list = _context3.sent;
+                _this3.listShipowners = list.data;
+                _this3.loading = false;
+                _context3.next = 13;
+                break;
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](1);
+                console.log(_context3.t0);
+                _this3.loading = false;
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[1, 9]]);
+      }))();
+    },
+    getListCarsShipowners: function getListCarsShipowners() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var listCars;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this4.loading = true;
+                _context4.prev = 1;
+                _context4.next = 4;
+                return _this4.$http.get("list-shipowners-cars/".concat(_this4.$parent.car_model_selected.shipowner_id));
+
+              case 4:
+                listCars = _context4.sent;
+                _this4.listCars = listCars.data;
+                _this4.loading = false;
+                _context4.next = 13;
+                break;
+
+              case 9:
+                _context4.prev = 9;
+                _context4.t0 = _context4["catch"](1);
+                _this4.loading = false;
+                console.log(_context4.t0);
+
+              case 13:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[1, 9]]);
+      }))();
     }
-  })
+  }),
+  mounted: function mounted() {
+    this.getListShipowners();
+  }
 });
 
 /***/ }),
@@ -5847,7 +5921,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      car_model_selected: {},
+      car_model_selected: {
+        shipowner_id: '',
+        model_id: ''
+      },
       category_selected: '',
       year_selected: ''
     };
@@ -6137,15 +6214,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['get_list_products' //lista de prodctos con paginado
   ])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['clearProducts', //limpiar listado de productos
-  'serachProductModelShipowner' //get products filtered
+  'serachProductModel' //get products filtered
   ])), {}, {
     goToPage: function goToPage(path, page) {
       if (page) {
-        this.serachProductModelShipowner({
+        this.serachProductModel({
           url: path + '?page=' + page
         });
       } else {
-        this.serachProductModelShipowner({
+        this.serachProductModel({
           url: path
         });
       }
@@ -47707,184 +47784,140 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("label", { staticClass: "text-center text-light" }, [
-      _vm._v("Armadora:")
-    ]),
-    _c(
-      "div",
-      {
-        staticClass: "input-group mb-3 rounded-pill",
-        staticStyle: { overflow: "hidden" }
-      },
-      [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c("div", { staticClass: "input-group-text" }, [
-            !_vm.$parent.car_model_selected.model_id
-              ? _c("i", { staticClass: "fas fa-search" })
-              : _c("i", { staticClass: "fas fa-times text-danger" })
-          ])
-        ]),
-        !_vm.$parent.car_model_selected.model_id
-          ? _c("input", {
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-6" }, [
+      _c("label", { staticClass: "text-center text-light" }, [
+        _vm._v("Armadora:")
+      ]),
+      _c(
+        "div",
+        {
+          staticClass: "input-group mb-3 rounded-pill",
+          staticStyle: { overflow: "hidden" }
+        },
+        [
+          _vm._m(0),
+          _c(
+            "select",
+            {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.shipowner_search,
-                  expression: "shipowner_search"
+                  value: _vm.$parent.car_model_selected.shipowner_id,
+                  expression: "$parent.car_model_selected.shipowner_id"
                 }
               ],
               staticClass: "form-control form-control-sm",
-              attrs: { type: "search", placeholder: "Buscar" },
-              domProps: { value: _vm.shipowner_search },
               on: {
-                input: [
+                change: [
                   function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.shipowner_search = $event.target.value
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.$parent.car_model_selected,
+                      "shipowner_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
                   },
-                  _vm.serach_cars
+                  _vm.getListCarsShipowners
                 ]
               }
-            })
-          : _c("input", {
-              staticClass: "form-control form-control-sm",
-              attrs: { type: "text" },
-              domProps: { value: _vm.getCarModel() },
-              on: {
-                click: function($event) {
-                  _vm.$parent.car_model_selected = {}
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Selecciona una opción")
+              ]),
+              _vm._l(_vm.listShipowners, function(shipowner, key) {
+                return _c(
+                  "option",
+                  { key: shipowner.id, domProps: { value: shipowner.id } },
+                  [_vm._v(_vm._s(shipowner.shipowner_name))]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm.loading
+        ? _c("div", { staticClass: "text-center" }, [
+            _c("div", { staticClass: "spinner-border" })
+          ])
+        : _vm._e()
+    ]),
+    _c("div", { staticClass: "col-md-6" }, [
+      _c("label", { staticClass: "text-center text-light" }, [_vm._v("Auto:")]),
+      _c(
+        "div",
+        {
+          staticClass: "input-group mb-3 rounded-pill",
+          staticStyle: { overflow: "hidden" }
+        },
+        [
+          _vm._m(1),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.$parent.car_model_selected.model_id,
+                  expression: "$parent.car_model_selected.model_id"
                 }
+              ],
+              staticClass: "form-control form-control-sm",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.$parent.car_model_selected,
+                      "model_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.getListProductsFiletered
+                ]
               }
-            })
-      ]
-    ),
-    _vm.loading
-      ? _c("div", { staticClass: "text-center" }, [
-          _c("div", { staticClass: "spinner-border" })
-        ])
-      : _vm._e(),
-    _vm.results && !_vm.$parent.car_model_selected.model_id
-      ? _c(
-          "ul",
-          {
-            staticClass:
-              "list-group bg-transparent small list-models-searchable"
-          },
-          [
-            _vm.shipowners.data && _vm.shipowners.data.length > 0
-              ? _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item bg-transparent border-light p-0"
-                  },
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Selecciona una opción")
+              ]),
+              _vm._l(_vm.listCars, function(car) {
+                return _c(
+                  "option",
+                  { key: car.id, domProps: { value: car.car.id } },
                   [
-                    _c("table", { staticClass: "table table-results" }, [
-                      _vm._m(0),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.shipowners.data, function(car_model, index) {
-                          return _c("tr", { key: index }, [
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.$parent.car_model_selected,
-                                    expression: "$parent.car_model_selected"
-                                  }
-                                ],
-                                staticClass: "form-control-checkbox mr-2",
-                                attrs: { type: "radio", name: car_model.id },
-                                domProps: {
-                                  value: {
-                                    model_id: car_model.car.id,
-                                    shipowner_id: car_model.shipowner.id
-                                  },
-                                  checked: _vm._q(
-                                    _vm.$parent.car_model_selected,
-                                    {
-                                      model_id: car_model.car.id,
-                                      shipowner_id: car_model.shipowner.id
-                                    }
-                                  )
-                                },
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      return _vm.$set(
-                                        _vm.$parent,
-                                        "car_model_selected",
-                                        {
-                                          model_id: car_model.car.id,
-                                          shipowner_id: car_model.shipowner.id
-                                        }
-                                      )
-                                    },
-                                    _vm.getListProductsFiletered
-                                  ]
-                                }
-                              })
-                            ]),
-                            _c(
-                              "td",
-                              {
-                                staticClass: "text-white",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.toggleCheckboxBtn(car_model.id)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(car_model.shipowner.shipowner_name)
-                                )
-                              ]
-                            ),
-                            _c(
-                              "td",
-                              {
-                                staticClass: "text-white",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.toggleCheckboxBtn(car_model.id)
-                                  }
-                                }
-                              },
-                              [_vm._v(_vm._s(car_model.car.car_name))]
-                            )
-                          ])
-                        }),
-                        0
-                      )
-                    ])
+                    _vm._v(
+                      _vm._s(car.shipowner.shipowner_name) +
+                        " " +
+                        _vm._s(car.car.car_name)
+                    )
                   ]
                 )
-              : _vm._e(),
-            _vm.shipowners.data && _vm.shipowners.data.length <= 0
-              ? _c(
-                  "li",
-                  {
-                    staticClass:
-                      "list-group-item bg-transparent p-1 border-danger text-danger"
-                  },
-                  [
-                    _c("span", { staticClass: "fas fa-times-circle" }),
-                    _vm._v(" No existen resultados")
-                  ]
-                )
-              : _vm._e()
-          ]
-        )
-      : _vm._e()
+              })
+            ],
+            2
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -47892,11 +47925,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "bg-yellow text-light" }),
-        _c("th", { staticClass: "bg-yellow text-light" }, [_vm._v("Marca")]),
-        _c("th", { staticClass: "bg-yellow text-light" }, [_vm._v("Auto")])
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-list" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-list" })
       ])
     ])
   }
@@ -48122,9 +48163,9 @@ var render = function() {
       "div",
       { staticClass: "row" },
       [
-        _c("ShipownerFilters", { staticClass: "col-md-4" }),
-        _c("YearsFilters", { staticClass: "col-md-4" }),
-        _c("CategoryFilters", { staticClass: "col-md-4" })
+        _c("ShipownerFilters", { staticClass: "col-lg-6" }),
+        _c("YearsFilters", { staticClass: "col-md-6 col-lg-3" }),
+        _c("CategoryFilters", { staticClass: "col-md-6 col-lg-3" })
       ],
       1
     )
@@ -70557,6 +70598,34 @@ var actions = {
 
     return searchByCode;
   }(),
+  setListShipowners: function () {
+    var _setListShipowners = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var list;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/list-shipowners");
+
+            case 2:
+              list = _context4.sent;
+              return _context4.abrupt("return", list);
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    function setListShipowners() {
+      return _setListShipowners.apply(this, arguments);
+    }
+
+    return setListShipowners;
+  }(),
   //Limpiar state de productos
   clearProducts: function clearProducts(_ref8) {
     var commit = _ref8.commit;
@@ -70564,34 +70633,34 @@ var actions = {
   },
   //Mostrar los filtros
   toggleFliters: function () {
-    var _toggleFliters = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref9) {
+    var _toggleFliters = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref9) {
       var commit, toggle;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               commit = _ref9.commit;
-              _context4.prev = 1;
-              _context4.next = 4;
+              _context5.prev = 1;
+              _context5.next = 4;
               return commit('TOGGLE_FILTERS');
 
             case 4:
-              toggle = _context4.sent;
+              toggle = _context5.sent;
               if (!toggle) commit('CLEAR_PRODUCTS');
-              _context4.next = 11;
+              _context5.next = 11;
               break;
 
             case 8:
-              _context4.prev = 8;
-              _context4.t0 = _context4["catch"](1);
-              console.log(_context4.t0);
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](1);
+              console.log(_context5.t0);
 
             case 11:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4, null, [[1, 8]]);
+      }, _callee5, null, [[1, 8]]);
     }));
 
     function toggleFliters(_x7) {
