@@ -8,7 +8,9 @@
     input.form-control(type="hidden" name="year-selected" id="year-selected" v-model="year_selected")
   popUpSearcheable.popup-searchable-years(v-show="show_pop")
     template(slot="pop-header")
-      a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+      a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+        span Selecciona un año
+        .fas.fa-times.text-danger
     template(slot="pop-content")
       label.label.small.text-muted Seleccionar año
       select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="year_selected" @change="setYearSelected")

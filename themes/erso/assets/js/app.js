@@ -6337,6 +6337,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'product-shipowner-filter',
@@ -6409,6 +6411,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -6589,6 +6593,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -49011,17 +49017,25 @@ var render = function() {
         },
         [
           _c("template", { slot: "pop-header" }, [
-            _c("a", {
-              staticClass: "fas fa-times text-danger",
-              staticStyle: { "text-decoration": "none!important" },
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.show_pop = false
+            _c(
+              "a",
+              {
+                staticClass:
+                  "d-flex justify-content-between align-items-center text-info",
+                staticStyle: { "text-decoration": "none!important" },
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.show_pop = false
+                  }
                 }
-              }
-            })
+              },
+              [
+                _c("span", [_vm._v("Selecciona una armadora")]),
+                _c("i", { staticClass: "fas fa-times text-danger" })
+              ]
+            )
           ]),
           _c("template", { slot: "pop-content" }, [
             _vm.list_shipowners.length > 0
@@ -49248,17 +49262,25 @@ var render = function() {
         },
         [
           _c("template", { slot: "pop-header" }, [
-            _c("a", {
-              staticClass: "fas fa-times text-danger",
-              staticStyle: { "text-decoration": "none!important" },
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.show_pop = false
+            _c(
+              "a",
+              {
+                staticClass:
+                  "d-flex justify-content-between align-items-center text-info",
+                staticStyle: { "text-decoration": "none!important" },
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.show_pop = false
+                  }
                 }
-              }
-            })
+              },
+              [
+                _c("span", [_vm._v("Selecciona un auto")]),
+                _c("div", { staticClass: "fas fa-times text-danger" })
+              ]
+            )
           ]),
           _c("template", { slot: "pop-content" }, [
             _c("div", { staticClass: "input-group" }, [
@@ -49591,17 +49613,25 @@ var render = function() {
         },
         [
           _c("template", { slot: "pop-header" }, [
-            _c("a", {
-              staticClass: "fas fa-times text-danger",
-              staticStyle: { "text-decoration": "none!important" },
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.show_pop = false
+            _c(
+              "a",
+              {
+                staticClass:
+                  "d-flex justify-content-between align-items-center text-info",
+                staticStyle: { "text-decoration": "none!important" },
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.show_pop = false
+                  }
                 }
-              }
-            })
+              },
+              [
+                _c("span", [_vm._v("Selecciona un año")]),
+                _c("div", { staticClass: "fas fa-times text-danger" })
+              ]
+            )
           ]),
           _c("template", { slot: "pop-content" }, [
             _c("label", { staticClass: "label small text-muted" }, [

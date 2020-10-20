@@ -10,7 +10,9 @@
 
   popUpSearcheable(v-show="show_pop")
     template(slot="pop-header")
-      a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+      a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+        span Selecciona un auto
+        .fas.fa-times.text-danger
     template(slot="pop-content")
       .input-group
         .input-group-prepend

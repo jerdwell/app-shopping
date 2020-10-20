@@ -9,7 +9,9 @@
 
   popUpSearcheable(v-show="show_pop")
     template(slot="pop-header")
-      a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+      a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+        span Selecciona una armadora
+        i.fas.fa-times.text-danger
     template(slot="pop-content")
       ul.list-shipowners.list-group.list-group-flush.mt-3(v-if="list_shipowners.length > 0")
         li.list-group-item.p-1.list-search-car-item
