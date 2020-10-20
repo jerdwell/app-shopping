@@ -49,8 +49,20 @@ class Quotations extends Controller
 
     public function setDataQuotation($request, $user)
     {
+        $items = [];
+        foreach ($request -> items as $item) {
+            $i = [
+                'brand_name' => $item['brand_name'],
+                'customer_price' => $item['customer_price'],
+                'erso_code' => $item['erso_code'],
+                'id' => $item['id'],
+                'product_name' => $item['product_name'],
+                'public_price' => $item['public_price'],
+            ];
+            array_push($items,$i);
+        }
         return [
-            'items' => json_encode($request -> items),
+            'items' => json_encode($items),
             'amount' => $request -> amount,
             'status' => isset($request -> data_user) ? 'active' : 'standby',
             'shipping_address' => isset($request -> data_user) ? json_encode(ModelsQuotations::SetDataQuotationAddress($user -> address)) : null,
