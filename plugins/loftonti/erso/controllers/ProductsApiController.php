@@ -100,6 +100,7 @@ class ProductsApiController extends Controller {
         'applications.car',
         'applications.shipowner'
       ])
+      ->groupBy('erso_code')
       ->take(30)
       ->paginate(20);
     return $products;
