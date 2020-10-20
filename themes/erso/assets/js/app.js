@@ -4954,7 +4954,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'button-account-register',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_name', 'get_token']))
 });
 
 /***/ }),
@@ -47381,7 +47381,12 @@ var render = function() {
             staticClass: "text-light main-menu-item-link",
             attrs: { href: "/mi-cuenta" }
           },
-          [_c("span", [_vm._v("Mi Cuenta")])]
+          [
+            _c("span", [
+              _c("div", { staticClass: "fas fa-user" }),
+              _vm._v(" " + _vm._s(_vm.get_name.split(" ")[0]))
+            ])
+          ]
         )
   ])
 }
