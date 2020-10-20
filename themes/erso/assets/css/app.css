@@ -319,6 +319,7 @@
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 20;
 }
 
 .navbar-main-erso {
@@ -12690,6 +12691,5 @@ h6,
 
 footer.main-footer {
   position: relative;
-  z-index: 100;
 }
 

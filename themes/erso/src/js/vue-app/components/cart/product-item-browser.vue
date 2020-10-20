@@ -1,5 +1,5 @@
 <template lang="pug">
-.my-3.product-item-browser(
+.mb-3.product-item-browser(
     data-aos="fade-up"
     data-aos-offset="50"
   )

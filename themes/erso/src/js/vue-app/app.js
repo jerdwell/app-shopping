@@ -41,6 +41,7 @@ import cartFixedGlobal from './components/cart/cart-fixed-global'
 import productItemBrowser from './components/cart/product-item-browser'
 
 //products
+import productShipownerFilter from './components/page-products/product-shipowner-filter'
 import productsCarsFilter from './components/page-products/products-cars-filter'
 import productsYearsFilter from './components/page-products/products-years-filter'
 import productsCategoryFilter from './components/page-products/products-category-filter'
@@ -73,7 +74,8 @@ const app = new Vue({
     buttonAccountRegister,
     contactForm,
     blogSearch,
-    selectBranch
+    selectBranch,
+    productShipownerFilter
   },
   template: '',
   store,

@@ -19,9 +19,10 @@ class ListProducts extends ComponentBase
         $model,
         $shipowner,
         $year,
-        $model_shipowner,
+        $model_selected,
         $branches,
-        $branch;
+        $branch,
+        $shipowner_selected;
 
     public function componentDetails()
     {
@@ -78,8 +79,10 @@ class ListProducts extends ComponentBase
             $this -> categories = Categories::all() -> makeHidden(['deleted_at', 'id', 'category_cover']);
             $shipowner = $this -> shipowner ? Shipowners::find($this -> shipowner) : false;
             $model = $this -> model ? CarsModels::find($this -> model) : false;
-            $this -> model_shipowner = $this -> shipowner && $this -> model ? $model -> car_name : false;
+            $this -> model_selected = $this -> shipowner && $this -> model ? $model -> car_name : false;
+            $this -> shipowner_selected = $shipowner ? $shipowner -> shipowner_name : false;
         } catch (\Exception $th) {
+            // return [$th -> getMessage()];
             return Redirect::to('/productos');
         }
     }
@@ -116,7 +119,7 @@ class ListProducts extends ComponentBase
     public function getList()
     {
         $branch = $this -> property('branch');
-        if($this -> model == null || $this -> shipowner == null || $this -> year == null){
+        if($this -> shipowner == null){
             return Products::filterByCategory($this -> category, $branch)
                 ->with([
                     'brand',
@@ -132,8 +135,13 @@ class ListProducts extends ComponentBase
                 -> paginate($this -> limit);
         }else{
             $category = Categories::where('category_slug', $this -> category) -> first();
-            return Products::filterCars($branch, $this -> model, $this -> shipowner, 'year', $this -> year, 'category', $category -> id )
-            -> paginate($this -> limit);
+            if($this -> year != null){
+                return Products::filterCars($branch, $this -> model, $this -> shipowner, 'year', $this -> year, 'category', $category -> id )
+                -> paginate($this -> limit);
+            }else{
+                return Products::filterCars($branch, $this -> model, $this -> shipowner, 'category', $category -> id, false, false )
+                -> paginate($this -> limit);
+            }
         }
     }
 

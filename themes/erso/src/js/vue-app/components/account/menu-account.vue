@@ -8,18 +8,25 @@ div
       li
         a.text-dark(href="#" @click.prevent="$parent.view = 'quotations'") #[.fas.fa-file-alt.mr-2] Mis cotizaciones
       li
-        a.text-dark(href="/productos") #[.fas.fa-box-open.mr-2] Productos
+        a.text-dark(href="/cotizador-erso") #[.fas.fa-box-open.mr-2] Cotizar
       li
         a.text-dark(href="#" @click.prevent="sign_out") #[.fas.fa-sign-out-alt.mr-2] Cerrar sesión
+      li.d-none.d-lg-inline-block
+        span.text-light | #[small {{ get_name }}]
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import CartButtonState from '../cart/cart-button-state'
 export default {
   name: 'menu-account',
   components: {
     CartButtonState
+  },
+  computed: {
+    ...mapGetters([
+      'get_name', //get username
+    ])
   },
   methods: {
     ...mapActions([

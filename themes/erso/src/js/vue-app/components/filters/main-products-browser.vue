@@ -1,13 +1,13 @@
 <template lang="pug">
   .main-products-browser#list-products-finded.pt-5
-    .container-fluid.mt-5
+    .container-fluid
       .row
         .col-xl-9
           .container(v-if="get_list_products.data")
             div(v-if="get_list_products.data.length > 0")
-              .d-flex.justify-content-between.align-items-center
+              //- .d-flex.justify-content-between.align-items-center
                 h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
-              hr.border-dark
+              //- hr.border-dark
               .container
                 .row
                   .col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" v-if="year_filter == 'all' ? true : product.product_year == year_filter")

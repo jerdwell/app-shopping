@@ -3,9 +3,15 @@
     .row
       .col-md-4
         label.text-light Buscar Código
-        input.form-control.rounded-pill(type="search" placeholder="Capturar código" v-model="data_search" @input="searchProducts")
-        .list-group(v-show="no_results")
-          .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
+        .input-group.mb-3.rounded-pill(style="overflow:hidden;")
+          .input-group-prepend
+            .input-group-text
+              i.fas.fa-list
+          input.form-control.form-control-sm(type="search" placeholder="Capturar código" v-model="data_search" @input="searchProducts")
+          .list-group(v-show="no_results")
+            .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
+        .text-center(v-if="loading")
+          .spinner-border.text-light
 
 </template>
 

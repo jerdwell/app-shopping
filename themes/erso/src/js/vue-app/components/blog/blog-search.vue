@@ -1,11 +1,11 @@
 <template lang="pug">
 .blog-search
-  label.label.text-light Buscar
+  //- label.label.text-light Buscar
   .input-group.rounded-pill(style="overflow: hidden;")
     .input-group-prepend.border-0
       .input-group-text.bg-yellow
         .fas.fa-search.text-white
-    input.form-control.border-0(
+    input.form-control.form-control-sm.border-0(
       type="search"
       name="blog-search"
       id="blog-search"

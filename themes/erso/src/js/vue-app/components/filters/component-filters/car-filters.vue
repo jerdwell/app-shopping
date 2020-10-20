@@ -4,8 +4,7 @@
     .input-group.mb-3.rounded-pill(style="overflow:hidden;")
       .input-group-prepend
         .input-group-text
-          i.fas.fa-search(v-if="!$parent.car_model_selected.model_id")
-          i.fas.fa-times.text-danger(v-else)
+          i.fas.fa-list
       input.form-control.form-control-sm(
         type="search"
         placeholder="Buscar"

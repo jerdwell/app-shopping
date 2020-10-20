@@ -56,7 +56,10 @@ class Products extends Model
         try {
             $applications = Applications::selectRaw('group_concat(loftonti_erso_application.product_id) as ids')
                 ->where('loftonti_erso_application.shipowner_id', $shipowner)
-                ->where('loftonti_erso_application.car_id', $model)
+                ->when($model, function ($q) use($model)
+                {
+                    $q ->where('loftonti_erso_application.car_id', $model);
+                })
                 ->when($filter1 && !$filter2, function($q) use($filter1, $value1){
                     if($filter1 == 'year') return $q -> whereRaw("{$value1} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)");
                     if($filter1 == 'category'){

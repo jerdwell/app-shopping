@@ -1,10 +1,12 @@
 <template lang="pug">
 .cars-types-container
-  a.text-light(href="#" v-show="!year_selected" @click.prevent="getYears(false)") {{year ? year : 'Año'}} #[i.fas(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'")]
+  a(:class="year ? 'text-yellow' : 'text-light'" href="#" v-show="!year_selected" @click.prevent="getYears(false)") {{year ? year : 'Año'}}
+    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!year")
+    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
   div(v-show="year_selected")
     a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ year_selected }}
     input.form-control(type="hidden" name="year-selected" id="year-selected" v-model="year_selected")
-  popUpSearcheable(v-show="show_pop")
+  popUpSearcheable.popup-searchable-years(v-show="show_pop")
     template(slot="pop-header")
       a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
     template(slot="pop-content")
@@ -45,11 +47,11 @@ export default {
     async getYears(data = false){
       try {
         let car;
-        if(!this.model && !this.shipowner){
+        if(!this.model || !this.shipowner){
           car = document.getElementById('car-selected').value
           if(!car || car.value == '') return false
         }else{
-         car = this.shipowner + '-' + this.model
+         car = this.model + '-' + this.shipowner
         }
         car = car.split('-')
         let results = await this.$http.get(`search-products/${this.branch}/${car[0]}/${car[1]}`)
@@ -90,6 +92,13 @@ export default {
     }
   },
   mounted() {
+    console.log(
+      this.category + ' ' +
+      this.year + ' ' +
+      this.model + ' ' +
+      this.shipowner + ' ' +
+      this.branch + ' '
+    );
     if(this.model && this.shipowner){
       this.getYears(true)
     }
@@ -102,4 +111,9 @@ export default {
   max-height: 200px
   overflow: hidden
   overflow-y: auto
+.popup-searchable-years
+  @media screen and(mn-width:1280px)
+  left: -100%
+  position: absolute
+  right: 0
 </style>

@@ -1,10 +1,11 @@
 {% set list = __SELF__.list %}
 {% set category = __SELF__.category %}
-{% set model = __SELF__.shipowner %}
-{% set shipowner = __SELF__.model %}
+{% set model = __SELF__.model %}
+{% set shipowner = __SELF__.shipowner %}
 {% set categories = __SELF__.categories %}
 {% set year = __SELF__.year %}
-{% set model_shipowner = __SELF__.model_shipowner %}
+{% set model_selected = __SELF__.model_selected %}
+{% set shipowner_selected = __SELF__.shipowner_selected %}
 {% set branch = __SELF__.branch %}
 {% set limit = __SELF__.limit %}
 
@@ -13,10 +14,12 @@
     category=category
     categories=categories
     year=year
-    model_shipowner=model_shipowner
+    model_selected=model_selected
+    shipowner_selected=shipowner_selected
     model=model
     shipowner=shipowner
     branch=branch
+    list=list
     %}
   {% partial 'components/products/_list-products' list=list limit=limit  %}
 {% endif %}

@@ -1,12 +1,16 @@
 <template lang="pug">
   div
     label.text-center.text-light Año
-    select.form-control.form-control-sm.rounded-pill(
-      v-model="$parent.year_selected"
-      :disabled="$parent.car_selected == ''"
-      @change="addYearsToFilter")
-      option(value="") Selecciona una opción
-      option(v-for="(year, index) in years" :key="index" :value="year") {{ year }}
+    .input-group.mb-3.rounded-pill(style="overflow:hidden;")
+      .input-group-prepend
+        .input-group-text
+          i.fas.fa-list
+      select.form-control.form-control-sm(
+        v-model="$parent.year_selected"
+        :disabled="$parent.car_selected == ''"
+        @change="addYearsToFilter")
+        option(value="") Selecciona una opción
+        option(v-for="(year, index) in years" :key="index" :value="year") {{ year }}
     .text-center(v-if="loading")
       .spinner-border.text-light
 
