@@ -6,7 +6,9 @@ div
     span &nbsp; {{ category }}
   popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
-      a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+      a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
+        span Selecciona una categoría
+        .fas.fa-times.text-danger
     template(slot="pop-content")
       label.label.small.text-muted Seleccionar categoría
       select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="category_fiter" @change="goToCategory")

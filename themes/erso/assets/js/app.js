@@ -6537,6 +6537,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'products-category-filter',
@@ -49392,17 +49394,25 @@ var render = function() {
             "popUpSearcheable",
             [
               _c("template", { slot: "pop-header" }, [
-                _c("a", {
-                  staticClass: "fas fa-times text-danger",
-                  staticStyle: { "text-decoration": "none!important" },
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.show_pop = false
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "d-flex justify-content-between align-items-center text-info",
+                    staticStyle: { "text-decoration": "none!important" },
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.show_pop = false
+                      }
                     }
-                  }
-                })
+                  },
+                  [
+                    _c("span", [_vm._v("Selecciona una categoría")]),
+                    _c("div", { staticClass: "fas fa-times text-danger" })
+                  ]
+                )
               ]),
               _c("template", { slot: "pop-content" }, [
                 _c("label", { staticClass: "label small text-muted" }, [
