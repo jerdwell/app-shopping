@@ -5019,6 +5019,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'pop-up-component'
 });
@@ -7066,7 +7068,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".pop-up-searcheable {\n  position: relative;\n}\n.pop-up-searcheable::after {\n  background: rgba(0, 0, 0, 0.5);\n  display: inline-block;\n  content: '';\n  height: 100%;\n  left: 0;\n  position: fixed;\n  top: 0;\n  width: 100%;\n}\n.pop-up-searcheable .pop-up-content {\n  left: 50%;\n  position: fixed;\n  max-height: 80%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  max-width: 400px;\n  width: 90%;\n  z-index: 100;\n}\n@media screen and (min-width: 768px) {\n.pop-up-searcheable::after {\n    display: none;\n}\n.pop-up-searcheable .pop-up-content {\n    left: 0;\n    position: absolute;\n    top: 100%;\n    transform: translate(0);\n    width: 300px;\n}\n}\n", ""]);
+exports.push([module.i, ".bg-pop-searchable {\n  background: rgba(0, 0, 0, 0.9);\n  height: 100%;\n  left: 0;\n  position: fixed;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n}\n.pop-up-searcheable {\n  left: 50%;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2000;\n}\n.pop-up-searcheable .pop-up-content {\n  max-height: 80%;\n  max-width: 400px;\n  width: 90%;\n  z-index: 100;\n}\n@media screen and (min-width: 768px) {\n.pop-up-searcheable::after {\n    display: none;\n}\n.pop-up-searcheable .pop-up-content {\n    width: 300px;\n}\n}\n", ""]);
 
 // exports
 
@@ -47462,16 +47464,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "pop-up-searcheable" }, [
-    _c("div", { staticClass: "pop-up-content" }, [
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "card-header text-right p-2" },
-          [_vm._t("pop-header")],
-          2
-        ),
-        _c("div", { staticClass: "card-body" }, [_vm._t("pop-content")], 2)
+  return _c("div", [
+    _c("div", { staticClass: "bg-pop-searchable" }),
+    _c("div", { staticClass: "pop-up-searcheable" }, [
+      _c("div", { staticClass: "pop-up-content" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-header text-right p-2" },
+            [_vm._t("pop-header")],
+            2
+          ),
+          _c("div", { staticClass: "card-body" }, [_vm._t("pop-content")], 2)
+        ])
       ])
     ])
   ])
@@ -49003,133 +49008,128 @@ var render = function() {
           })
         ]
       ),
-      _c(
-        "popUpSearcheable",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.show_pop,
-              expression: "show_pop"
-            }
-          ]
-        },
-        [
-          _c("template", { slot: "pop-header" }, [
-            _c(
-              "a",
-              {
-                staticClass:
-                  "d-flex justify-content-between align-items-center text-info",
-                staticStyle: { "text-decoration": "none!important" },
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.show_pop = false
-                  }
-                }
-              },
-              [
-                _c("span", [_vm._v("Selecciona una armadora")]),
-                _c("i", { staticClass: "fas fa-times text-danger" })
-              ]
-            )
-          ]),
-          _c("template", { slot: "pop-content" }, [
-            _vm.list_shipowners.length > 0
-              ? _c(
-                  "ul",
+      _vm.show_pop
+        ? _c(
+            "popUpSearcheable",
+            [
+              _c("template", { slot: "pop-header" }, [
+                _c(
+                  "a",
                   {
                     staticClass:
-                      "list-shipowners list-group list-group-flush mt-3"
+                      "d-flex justify-content-between align-items-center text-info",
+                    staticStyle: { "text-decoration": "none!important" },
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.show_pop = false
+                      }
+                    }
                   },
                   [
-                    _c(
-                      "li",
-                      {
-                        staticClass: "list-group-item p-1 list-search-car-item"
-                      },
-                      [
-                        _c("label", [
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.shipowner_setted,
-                                  expression: "shipowner_setted"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.shipowner_setted = $event.target
-                                      .multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  function($event) {
-                                    return _vm.gotToShipowner()
-                                  }
-                                ]
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Selecciona una opción")
-                              ]),
-                              _vm._l(_vm.list_shipowners, function(
-                                item,
-                                index
-                              ) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: item.id,
-                                    domProps: { value: item.id }
-                                  },
-                                  [_vm._v(_vm._s(item.shipowner_name))]
-                                )
-                              })
-                            ],
-                            2
-                          )
-                        ])
-                      ]
-                    )
+                    _c("span", [_vm._v("Selecciona una armadora")]),
+                    _c("i", { staticClass: "fas fa-times text-danger" })
                   ]
                 )
-              : _vm._e(),
-            _vm.errors
-              ? _c("div", { staticClass: "mt-3" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "border border-warning p-2 rounded-lg text-muted"
-                    },
-                    [_vm._v(_vm._s(_vm.errors))]
-                  )
-                ])
-              : _vm._e()
-          ])
-        ],
-        2
-      )
+              ]),
+              _c("template", { slot: "pop-content" }, [
+                _vm.list_shipowners.length > 0
+                  ? _c(
+                      "ul",
+                      {
+                        staticClass:
+                          "list-shipowners list-group list-group-flush mt-3"
+                      },
+                      [
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "list-group-item p-1 list-search-car-item"
+                          },
+                          [
+                            _c("label", [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.shipowner_setted,
+                                      expression: "shipowner_setted"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.shipowner_setted = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                      function($event) {
+                                        return _vm.gotToShipowner()
+                                      }
+                                    ]
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Selecciona una opción")
+                                  ]),
+                                  _vm._l(_vm.list_shipowners, function(
+                                    item,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.id,
+                                        domProps: { value: item.id }
+                                      },
+                                      [_vm._v(_vm._s(item.shipowner_name))]
+                                    )
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm.errors
+                  ? _c("div", { staticClass: "mt-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "border border-warning p-2 rounded-lg text-muted"
+                        },
+                        [_vm._v(_vm._s(_vm.errors))]
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            2
+          )
+        : _vm._e()
     ],
     1
   )
@@ -49248,109 +49248,101 @@ var render = function() {
           })
         ]
       ),
-      _c(
-        "popUpSearcheable",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.show_pop,
-              expression: "show_pop"
-            }
-          ]
-        },
-        [
-          _c("template", { slot: "pop-header" }, [
-            _c(
-              "a",
-              {
-                staticClass:
-                  "d-flex justify-content-between align-items-center text-info",
-                staticStyle: { "text-decoration": "none!important" },
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.show_pop = false
-                  }
-                }
-              },
-              [
-                _c("span", [_vm._v("Selecciona un auto")]),
-                _c("div", { staticClass: "fas fa-times text-danger" })
-              ]
-            )
-          ]),
-          _c("template", { slot: "pop-content" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("div", { staticClass: "input-group-prepend" }, [
-                _c("div", { staticClass: "input-group-text" }, [
-                  _c("i", { staticClass: "fas fa-search" })
-                ])
-              ]),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.car_selected,
-                      expression: "car_selected"
+      _vm.show_pop
+        ? _c(
+            "popUpSearcheable",
+            [
+              _c("template", { slot: "pop-header" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "d-flex justify-content-between align-items-center text-info",
+                    staticStyle: { "text-decoration": "none!important" },
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.show_pop = false
+                      }
                     }
-                  ],
-                  staticClass: "form-control form-control-sm",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.car_selected = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      _vm.setCarSelected
-                    ]
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Selecciona una opción")
+                  },
+                  [
+                    _c("span", [_vm._v("Selecciona un auto")]),
+                    _c("div", { staticClass: "fas fa-times text-danger" })
+                  ]
+                )
+              ]),
+              _c("template", { slot: "pop-content" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fas fa-search" })
+                    ])
                   ]),
-                  _vm._l(_vm.list_cars, function(item) {
-                    return _c(
-                      "option",
-                      { key: item.id, domProps: { value: item.car } },
-                      [_vm._v(_vm._s(item.car.car_name))]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm.errors
-              ? _c("div", { staticClass: "mt-3" }, [
                   _c(
-                    "div",
+                    "select",
                     {
-                      staticClass:
-                        "border border-warning p-2 rounded-lg text-muted"
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.car_selected,
+                          expression: "car_selected"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.car_selected = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.setCarSelected
+                        ]
+                      }
                     },
-                    [_vm._v(_vm._s(_vm.errors))]
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Selecciona una opción")
+                      ]),
+                      _vm._l(_vm.list_cars, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.id, domProps: { value: item.car } },
+                          [_vm._v(_vm._s(item.car.car_name))]
+                        )
+                      })
+                    ],
+                    2
                   )
-                ])
-              : _vm._e()
-          ])
-        ],
-        2
-      )
+                ]),
+                _vm.errors
+                  ? _c("div", { staticClass: "mt-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "border border-warning p-2 rounded-lg text-muted"
+                        },
+                        [_vm._v(_vm._s(_vm.errors))]
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            2
+          )
+        : _vm._e()
     ],
     1
   )
@@ -49395,89 +49387,81 @@ var render = function() {
         },
         [_c("span", [_vm._v("  " + _vm._s(_vm.category))])]
       ),
-      _c(
-        "popUpSearcheable",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.show_pop,
-              expression: "show_pop"
-            }
-          ]
-        },
-        [
-          _c("template", { slot: "pop-header" }, [
-            _c("a", {
-              staticClass: "fas fa-times text-danger",
-              staticStyle: { "text-decoration": "none!important" },
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.show_pop = false
-                }
-              }
-            })
-          ]),
-          _c("template", { slot: "pop-content" }, [
-            _c("label", { staticClass: "label small text-muted" }, [
-              _vm._v("Seleccionar categoría")
-            ]),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.category_fiter,
-                    expression: "category_fiter"
+      _vm.show_pop
+        ? _c(
+            "popUpSearcheable",
+            [
+              _c("template", { slot: "pop-header" }, [
+                _c("a", {
+                  staticClass: "fas fa-times text-danger",
+                  staticStyle: { "text-decoration": "none!important" },
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.show_pop = false
+                    }
                   }
-                ],
-                staticClass: "form-control form-control-sm",
-                attrs: { type: "search", placeholder: "Buscar auto" },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.category_fiter = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    },
-                    _vm.goToCategory
-                  ]
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Selecciona una categoría")
-                ]),
-                _vm._l(_vm.categories, function(category, index) {
-                  return _c(
-                    "option",
-                    {
-                      key: category.slug,
-                      domProps: { value: category.category_slug }
-                    },
-                    [_vm._v(_vm._s(category.category_name))]
-                  )
                 })
-              ],
-              2
-            )
-          ])
-        ],
-        2
-      )
+              ]),
+              _c("template", { slot: "pop-content" }, [
+                _c("label", { staticClass: "label small text-muted" }, [
+                  _vm._v("Seleccionar categoría")
+                ]),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.category_fiter,
+                        expression: "category_fiter"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    attrs: { type: "search", placeholder: "Buscar auto" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.category_fiter = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        _vm.goToCategory
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Selecciona una categoría")
+                    ]),
+                    _vm._l(_vm.categories, function(category, index) {
+                      return _c(
+                        "option",
+                        {
+                          key: category.slug,
+                          domProps: { value: category.category_slug }
+                        },
+                        [_vm._v(_vm._s(category.category_name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ],
+            2
+          )
+        : _vm._e()
     ],
     1
   )
@@ -49598,103 +49582,95 @@ var render = function() {
           })
         ]
       ),
-      _c(
-        "popUpSearcheable",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.show_pop,
-              expression: "show_pop"
-            }
-          ],
-          staticClass: "popup-searchable-years"
-        },
-        [
-          _c("template", { slot: "pop-header" }, [
-            _c(
-              "a",
-              {
-                staticClass:
-                  "d-flex justify-content-between align-items-center text-info",
-                staticStyle: { "text-decoration": "none!important" },
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.show_pop = false
-                  }
-                }
-              },
-              [
-                _c("span", [_vm._v("Selecciona un año")]),
-                _c("div", { staticClass: "fas fa-times text-danger" })
-              ]
-            )
-          ]),
-          _c("template", { slot: "pop-content" }, [
-            _c("label", { staticClass: "label small text-muted" }, [
-              _vm._v("Seleccionar año")
-            ]),
-            _c(
-              "select",
-              {
-                directives: [
+      _vm.show_pop
+        ? _c(
+            "popUpSearcheable",
+            { staticClass: "popup-searchable-years" },
+            [
+              _c("template", { slot: "pop-header" }, [
+                _c(
+                  "a",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.year_selected,
-                    expression: "year_selected"
-                  }
-                ],
-                staticClass: "form-control form-control-sm",
-                attrs: { type: "search", placeholder: "Buscar auto" },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.year_selected = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    },
-                    _vm.setYearSelected
+                    staticClass:
+                      "d-flex justify-content-between align-items-center text-info",
+                    staticStyle: { "text-decoration": "none!important" },
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.show_pop = false
+                      }
+                    }
+                  },
+                  [
+                    _c("span", [_vm._v("Selecciona un año")]),
+                    _c("div", { staticClass: "fas fa-times text-danger" })
                   ]
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Selecciona un año")
+                )
+              ]),
+              _c("template", { slot: "pop-content" }, [
+                _c("label", { staticClass: "label small text-muted" }, [
+                  _vm._v("Seleccionar año")
                 ]),
-                _vm._l(_vm.years, function(year, index) {
-                  return _c("option", { key: year }, [_vm._v(_vm._s(year))])
-                })
-              ],
-              2
-            ),
-            _vm.errors
-              ? _c("div", { staticClass: "mt-3" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "border border-warning p-2 rounded-lg text-muted"
-                    },
-                    [_vm._v(_vm._s(_vm.errors))]
-                  )
-                ])
-              : _vm._e()
-          ])
-        ],
-        2
-      )
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.year_selected,
+                        expression: "year_selected"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    attrs: { type: "search", placeholder: "Buscar auto" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.year_selected = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        _vm.setYearSelected
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Selecciona un año")
+                    ]),
+                    _vm._l(_vm.years, function(year, index) {
+                      return _c("option", { key: year }, [_vm._v(_vm._s(year))])
+                    })
+                  ],
+                  2
+                ),
+                _vm.errors
+                  ? _c("div", { staticClass: "mt-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "border border-warning p-2 rounded-lg text-muted"
+                        },
+                        [_vm._v(_vm._s(_vm.errors))]
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            2
+          )
+        : _vm._e()
     ],
     1
   )

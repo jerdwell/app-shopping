@@ -6,7 +6,7 @@
   div(v-show="year_selected")
     a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ year_selected }}
     input.form-control(type="hidden" name="year-selected" id="year-selected" v-model="year_selected")
-  popUpSearcheable.popup-searchable-years(v-show="show_pop")
+  popUpSearcheable.popup-searchable-years(v-if="show_pop")
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
         span Selecciona un año

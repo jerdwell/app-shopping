@@ -8,7 +8,7 @@
     a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ alias }}
     input.form-control(type="hidden" id="car-selected" v-model="car_selected")
 
-  popUpSearcheable(v-show="show_pop")
+  popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
         span Selecciona un auto

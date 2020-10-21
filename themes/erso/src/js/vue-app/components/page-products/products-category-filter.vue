@@ -4,7 +4,7 @@ div
   //- i.fas.fa-chevron-right.mr-2.text-yellow
   a.text-yellow(href="#" @click.prevent="show_pop = !show_pop")
     span &nbsp; {{ category }}
-  popUpSearcheable(v-show="show_pop")
+  popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
       a.fas.fa-times.text-danger(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
     template(slot="pop-content")
