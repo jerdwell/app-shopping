@@ -115,12 +115,14 @@ class ProductsApiController extends Controller {
   public function listShipownersCars($shipowner_id)
   {
     try {
-      $list_cars = Applications::select('id', 'product_id', 'shipowner_id', 'car_id')
-        -> where('shipowner_id', $shipowner_id)
+      $list_cars = Applications::select('loftonti_erso_application.id', 'loftonti_erso_application.product_id', 'loftonti_erso_application.shipowner_id', 'car_id')
+        ->leftJoin('loftonti_erso_cars','loftonti_erso_cars.id','=','loftonti_erso_application.car_id')
+        -> where('loftonti_erso_application.shipowner_id', $shipowner_id)
         -> with([
           'car',
           'shipowner'
         ])
+        -> orderBy('loftonti_erso_cars.car_name')
         -> groupBy('car_id')
         -> get();
       return $list_cars;
