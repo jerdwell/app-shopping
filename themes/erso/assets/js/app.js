@@ -5058,8 +5058,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'branch-selected',
@@ -6281,10 +6279,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7165,7 +7159,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".nav-tabs-filters .nav-item {\n  border-radius: 5px 5px 0 0;\n  border: solid 1px white;\n}\n.nav-tabs-filters .nav-item:hover > * {\n  cursor: pointer;\n}\n.nav-tabs-filters .nav-item-active {\n  border-radius: 10px 30px 0 0;\n}\n", ""]);
+exports.push([module.i, ".filters-container {\n  width: 100%;\n}\n.filters-container .filter-select-branch {\n  margin-bottom: 30px;\n  width: 100%;\n}\n.filters-container .nav-tabs-filters {\n  padding: 0;\n}\n.filters-container .nav-tabs-filters .nav-tabs-filter-item {\n  border: none;\n  cursor: pointer;\n  list-style: none;\n  padding: 5px;\n}\n.filters-container .nav-tabs-filters .nav-tabs-filter-item > * {\n  cursor: pointer;\n}\n.filters-container .nav-tabs-filters .nav-tabs-filter-item-active {\n  border-radius: 5px;\n}\n@media screen and (min-width: 768px) {\n.filters-container .nav-tabs-filters {\n    align-items: center;\n    display: flex;\n    justify-content: center;\n}\n.filters-container .nav-tabs-filters .nav-tabs-filter-item {\n    padding: 5px 30px;\n    width: calc(100% / 3);\n}\n}\n@media screen and (min-width: 1024px) {\n.filters-container {\n    align-items: flex-end;\n    display: flex;\n    flex-direction: row-reverse;\n    justify-content: space-between;\n    margin-bottom: 30px;\n}\n.filters-container .filter-select-branch {\n    margin-bottom: 0;\n    width: 300px;\n}\n.filters-container .nav-tabs-filters {\n    border-bottom: solid 1px;\n    margin-bottom: 0;\n    justify-content: flex-start;\n    width: calc(100% - 330px);\n}\n.filters-container .nav-tabs-filters .nav-tabs-filter-item {\n    border-radius: 5px 5px 0 0;\n    border: solid 1px;\n    border-bottom: none;\n    width: auto;\n}\n.filters-container .nav-tabs-filters .nav-tabs-filter-item-active {\n    border-radius: 5px 30px 0 0;\n}\n}\n@media screen and (min-width: 1280px) {\n.filters-container .filter-select-branch {\n    width: 400px;\n}\n.filters-container .nav-tabs-filters {\n    width: calc(100% - 420px);\n}\n}\n", ""]);
 
 // exports
 
@@ -47509,32 +47503,27 @@ var render = function() {
     _c("h6", { staticClass: "text-yellow d-inline-block" }, [
       _vm._v("Selecciona una sucursal:")
     ]),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6 col-lg-4" }, [
-        _c(
-          "select",
-          {
-            staticClass:
-              "form-control form-control-sm d-inline-block rounded-pill",
-            attrs: { name: "branch-selected", id: "branch-selected" },
-            domProps: { value: _vm.get_branch_selected },
-            on: { change: _vm.changeBranch }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [
-              _vm._v("Selecciona una opción")
-            ]),
-            _c("option", { attrs: { value: "tlalnepantla" } }, [
-              _vm._v("Tlalnepantla")
-            ]),
-            _c("option", { attrs: { value: "cuautitlan-izcalli" } }, [
-              _vm._v("Cuautitlán Izcalli")
-            ]),
-            _c("option", { attrs: { value: "coacalco" } }, [_vm._v("Coacalco")])
-          ]
-        )
-      ])
-    ])
+    _c(
+      "select",
+      {
+        staticClass: "form-control form-control-sm d-inline-block rounded-pill",
+        attrs: { name: "branch-selected", id: "branch-selected" },
+        domProps: { value: _vm.get_branch_selected },
+        on: { change: _vm.changeBranch }
+      },
+      [
+        _c("option", { attrs: { value: "" } }, [
+          _vm._v("Selecciona una opción")
+        ]),
+        _c("option", { attrs: { value: "tlalnepantla" } }, [
+          _vm._v("Tlalnepantla")
+        ]),
+        _c("option", { attrs: { value: "cuautitlan-izcalli" } }, [
+          _vm._v("Cuautitlán Izcalli")
+        ]),
+        _c("option", { attrs: { value: "coacalco" } }, [_vm._v("Coacalco")])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -48744,157 +48733,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("branchSelected", { staticClass: "mb-3" }),
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "filters-container" }, [
       _c(
         "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.get_branch_selected,
-              expression: "get_branch_selected"
-            }
+        { staticClass: "filter-select-branch" },
+        [_c("branchSelected")],
+        1
+      ),
+      _c("ul", { staticClass: "nav-tabs-filters border-yellow" }, [
+        _c(
+          "li",
+          {
+            staticClass: "nav-tabs-filter-item border-yellow",
+            class:
+              _vm.$parent.type_filter == "car"
+                ? "bg-yellow nav-tabs-filter-item-active"
+                : null
+          },
+          [
+            _c("label", { staticClass: "m-0 text-light" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$parent.type_filter,
+                    expression: "$parent.type_filter"
+                  }
+                ],
+                staticClass: "form-check-input m-0 mr-2 position-static",
+                attrs: { type: "radio", name: "typeSearch", value: "car" },
+                domProps: { checked: _vm._q(_vm.$parent.type_filter, "car") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.$parent, "type_filter", "car")
+                  }
+                }
+              }),
+              _c("span", [_vm._v("Auto")])
+            ])
           ]
-        },
-        [
-          _c("h6", { staticClass: "text-yellow" }, [_vm._v("Buscar por:")]),
-          _c(
-            "ul",
-            { staticClass: "nav nav-tabs border-yellow nav-tabs-filters mb-4" },
-            [
-              _c(
-                "li",
-                {
-                  staticClass: "nav-item border-yellow px-3 py-2",
-                  class:
-                    _vm.$parent.type_filter == "car"
-                      ? "bg-yellow nav-item-active"
-                      : null
+        ),
+        _c(
+          "li",
+          {
+            staticClass: "nav-tabs-filter-item border-yellow",
+            class:
+              _vm.$parent.type_filter == "shipowner"
+                ? "bg-yellow nav-tabs-filter-item-active"
+                : null
+          },
+          [
+            _c("label", { staticClass: "m-0 text-light" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$parent.type_filter,
+                    expression: "$parent.type_filter"
+                  }
+                ],
+                staticClass: "form-check-input m-0 mr-2 position-static",
+                attrs: {
+                  type: "radio",
+                  name: "typeSearch",
+                  value: "shipowner"
                 },
-                [
-                  _c("label", { staticClass: "m-0 text-light" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$parent.type_filter,
-                          expression: "$parent.type_filter"
-                        }
-                      ],
-                      staticClass: "form-check-input m-0 mr-2 position-static",
-                      attrs: {
-                        type: "radio",
-                        name: "typeSearch",
-                        value: "car"
-                      },
-                      domProps: {
-                        checked: _vm._q(_vm.$parent.type_filter, "car")
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(_vm.$parent, "type_filter", "car")
-                        }
-                      }
-                    }),
-                    _c("span", [_vm._v("Auto")])
-                  ])
-                ]
-              ),
-              _c(
-                "li",
-                {
-                  staticClass: "nav-item border-yellow px-3 py-2",
-                  class:
-                    _vm.$parent.type_filter == "shipowner"
-                      ? "bg-yellow nav-item-active"
-                      : null
+                domProps: {
+                  checked: _vm._q(_vm.$parent.type_filter, "shipowner")
                 },
-                [
-                  _c("label", { staticClass: "m-0 text-light" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$parent.type_filter,
-                          expression: "$parent.type_filter"
-                        }
-                      ],
-                      staticClass: "form-check-input m-0 mr-2 position-static",
-                      attrs: {
-                        type: "radio",
-                        name: "typeSearch",
-                        value: "shipowner"
-                      },
-                      domProps: {
-                        checked: _vm._q(_vm.$parent.type_filter, "shipowner")
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(
-                            _vm.$parent,
-                            "type_filter",
-                            "shipowner"
-                          )
-                        }
-                      }
-                    }),
-                    _c("span", [_vm._v("Armadora")])
-                  ])
-                ]
-              ),
-              _c(
-                "li",
-                {
-                  staticClass: "nav-item border-yellow px-3 py-2",
-                  class:
-                    _vm.$parent.type_filter == "code"
-                      ? "bg-yellow nav-item-active"
-                      : null
-                },
-                [
-                  _c("label", { staticClass: "m-0 text-light" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.$parent.type_filter,
-                          expression: "$parent.type_filter"
-                        }
-                      ],
-                      staticClass: "form-check-input m-0 mr-2 position-static",
-                      attrs: {
-                        type: "radio",
-                        name: "typeSearch",
-                        value: "code"
-                      },
-                      domProps: {
-                        checked: _vm._q(_vm.$parent.type_filter, "code")
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(_vm.$parent, "type_filter", "code")
-                        }
-                      }
-                    }),
-                    _c("span", [_vm._v("Código")])
-                  ])
-                ]
-              )
-            ]
-          )
-        ]
-      )
-    ],
-    1
-  )
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.$parent, "type_filter", "shipowner")
+                  }
+                }
+              }),
+              _c("span", [_vm._v("Armadora")])
+            ])
+          ]
+        ),
+        _c(
+          "li",
+          {
+            staticClass: "nav-tabs-filter-item border-yellow",
+            class:
+              _vm.$parent.type_filter == "code"
+                ? "bg-yellow nav-tabs-filter-item-active"
+                : null
+          },
+          [
+            _c("label", { staticClass: "m-0 text-light" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.$parent.type_filter,
+                    expression: "$parent.type_filter"
+                  }
+                ],
+                staticClass: "form-check-input m-0 mr-2 position-static",
+                attrs: { type: "radio", name: "typeSearch", value: "code" },
+                domProps: { checked: _vm._q(_vm.$parent.type_filter, "code") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.$parent, "type_filter", "code")
+                  }
+                }
+              }),
+              _c("span", [_vm._v("Código")])
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

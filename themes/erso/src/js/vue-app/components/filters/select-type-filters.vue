@@ -1,22 +1,18 @@
 <template lang="pug">
-  .container
-    branchSelected.mb-3
-    div(v-show="get_branch_selected")
-      h6.text-yellow Buscar por:
-      ul.nav.nav-tabs.border-yellow.nav-tabs-filters.mb-4
-        li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'car' ? 'bg-yellow nav-item-active' : null")
+  .container-fluid
+    .filters-container
+      .filter-select-branch
+        branchSelected
+      ul.nav-tabs-filters.border-yellow
+        li.nav-tabs-filter-item.border-yellow(:class="$parent.type_filter == 'car' ? 'bg-yellow nav-tabs-filter-item-active' : null")
           label.m-0.text-light
             input.form-check-input.m-0.mr-2.position-static(type="radio" name="typeSearch" v-model="$parent.type_filter" value="car")
             span Auto
-        li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'shipowner' ? 'bg-yellow nav-item-active' : null")
+        li.nav-tabs-filter-item.border-yellow(:class="$parent.type_filter == 'shipowner' ? 'bg-yellow nav-tabs-filter-item-active' : null")
           label.m-0.text-light
             input.form-check-input.m-0.mr-2.position-static(type="radio" name="typeSearch" v-model="$parent.type_filter" value="shipowner")
             span Armadora
-        //- li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'general' ? 'bg-yellow nav-item-active' : null")
-          label.m-0.text-light
-            input.form-check-input.m-0.mr-2.position-static(type="radio" name="typeSearch" v-model="$parent.type_filter" value="general")
-            span General
-        li.nav-item.border-yellow.px-3.py-2(:class="$parent.type_filter == 'code' ? 'bg-yellow nav-item-active' : null")
+        li.nav-tabs-filter-item.border-yellow(:class="$parent.type_filter == 'code' ? 'bg-yellow nav-tabs-filter-item-active' : null")
           label.m-0.text-light
             input.form-check-input.m-0.mr-2.position-static(type="radio" name="typeSearch" v-model="$parent.type_filter" value="code")
             span Código
@@ -40,12 +36,54 @@ export default {
 </script>
 
 <style lang="sass">
+.filters-container
+  width: 100%
+  .filter-select-branch
+    margin-bottom: 30px
+    width: 100%
   .nav-tabs-filters
-    .nav-item
-      border-radius: 5px 5px 0 0
-      border: solid 1px white
-      &:hover > *
+    padding: 0
+    .nav-tabs-filter-item
+      border: none
+      cursor: pointer
+      list-style: none
+      padding: 5px
+      >*
         cursor: pointer
-    .nav-item-active
-      border-radius: 10px 30px 0 0
+    .nav-tabs-filter-item-active
+      border-radius: 5px
+  @media screen and (min-width:768px)
+    .nav-tabs-filters
+      align-items: center
+      display: flex
+      justify-content: center
+      .nav-tabs-filter-item
+        padding: 5px 30px
+        width: calc(100% / 3)
+  @media screen and(min-width: 1024px)
+    align-items: flex-end
+    display: flex
+    flex-direction: row-reverse
+    justify-content: space-between
+    margin-bottom: 30px
+    .filter-select-branch
+      margin-bottom: 0
+      width: 300px
+    .nav-tabs-filters
+      border-bottom: solid 1px
+      margin-bottom: 0
+      justify-content: flex-start
+      width: calc(100% - 330px)
+      .nav-tabs-filter-item
+        border-radius: 5px 5px 0 0
+        border: solid 1px
+        border-bottom: none
+        width: auto
+      .nav-tabs-filter-item-active
+        border-radius: 5px 30px 0 0
+  @media screen and(min-width: 1280px)
+    .filter-select-branch
+      width: 400px
+    .nav-tabs-filters
+      width: calc(100% - 420px)
 </style>
