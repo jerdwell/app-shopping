@@ -11,3 +11,5 @@
     Route::post('contact-form', 'Loftonti\Erso\Controllers\ContactForm@contactForm');
     // Route::get('relate-products-stock', 'Loftonti\Erso\Controllers\ContactForm@relateTest');
   });
+
+  Route::post('/backend/loftonti/products/upload-file-update-stock','LoftonTi\Erso\Controllers\Products@uploadFileUpdateStock');

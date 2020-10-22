@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center text-muted">
+            <h3>Actualizar stock</h3>
+            <hr>
+        </div>
+    </div>
+    
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <h3 class="text-muted text-center">Estructura del archivo a cargar:</h3>
+            <hr>
+            <ul>
+                <li><b>Formato .csv</b></li>
+                <li>
+                    <span><b>Estructura:</b></span>
+                    <ul>
+                        <li>Id del producto</li>
+                        <li>Clave erso</li>
+                        <li>Cantidad de stock en Cuautitlán Izcalli</li>
+                        <li>Cantidad de stock en Tlalnepantla</li>
+                        <li>Cantidad de stock en Coacalco</li>
+                        <li>Precio público del producto (En caso de decimales, dos, sin comas ni símbolos, solo números)</li>
+                        <li>Precio cliente del producto (En caso de decimales, dos, sin comas ni símbolos, solo números)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 col-lg-8">
+            <div class="text-center">
+                <button id="btn-trigger-upload-file-stock" onclick="UpdateStock.triggerBtn()" class="btn btn-block btn-info"><div class="text-center">Cargar archivo</div></button>
+                <input type="file" class="form-control" accept=".csv" id="file-stock" onchange="UpdateStock.uploadFile()">
+                <div id="loading-stock-update" class="loading-indicator-container" style="display: none;">
+                    <div class="loading-indicator">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-warning" style="display:none;" id="text-indicator-stock">
+                <h3>Por favor no cierres la ventana</h3>
+            </div>
+        </div>
+    </div>
+</div>
