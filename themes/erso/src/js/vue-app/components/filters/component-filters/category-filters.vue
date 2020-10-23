@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  label.text-center.text-light Categoría
+  label.small.text-center.text-light Categoría
   .input-group.mb-3.rounded-pill(style="overflow:hidden;")
     .input-group-prepend
       .input-group-text

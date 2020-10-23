@@ -26,6 +26,11 @@ const actions = {
   setCategoriesRelated: ({ commit }, data) => {
     commit('SET_CATEGORIES_RELATED', data)
   },
+  
+  //setear las marcas relacionadas
+  setBrandsRelated: ({ commit }, data) => {
+    commit('SET_BRANDS_RELATED', data)
+  },
 
   //busqueda por modelo
   serachProductModel: async ({ dispatch, getters }, data) => {
@@ -41,13 +46,17 @@ const actions = {
         url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/year/${data.year}`
       }else if(!data.year && data.category){
         url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/category/${data.category}`
+      }else if(data.year && data.category && data.brand){
+        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/category/${data.category}/category/${data.brand}`
       }else{
         url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/year/${data.year}/category/${data.category}`
       }
+      console.log(url)
       let response = await vm.prototype.$http.get(url)
       dispatch('setListProducts', response.data.products)
       dispatch('setYearsRelated', response.data.years)
       dispatch('setCategoriesRelated', response.data.categories)
+      dispatch('setBrandsRelated', response.data.brands)
     } catch (error) {
       console.log(error);
     }

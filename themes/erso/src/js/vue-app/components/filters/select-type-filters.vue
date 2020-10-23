@@ -81,9 +81,9 @@ export default {
         width: auto
       .nav-tabs-filter-item-active
         border-radius: 5px 30px 0 0
-  @media screen and(min-width: 1280px)
-    .filter-select-branch
-      width: 400px
-    .nav-tabs-filters
-      width: calc(100% - 420px)
+  // @media screen and(min-width: 1280px)
+  //   .filter-select-branch
+  //     width: 400px
+  //   .nav-tabs-filters
+  //     width: calc(100% - 420px)
 </style>

@@ -51,7 +51,7 @@ class Products extends Model
 
     /** Scopes */
 
-    public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2)
+    public function scopeFilterCars($query, $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2, $brand)
     {
         try {
             $applications = Applications::selectRaw('group_concat(loftonti_erso_application.product_id) as ids')
@@ -77,6 +77,11 @@ class Products extends Model
                         -> leftJoin('loftonti_erso_products', 'loftonti_erso_products.id','=','loftonti_erso_application.product_id')
                         ->where('loftonti_erso_products.category_id',$value2);
                     }
+                })
+                ->when($brand, function ($q) use($brand)
+                {
+                    $q -> where('loftonti_erso_products.brand_id', $brand)
+                        ->orderBy('loftonti_erso_products.public_price','desc');
                 })
                 -> first();
             $ids = explode(',', $applications -> ids);

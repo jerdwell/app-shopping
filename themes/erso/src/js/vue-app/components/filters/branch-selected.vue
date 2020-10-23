@@ -1,7 +1,7 @@
 <template lang="pug">
-  .text-left
-    h6.text-yellow.d-inline-block Selecciona una sucursal:
-    select.form-control.form-control-sm.d-inline-block.rounded-pill(
+  .text-left.textt-left
+    h6.text-yellow.d-inline-block Selecciona una sucursal
+    select.input-select-branch.form-control.form-control-sm.d-inline-block.rounded-pill(
       name="branch-selected"
       id="branch-selected"
       :value="get_branch_selected"

@@ -1,5 +1,5 @@
 <template lang="pug">
- .container
+ .container-fluid
     .row
       ShipownerFilters.col-lg-6
       YearsFilters.col-md-6.col-lg-3

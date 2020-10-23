@@ -23,6 +23,10 @@ const mutations = {
   SET_CATEGORIES_RELATED: (state, data) => {
     state.categories_related = data
   },
+  
+  SET_BRANDS_RELATED: (state, data) => {
+    state.brands_related = data
+  },
 
   TOGGLE_FILTERS: state => {
     state.show_filters = !state.show_filters

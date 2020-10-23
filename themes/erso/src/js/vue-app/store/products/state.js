@@ -6,6 +6,8 @@ const state = {
 
   years_related: [],
   
+  brands_related: [],
+  
   branch_selected: '',
   
   show_filters: false

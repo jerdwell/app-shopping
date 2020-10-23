@@ -8,6 +8,8 @@ const getteres = {
   
   get_categories_related: state => { return state.categories_related },
   
+  get_brands_related: state => { return state.brands_related },
+  
   get_years_related: state => { return state.years_related },
 
   get_show_filters: state => { return state.show_filters }

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .container
+  .container-fluid
     .row
       .col-md-4
         label.text-light Buscar Código

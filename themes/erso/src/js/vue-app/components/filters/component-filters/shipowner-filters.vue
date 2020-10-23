@@ -1,7 +1,7 @@
 <template lang="pug">
 .row
   .col-md-6
-    label.text-center.text-light Armadora:
+    label.small.text-center.text-light Armadora:
     .input-group.mb-3.rounded-pill(style="overflow:hidden;")
       .input-group-prepend
         .input-group-text
