@@ -45,12 +45,12 @@ class CarsModels extends Model
      */
     public function scopeGetCarModels($query, $car)
     {
-        $models = $query -> where('car_slug', 'like', "%{$car}%") -> get();
-        $filter = [];
-        foreach ($models as $key) {
-            array_push($filter, $key -> id);
-        }
-        return $products = Applications::whereIn('car_id', $filter) -> groupBy('car_id');
+        $products = Applications::select('loftonti_erso_application.*')
+            ->leftJoin('loftonti_erso_cars', 'loftonti_erso_cars.id','=', 'loftonti_erso_application.car_id')
+            ->where('loftonti_erso_cars.car_slug','like',"%{$car}%")
+            ->orderBy('loftonti_erso_cars.car_name')
+            -> groupBy('loftonti_erso_application.car_id');
+        return $products;
     }
 
     /** Relations */
