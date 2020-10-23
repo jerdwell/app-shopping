@@ -1,4 +1,3 @@
-import state from "./state"
 
 const mutations = {
 
@@ -9,6 +8,7 @@ const mutations = {
   CLEAR_PRODUCTS: state => {
     state.list_products = []
     state.years_related = []
+    state.brands_related = []
     state.categories_related = []
   },
 

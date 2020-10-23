@@ -19,15 +19,17 @@ class ProductsApiController extends Controller {
     return $shipowners;
   }
 
-  public function searchCars($branch, $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null, $brand = null)
+  public function searchCars($branch, $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null, $filter3 = null, $value3 = null)
   {
-    return $products = Products::filterCars(
-      $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2, $brand
-    ) -> paginate(10);
-    return;
-    $products = Products::filterCars(
-      $branch, $model, $shipowner, $filter1, $value1, $filter2, $value2
-    );
+    $filters = [];
+      if($filter1 != null) $filters[$filter1] = $value1;
+      if($filter2 != null) $filters[$filter2] = $value2;
+      if($filter3 != null) $filters[$filter3] = $value3;
+      if(isset($filters['brand'])){
+        $brand = Brands::where('brand_slug', $filters['brand']) -> first();
+        $filters['brand'] = !is_null($brand) ? $brand -> id : 1;
+      }
+    $products = Products::filterCars( $branch, $model, $shipowner, $filters );
     $products_paginated = $products -> paginate(20);
     $brands = $products -> groupBy('brand_id') -> without(['branches', 'applications', 'category']) -> get();
     $years = Applications::filterYear(

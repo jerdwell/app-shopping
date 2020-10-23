@@ -24,9 +24,9 @@ export default {
   data() {
     return {
       car_model_selected: {},
-      category_selected: '',
-      brand_selected: '',
       year_selected: '',
+      brand_selected: '',
+      category_selected: '',
     }
   },
   methods: {

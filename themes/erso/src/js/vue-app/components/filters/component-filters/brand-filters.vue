@@ -1,5 +1,5 @@
 <template lang="pug">
-div(v-if="get_brands_related.length > 0")
+div
   label.small.text-center.text-light Marcas
   //- span {{list_brands}}
   .input-group.mb-3.rounded-pill(style="overflow:hidden;")
@@ -9,13 +9,9 @@ div(v-if="get_brands_related.length > 0")
     select.form-control.form-control-sm(
       v-model="$parent.brand_selected"
       @change="addBrandToFilter"
-      :disabled="$parent.model_selected != '' ? false :true")
+      :disabled="$parent.year_selected == '' && $parent.category_selected == ''")
       option(value="") Selecciona una opción
-      option(v-for="(brand, index) in list_brands" :key="brand.id" :value="brand.id") {{ brand.brand_name }}
-  //- .list-group.mt-3(v-if="no_results")
-    .list-group-item.border-danger.p-1.bg-transparent.text-danger #[i.oi.oi-x] No existen resultados
-  //- .text-center(v-if="loading")
-      .spinner-border.text-light
+      option(v-for="(brand, index) in list_brands" :key="brand.id" :value="brand.brand_slug") {{ brand.brand_name }}
 </template>
 
 <script>
@@ -37,7 +33,6 @@ export default {
       let brands = this.get_brands_related.map(e => {
         return e.brand
       })
-      console.log(brands);
       return brands
     }
   },
@@ -46,10 +41,10 @@ export default {
       'serachProductModel', //search products
     ]),
     async addBrandToFilter(){
-      // this.$parent.car_model_selected['category'] = this.$parent.brand_selected
-      // this.loading = true
-      // await this.serachProductModel(this.$parent.car_model_selected)
-      // this.loading = false
+      this.$parent.car_model_selected['brand'] = this.$parent.brand_selected
+      this.loading = true
+      await this.serachProductModel(this.$parent.car_model_selected)
+      this.loading = false
     }
   },
 }

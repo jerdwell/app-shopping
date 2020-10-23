@@ -5113,10 +5113,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'brand-filters',
@@ -5132,22 +5128,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var brands = this.get_brands_related.map(function (e) {
         return e.brand;
       });
-      console.log(brands);
       return brands;
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['serachProductModel' //search products
   ])), {}, {
-    addBrandToFilter: function addBrandToFilter() {// this.$parent.car_model_selected['category'] = this.$parent.brand_selected
-      // this.loading = true
-      // await this.serachProductModel(this.$parent.car_model_selected)
-      // this.loading = false
+    addBrandToFilter: function addBrandToFilter() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this.$parent.car_model_selected['brand'] = _this.$parent.brand_selected;
+                _this.loading = true;
+                _context.next = 4;
+                return _this.serachProductModel(_this.$parent.car_model_selected);
+
+              case 4:
+                _this.loading = false;
+
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -5836,9 +5838,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       car_model_selected: {},
-      category_selected: '',
+      year_selected: '',
       brand_selected: '',
-      year_selected: ''
+      category_selected: ''
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['clearProducts'])),
@@ -47665,75 +47667,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.get_brands_related.length > 0
-    ? _c("div", [
-        _c("label", { staticClass: "small text-center text-light" }, [
-          _vm._v("Marcas")
-        ]),
+  return _c("div", [
+    _c("label", { staticClass: "small text-center text-light" }, [
+      _vm._v("Marcas")
+    ]),
+    _c(
+      "div",
+      {
+        staticClass: "input-group mb-3 rounded-pill",
+        staticStyle: { overflow: "hidden" }
+      },
+      [
+        _vm._m(0),
         _c(
-          "div",
+          "select",
           {
-            staticClass: "input-group mb-3 rounded-pill",
-            staticStyle: { overflow: "hidden" }
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.$parent.brand_selected,
+                expression: "$parent.brand_selected"
+              }
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: {
+              disabled:
+                _vm.$parent.year_selected == "" &&
+                _vm.$parent.category_selected == ""
+            },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.$parent,
+                    "brand_selected",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.addBrandToFilter
+              ]
+            }
           },
           [
-            _vm._m(0),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.$parent.brand_selected,
-                    expression: "$parent.brand_selected"
-                  }
-                ],
-                staticClass: "form-control form-control-sm",
-                attrs: {
-                  disabled: _vm.$parent.model_selected != "" ? false : true
-                },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.$parent,
-                        "brand_selected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    _vm.addBrandToFilter
-                  ]
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Selecciona una opción")
-                ]),
-                _vm._l(_vm.list_brands, function(brand, index) {
-                  return _c(
-                    "option",
-                    { key: brand.id, domProps: { value: brand.id } },
-                    [_vm._v(_vm._s(brand.brand_name))]
-                  )
-                })
-              ],
-              2
-            )
-          ]
+            _c("option", { attrs: { value: "" } }, [
+              _vm._v("Selecciona una opción")
+            ]),
+            _vm._l(_vm.list_brands, function(brand, index) {
+              return _c(
+                "option",
+                { key: brand.id, domProps: { value: brand.brand_slug } },
+                [_vm._v(_vm._s(brand.brand_name))]
+              )
+            })
+          ],
+          2
         )
-      ])
-    : _vm._e()
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -48012,7 +48012,9 @@ var render = function() {
             ],
             staticClass: "form-control form-control-sm",
             attrs: {
-              disabled: _vm.$parent.model_selected != "" ? false : true
+              disabled:
+                !_vm.$parent.car_model_selected.model_id ||
+                !_vm.$parent.car_model_selected.shipowner_id
             },
             on: {
               change: [
@@ -48304,7 +48306,11 @@ var render = function() {
               }
             ],
             staticClass: "form-control form-control-sm",
-            attrs: { disabled: _vm.$parent.car_selected == "" },
+            attrs: {
+              disabled:
+                !_vm.$parent.car_model_selected.model_id ||
+                !_vm.$parent.car_model_selected.shipowner_id
+            },
             on: {
               change: [
                 function($event) {
@@ -71222,42 +71228,36 @@ var actions = {
 
               if (data.url) {
                 url = data.url;
-              } else if (!data.year && !data.category) {
-                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id);
-              } else if (data.year && !data.category) {
-                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year);
-              } else if (!data.year && data.category) {
-                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/category/").concat(data.category);
-              } else if (data.year && data.category && data.brand) {
-                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/category/").concat(data.category, "/category/").concat(data.brand);
               } else {
-                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id, "/year/").concat(data.year, "/category/").concat(data.category);
+                url = "search-products/".concat(getters.get_branch_selected, "/").concat(model_id, "/").concat(shipowner_id);
+                if (data.year) url += "/year/".concat(data.year);
+                if (data.category) url += "/category/".concat(data.category);
+                if (data.brand) url += "/brand/".concat(data.brand);
               }
 
-              console.log(url);
-              _context.next = 9;
+              _context.next = 8;
               return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get(url);
 
-            case 9:
+            case 8:
               response = _context.sent;
               dispatch('setListProducts', response.data.products);
               dispatch('setYearsRelated', response.data.years);
               dispatch('setCategoriesRelated', response.data.categories);
               dispatch('setBrandsRelated', response.data.brands);
-              _context.next = 19;
+              _context.next = 18;
               break;
 
-            case 16:
-              _context.prev = 16;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 19:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 16]]);
+      }, _callee, null, [[1, 15]]);
     }));
 
     function serachProductModel(_x, _x2) {
@@ -71506,8 +71506,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./themes/erso/src/js/vue-app/store/products/state.js");
-
 var mutations = {
   SET_LIST_PRODUCTS: function SET_LIST_PRODUCTS(state, data) {
     state.list_products = data;
@@ -71515,6 +71513,7 @@ var mutations = {
   CLEAR_PRODUCTS: function CLEAR_PRODUCTS(state) {
     state.list_products = [];
     state.years_related = [];
+    state.brands_related = [];
     state.categories_related = [];
   },
   SET_BRANCH_SELECTED: function SET_BRANCH_SELECTED(state, data) {

@@ -40,18 +40,12 @@ const actions = {
       let url = ''
       if(data.url){
         url = data.url
-      }else if(!data.year && !data.category){
-        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}`
-      }else if(data.year && !data.category){
-        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/year/${data.year}`
-      }else if(!data.year && data.category){
-        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/category/${data.category}`
-      }else if(data.year && data.category && data.brand){
-        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/category/${data.category}/category/${data.brand}`
-      }else{
-        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}/year/${data.year}/category/${data.category}`
+      }else {
+      url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}`
+      if (data.year) url += `/year/${data.year}`
+      if (data.category) url += `/category/${data.category}`
+      if (data.brand) url += `/brand/${data.brand}`
       }
-      console.log(url)
       let response = await vm.prototype.$http.get(url)
       dispatch('setListProducts', response.data.products)
       dispatch('setYearsRelated', response.data.years)

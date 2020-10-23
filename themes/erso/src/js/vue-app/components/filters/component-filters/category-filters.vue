@@ -8,7 +8,7 @@ div
     select.form-control.form-control-sm(
       v-model="$parent.category_selected"
       @change="addCategoryToFilter"
-      :disabled="$parent.model_selected != '' ? false :true")
+      :disabled="!$parent.car_model_selected.model_id || !$parent.car_model_selected.shipowner_id")
       option(value="") Selecciona una opción
       option(v-for="(category, index) in get_categories_related" :key="index" :value="category.id") {{ category.category_name }}
   .list-group.mt-3(v-if="no_results")

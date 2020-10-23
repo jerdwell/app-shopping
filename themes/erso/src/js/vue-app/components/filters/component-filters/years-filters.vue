@@ -7,7 +7,7 @@
           i.fas.fa-list
       select.form-control.form-control-sm(
         v-model="$parent.year_selected"
-        :disabled="$parent.car_selected == ''"
+        :disabled="!$parent.car_model_selected.model_id || !$parent.car_model_selected.shipowner_id"
         @change="addYearsToFilter")
         option(value="") Selecciona una opción
         option(v-for="(year, index) in years" :key="index" :value="year") {{ year }}
