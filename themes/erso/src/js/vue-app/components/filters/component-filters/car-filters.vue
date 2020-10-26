@@ -8,7 +8,7 @@
       input.form-control.form-control-sm(
         type="search"
         placeholder="Buscar"
-        @input="serach_cars"
+        @input="delayInput"
         v-model="car_search"
         v-if="!$parent.car_model_selected.model_id")
       input.form-control.form-control-sm(
@@ -55,13 +55,20 @@ export default {
       loading: false,
       results: false,
       carsModels: [],
-      car_search: ''
+      car_search: '',
+      delay: 0
     }
   },
   methods: {
     ...mapActions([
       'serachProductModel', //sel tis products finded
     ]),
+    delayInput(){
+      clearTimeout(this.delay)
+      this.delay = setTimeout(() => {
+        this.serach_cars()
+      }, 500);
+    },
     async serach_cars(){
       if(this.car_search.replace(/\s/g, '').length <= 0) {
         this.carsModels = []
@@ -91,6 +98,9 @@ export default {
       }
     },
     getCarModel(){
+      this.$parent.category_selected = ''
+      this.$parent.year_selected = ''
+      this.$parent.brand_selected = ''
       let model_id = this.$parent.car_model_selected.model_id
       let shipowner_id = this.$parent.car_model_selected.shipowner_id
       let data = this.carsModels.data.find(i => i.car.id == model_id && i.shipowner.id == shipowner_id)

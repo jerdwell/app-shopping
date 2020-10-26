@@ -1,9 +1,10 @@
 <template lang="pug">
  .container-fluid
     .row
-      ShipownerFilters.col-lg-6
-      YearsFilters.col-md-6.col-lg-3
+      ShipownerFilters.col-lg-4
+      YearsFilters.col-md-6.col-lg-2
       CategoryFilters.col-md-6.col-lg-3
+      BrandFilters.col-md-6.col-lg-2
 
 </template>
 
@@ -12,12 +13,14 @@ import { mapActions } from 'vuex'
 import ShipownerFilters from './component-filters/shipowner-filters'
 import YearsFilters from './component-filters/years-filters'
 import CategoryFilters from './component-filters/category-filters'
+import BrandFilters from './component-filters/brand-filters'
 export default {
   name: 'filter-by-car',
   components: {
     YearsFilters,
     CategoryFilters,
-    ShipownerFilters
+    ShipownerFilters,
+    BrandFilters
   },
   data() {
     return {
@@ -26,6 +29,7 @@ export default {
         model_id: ''
       },
       category_selected: '',
+      brand_selected: '',
       year_selected: '',
     }
   },

@@ -7,7 +7,7 @@
           .input-group-prepend
             .input-group-text
               i.fas.fa-list
-          input.form-control.form-control-sm(type="search" placeholder="Capturar código" v-model="data_search" @input="searchProducts")
+          input.form-control.form-control-sm(type="search" placeholder="Capturar código" v-model="data_search" @input="delaySearch")
           .list-group(v-show="no_results")
             .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
         .text-center(v-if="loading")
@@ -23,7 +23,8 @@ export default {
     return {
       loading: false,
       no_results: false,
-      data_search: ''
+      data_search: '',
+      delay: 0
     }
   },
   computed: {
@@ -35,6 +36,12 @@ export default {
     ...mapActions([
       'searchByCode',//seaach by code
     ]),
+    delaySearch(){
+      clearTimeout(this.delay)
+      this.delay = setTimeout(() => {
+        this.searchProducts()
+      }, 700);
+    },
     async searchProducts(){
       if(this.data_search.replace(/\s/g, '').length <= 0){
         this.no_results = true

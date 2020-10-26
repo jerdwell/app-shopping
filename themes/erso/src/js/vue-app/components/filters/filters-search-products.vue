@@ -20,7 +20,6 @@ import FilterByCar from './filter-by-car'
 import FilterByShipowner from './filter-by-shipowner'
 import FilterByCode from './filter-by-code'
 import GeneralFilter from './general-filter'
-import Codefilter from './code-filter'
 export default {
   name: 'filters-search-products',
   components: {
@@ -29,7 +28,6 @@ export default {
     MainProductsBrowser,
     SelectTypeFilters,
     GeneralFilter,
-    Codefilter,
     FilterByShipowner
   },
   data(){

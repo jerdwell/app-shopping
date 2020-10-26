@@ -12,6 +12,8 @@ div
       :disabled="$parent.year_selected == '' && $parent.category_selected == ''")
       option(value="") Selecciona una opción
       option(v-for="(brand, index) in list_brands" :key="brand.id" :value="brand.brand_slug") {{ brand.brand_name }}
+  .text-center(v-if="loading")
+    .spinner-border.text-light
 </template>
 
 <script>
@@ -26,7 +28,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      // 'get_categories_related'
       'get_brands_related'
     ]),
     list_brands(){
