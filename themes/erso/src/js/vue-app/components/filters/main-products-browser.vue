@@ -5,9 +5,6 @@
         .col-xl-9
           .container(v-if="get_list_products.data")
             div(v-if="get_list_products.data.length > 0")
-              //- .d-flex.justify-content-between.align-items-center
-                h5.text-dark.text-center.m-0.p-0.align-items-center Resultados #[small.small total: {{ get_list_products.total }}]
-              //- hr.border-dark
               .container
                 .row
                   .col-md-6.col-lg-4.mb-3(v-for="(product, i) in get_list_products.data" :key="i" v-if="year_filter == 'all' ? true : product.product_year == year_filter")
@@ -80,16 +77,18 @@ export default {
       'clearProducts', //limpiar listado de productos
       'serachProductModel' //get products filtered
     ]),
-    goToPage(path, page){
+    async goToPage(path, page){
       if(page){
-        this.serachProductModel({url: path + '?page=' + page})
+        // let filters = document.getElementById('filter-products')
+        let list_products = await this.serachProductModel({url: path + '?page=' + page})
       }else{
-        this.serachProductModel({url: path})
+        let list_products = await this.serachProductModel({url: path})
       }
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
     }
   },
   mounted(){
-    // if(performance.navigation.type == performance.navigation.TYPE_RELOAD) this.clearProducts()
+    if(performance.navigation.type == performance.navigation.TYPE_RELOAD) this.clearProducts()
   }
 }
 </script>

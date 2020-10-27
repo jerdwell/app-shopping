@@ -7,7 +7,8 @@
     .card-header.p-0(stye="z-index:0; position: relative;")
       a.link.text-info.mb-4(:href="`/productos/${get_branch_selected}/producto/${product.id}`")
         .product-item-image.bg-white
-          img.w-100(:src="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
+          img.w-100(v-lazy="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
+          //- img.w-100(:src="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
         .product-item-data-description.text-lg-center.pt-lg-3
@@ -110,9 +111,9 @@ export default {
     justify-content: center
     width: 100%
   .product-item-data
-    margin-top: -20px
+    // margin-top: -20px
     z-index: 10
-    border-radius: 30px 30px 5px 5px
+    // border-radius: 30px 30px 5px 5px
     padding-bottom: 0!important
     position: relative
     .product-item-data-description

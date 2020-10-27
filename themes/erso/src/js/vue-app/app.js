@@ -14,6 +14,9 @@ Vue.use(ZoomOnHover)
 import 'swiper/swiper-bundle.css'//styles for swiper
 Vue.use(VueAwesomeSwiper) //use swiper
 
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad)
+
 Axios.defaults.baseURL = '/api/v1'
 
 Vue.prototype.$http = Axios

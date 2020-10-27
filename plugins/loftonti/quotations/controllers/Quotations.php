@@ -53,6 +53,7 @@ class Quotations extends Controller
         foreach ($request -> items as $item) {
             $i = [
                 'brand_name' => $item['brand_name'],
+                'quantity' => $item['quantity'],
                 'customer_price' => $item['customer_price'],
                 'erso_code' => $item['erso_code'],
                 'id' => $item['id'],
