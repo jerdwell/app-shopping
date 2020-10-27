@@ -1,6 +1,7 @@
 <?php
 
   Route::prefix('api/v1') -> group(function(){
+    Route::get('list-brands-related/{branch}/{shipowner}/{model}/{filter1}/{value1?}/{filter2}/{value2}', 'Loftonti\Erso\Controllers\ProductsApiController@listBrandsRelated');
     Route::get('list-shipowners', 'Loftonti\Erso\Controllers\ProductsApiController@listShipowners');
     Route::get('list-shipowners-cars/{shipowner_id}', 'Loftonti\Erso\Controllers\ProductsApiController@listShipownersCars');
     Route::get('search-car-model/{car}', 'Loftonti\Erso\Controllers\ProductsApiController@serachCarsModels');

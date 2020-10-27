@@ -4580,6 +4580,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7319,7 +7321,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-data {\n  z-index: 10;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 80px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n", ""]);
+exports.push([module.i, ".product-item-browser {\n  border-radius: 30px !important;\n  overflow: hidden !important;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);\n}\n.product-item-browser .product-item-image {\n  align-items: center;\n  height: 200px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n}\n.product-item-browser .product-item-image img {\n  width: 90%;\n}\n.product-item-browser .product-item-data {\n  z-index: 10;\n  padding-bottom: 0 !important;\n  position: relative;\n}\n.product-item-browser .product-item-data .product-item-data-description {\n  height: 250px;\n}\n.product-item-browser .product-item-data .product-item-data-description .car-shipowner-description {\n  max-height: 80px !important;\n  overflow: hidden;\n  overflow-y: auto;\n}\n@media screen and (min-width: 1024px) {\n.product-item-browser .product-item-image {\n    height: 250px;\n}\n}\n.complements-applications {\n  left: 50%;\n  max-height: 60%;\n  max-width: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  width: 90%;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container {\n  left: 0;\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 900;\n}\n.complements-applications .close-complements-applications-container .close-complements-applications {\n  align-items: center;\n  border: solid 2px;\n  border-radius: 50%;\n  display: inline-flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  height: 25px;\n  width: 25px;\n}\n.product-brand-container {\n  text-align: center;\n  height: 50px;\n  width: 100%;\n}\n.product-brand-container .product-brand-img {\n  display: inline-block;\n  height: 100%;\n  width: auto;\n}\n", ""]);
 
 // exports
 
@@ -49167,7 +49169,7 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "card-header p-0",
+            staticClass: "card-header p-0 bg-white",
             attrs: { stye: "z-index:0; position: relative;" }
           },
           [
@@ -49184,6 +49186,24 @@ var render = function() {
                 }
               },
               [
+                _c("div", { staticClass: "product-brand-container py-1" }, [
+                  _vm.product.brand.brand_logo
+                    ? _c("img", {
+                        directives: [
+                          {
+                            name: "lazy",
+                            rawName: "v-lazy",
+                            value:
+                              "/storage/app/media/" +
+                              _vm.product.brand.brand_logo,
+                            expression:
+                              "'/storage/app/media/' + product.brand.brand_logo"
+                          }
+                        ],
+                        staticClass: "product-brand-img"
+                      })
+                    : _vm._e()
+                ]),
                 _c("div", { staticClass: "product-item-image bg-white" }, [
                   _c("img", {
                     directives: [
@@ -49198,8 +49218,7 @@ var render = function() {
                         expression:
                           "'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')"
                       }
-                    ],
-                    staticClass: "w-100"
+                    ]
                   })
                 ])
               ]

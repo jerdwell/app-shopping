@@ -4,10 +4,12 @@
     data-aos-offset="50"
   )
   .card-product-item.card
-    .card-header.p-0(stye="z-index:0; position: relative;")
+    .card-header.p-0.bg-white(stye="z-index:0; position: relative;")
       a.link.text-info.mb-4(:href="`/productos/${get_branch_selected}/producto/${product.id}`")
+        .product-brand-container.py-1
+          img.product-brand-img(v-lazy="'/storage/app/media/' + product.brand.brand_logo" v-if="product.brand.brand_logo")
         .product-item-image.bg-white
-          img.w-100(v-lazy="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
+          img(v-lazy="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
           //- img.w-100(:src="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
@@ -110,6 +112,8 @@ export default {
     flex-wrap: wrap
     justify-content: center
     width: 100%
+    img
+      width: 90%
   .product-item-data
     // margin-top: -20px
     z-index: 10
@@ -150,4 +154,12 @@ export default {
       justify-content: center
       height: 25px
       width: 25px
+.product-brand-container
+  text-align: center
+  height: 50px
+  width: 100%
+  .product-brand-img
+    display: inline-block
+    height: 100%
+    width: auto
 </style>

@@ -1,8 +1,9 @@
 <?php namespace Loftonti\Erso\Controllers;
 
 use Illuminate\Routing\Controller;
-use Loftonti\Erso\Models\{ Applications, Shipowners, Products, Categories, CarsModels, ErsoCodes, Brands };
+use Loftonti\Erso\Models\{ Applications, Shipowners, Products, Categories, CarsModels, Brands };
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductsApiController extends Controller {
 
@@ -132,6 +133,30 @@ class ProductsApiController extends Controller {
         -> groupBy('car_id')
         -> get();
       return $list_cars;
+    } catch (\Throwable $th) {
+      return response() -> json([$th -> getMessage(), 403]);
+    }
+  }
+
+  public function listBrandsRelated($branch, $car, $shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null)
+  {
+    try {
+      $filters = [];
+      if($filter1 && $value1) $filters[$filter1] = $value1;
+      if($filter2 && $value2) $filters[$filter2] = $value2;
+      return $filters;
+      $products = Products::selectRaw('distinct brand_id')
+        -> whereHas('applications', function(Builder $q) use($shipowner, $car){
+        $q -> where('shipowner_id', $shipowner)
+        -> where('car_id', $car);
+      })
+      ->when($filters['year'], function($q) use($filters){
+        $q -> whereRaw("{$filters['year']} between substring_index(year, '-', 1) AND substring_index(year, '-', -1)");
+      })
+      -> with(['brand'])
+      ->take(10)
+      ->get();
+      return $products;
     } catch (\Throwable $th) {
       return response() -> json([$th -> getMessage(), 403]);
     }
