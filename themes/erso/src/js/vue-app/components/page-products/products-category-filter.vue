@@ -1,9 +1,10 @@
 <template lang="pug">
 div
   span.text-yellow Categoría:
+  br
   //- i.fas.fa-chevron-right.mr-2.text-yellow
   a.text-yellow(href="#" @click.prevent="show_pop = !show_pop")
-    span &nbsp; {{ category }}
+    span.text-capitalize {{ category }}
   popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")

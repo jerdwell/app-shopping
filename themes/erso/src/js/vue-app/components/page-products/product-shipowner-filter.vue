@@ -1,6 +1,8 @@
 <template lang="pug">
 .shipowners-types-container
-  a(:class="shipowner_selected ? 'text-yellow' : 'text-light'" href="#" v-show="!shipowner && !alias" @click.prevent="show_pop = !show_pop") {{ shipowner_selected ? shipowner_selected :'Armadora'}}
+  span.text-yellow Armadora:
+  br
+  a(:class="shipowner_selected ? 'text-yellow' : 'text-light'" href="#" v-show="!shipowner && !alias" @click.prevent="show_pop = !show_pop") {{ shipowner_selected ? shipowner_selected :'Selecciona'}}
     i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!shipowner_selected")
     i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
   div(v-show="shipowner && alias")

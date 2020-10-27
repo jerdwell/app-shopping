@@ -41,10 +41,10 @@ import cartFixedGlobal from './components/cart/cart-fixed-global'
 import productItemBrowser from './components/cart/product-item-browser'
 
 //products
+import productFilters from './components/page-products/product-filters'
 import productShipownerFilter from './components/page-products/product-shipowner-filter'
 import productsCarsFilter from './components/page-products/products-cars-filter'
 import productsYearsFilter from './components/page-products/products-years-filter'
-import productsCategoryFilter from './components/page-products/products-category-filter'
 import selectBranch from './components/page-products/select-branch'
 
 //blog
@@ -68,14 +68,14 @@ const app = new Vue({
     productHandler,
     productsCarsFilter,
     productsYearsFilter,
-    productsCategoryFilter,
     productItemBrowser,
     categoryFilterBlog,
     buttonAccountRegister,
     contactForm,
     blogSearch,
     selectBranch,
-    productShipownerFilter
+    productShipownerFilter,
+    productFilters
   },
   template: '',
   store,

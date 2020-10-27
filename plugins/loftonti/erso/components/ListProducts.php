@@ -4,6 +4,7 @@ use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Loftonti\Erso\Models\Branches;
+use Loftonti\Erso\Models\Brands;
 use Loftonti\Erso\Models\CarsModels;
 use Loftonti\Erso\Models\Categories;
 use Loftonti\Erso\Models\Products;
@@ -22,6 +23,9 @@ class ListProducts extends ComponentBase
         $model_selected,
         $branches,
         $branch,
+        $brands,
+        $brand,
+        $brand_id,
         $shipowner_selected;
 
     public function componentDetails()
@@ -59,6 +63,10 @@ class ListProducts extends ComponentBase
                 'title' => 'year',
                 'description' => 'year to list products',
             ],
+            'brand' => [
+                'title' => 'brand',
+                'description' => 'brand to list products',
+            ],
         ];
     }
 
@@ -70,19 +78,23 @@ class ListProducts extends ComponentBase
             if($this -> branch == null || $this -> category == null) return;
             $this -> model = $this->property('model') ? $this->property('model') : null;
             $this -> shipowner = $this->property('shipowner') ? $this->property('shipowner') : null;
-            $this -> year = $this->property('year') ? $this->property('year') : null;
+            $this -> year = $this->property('year') ? intval($this->property('year')) : null;
             $this -> limit = $this->property('limit') ? $this->property('limit') : 20;
+            $brand = $this->property('brand') ? Brands::where('brand_slug', $this->property('brand')) -> first() : null;
+            $this -> brand = $brand ? $brand -> brand_name : null;
+            $this -> brand_id = $brand ? $brand -> id : null;
             $this -> validBranch();
             $this -> branches = Branches::get();
             $this -> validData();
-            $this -> list = $this -> getList();
+            $products = $this -> getList();
+            $this -> list = $products  -> paginate($this -> limit);
+            $this -> brands = $products -> groupBy('brand_id') -> without(['branches', 'applications', 'category']) -> get();
             $this -> categories = Categories::all() -> makeHidden(['deleted_at', 'id', 'category_cover']);
             $shipowner = $this -> shipowner ? Shipowners::find($this -> shipowner) : false;
             $model = $this -> model ? CarsModels::find($this -> model) : false;
             $this -> model_selected = $this -> shipowner && $this -> model ? $model -> car_name : false;
             $this -> shipowner_selected = $shipowner ? $shipowner -> shipowner_name : false;
         } catch (\Exception $th) {
-            // return [$th -> getMessage()];
             return Redirect::to('/productos');
         }
     }
@@ -96,7 +108,7 @@ class ListProducts extends ComponentBase
                 $this->property('limit') => 'limit',
                 $this->property('model') => 'model',
                 $this->property('shipowner') => 'shipowner',
-                $this->property('year') => 'year',
+                $this-> year => 'year',
             ],
             [
                 'branch' => 'nullable|string|exists:loftonti_erso_branches,slug',
@@ -104,10 +116,10 @@ class ListProducts extends ComponentBase
                 'limit' => 'nullable|numeric',
                 'shipowner' => 'nullable|integer|exists:loftonti_erso_shipowners,id',
                 'model' => 'nullable|integer|exists:loftonti_erso_models,id',
-                'year' => 'nullable|integer',
             ]
         );
         if($valid -> fails()) throw new \Exception('Parámetros de búsqueda no válidos.');
+        if($this -> year && $this -> year <= 0) throw new \Exception('Parámetros de búsqueda no válidos.');
     }
 
     public function validBranch()
@@ -131,16 +143,17 @@ class ListProducts extends ComponentBase
                         $q -> where('loftonti_erso_branches.slug', $branch)
                         ->select('id');
                     }
-                ])
-                -> paginate($this -> limit);
+                ]);
         }else{
             $category = Categories::where('category_slug', $this -> category) -> first();
+            $filters = [];
+            if($this -> year) $filters['year'] = $this -> year;
+            if($category -> id) $filters['category'] = $category -> id;
+            if($this -> brand_id) $filters['brand'] = $this -> brand_id;
             if($this -> year != null){
-                return Products::filterCars($branch, $this -> model, $this -> shipowner, 'year', $this -> year, 'category', $category -> id )
-                -> paginate($this -> limit);
-            }else{
-                return Products::filterCars($branch, $this -> model, $this -> shipowner, 'category', $category -> id, false, false )
-                -> paginate($this -> limit);
+                return Products::filterCars($branch, $this -> model, $this -> shipowner, $filters);
+            }else{ 
+                return Products::filterCars($branch, $this -> model, $this -> shipowner, $filters);
             }
         }
     }

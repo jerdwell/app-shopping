@@ -13,7 +13,7 @@ div
       option(value="") Selecciona una opción
       option(v-for="(brand, index) in list_brands" :key="brand.id" :value="brand.brand_slug") {{ brand.brand_name }}
   .text-center(v-if="loading")
-    .spinner-border.text-light
+      .spinner-border.text-light
 </template>
 
 <script>

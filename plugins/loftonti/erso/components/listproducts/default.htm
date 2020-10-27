@@ -8,19 +8,24 @@
 {% set shipowner_selected = __SELF__.shipowner_selected %}
 {% set branch = __SELF__.branch %}
 {% set limit = __SELF__.limit %}
+{% set brands = __SELF__.brands %}
+{% set brand = __SELF__.brand %}
 
 {% if category %}
-  {% partial 'components/products/_filters'
-    category=category
-    categories=categories
-    year=year
-    model_selected=model_selected
-    shipowner_selected=shipowner_selected
-    model=model
-    shipowner=shipowner
-    branch=branch
-    list=list
-    %}
+  <product-filters
+    category="{{category}}"
+    :categories="{{categories}}"
+    year="{{year}}"
+    model_selected="{{model_selected}}"
+    shipowner_selected="{{shipowner_selected}}"
+    model="{{model}}"
+    shipowner="{{shipowner}}"
+    branch="{{branch}}"
+    :brands="{{brands}}"
+    brand="{{brand}}"
+    list="{{list}}"></product-filters>
+  <!-- {% partial 'components/products/_filters'
+    %} -->
   {% partial 'components/products/_list-products' list=list limit=limit  %}
 {% endif %}
 

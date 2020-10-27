@@ -1,7 +1,9 @@
 <template lang="pug">
 .cars-types-container
+  span.text-yellow Auto:
+  br
   a(:class="model_selected ? 'text-yellow' :'text-light'" href="#" v-show="!car_selected && !alias" @click.prevent="show_pop = !show_pop")
-    span {{ model_selected ? model_selected :'Auto'}}
+    span {{ model_selected ? model_selected :'Selecciona'}}
     i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!model_selected")
     i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
   div(v-show="car_selected && alias")

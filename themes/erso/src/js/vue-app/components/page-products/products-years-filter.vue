@@ -1,6 +1,8 @@
 <template lang="pug">
 .cars-types-container
-  a(:class="year ? 'text-yellow' : 'text-light'" href="#" v-show="!year_selected" @click.prevent="getYears(false)") {{year ? year : 'Año'}}
+  span.text-yellow Año:
+  br
+  a(:class="year ? 'text-yellow' : 'text-light'" href="#" v-show="!year_selected" @click.prevent="getYears(false)") {{year ? year : 'Selecciona'}}
     i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!year")
     i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
   div(v-show="year_selected")
@@ -18,7 +20,8 @@
         option(v-for="(year, index) in years" :key="year") {{ year }}
       .mt-3(v-if="errors")
         .border.border-warning.p-2.rounded-lg.text-muted {{ errors }}
-
+  .text-center.text-light(v-if="loading")
+    .spinner-border.spinner-border-sm
 </template>
 
 <script>
@@ -34,6 +37,7 @@ export default {
   ],
   data() {
     return {
+      loading: false,
       data_search: '',
       years: [],
       show_pop: false,
@@ -47,6 +51,7 @@ export default {
   },
   methods: {
     async getYears(data = false){
+      this.loading = true
       try {
         let car;
         if(!this.model || !this.shipowner){
@@ -70,8 +75,10 @@ export default {
           this.show_pop = true
         }
         this.years = range
+        this.loading = false
       } catch (error) {
         console.log(error)
+        this.loading = false
         this.errors = error
       }
     },
@@ -94,13 +101,6 @@ export default {
     }
   },
   mounted() {
-    console.log(
-      this.category + ' ' +
-      this.year + ' ' +
-      this.model + ' ' +
-      this.shipowner + ' ' +
-      this.branch + ' '
-    );
     if(this.model && this.shipowner){
       this.getYears(true)
     }
