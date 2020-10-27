@@ -2,23 +2,25 @@
 div
   span.text-yellow Marca:
   br
-  a(href="#" :class="brand ? 'text-yellow' : 'text-light'" @click.prevent="togglePopUp")
-    span.text-capitalize {{ brand ? brand : 'Selecciona' }}
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!brand")
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
+  inputIndicatorFilter(
+    :val="brand")
   popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
         span Selecciona una marca
         .fas.fa-times.text-danger
-    template(slot="pop-content")
+    template(slot="pop-content" v-if="year")
       label.label.small.text-muted Seleccionar marca
       select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="brand_fiter" @change="goToBrand")
         option(value="") Selecciona una marca
         option(v-for="(brand, index) in list_brands" :key="brand.brand_slug" :value="brand.brand_slug") {{ brand.brand_name }}
+    template(slot="pop-content" v-else)
+      .text-center.text-muted.py-4
+        h5 Primero debes seleccionar un año
 </template>
 
 <script>
+import inputIndicatorFilter from './input-indicator-filter'
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'products-brand-filter',
@@ -33,6 +35,7 @@ export default {
     'brand',
   ],
   components: {
+    inputIndicatorFilter,
     popUpSearcheable
   },
   data() {
@@ -64,6 +67,10 @@ export default {
         url += `/${this.brand_fiter}`
         location.assign(url)
       }
+    },
+    resetDefault(){
+      let url = `/productos/${this.branch}/${this.category}/${this.shipowner}/${this.model}/${this.year}`
+      location.assign(url)
     }
   },
 }

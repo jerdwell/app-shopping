@@ -2,9 +2,9 @@
 div
   span.text-yellow Categoría:
   br
-  //- i.fas.fa-chevron-right.mr-2.text-yellow
-  a.text-yellow(href="#" @click.prevent="show_pop = !show_pop")
-    span.text-capitalize {{ category }}
+  inputIndicatorFilter(
+    :notShowReset="true"
+    :val="category")
   popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
@@ -18,6 +18,7 @@ div
 </template>
 
 <script>
+import inputIndicatorFilter from './input-indicator-filter'
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'products-category-filter',
@@ -30,6 +31,7 @@ export default {
     'branch',
   ],
   components: {
+    inputIndicatorFilter,
     popUpSearcheable
   },
   data() {
@@ -45,7 +47,7 @@ export default {
         if(this.shipowner) url += `/${this.shipowner}`
         if(this.model) url += `/${this.model}`
         if(this.year) url += `/${this.year}`
-        location.assign(url)
+        location.href = url
       }
     }
   }

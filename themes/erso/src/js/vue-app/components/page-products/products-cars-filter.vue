@@ -2,15 +2,10 @@
 .cars-types-container
   span.text-yellow Auto:
   br
-  a(:class="model_selected ? 'text-yellow' :'text-light'" href="#" v-show="!car_selected && !alias" @click.prevent="show_pop = !show_pop")
-    span {{ model_selected ? model_selected :'Selecciona'}}
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!model_selected")
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
-  div(v-show="car_selected && alias")
-    a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ alias }}
-    input.form-control(type="hidden" id="car-selected" v-model="car_selected")
+  inputIndicatorFilter(
+    :val="model_selected")
 
-  popUpSearcheable(v-if="show_pop")
+  popUpSearcheable(v-if="show_pop") 
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
         span Selecciona un auto
@@ -29,6 +24,7 @@
 </template>
 
 <script>
+import inputIndicatorFilter from './input-indicator-filter'
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'products-cars-filter',
@@ -50,6 +46,7 @@ export default {
     'category',
   ],
   components: {
+    inputIndicatorFilter,
     popUpSearcheable
   },
   methods: {
@@ -65,9 +62,7 @@ export default {
       location.assign(`/productos/${this.branch}/${this.category}/${this.car_selected}`)
     },
     resetDefault(){
-      this.show_pop = true
-      this.car_selected = ''
-      this.alias = ''
+      location.assign(`/productos/${this.branch}/${this.category}/${this.shipowner}`)
     }
   },
   mounted() {

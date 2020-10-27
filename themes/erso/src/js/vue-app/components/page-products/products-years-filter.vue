@@ -2,29 +2,29 @@
 .cars-types-container
   span.text-yellow Año:
   br
-  a(:class="year ? 'text-yellow' : 'text-light'" href="#" v-show="!year_selected" @click.prevent="getYears(false)") {{year ? year : 'Selecciona'}}
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!year")
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
-  div(v-show="year_selected")
-    a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ year_selected }}
-    input.form-control(type="hidden" name="year-selected" id="year-selected" v-model="year_selected")
+  inputIndicatorFilter(
+    :val="year")
   popUpSearcheable.popup-searchable-years(v-if="show_pop")
     template(slot="pop-header")
       a.d-flex.justify-content-between.align-items-center.text-info(href="#" @click.prevent="show_pop = false" style="text-decoration: none!important;")
         span Selecciona un año
         .fas.fa-times.text-danger
-    template(slot="pop-content")
+    template(slot="pop-content" v-if="shipowner && model")
       label.label.small.text-muted Seleccionar año
       select.form-control.form-control-sm(type="search" placeholder="Buscar auto" v-model="year_selected" @change="setYearSelected")
         option(value="") Selecciona un año
         option(v-for="(year, index) in years" :key="year") {{ year }}
       .mt-3(v-if="errors")
         .border.border-warning.p-2.rounded-lg.text-muted {{ errors }}
+    template(slot="pop-content" v-else)
+      .text-center.text-muted.py-4
+        h5 Primero debes seleccionar un auto
   .text-center.text-light(v-if="loading")
     .spinner-border.spinner-border-sm
 </template>
 
 <script>
+import inputIndicatorFilter from './input-indicator-filter'
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'products-years-filter',
@@ -47,7 +47,8 @@ export default {
     }
   },
   components: {
-    popUpSearcheable
+    popUpSearcheable,
+    inputIndicatorFilter
   },
   methods: {
     async getYears(data = false){
@@ -95,9 +96,8 @@ export default {
       location.assign(url)
     },
     resetDefault(){
-      this.show_pop = true
-      this.year_selected = ''
-      this.alias = ''
+      let url = `/productos/${this.branch}/${this.category}/${this.shipowner}/${this.model}`
+      location.href = url
     }
   },
   mounted() {

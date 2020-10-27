@@ -2,12 +2,8 @@
 .shipowners-types-container
   span.text-yellow Armadora:
   br
-  a(:class="shipowner_selected ? 'text-yellow' : 'text-light'" href="#" v-show="!shipowner && !alias" @click.prevent="show_pop = !show_pop") {{ shipowner_selected ? shipowner_selected :'Selecciona'}}
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-chevron-right'" v-if="!shipowner_selected")
-    i.fas.ml-1(:class="show_pop ? 'fa-chevron-down' : 'fa-check'" v-else)
-  div(v-show="shipowner && alias")
-    a.text-light(href="#" @click.prevent="resetDefault") #[.fas.fa-times.text-danger.mr-1] {{ alias }}
-    input.form-control(type="hidden" id="car-selected" v-model="shipowner")
+  inputIndicatorFilter(
+    :val="shipowner_selected")
 
   popUpSearcheable(v-if="show_pop")
     template(slot="pop-header")
@@ -26,11 +22,13 @@
 </template>
 
 <script>
+import inputIndicatorFilter from './input-indicator-filter'
 import popUpSearcheable from '../../components/dashboard/pop-up-searcheable'
 export default {
   name: 'product-shipowner-filter',
   components: {
-    popUpSearcheable
+    popUpSearcheable,
+    inputIndicatorFilter
   },
   data() {
     return {
@@ -54,7 +52,9 @@ export default {
     },
     gotToShipowner(){
       location.assign(`/productos/${this.branch}/${this.category}/${this.shipowner_setted}`)
-      console.log(this.shipowner_setted);
+    },
+    resetDefault(){
+      location.assign(`/productos/${this.branch}/${this.category}`)
     }
   },
   mounted() {
