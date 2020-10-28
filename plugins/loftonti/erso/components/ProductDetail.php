@@ -36,7 +36,6 @@ class ProductDetail extends ComponentBase
     public function onRun()
     {
         try {
-            // return ['ok'];
             $branch = $this -> property('branch');
             $id = $this -> property('id'); 
             $product = Products::where('id', $id)
@@ -52,7 +51,8 @@ class ProductDetail extends ComponentBase
                     'applications.shipowner',
                 ])
                 -> first();
-            if(empty($product)) throw new \Exception(null);
+            if(empty($product)) throw new \Exception('Este producto existe en esta sucursal');
+            // if(empty($product)) throw new \Exception(null);
             $this -> product = $product;
             if(count($product -> applications) > 0){
                 $this -> related = Products::whereHas('applications', function(Builder $q) use($product){
