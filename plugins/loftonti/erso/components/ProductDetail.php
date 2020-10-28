@@ -36,6 +36,7 @@ class ProductDetail extends ComponentBase
     public function onRun()
     {
         try {
+            // return ['ok'];
             $branch = $this -> property('branch');
             $id = $this -> property('id'); 
             $product = Products::where('id', $id)
@@ -53,25 +54,27 @@ class ProductDetail extends ComponentBase
                 -> first();
             if(empty($product)) throw new \Exception(null);
             $this -> product = $product;
-            $this -> related = Products::whereHas('applications', function(Builder $q) use($product){
-                $q -> where('shipowner_id', $product -> applications[0] -> shipowner_id)
-                ->where('car_id', $product -> applications[0] -> car_id);
-            })
-            -> whereHas('branches', function(Builder $q) use($branch){
-                $q -> where('slug', $branch);
-            })
-             -> with([
-                'brand',
-                'category',
-                'applications',
-                'applications.car',
-                'applications.shipowner',
-                'branches' => function($q) use($branch) {
-                    $q -> where('loftonti_erso_branches.slug', $branch)
-                    ->select('id');
-                }
-            ])
-             ->paginate(8);
+            if(count($product -> applications) > 0){
+                $this -> related = Products::whereHas('applications', function(Builder $q) use($product){
+                    $q -> where('shipowner_id', $product -> applications[0] -> shipowner_id)
+                    ->where('car_id', $product -> applications[0] -> car_id);
+                })
+                -> whereHas('branches', function(Builder $q) use($branch){
+                    $q -> where('slug', $branch);
+                })
+                 -> with([
+                    'brand',
+                    'category',
+                    'applications',
+                    'applications.car',
+                    'applications.shipowner',
+                    'branches' => function($q) use($branch) {
+                        $q -> where('loftonti_erso_branches.slug', $branch)
+                        ->select('id');
+                    }
+                ])
+                 ->paginate(8);
+            }
         } catch (\Throwable $th) {
             //throw $th;
             return [$th -> getMessage()];
