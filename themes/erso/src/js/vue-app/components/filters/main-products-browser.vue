@@ -3,7 +3,7 @@
     .container-fluid
       .row
         .col-xl-9
-          .container(v-if="get_list_products.data")
+          .container(v-if="get_list_products && get_list_products.data")
             div(v-if="get_list_products.data.length > 0")
               .container
                 .row
@@ -21,7 +21,7 @@
         .col-xl-3
           cartShoppingAsside
 
-    nav.paginator-browser.py-5(v-if="get_list_products.last_page && get_list_products.last_page <= 10")
+    nav.paginator-browser.py-5(v-if="get_list_products && get_list_products.last_page && get_list_products.last_page <= 10")
       ul.pagination.justify-content-center
         li.page-item(v-if="get_list_products.prev_page_url != null")
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.prev_page_url)")
@@ -32,7 +32,7 @@
           a.page-link(href="#" @click.prevent="goToPage(get_list_products.next_page_url)")
             .fas.fa-caret-right
     
-    .container.my-5(v-if="get_list_products.last_page && get_list_products.last_page >= 10")
+    .container.my-5(v-if="get_list_products && get_list_products.last_page && get_list_products.last_page >= 10")
       .row
         .col-md-6.col-lg-4.col-xl-3
           label Página:
@@ -79,7 +79,6 @@ export default {
     ]),
     async goToPage(path, page){
       if(page){
-        // let filters = document.getElementById('filter-products')
         let list_products = await this.serachProductModel({url: path + '?page=' + page})
       }else{
         let list_products = await this.serachProductModel({url: path})

@@ -52,7 +52,6 @@ class ProductDetail extends ComponentBase
                 ])
                 -> first();
             if(empty($product)) throw new \Exception('Este producto existe en esta sucursal');
-            // if(empty($product)) throw new \Exception(null);
             $this -> product = $product;
             if(count($product -> applications) > 0){
                 $this -> related = Products::whereHas('applications', function(Builder $q) use($product){
@@ -76,8 +75,8 @@ class ProductDetail extends ComponentBase
                  ->paginate(8);
             }
         } catch (\Throwable $th) {
-            //throw $th;
             return [$th -> getMessage()];
+            return redirect('/');
         }
     }
 }

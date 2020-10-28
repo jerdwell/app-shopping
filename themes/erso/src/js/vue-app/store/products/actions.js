@@ -41,10 +41,10 @@ const actions = {
       if(data.url){
         url = data.url
       }else {
-      url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}`
-      if (data.year) url += `/year/${data.year}`
-      if (data.category) url += `/category/${data.category}`
-      if (data.brand) url += `/brand/${data.brand}`
+        url = `search-products/${getters.get_branch_selected}/${model_id}/${shipowner_id}`
+        if (data.year) url += `/year/${data.year}`
+        if (data.category) url += `/category/${data.category}`
+        if (data.brand) url += `/brand/${data.brand}`
       }
       let response = await vm.prototype.$http.get(url)
       dispatch('setListProducts', response.data.products)
@@ -71,8 +71,11 @@ const actions = {
   searchByCode: async({ dispatch, getters }, data) => {
     if( data.replace(/\s+/g, '').length <= 0 )return false
     try {
-      let products = await vm.prototype.$http.get(`/code-search-products/${getters.get_branch_selected}/${encodeURI(data)}`)
-      dispatch('setListProducts', products.data)
+      let response = await vm.prototype.$http.get(`/code-search-products/${getters.get_branch_selected}/${encodeURI(data)}`)
+      dispatch('setListProducts', response.data.products)
+      dispatch('setYearsRelated', response.data.years)
+      dispatch('setCategoriesRelated', response.data.categories)
+      dispatch('setBrandsRelated', response.data.brands)
     } catch (error) {
       console.log(error)
     }

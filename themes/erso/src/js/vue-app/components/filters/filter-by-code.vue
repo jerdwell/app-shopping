@@ -8,8 +8,8 @@
             .input-group-text
               i.fas.fa-list
           input.form-control.form-control-sm(type="search" placeholder="Capturar código" v-model="data_search" @input="delaySearch")
-          .list-group(v-show="no_results")
-            .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
+        .list-group(v-show="no_results")
+          .list-group-item.bg-transparent.border-danger.p-1.mt-3.text-danger #[i.oi.oi-x] No existen resultados
         .text-center(v-if="loading")
           .spinner-border.text-light
 
@@ -35,6 +35,7 @@ export default {
   methods: {
     ...mapActions([
       'searchByCode',//seaach by code
+      'clearProducts',//clear products
     ]),
     delaySearch(){
       clearTimeout(this.delay)
@@ -66,6 +67,9 @@ export default {
         console.log(error);
       }
     }
+  },
+  mounted(){
+    this.clearProducts()
   }
 }
 </script>

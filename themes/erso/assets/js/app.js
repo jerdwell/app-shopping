@@ -5874,7 +5874,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['get_list_products' //get list products 
   ])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['searchByCode' //seaach by code
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['searchByCode', //seaach by code
+  'clearProducts' //clear products
   ])), {}, {
     delaySearch: function delaySearch() {
       var _this = this;
@@ -5943,7 +5944,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee, null, [[4, 17]]);
       }))();
     }
-  })
+  }),
+  mounted: function mounted() {
+    this.clearProducts();
+  }
 });
 
 /***/ }),
@@ -50620,23 +50624,23 @@ var render = function() {
                   _vm.delaySearch
                 ]
               }
-            }),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.no_results,
-                    expression: "no_results"
-                  }
-                ],
-                staticClass: "list-group"
-              },
-              [_vm._m(1)]
-            )
+            })
           ]
+        ),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.no_results,
+                expression: "no_results"
+              }
+            ],
+            staticClass: "list-group"
+          },
+          [_vm._m(1)]
         ),
         _vm.loading
           ? _c("div", { staticClass: "text-center" }, [
@@ -50755,7 +50759,7 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm.get_list_products.total
+          _vm.get_list_products && _vm.get_list_products.total
             ? _c("div", { staticClass: "text-left" }, [
                 _c("small", { staticClass: "text-muted" }, [
                   _vm._v(
@@ -50873,7 +50877,7 @@ var render = function() {
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-xl-9" }, [
-            _vm.get_list_products.data
+            _vm.get_list_products && _vm.get_list_products.data
               ? _c("div", { staticClass: "container" }, [
                   _vm.get_list_products.data.length > 0
                     ? _c("div", [
@@ -50914,7 +50918,9 @@ var render = function() {
           _c("div", { staticClass: "col-xl-3" }, [_c("cartShoppingAsside")], 1)
         ])
       ]),
-      _vm.get_list_products.last_page && _vm.get_list_products.last_page <= 10
+      _vm.get_list_products &&
+      _vm.get_list_products.last_page &&
+      _vm.get_list_products.last_page <= 10
         ? _c("nav", { staticClass: "paginator-browser py-5" }, [
             _c(
               "ul",
@@ -50997,7 +51003,9 @@ var render = function() {
             )
           ])
         : _vm._e(),
-      _vm.get_list_products.last_page && _vm.get_list_products.last_page >= 10
+      _vm.get_list_products &&
+      _vm.get_list_products.last_page &&
+      _vm.get_list_products.last_page >= 10
         ? _c("div", { staticClass: "container my-5" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6 col-lg-4 col-xl-3" }, [
@@ -73733,7 +73741,7 @@ var actions = {
   //búsqueda de productos por código
   searchByCode: function () {
     var _searchByCode = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref8, data) {
-      var dispatch, getters, products;
+      var dispatch, getters, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -73753,22 +73761,25 @@ var actions = {
               return vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http.get("/code-search-products/".concat(getters.get_branch_selected, "/").concat(encodeURI(data)));
 
             case 6:
-              products = _context3.sent;
-              dispatch('setListProducts', products.data);
-              _context3.next = 13;
+              response = _context3.sent;
+              dispatch('setListProducts', response.data.products);
+              dispatch('setYearsRelated', response.data.years);
+              dispatch('setCategoriesRelated', response.data.categories);
+              dispatch('setBrandsRelated', response.data.brands);
+              _context3.next = 16;
               break;
 
-            case 10:
-              _context3.prev = 10;
+            case 13:
+              _context3.prev = 13;
               _context3.t0 = _context3["catch"](3);
               console.log(_context3.t0);
 
-            case 13:
+            case 16:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[3, 10]]);
+      }, _callee3, null, [[3, 13]]);
     }));
 
     function searchByCode(_x5, _x6) {

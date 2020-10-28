@@ -110,7 +110,12 @@ class ProductsApiController extends Controller {
       ->groupBy('erso_code')
       ->take(30)
       ->paginate(20);
-    return $products;
+    return [
+      'products' => $products,
+      'years' => [],
+      'categories' => [],
+      'brands' => []
+    ];
   }
 
   public function listShipowners()

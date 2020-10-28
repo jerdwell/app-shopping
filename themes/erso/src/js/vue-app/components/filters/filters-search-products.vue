@@ -7,7 +7,7 @@ section.filters-search-products.bg-dark#filter-products
       FilterByShipowner(v-if="type_filter == 'shipowner'")
       GeneralFilter(v-if="type_filter == 'general'")
       FilterByCode(v-if="type_filter == 'code'")
-    .text-left(v-if="get_list_products.total")
+    .text-left(v-if="get_list_products && get_list_products.total")
       small.text-muted Resultados totales: {{get_list_products.total}}
       
 </template>
