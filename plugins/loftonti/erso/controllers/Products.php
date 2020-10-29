@@ -9,6 +9,7 @@ use Loftonti\Erso\Models\Shipowners;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Loftonti\Erso\Models\Products as ProductsModel;
 
 class Products extends Controller
 {
@@ -37,6 +38,46 @@ class Products extends Controller
         $arrayOfURIParams = $this->params;
     }
 
+    public function downloadLayoutStock()
+    {
+        try {
+            $file_name = 'layout-stock.csv';
+            $products = ProductsModel::all();
+            $headers = array(
+                "Content-type"        => "text/csv",
+                "Content-Disposition" => "attachment; filename=$file_name",
+                "Pragma"              => "no-cache",
+                "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                "Expires"             => "0"
+            );
+            $columns = array('id', 'erso_code', utf8_decode('Cuautitlán Izcalli'), 'Tlalnepantla', 'Coacalco', utf8_decode('Precio Público'), 'Precio Cliente');
+            $build = function() use($products, $columns){
+                $file = fopen('php://output', 'w');
+                fputcsv($file, $columns);
+                foreach ($products as $products) {
+                    $row['id'] = $products -> id;
+                    $row['erso_code'] = $products -> erso_code;
+                    $row['Cuautitlán Izcalli'] = null;
+                    $row['Tlalnepantla'] = null;
+                    $row['Coacalco'] = null;
+                    $row['Precio Público'] = null;
+                    $row['Precio Cliente'] = null;
+                    fputcsv($file, array($row['id'],
+                    $row['erso_code'],
+                    $row['Cuautitlán Izcalli'],
+                    $row['Tlalnepantla'],
+                    $row['Coacalco'],
+                    $row['Precio Público'],
+                    $row['Precio Cliente']));
+                }
+                fclose($file);
+            };
+            return $response = response() -> stream($build, 200, $headers);
+        } catch (\Throwable $th) {
+            return $th -> getMessage();
+        }
+    }
+
     public function uploadFileUpdateStock(Request $request)
     {
         try {
@@ -46,51 +87,59 @@ class Products extends Controller
             $path = 'uploads/stock_files/';
             $f = fopen($file, 'r');
             $line = 0;
+            $prices = [];
             $data = [];
             while ($csvLine = fgetcsv($f,1000,",")) {
                 if($line > 0 && $line < 4000){
-                    $item_cuautitlan = [
-                        'id' => $csvLine[0],
-                        'erso_code' => $csvLine[1],
-                        'branch_id' => 1,
-                        'stock_branch' => $csvLine[2],
-                    ];
-                    $item_tlalnepantla = [
-                        'id' => $csvLine[0],
-                        'erso_code' => $csvLine[1],
-                        'branch_id' => 2,
-                        'stock_branch' => $csvLine[3],
-                        'public_price' => $csvLine[5],
-                        'customer_price' => $csvLine[6],
-                    ];
-                    $item_coacalco = [
-                        'id' => $csvLine[0],
-                        'erso_code' => $csvLine[1],
-                        'branch_id' => 3,
-                        'stock_branch' => $csvLine[4],
-                        'public_price' => $csvLine[5],
-                        'customer_price' => $csvLine[6],
-                    ];
-                    if($csvLine[5] != '') $item_cuautitlan['public_price'] = $csvLine[5];
-                    if($csvLine[6] != '') $item_cuautitlan['customer_price'] = $csvLine[6];
-                    if($csvLine[5] != '') $item_tlalnepantla['public_price'] = $csvLine[5];
-                    if($csvLine[6] != '') $item_tlalnepantla['customer_price'] = $csvLine[6];
-                    if($csvLine[5] != '') $item_coacalco['public_price'] = $csvLine[5];
-                    if($csvLine[6] != '') $item_coacalco['customer_price'] = $csvLine[6];
-                    array_push($data, $item_cuautitlan);
-                    array_push($data, $item_tlalnepantla);
-                    array_push($data, $item_coacalco);
+                    if($csvLine[0] && $csvLine[1]){
+                        if($csvLine[2]){
+                            $item_cuautitlan = [
+                                'id' => $csvLine[0],
+                                'erso_code' => $csvLine[1],
+                                'branch_id' => 1,
+                                'stock_branch' => $csvLine[2],
+                            ];
+                            array_push($data, $item_cuautitlan);
+                        }
+                        if($csvLine[3]){
+                            $item_tlalnepantla = [
+                                'id' => $csvLine[0],
+                                'erso_code' => $csvLine[1],
+                                'branch_id' => 2,
+                                'stock_branch' => $csvLine[3],
+                            ];
+                            array_push($data, $item_tlalnepantla);
+                        }
+                        if($csvLine[4]){
+                            $item_coacalco = [
+                                'id' => $csvLine[0],
+                                'erso_code' => $csvLine[1],
+                                'branch_id' => 3,
+                                'stock_branch' => $csvLine[4],
+                            ];
+                            array_push($data, $item_coacalco);
+                        }
+                        if($csvLine[5] != '' || $csvLine[6] != ''){
+                            if($csvLine[5] && !$csvLine[6]) {
+                                array_push($prices, ['id' => $csvLine[0], 'public_price' => $csvLine[5]]);
+                            }else if(!$csvLine[5] && $csvLine[6]) {
+                                array_push($prices, ['id' => $csvLine[0], 'customer_price' => $csvLine[6]]);
+                            }else{
+                                array_push($prices, ['id' => $csvLine[0], 'public_price' => $csvLine[5], 'customer_price' => $csvLine[6]]);
+                            }
+                        } 
+                    }
                 }
                 $line ++;
             }
             fclose($f);
-            return $this -> fnUpdateStock($data);
+            return $this -> fnUpdateStock($data, $prices);
         } catch (\Throwable $th) {
             return response() -> json([$th -> getMessage()], 403);
         }
     }
 
-    public function fnUpdateStock($data)
+    public function fnUpdateStock($data, $prices)
     {
         $updateds = 0;
         foreach ($data as $item) {
@@ -98,10 +147,11 @@ class Products extends Controller
                 ->where('loftonti_erso_product_branch.product_id', $item['id'])
                 ->where('loftonti_erso_product_branch.branch_id', $item['branch_id'])
                 ->update(['stock' => $item['stock_branch']]);
-            if(isset($item['public_price']) && isset($item['customer_price']) && $item['public_price'] && $item['customer_price']){
-                DB::table('loftonti_erso_products') -> where('id', $item['id'])
-                    -> update(['public_price' => $item['public_price'], 'customer_price' => $item['customer_price']]);
-            }
+            $updateds ++;
+        }
+        foreach ($prices as $price) {
+            DB::table('loftonti_erso_products') -> where('id', $price['id'])
+                -> update($price);
             $updateds ++;
         }
         return [
