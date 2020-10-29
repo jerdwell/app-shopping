@@ -6,6 +6,6 @@ plugin:
     homepage: ''
 navigation:
     main-menu-item:
-        label: Cotizaciones
+        label: Órdenes
         url: loftonti/quotations/quotations
         icon: icon-shopping-cart
