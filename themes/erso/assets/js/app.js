@@ -50152,7 +50152,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("label", { staticClass: "small text-center text-light" }, [
-      _vm._v("Categoría")
+      _vm._v("Categoría 1")
     ]),
     _c(
       "div",

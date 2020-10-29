@@ -38,7 +38,7 @@ class ProductsApiController extends Controller {
     )->get();
     $categories = Products::filterCategories(
       $model,$shipowner, $filter1 = null, $value1 = null, $filter2 = null, $value2 = null, $branch
-    )->get();
+    ) -> orderBy('category_name') ->get();
 
     return [
       'products' => $products_paginated,

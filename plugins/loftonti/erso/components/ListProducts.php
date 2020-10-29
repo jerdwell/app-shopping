@@ -89,12 +89,13 @@ class ListProducts extends ComponentBase
             $products = $this -> getList();
             $this -> list = $products  -> paginate($this -> limit);
             $this -> brands = $products -> groupBy('brand_id') -> without(['branches', 'applications', 'category']) -> get();
-            $this -> categories = Categories::all() -> makeHidden(['deleted_at', 'id', 'category_cover']);
+            $this -> categories = Categories::orderBy('category_name') -> get() -> makeHidden(['deleted_at', 'id', 'category_cover']);
             $shipowner = $this -> shipowner ? Shipowners::find($this -> shipowner) : false;
             $model = $this -> model ? CarsModels::find($this -> model) : false;
             $this -> model_selected = $this -> shipowner && $this -> model ? $model -> car_name : false;
             $this -> shipowner_selected = $shipowner ? $shipowner -> shipowner_name : false;
         } catch (\Exception $th) {
+            return [$th -> getMessage()];
             return Redirect::to('/productos');
         }
     }
@@ -133,6 +134,7 @@ class ListProducts extends ComponentBase
         $branch = $this -> property('branch');
         if($this -> shipowner == null){
             return Products::filterByCategory($this -> category, $branch)
+                ->orderBy('product_name')
                 ->with([
                     'brand',
                     'category',

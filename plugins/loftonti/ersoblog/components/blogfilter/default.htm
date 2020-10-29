@@ -3,10 +3,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-9">
         {% partial 'components/blog/_recents' posts = posts title='Resultados' %}
-        </div>
-        <div class="col-lg-3 bg-light">
+        <div class="col-lg-3 browser-main-blog bg-dark">
         {% partial 'components/blog/_filters-blog' categories = categories %}
         </div>
     </div>

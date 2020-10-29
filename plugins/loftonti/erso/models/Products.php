@@ -86,8 +86,7 @@ class Products extends Model
             ->leftJoin('loftonti_erso_product_branch','loftonti_erso_product_branch.product_id','loftonti_erso_products.id')
             ->leftJoin('loftonti_erso_branches','loftonti_erso_branches.id','loftonti_erso_product_branch.branch_id')
             ->where('loftonti_erso_branches.slug',$branch)
-            // ->orderBy('loftonti_erso_products.product_name','asc')
-            -> orderBy('loftonti_erso_products.public_price','desc')
+            ->orderBy('loftonti_erso_products.product_name')
             -> with([
                 'brand',
                 'category',
