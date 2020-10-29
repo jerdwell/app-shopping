@@ -1,0 +1,7 @@
+columns:
+    id:
+        label: id
+        type: number
+    slide_text:
+        label: Texto
+        type: text

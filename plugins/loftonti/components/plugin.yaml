@@ -1,0 +1,16 @@
+plugin:
+    name: 'loftonti.components::lang.plugin.name'
+    description: 'loftonti.components::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-crosshairs
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Componentes
+        url: loftonti/components/slidecomponent
+        icon: icon-cogs
+        sideMenu:
+            side-menu-item:
+                label: Slide
+                url: loftonti/components/slidecomponent
+                icon: icon-desktop

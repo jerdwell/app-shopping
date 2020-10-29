@@ -32,16 +32,16 @@ function onStart(){
 
 <div class="slide" id="main-slide">
   <div class="slide-container">
-    {% for slide_item in slide_items %}
+    {% for slide_item in data_slide %}
       <div class="slide-item">
         <picture class="slide-item-image">
-          <source class="slide-item-image" media="(max-width: 767px)" srcset="{{ slide_item['srcset'][0]|media }}">
-          <source class="slide-item-image" media="(min-width: 768px)" srcset="{{ slide_item['srcset'][1]|media }}">
-          <img class="slide-item-image" style="background-attachment: fixed;" src="{{ slide_item['img']|media }}" alt="{{ slide_item['title'] }}">
+          <source class="slide-item-image" media="(max-width: 767px)" srcset="{{ slide_item['slide_portrait']|media }}">
+          <source class="slide-item-image" media="(min-width: 768px)" srcset="{{ slide_item['slide_landscape']|media }}">
+          <img class="slide-item-image" style="background-attachment: fixed;" src="{{ slide_item['slide_landscape']|media }}" alt="{{ slide_item['title'] }}">
         </picture>
-        {% if slide_item['title'] != null %}
+        {% if slide_item['slide_text'] != null %}
         <div class="slide-item-title">
-          <h3 class="slide-item-title-text">{{ slide_item['title'] }}</h3>
+          <h3 class="slide-item-title-text">{{ slide_item['slide_text'] }}</h3>
         </div>
         {% endif %}
       </div>
@@ -54,7 +54,7 @@ function onStart(){
   </div>
   <div class="slide-control-dots">
     {% for slide_item  in slide_items %}
-    <div class="dot-indicator {{ slide_item['pos'] == 0 ? 'dot-indicator-active' : '' }}" data-index="{{ slide_item['pos'] }}"></div>
+    <div class="dot-indicator {{ slide_item['id'] == 0 ? 'dot-indicator-active' : '' }}" data-index="{{ slide_item['id'] }}"></div>
     {% endfor %}
   </div>
 </div>

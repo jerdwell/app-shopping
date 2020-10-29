@@ -1,0 +1,10 @@
+name: SlideComponent
+form: $/loftonti/components/models/slidecomponent/fields.yaml
+modelClass: LoftonTi\Components\Models\SlideComponent
+defaultRedirect: loftonti/components/slidecomponent
+create:
+    redirect: 'loftonti/components/slidecomponent/update/:id'
+    redirectClose: loftonti/components/slidecomponent
+update:
+    redirect: loftonti/components/slidecomponent
+    redirectClose: loftonti/components/slidecomponent

@@ -7,7 +7,6 @@ const UpdateStock = {
   uploadFile(){
     let form = document.getElementById('form-stock-file')
     let input = document.getElementById('file-stock')
-    console.log(input.files[0])
     if(!input.files[0]) return
     let form_data = new FormData()
     form_data.append('stock_file', input.files[0])
@@ -27,7 +26,6 @@ const UpdateStock = {
       },
       success: res =>{
         $('#btn-trigger-upload-file-stock').attr('disabled', false)
-        console.log(res)
         stock_loader.css({display: 'none'})
         let text_data = res.updateds
         content_text.html(`<h3>Productos actualizados: ${text_data}</h3>`)

@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_components_slide'
+    - builder_table_create_loftonti_components_slide.php
+1.0.3:
+    - 'Updated table loftonti_components_slide'
+    - builder_table_update_loftonti_components_slide.php
