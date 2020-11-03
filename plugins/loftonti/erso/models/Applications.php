@@ -74,14 +74,6 @@ class Applications extends Model
                         -> where("category_id", $value1);
                 }
             });
-
-            // -> leftJoin('loftonti_erso_product_branch', 'loftonti_erso_product_branch.product_id','=', 'loftonti_erso_products.id')
-            // -> leftJoin('loftonti_erso_branches', 'loftonti_erso_branches.id','=', 'loftonti_erso_product_branch.branch_id')
-            // -> where('loftonti_erso_branches.slug', $branch)
-            // ->groupBy('year')
-            // ->where('shipowner_id', $shipowner)
-            // ->where('model_id', $model)
-        
         
         return $query;
 
