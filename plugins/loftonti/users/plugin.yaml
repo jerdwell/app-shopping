@@ -9,8 +9,14 @@ navigation:
         label: Usuarios
         url: loftonti/users/users
         icon: icon-users
+        permissions:
+            - manage_users
         sideMenu:
             side-menu-item:
                 label: 'Menu Item'
                 url: loftonti/users/useraddress
                 icon: icon-sitemap
+permissions:
+    manage_users:
+        tab: Usuarios
+        label: 'Gestor de usuarios'

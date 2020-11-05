@@ -9,6 +9,8 @@ navigation:
         label: Blog
         url: loftonti/ersoblog/posts
         icon: icon-newspaper-o
+        permissions:
+            - manage_blog
         sideMenu:
             side-menu-item2:
                 label: Posts
@@ -18,3 +20,7 @@ navigation:
                 label: Categories
                 url: loftonti/ersoblog/categories
                 icon: icon-sitemap
+permissions:
+    manage_blog:
+        tab: Blog
+        label: 'Gestor de blog'

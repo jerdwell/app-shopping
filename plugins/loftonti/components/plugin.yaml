@@ -9,8 +9,14 @@ navigation:
         label: Componentes
         url: loftonti/components/slidecomponent
         icon: icon-cogs
+        permissions:
+            - manage_components
         sideMenu:
             side-menu-item:
                 label: Slide
                 url: loftonti/components/slidecomponent
                 icon: icon-desktop
+permissions:
+    manage_components:
+        tab: Componentes
+        label: 'Gestor de componentes'

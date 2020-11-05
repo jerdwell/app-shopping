@@ -9,3 +9,9 @@ navigation:
         label: Órdenes
         url: loftonti/quotations/quotations
         icon: icon-shopping-cart
+        permissions:
+            - manage_orders
+permissions:
+    manage_orders:
+        tab: Órdenes
+        label: 'Gestor de órdenes'
