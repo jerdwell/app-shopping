@@ -27,7 +27,6 @@ class ContactForm extends Controller
         });
         return ['Mensaje enviado exitosamente'];
     } catch (\Throwable $th) {
-      return $th -> getMessage();
       return response($th -> getMessage(), 403);
     }
   }
