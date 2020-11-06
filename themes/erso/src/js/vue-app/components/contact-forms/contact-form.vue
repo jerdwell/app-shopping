@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   slot
-  .g-recaptcha.mb-3(data-sitekey="6LcauM8ZAAAAAEGNjVwatYy_lg-s5YOfr4HbGgCN" data-theme="dark")
+  .g-recaptcha.mb-3(data-sitekey="6Lcyrt4ZAAAAAAVcv5b7wr5jrczltEeORaXmpdDD" data-theme="dark")
   button.btn.btn-info.btn-lg(@click.prevent="ValidateData" :disabled="loading")
     .spinner-border.spinner-border-sm.align-middle.mr-2(v-if="loading")
     span.align-middle Contactar
