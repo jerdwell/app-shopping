@@ -15,6 +15,7 @@ export default {
   ],
   computed: {
     branch_email(){
+      if(!this.branch_data) return 'contacto_izcalli@erso.com.mx'
       return this.branch_data.contact_data.find(e => e.type == 'email').data
     }
   },
@@ -90,8 +91,7 @@ export default {
         this.loading = false
       }
     }
-
-  },
+  }
 }
 </script>
 

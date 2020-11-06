@@ -72,19 +72,4 @@ class ContactForm extends Controller
     }
   }
 
-  
-  // function relateTest()
-  // {
-  //   $total = DB::table('loftonti_erso_products') -> selectRaw('count(*) as total') -> first();
-  //   // return [$total -> total];
-  //   $query = [];
-  //   for ($i=0; $i < $total -> total; $i++) { 
-  //     array_push($query, ['product_id' => $i, 'branch_id' => 1, 'stock' => random_int(0, 200)]);
-  //     array_push($query, ['product_id' => $i, 'branch_id' => 2, 'stock' => random_int(0, 200)]);
-  //     array_push($query, ['product_id' => $i, 'branch_id' => 3, 'stock' => random_int(0, 200)]);
-  //   }
-  //   // return $query;
-  //   return DB::table('loftonti_erso_product_branch') -> insert($query);
-  // }
-
 }
