@@ -10,6 +10,14 @@ div
 <script>
 export default {
   name: 'button-contact-form',
+  props: [
+    'branch_data'
+  ],
+  computed: {
+    branch_email(){
+      return this.branch_data.contact_data.find(e => e.type == 'email').data
+    }
+  },
   data() {
     return {
       loading: false,
@@ -55,6 +63,7 @@ export default {
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
         comments: document.getElementById('comments').value,
+        branch_email: this.branch_email,
         recaptcha_token: recaptcha_token
       })
     },

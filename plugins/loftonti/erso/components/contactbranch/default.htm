@@ -44,7 +44,7 @@
             {% elseif(data.type == 'phone') %}
             <a class="text-light" href="tel:{{data.data}}"><i class="fas fa-phone mr-2"></i> {{ data.data }}</a>
             {% else %}
-            <i class="oi fi-envelope-closed"></i> {{ data.data }}
+            <a class="text-light" href="mailto:{{data.data}}"><i class="fas fa-envelope mr-2"></i> <small>{{ data.data }}</small></a>
             {% endif %}
           </div>
         </div>
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-  {% partial 'components/contacto/_form-contact' %}
+  {% partial 'components/contacto/_form-contact' branch=branch_data %}
 </div>
 
 {% partial 'components/contacto/_branches' %}

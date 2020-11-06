@@ -14,7 +14,7 @@ class ContactForm extends Controller
       try {
         $this -> validCaptcha($request);
         $this -> validFormData($request);
-        $FORM_CONTACT_MAIL = config('formcontact.FORM_CONTACT_MAIL');
+        $FORM_CONTACT_MAIL = $request -> branch_email;
         $mail_data = [
           'name' => $request -> name, 
           'email' => $request -> email, 
@@ -62,6 +62,7 @@ class ContactForm extends Controller
       'email' => 'required|email',
       'phone' => 'required|digits:10',
       'comments' => 'required|string|min:10|max:200',
+      'branch_email' => 'required|email',
     ]);
     if($valid -> fails()){
       if($valid -> errors() -> has('name')) throw new \Exception('El nombre no es un dato válido');
