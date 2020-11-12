@@ -23,7 +23,7 @@
               span(v-if="product_notes != 'N/A'") {{ product_notes.length < 60 ? product_notes : product_notes.substring(0,60) + '...' }} #[a.text-info.small(v-if="product_notes.length > 60" :href="`/productos/producto/${product.id}`") Ver más]
               span(v-else) {{ product_notes }}
             br
-            span.text-light Stock: {{ this.product.branches[0].pivot.stock != 0 ? this.product.branches[0].pivot.stock + 'pz' : 'No disponible' }}
+            span.text-light Stock: {{ product_stock }}
             br
             span.text-light #[b.text-yellow.text-center Auto - Armadora]:
             br
@@ -62,6 +62,10 @@ export default {
       'get_token', //get token user
       'get_branch_selected', //get branch selected
     ]),
+    product_stock(){
+      let branch = this.product.branches.find(e => e.slug == this.get_branch_selected)
+      return branch.pivot.stock != 0 ? branch.pivot.stock + 'pz' : 'No disponible'
+    },
     product_notes(){
       let notes = []
       this.product.applications.forEach(note => {

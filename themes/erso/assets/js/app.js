@@ -4594,6 +4594,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['get_token', //get token user
   'get_branch_selected' //get branch selected
   ])), {}, {
+    product_stock: function product_stock() {
+      var _this = this;
+
+      var branch = this.product.branches.find(function (e) {
+        return e.slug == _this.get_branch_selected;
+      });
+      return branch.pivot.stock != 0 ? branch.pivot.stock + 'pz' : 'No disponible';
+    },
     product_notes: function product_notes() {
       var notes = [];
       this.product.applications.forEach(function (note) {
@@ -49301,14 +49309,7 @@ var render = function() {
                   ]),
                   _c("br"),
                   _c("span", { staticClass: "text-light" }, [
-                    _vm._v(
-                      "Stock: " +
-                        _vm._s(
-                          this.product.branches[0].pivot.stock != 0
-                            ? this.product.branches[0].pivot.stock + "pz"
-                            : "No disponible"
-                        )
-                    )
+                    _vm._v("Stock: " + _vm._s(_vm.product_stock))
                   ]),
                   _c("br"),
                   _vm._m(0),
