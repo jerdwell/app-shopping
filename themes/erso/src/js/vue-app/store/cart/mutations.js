@@ -1,12 +1,12 @@
 const mutations = {
   
-  ADD_CART_ITEM: (state, data) => {
+  ADD_CART_ITEM: (state, data, getters) => {
     let item_in_cart = state.cart_items.find(i => i.id == data.id)
+    let branch = data.branches.find(e => e.slug == data.branch_selected)
     if(!item_in_cart){
       let item = {
         id: data.id,
         product_name: data.product_name,
-        // product_year: data.product_year,
         category_name: data.category.category_name,
         provider_code: data.provider_code,
         erso_code: data.erso_code,
@@ -15,13 +15,12 @@ const mutations = {
         customer_price: data.customer_price,
         brand_name: data.brand.brand_name,
         branches: data.branches,
-        // model: `${data.shipowner.shipowner_name} ${data.car.model_name}`,
       }
-      if(data.branches[0].pivot.stock <= 0) return
+      if(branch.pivot.stock <= 0) return
       item.quantity = 1
       state.cart_items.push(item)
     }else{
-      if(item_in_cart.quantity < data.branches[0].pivot.stock)
+      if(item_in_cart.quantity < branch.pivot.stock)
       item_in_cart.quantity ++
     }
 

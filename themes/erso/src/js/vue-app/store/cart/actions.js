@@ -1,7 +1,8 @@
 import vm from 'vue'
 const actions = {
   
-  add_cart_item: ({ commit }, data) => {
+  add_cart_item: ({ commit, getters }, data) => {
+    data['branch_selected'] = getters.get_branch_selected
     commit('ADD_CART_ITEM', data)
   },
 
