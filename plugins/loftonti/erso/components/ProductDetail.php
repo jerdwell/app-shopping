@@ -75,8 +75,8 @@ class ProductDetail extends ComponentBase
                  ->paginate(8);
             }
         } catch (\Throwable $th) {
-            return [$th -> getMessage()];
-            return redirect('/');
+            // return [$th -> getMessage()];
+            return redirect('/productos');
         }
     }
 }
