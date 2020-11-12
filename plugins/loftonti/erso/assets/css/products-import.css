@@ -1,6 +1,7 @@
-#file-stock{
+#file-stock, #file-delete{
   height: 1px;
   overflow: hidden;
   opacity: 0;
   width: 1px;
 }
+

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center text-muted">
+      <h3>Baja masiva</h3>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" style="margin-bottom: 50px;">
+  <div class="row">
+    <div class="col-md-6 col-lg-4">
+      <h3 class="text-muted text-center">Estructura del archivo a cargar:</h3>
+      <hr>
+      <ul>
+        <li><b>Formato .csv</b></li>
+        <li>
+          <span><b>Estructura:</b></span>
+          <ul>
+            <li>Id del producto</li>
+            <li>Clave erso</li>
+            <li>Baja en Cuautitlán Izcalli</li>
+            <li>Baja en Tlalnepantla</li>
+            <li>Baja en Coacalco</li>
+          </ul>
+        </li>
+      </ul>
+      <a href="<?= Backend::url('loftonti/erso/products/download-layout-deletes') ?>" class="btn btn-info">Descargar
+        Layout de Bajas</a>
+    </div>
+    <div class="col-md-6 col-lg-8">
+      <div class="text-center">
+        <button id="btn-trigger-upload-file-deletes" onclick="MassiveDelete.triggerBtn()" class="btn btn-block btn-danger">
+          <div class="text-center">Cargar archivo de baja</div>
+        </button>
+        <input type="file" class="form-control" accept=".csv" id="file-delete" onchange="MassiveDelete.uploadFile()">
+        <div id="loading-stock-delete" class="loading-indicator-container" style="display: none;">
+          <div class="loading-indicator">
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-warning" style="display:none;" id="text-indicator-delete">
+        <h3>Por favor no cierres la ventana</h3>
+      </div>
+    </div>
+  </div>
+</div>

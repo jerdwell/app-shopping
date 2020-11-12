@@ -14,3 +14,4 @@
   });
 
   Route::post('/backend/loftonti/products/upload-file-update-stock','LoftonTi\Erso\Controllers\Products@uploadFileUpdateStock');
+  Route::post('/backend/loftonti/products/upload-file-massive-delete','LoftonTi\Erso\Controllers\Products@uploadFileMassiveDelete');

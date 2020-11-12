@@ -28,11 +28,11 @@
                     </ul>
                 </li>
             </ul>
-            <a href="<?= Backend::url('loftonti/erso/products/download-layout-stock') ?>" class="btn btn-info">Descargar Layout</a>
+            <a href="<?= Backend::url('loftonti/erso/products/download-layout-stock') ?>" class="btn btn-info">Descargar Layout de Stock</a>
         </div>
         <div class="col-md-6 col-lg-8">
             <div class="text-center">
-                <button id="btn-trigger-upload-file-stock" onclick="UpdateStock.triggerBtn()" class="btn btn-block btn-info"><div class="text-center">Cargar archivo</div></button>
+                <button id="btn-trigger-upload-file-stock" onclick="UpdateStock.triggerBtn()" class="btn btn-block btn-info"><div class="text-center">Cargar archivo de stock</div></button>
                 <input type="file" class="form-control" accept=".csv" id="file-stock" onchange="UpdateStock.uploadFile()">
                 <div id="loading-stock-update" class="loading-indicator-container" style="display: none;">
                     <div class="loading-indicator">
@@ -46,3 +46,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->makePartial('massive-delete') ?>
