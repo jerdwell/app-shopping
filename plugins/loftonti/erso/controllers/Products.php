@@ -94,7 +94,7 @@ class Products extends Controller
             $prices = [];
             $data = [];
             while ($csvLine = fgetcsv($f, 1000, ",")) {
-                if ($line > 0 && $line < 4000) {
+                if ($line > 0 && $line < 3000) {
                     if ($csvLine[0] && $csvLine[1]) {
                         if ($csvLine[2]) {
                             $item_cuautitlan = [
@@ -212,7 +212,7 @@ class Products extends Controller
             $line = 0;
             $data = [];
             while ($csvLine = fgetcsv($f, 1000, ",")) {
-                if ($line > 0 && $line < 4000) {
+                if ($line > 0 && $line < 3000) {
                     if ($csvLine[0] && $csvLine[1]) {
                         if ($csvLine[2]) {
                             $item_cuautitlan = [
