@@ -95,7 +95,7 @@ class ListProducts extends ComponentBase
             $this -> model_selected = $this -> shipowner && $this -> model ? $model -> car_name : false;
             $this -> shipowner_selected = $shipowner ? $shipowner -> shipowner_name : false;
         } catch (\Exception $th) {
-            return [$th -> getMessage()];
+            // return [$th -> getMessage()];
             return Redirect::to('/productos');
         }
     }
