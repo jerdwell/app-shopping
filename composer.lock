@@ -193,6 +193,16 @@
                 "zend",
                 "zikula"
             ],
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-04-07T06:57:05+00:00"
         },
         {
@@ -1196,6 +1206,20 @@
                 }
             ],
             "description": "Update helper",
+            "funding": [
+                {
+                    "url": "https://github.com/kylekatarnls",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/Carbon",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/nesbot/carbon",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-04-07T20:44:10+00:00"
         },
         {
@@ -1901,16 +1925,16 @@
         },
         {
             "name": "october/backend",
-            "version": "v1.0.469",
+            "version": "v1.0.470",
             "source": {
                 "type": "git",
                 "url": "https://github.com/octoberrain/backend.git",
-                "reference": "29a9d8171fa4299c1e8543e2476805bda93da7e7"
+                "reference": "8a109293ee4c838d5219c0edd60ca5902c51322a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/octoberrain/backend/zipball/29a9d8171fa4299c1e8543e2476805bda93da7e7",
-                "reference": "29a9d8171fa4299c1e8543e2476805bda93da7e7",
+                "url": "https://api.github.com/repos/octoberrain/backend/zipball/8a109293ee4c838d5219c0edd60ca5902c51322a",
+                "reference": "8a109293ee4c838d5219c0edd60ca5902c51322a",
                 "shasum": ""
             },
             "require": {
@@ -1956,7 +1980,7 @@
                 "october",
                 "october cms"
             ],
-            "time": "2020-09-07T03:05:00+00:00"
+            "time": "2020-09-11T08:12:28+00:00"
         },
         {
             "name": "october/cms",
@@ -4672,6 +4696,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
