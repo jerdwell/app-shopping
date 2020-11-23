@@ -16,10 +16,28 @@ const getters = {
     return items
   },
 
+  get_product_price: (state, getters) => product => {
+    let price = false
+    if(!getters.get_token){
+      price = '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }else if(getters.get_token && getters.get_type_user == 'user'){
+      price = '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }else if(getters.get_token && getters.get_type_user == 'customer'){
+      price = product.customer_price != null ? '$' + product.customer_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'No hay precio disponible'
+    }
+    return price
+  },
+
   get_total_amount: (state, getters) => {
     let total = 0
     state.cart_items.map(e => {
-      total += e.quantity * (!getters.get_token ? e.public_price : e.customer_price)
+      if(!getters.get_token){
+        total += e.quantity *  e.public_price
+      }else if( getters.get_token && getters.get_type_user != 'customer' ){
+        total += e.quantity * e.public_price
+      }else if( getters.get_token && getters.get_type_user == 'customer' ){
+        total += e.quantity * e.customer_price
+      }
     });
     return total.toFixed(2)
   }

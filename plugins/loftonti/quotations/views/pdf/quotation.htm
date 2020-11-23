@@ -114,8 +114,8 @@
           <small><b>{{ item.brand.brand_name }}</b></small>
         </td>
         <td style="border-bottom: solid 1px gray; padding: 5px; text-align: center;">{{ item.quantity }}</td>
-        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ (data_quotation.shipping_contact is null) ? item.public_price|number_format(2, '.', ',') : item.customer_price|number_format(2, '.', ',') }}</td>
-        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ (data_quotation.shipping_contact is null) ? (item.public_price * item.quantity)|number_format(2, '.', ',') : (item.customer_price * item.quantity)|number_format(2, '.', ',') }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ item.price|number_format(2, '.', ',') }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ (item.price * item.quantity)|number_format(2, '.', ',') }}</td>
       </tr>
       {% endfor %}
       <tr>

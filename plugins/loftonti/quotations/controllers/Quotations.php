@@ -51,14 +51,14 @@ class Quotations extends Controller
     {
         $items = [];
         foreach ($request -> items as $item) {
+            $price = !isset($user -> type) || $user -> type == 'user' ? $item['public_price'] : $item['customer_price'];
             $i = [
                 'brand_name' => $item['brand_name'],
                 'quantity' => $item['quantity'],
-                'customer_price' => $item['customer_price'],
+                'price' => $price,
                 'erso_code' => $item['erso_code'],
                 'id' => $item['id'],
-                'product_name' => $item['product_name'],
-                'public_price' => $item['public_price'],
+                'product_name' => $item['product_name']
             ];
             array_push($items,$i);
         }

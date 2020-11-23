@@ -35,8 +35,8 @@
                 Código: <b>{{ item.erso_code }}</b>
             </small></td>
             <td style="text-align: center;"><small>{{ item.quantity }}</small></td>
-            <td style="text-align: center;"><small>${{ item.customer_price|number_format(2,'.', ',') }}</small></td>
-            <td style="text-align: center;"><small>${{ (item.customer_price * item.quantity)|number_format(2,'.', ',') }}</small></td>
+            <td style="text-align: center;"><small>${{ item.price|number_format(2,'.', ',') }}</small></td>
+            <td style="text-align: center;"><small>${{ (item.price * item.quantity)|number_format(2,'.', ',') }}</small></td>
         </tr>
         {% endfor %}
         <tr style="background-color: #ff9500; color: white;">

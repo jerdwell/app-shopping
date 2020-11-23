@@ -24,8 +24,7 @@
                 .text-center
                   a.small.text-danger(href="#" @click.prevent="delete_cart_item(product)") Eliminar #[.fas.fa-times]
               td.text-center.text-dark
-                span.small(v-if="!get_token") {{ product.public_price != null ? '$' + product.public_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'sin dato' }}
-                span.small(v-else) {{ product.customer_price != null ? '$' + product.customer_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 'sin dato' }}
+                span.small {{ get_product_price(product) }}
       
 </template>
 
@@ -38,6 +37,7 @@ export default {
       'get_cart_items', //get list products in cart buy
       'get_token', //check if token user exists
       'get_total_amount', //get total amont
+      'get_product_price', //get product price
     ])
   },
   methods: {
