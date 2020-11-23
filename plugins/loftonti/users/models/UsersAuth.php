@@ -17,12 +17,14 @@ class UsersAuth extends Model
       if(!$user -> mail_confirm) throw new \Exception('Datos incorrectos');
       $data_token = [
         'id' => $user -> id,
+        'type' => $user -> type,
         'name' => $user -> firstname . ' ' . $user -> lastname,
         'sk' => Hash::make($user -> token_remember),
         'expires' => Carbon::now() -> addHour(4) -> format('Y-m-d H:i:s')
       ];
       $token = [
         'name' => $user -> firstname . ' ' . $user -> lastname,
+        'type' => $user -> type,
         'token' => Crypt::encryptString(json_encode($data_token)),
         'expire' => Carbon::now() -> addHour(4) -> format('Y-m-d H:i:s')
       ];

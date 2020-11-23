@@ -143,7 +143,7 @@ class ListProducts extends ComponentBase
                     'applications.shipowner',
                     'branches' => function($q) use($branch) {
                         $q -> where('loftonti_erso_branches.slug', $branch)
-                        ->select('id');
+                        ->select('id', 'slug');
                     }
                 ]);
         }else{

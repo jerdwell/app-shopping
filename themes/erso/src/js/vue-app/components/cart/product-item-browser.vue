@@ -64,7 +64,7 @@ export default {
     ]),
     product_stock(){
       let branch = this.product.branches.find(e => e.slug == this.get_branch_selected)
-      return branch.pivot.stock != 0 ? branch.pivot.stock + 'pz' : 'No disponible'
+      return branch && branch.pivot.stock != 0 ? branch.pivot.stock + 'pz' : 'No disponible'
     },
     product_notes(){
       let notes = []
