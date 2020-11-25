@@ -1,5 +1,6 @@
 <?php
-    $shipowner_name = $shipowner_name ? $shipowner_name : '';
+    $shipowner_name = $shipowner['shipowner_name'] ? $shipowner['shipowner_name'] : '';
+    $shipowner_id = $shipowner['shipowner_id'] ? $shipowner['shipowner_id'] : '';
     $id = $model ? $model -> id : '';
 ?>
 <label>Buscar armadora</label>
@@ -9,7 +10,7 @@
     name="Applications[shipowner_id]"
     id="id-shipowner-selected"
     type="hidden"
-    value="<?= $id ?>"
+    value="<?= $shipowner_id ?>"
     readonly>
 
 <ul id="shippowners-results" style="display:none;">

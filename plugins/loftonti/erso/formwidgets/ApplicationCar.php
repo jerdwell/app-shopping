@@ -38,7 +38,7 @@ class ApplicationCar extends FormWidgetBase
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
-        $this->vars['car_name'] = $this -> getCar();
+        $this->vars['car'] = $this -> getCar();
     }
 
     /**
@@ -48,9 +48,15 @@ class ApplicationCar extends FormWidgetBase
     {
         if($this -> model -> car_id){
             $car = CarsModels::find($this -> model -> car_id);
-            return $car -> car_name;
+            return [
+                'car_id' => $car -> id,
+                'car_name' => $car -> car_name
+            ];
         }else{
-            return false;
+            return [
+                'car_id' => false,
+                'car_name' => false
+            ];
         }
     }
 
@@ -61,7 +67,7 @@ class ApplicationCar extends FormWidgetBase
     {
         try {
             $data_search = Input::get('car');
-            $cars = CarsModels::where('car_name', 'like', "%{$data_search}%") -> take(20) -> get();
+            $cars = CarsModels::where('car_name', 'like', "%{$data_search}%") -> orderBy('car_name') -> get();
             return $cars;
         } catch (\Throwable $th) {
             return response($th -> getMessage(), 403);

@@ -1,5 +1,6 @@
 <?php
-    $car_name = $car_name ? $car_name : '';
+    $car_name = $car['car_name'] ? $car['car_name'] : '';
+    $car_id = $car['car_id'] ? $car['car_id'] : '';
     $id = $model ? $model -> id : '';
 ?>
 <label>Buscar auto</label>
@@ -9,7 +10,7 @@
     name="Applications[car_id]"
     id="id-car-selected"
     type="hidden"
-    value="<?= $id ?>"
+    value="<?= $car_id ?>"
     readonly>
 
 <ul id="cars-results" style="display:none;">

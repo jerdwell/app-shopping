@@ -38,16 +38,22 @@ class ApplicationShipowner extends FormWidgetBase
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();
         $this->vars['model'] = $this->model;
-        $this->vars['shipowner_name'] = $this->getShipowner();
+        $this->vars['shipowner'] = $this->getShipowner();
     }
 
     public function getShipowner()
     {
         if($this -> model -> shipowner_id){
             $shipowner = Shipowners::find($this -> model -> shipowner_id);
-            return $shipowner -> shipowner_name;
+            return [
+                'shipowner_name' => $shipowner -> shipowner_name,
+                'shipowner_id' => $shipowner -> id,
+            ];
         }else{
-            return false;
+            return [
+                'shipowner_name' => false,
+                'shipowner_id' => false
+            ];
         }
     }
 

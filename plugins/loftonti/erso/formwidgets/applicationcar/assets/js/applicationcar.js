@@ -10,7 +10,7 @@ const searchCar = {
     let input = document.getElementById('search-car')
     let value = input.value
     let results_container = document.getElementById('cars-results')
-    if(value.replace(/\s/g,'').length <= 1) return false
+    if(value.replace(/\s/g,'').length <= 0) return false
     $(this).request('onSearchCar', {
       data: { car: value },
       success: res => {
@@ -26,7 +26,6 @@ const searchCar = {
         }
         $('#cars-results').slideDown()
         results_container.innerHTML = results
-        console.log(res)
       }
     })
   },

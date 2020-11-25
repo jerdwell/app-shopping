@@ -268,7 +268,7 @@ class Products extends Controller
     {
         try {
             $data_search = Input::get('car');
-            $cars = CarsModels::where('car_name', 'like', "%{$data_search}%")->take(20)->get();
+            $cars = CarsModels::where('car_name', 'like', "%{$data_search}%")->orderBy('car_name')->get();
             return $cars;
         } catch (\Throwable $th) {
             return response($th->getMessage(), 403);
