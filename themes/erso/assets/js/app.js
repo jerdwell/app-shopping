@@ -49983,7 +49983,10 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control-checkbox mr-2",
-                                attrs: { type: "radio", name: car_model.id },
+                                attrs: {
+                                  type: "radio",
+                                  name: car_model.car_id
+                                },
                                 domProps: {
                                   value: {
                                     model_id: car_model.car.id,
@@ -50021,7 +50024,9 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     $event.preventDefault()
-                                    return _vm.toggleCheckboxBtn(car_model.id)
+                                    return _vm.toggleCheckboxBtn(
+                                      car_model.car_id
+                                    )
                                   }
                                 }
                               },
@@ -50034,7 +50039,9 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     $event.preventDefault()
-                                    return _vm.toggleCheckboxBtn(car_model.id)
+                                    return _vm.toggleCheckboxBtn(
+                                      car_model.car_id
+                                    )
                                   }
                                 }
                               },

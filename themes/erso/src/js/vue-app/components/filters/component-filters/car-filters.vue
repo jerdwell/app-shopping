@@ -14,7 +14,7 @@
       input.form-control.form-control-sm(
         type="text"
         :value="getCarModel()"
-        v-on:click="$parent.car_model_selected = {}"
+        @click="$parent.car_model_selected = {}"
         v-else
       )
     
@@ -34,12 +34,12 @@
               td
                 input.form-control-checkbox.mr-2(
                   type="radio"
-                  :name="car_model.id"
+                  :name="car_model.car_id"
                   :value="{model_id:car_model.car.id, shipowner_id: car_model.shipowner.id}"
                   v-model="$parent.car_model_selected"
                   @change="getListProductsFiletered")
-              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.car.car_name }}
-              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.id)") {{ car_model.shipowner.shipowner_name }}
+              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.car_id)") {{ car_model.car.car_name }}
+              td.text-white(@click.prevent="toggleCheckboxBtn(car_model.car_id)") {{ car_model.shipowner.shipowner_name }}
 
       li.list-group-item.bg-transparent.p-1.border-danger.text-danger(v-if="carsModels.data && carsModels.data.length <= 0") #[span.fas.fa-times-circle] No existen resultados
 
