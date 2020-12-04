@@ -91,7 +91,6 @@ class Products extends Model
                 'brand',
                 'category',
                 'branches',
-                'branches',
                 'applications',
                 'applications.shipowner',
                 'applications.car',

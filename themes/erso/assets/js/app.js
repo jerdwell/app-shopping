@@ -49211,12 +49211,12 @@ var render = function() {
                         name: "lazy",
                         rawName: "v-lazy",
                         value:
-                          "/storage/app/media/products/" +
+                          "/storage/app/media" +
                           (_vm.product.product_cover != ""
                             ? _vm.product.product_cover
                             : "no_disponible.jpg"),
                         expression:
-                          "'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')"
+                          "'/storage/app/media' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')"
                       }
                     ]
                   })

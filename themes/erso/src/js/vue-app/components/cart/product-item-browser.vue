@@ -9,7 +9,7 @@
         .product-brand-container.py-1
           img.product-brand-img(v-lazy="'/storage/app/media/' + product.brand.brand_logo" v-if="product.brand.brand_logo")
         .product-item-image.bg-white
-          img(v-lazy="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
+          img(v-lazy="'/storage/app/media' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
           //- img.w-100(:src="'/storage/app/media/products/' + (product.product_cover != '' ? product.product_cover : 'no_disponible.jpg')")
     .card-body.p-0
       .product-item-data.py-3.bg-dark
