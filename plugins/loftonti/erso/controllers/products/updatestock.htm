@@ -32,6 +32,8 @@
         </div>
         <div class="col-md-6 col-lg-8">
             <div class="text-center">
+                <label>Alta - Stock</label>
+                <input type="checkbox" value="create" class="form-control-check" id="alta-stock">
                 <button id="btn-trigger-upload-file-stock" onclick="UpdateStock.triggerBtn()" class="btn btn-block btn-info"><div class="text-center">Cargar archivo de stock</div></button>
                 <input type="file" class="form-control" accept=".csv" id="file-stock" onchange="UpdateStock.uploadFile()">
                 <div id="loading-stock-update" class="loading-indicator-container" style="display: none;">

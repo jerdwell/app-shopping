@@ -2,6 +2,7 @@
 
 use Backend\Models\ImportModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Loftonti\Erso\Models\{Categories, Products, Shipowners, Enterprises, Brands, CarsModels, ErsoCodes};
 use Illuminate\Support\Str;
 use PDO;
@@ -49,26 +50,45 @@ class ProductsImport extends ImportModel
     try {
       $categories = Categories::all();
       $brands = Brands::all();
+      $erso_codes = Products::all();
+      $categories = collect($categories);
+      $brands = collect($brands);
+      $erso_codes = collect($erso_codes);
       $products = [];
+      $fails = [];
       foreach ($results as $row => $data) {
-        $categories = collect($categories);
-        $brands = collect($brands);
-        
         $category = $categories -> firstWhere('category_slug', Str::slug($data['category_name']));
         $brand = $brands -> firstWhere('brand_slug', Str::slug($data['brand_name']));
-        $product = [
-          'erso_code' => $data['erso_code'],
-          'provider_code' => $data['provider_code'],
-          'product_name' => $data['product_name'],
-          'product_slug' => Str::slug($data['product_name']),
-          'category_id' => $category -> id,
-          'brand_id' => $brand -> id,
-          'public_price' => $data['public_price'],
-          'customer_price' => $data['customer_price'],
-          'product_cover' => $data['product_cover'],
-        ];
-        array_push($products, $product);
-        $this -> logCreated();
+        $erso_code = $erso_codes -> firstWhere('erso_code', $data['erso_code']);
+        if($brand && $category && !$erso_code){
+          $product = [
+            'erso_code' => $data['erso_code'],
+            'provider_code' => $data['provider_code'],
+            'product_name' => $data['product_name'],
+            'product_slug' => Str::slug($data['product_name']),
+            'category_id' => $category -> id,
+            'brand_id' => $brand -> id,
+            'public_price' => $data['public_price'],
+            'customer_price' => $data['customer_price'],
+            'product_cover' => '/products/' . $data['product_cover'],
+          ];
+          array_push($products, $product);
+          $this -> logCreated();
+        }else{
+          $e = [];
+          if(!$brand) array_push($e, 'Esta marca no está registrada');
+          if(!$category) array_push($e, 'Esta categoría no está registrada');
+          if($erso_code) array_push($e, 'Este código ya se ha registrado con anterioridad');
+          $data['error'] = join(', ', $e);
+          array_push($fails, $data);
+          $this -> logWarning($row, $data['error']);
+        }
+      }
+      if(count($fails) > 0){
+        Mail::send('loftonti.erso::mail.products-errors', ['fails' => $fails], function($message){
+          $message->to('erdwell@gmail.com', 'Sistema Erso');
+          $message->subject('Errores en la carga de productos.');
+        });
       }
       DB::connection()->getPdo() === (new Products)->getConnection()->getPdo(); // true
       DB::connection()->getPdo()->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);

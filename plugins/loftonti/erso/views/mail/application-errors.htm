@@ -1,0 +1,26 @@
+<h1>Las siguientes aplicaciones no se pudieron cargar.</h1>
+<h6>fecha de carga: {{ "now"|date('d/m/Y H:i:s') }}</h6>
+<table style="display: block; width: 700px; max-width: none;">
+  <thead style="background-color: #ff9500; color: black">
+    <tr>
+      <th style="padding: 5px;">Código Erso</th>
+      <th style="padding: 5px;">Armadora</th>
+      <th style="padding: 5px;">Auto</th>
+      <th style="padding: 5px;">Nota</th>
+      <th style="padding: 5px;">Año</th>
+      <th style="padding: 5px;">Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fail in fails %}
+      <tr>
+        <td style="padding: 5px;"><small>{{ fail.erso_code }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.shipowner }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.car }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.note }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.year }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.error }}</small></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

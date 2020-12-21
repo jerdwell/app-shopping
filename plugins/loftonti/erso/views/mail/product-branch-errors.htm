@@ -1,0 +1,24 @@
+<h1>El siguiente Stock no se ha podido crear.</h1>
+<h6>fecha de carga: {{ "now"|date('d/m/Y H:i:s') }}</h6>
+<table style="display: block; width: 700px; max-width: none;">
+  <thead style="background-color: #ff9500; color: black">
+    <tr>
+      <th style="padding: 5px;">Código Erso</th>
+      <th style="padding: 5px;">Sucursal</th>
+      <th style="padding: 5px;">Empresa</th>
+      <th style="padding: 5px;">stock</th>
+      <th style="padding: 5px;">Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fail in fails %}
+      <tr>
+        <td style="padding: 5px;"><small>{{ fail.erso_code }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.branch }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.enterprise }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.stock }}</span></td>
+        <td style="padding: 5px;"><small>{{ fail.errors }}</span></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

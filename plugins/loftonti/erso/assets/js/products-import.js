@@ -13,6 +13,9 @@ const UpdateStock = {
     form_data.append('test_data', 'input.files[0]')
     let content_text = $('#text-indicator-stock')
     let stock_loader = $('#loading-stock-update')
+    let alta_stock = $('#alta-stock')
+    alta_stock = alta_stock.is(':checked')
+    if(alta_stock) form_data.append('create_stock', true)
     $.ajax({
       url: '/backend/loftonti/products/upload-file-update-stock',
       method: 'post',
@@ -29,8 +32,10 @@ const UpdateStock = {
         stock_loader.css({ display: 'none' })
         let text_data = res.updateds
         content_text.html(`<h3>Productos actualizados: ${text_data}</h3>`)
+        if(res.errors.length > 0) content_text.append(`<h4>Productos no cargados: ${res.errors.length}, Se enviará un correo con los detalles de la carga.</h4>`)
       },
       error: err => {
+        console.log(err)
         $('#btn-trigger-upload-file-stock').attr('disabled', false)
         stock_loader.css({ display: 'none' })
         content_text.html(`<h3 class="text-danger">Productos actualizados: ${err.responseText}</h3>`)

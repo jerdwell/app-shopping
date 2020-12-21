@@ -1,5 +1,5 @@
 columns:
-  product_id:
+  erso_code:
     label: Producto
   car:
     label: Auto
