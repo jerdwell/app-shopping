@@ -90,7 +90,6 @@ class Products extends Controller
         try {
             if (!$request->hasFile('stock_file')) throw new \Exception("Error Processing Request", 1);
             if($request -> create_stock) return $this -> createStock($request);
-            return ['actualizar stock'];
             $file = $request->file('stock_file');
             $file_name = Str::random(32) . '.' . $file->getClientOriginalExtension();
             $path = 'uploads/stock_files/';
@@ -144,8 +143,7 @@ class Products extends Controller
                 $line++;
             }
             fclose($f);
-            return ['actualizados: 20'];
-            // return $this->fnUpdateStock($data, $prices);
+            return $this->fnUpdateStock($data, $prices);
         } catch (\Throwable $th) {
             return response()->json([$th->getMessage()], 403);
         }

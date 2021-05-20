@@ -32,7 +32,7 @@ const UpdateStock = {
         stock_loader.css({ display: 'none' })
         let text_data = res.updateds
         content_text.html(`<h3>Productos actualizados: ${text_data}</h3>`)
-        if(res.errors.length > 0) content_text.append(`<h4>Productos no cargados: ${res.errors.length}, Se enviará un correo con los detalles de la carga.</h4>`)
+        if(res.errors && res.errors.length > 0) content_text.append(`<h4>Productos no cargados: ${res.errors.length}, Se enviará un correo con los detalles de la carga.</h4>`)
       },
       error: err => {
         console.log(err)
