@@ -102,7 +102,7 @@ class Products extends Controller
             while ($csvLine = fgetcsv($f, 1000, ",")) {
                 if ($line > 0 && $line < 3000) {
                     if ($csvLine[0] && $csvLine[1]) {
-                        if ($csvLine[2]) {
+                        if (is_numeric($csvLine[2])) {
                             $item_cuautitlan = [
                                 'id' => $csvLine[0],
                                 'erso_code' => $csvLine[1],
@@ -111,7 +111,7 @@ class Products extends Controller
                             ];
                             array_push($data, $item_cuautitlan);
                         }
-                        if ($csvLine[3]) {
+                        if (is_numeric($csvLine[3])) {
                             $item_tlalnepantla = [
                                 'id' => $csvLine[0],
                                 'erso_code' => $csvLine[1],
@@ -120,7 +120,7 @@ class Products extends Controller
                             ];
                             array_push($data, $item_tlalnepantla);
                         }
-                        if ($csvLine[4]) {
+                        if (is_numeric($csvLine[4])) {
                             $item_coacalco = [
                                 'id' => $csvLine[0],
                                 'erso_code' => $csvLine[1],

@@ -28,6 +28,8 @@ const UpdateStock = {
         content_text.css({ display: 'block' })
       },
       success: res => {
+        console.log(res)
+        return
         $('#btn-trigger-upload-file-stock').attr('disabled', false)
         stock_loader.css({ display: 'none' })
         let text_data = res.updateds
