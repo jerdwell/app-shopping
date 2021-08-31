@@ -24,7 +24,9 @@ branch = "{{ :branch }}"
     type= "light"
     local= true
     color= "dark"
+    branch = this.param.branch|capitalize 
     principal = false
+    category = this.param.category|capitalize 
     img= "cover_01.jpg"|media
 %}
 
