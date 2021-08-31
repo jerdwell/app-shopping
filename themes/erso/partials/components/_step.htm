@@ -1,8 +1,24 @@
-<div class="step bg-{{type != '' ? type : ''}} {{ principal ? 'step-principal' : null }}">
-  {% if img != '' %}
-  <img src="{{ img }}" alt="Refaccionarias ERSO" class="step-bg">
-  {% endif %}
-  <div class="step-text text-center">
-    <span data-aos="fade-up">{{ title }}</span>
-  </div>
+<div
+    class="step bg-{{type != '' ? type : ''}} {{ principal ? 'step-principal' : null }}"
+>
+    {% if img != '' %}
+    <img src="{{ img }}" alt="Refaccionarias ERSO" class="step-bg" />
+    {% endif %}
+    <div class="step-text text-center">
+        {% if branch and category or branch == "" %}
+        <span data-aos="fade-up">{{ title }}</span>
+
+        {% else %}
+
+        <div class="erso-titles">
+            <h1 data-aos="fade-up">
+                Refaccionaria en <span class="cap_branch">{{branch}}</span>
+            </h1>
+            <h2 data-aos="fade-up">
+                Catálogos de productos {{category}}
+                <span class="cap_branch">{{branch}}</span>
+            </h2>
+        </div>
+        {% endif %}
+    </div>
 </div>
