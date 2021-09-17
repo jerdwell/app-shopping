@@ -29,11 +29,9 @@ branch = "{{ :branch }}"
     category = this.param.category|capitalize 
     img= "cover_01.jpg"|media
 %}
-
 {% if (this.param.branch == '') %}
     {% component 'SelectBranch' %}
 {% endif %}
-
 {% if (this.param.category == '') and (this.param.branch != '') %}
     {% component 'ListCategories' %}
     <!-- {% partial 'components/products/_recommended' %} -->

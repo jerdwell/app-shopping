@@ -1,0 +1,130 @@
+{% set items = [
+    {url:'/amortiguador',category:'amortiguadores'},
+    {url:'/suspension',category:'suspensión'},
+    {url:'/embrague',category:'embrague'},
+    {url:'/frenos',category:'frenos'},
+    {url:'/traccion',category:'tracción'},
+    {url:'/direccion',category:'dirección'},
+    {url:'/soporte',category:'soportes'}] 
+%} 
+
+{% if branch =='cuautitlan-izcalli' %}
+<section class="branch-content">
+    <div class="branch-container">
+        <h2 class="text-center text-yellow">
+            Tienda de Refacciones en Cuautitlán Izcalli
+        </h2>
+        <hr class="hr-yellow" />
+
+        <p>
+            En Refaccionarias ERSO
+            <strong>Cuautitlán Izcalli</strong> encontrarás las mejores
+            refacciones para tu automóvil. Contamos con más de 20 años de
+            experiencia ofreciendo productos de calidad a nuestros clientes con
+            un servicio de reparto rápido, para que obtengas tus pedidos en el
+            mismo día. La Refaccionaria ERSO
+            <strong>Cuautitlán Izcalli</strong> cuenta con una amplia gama de
+            refacciones, donde estamos seguros que encontrarás la pieza que
+            necesites, con la mejor calidad y precio. Nuestros productos son
+            100% originales, no manejamos productos reacondicionados, para que
+            brindes el mejor servicio en tu taller mecánico y tus clientes estén
+            satisfechos.
+        </p>
+        <h2 class="text-center text-yellow">
+            Catalogó de refacciones Cuautitlán Izcalli
+        </h2>
+
+        <p>
+            En nuestra refaccionaria automotriz Izcalli encontrarás una amplia
+            gama de piezas de refacción, como
+            {%for item in items %}
+                <a class="text-info" href="../productos/{{branch}}{{item.url}}">{{item.category}}{{loop.last ? '.' : ','}}</a>
+            {% endfor%}
+        
+            Somos una de las mejores refaccionarias de
+            <strong>Cuautitlán Izcalli</strong>, ven y compruébalo. Tenemos el
+            servicio más rápido, pide tu pieza, cotiza en nuestra página y
+            recibe tu producto de inmediato. ¿Lo necesitas en tu taller para una
+            reparación urgente? Llámanos o cotiza en nuestra web en menos de 5
+            minutos y recibe tus pedidos el mismo día. Cientos de talleres de
+            Cuautitlán Izcalli nos respaldan. Ven y conócenos, compara precios y
+            verás que Refaccionaria ERSO Cuautitlán Izcalli es tu mejor opción.
+            Somos el número 1 en <strong>Refacciones en Izcalli</strong>. Ven y
+            compruébalo tú mismo.
+        </p>
+    </div>
+</section>
+{% endif %} {% if branch == 'tlalnepantla' %}
+<section  class="branch-content">
+    <div class="branch-container">
+        <h2 class="text-center text-yellow">Tienda de Refacciones en Tlanepantla</h2>
+        <hr class="hr-yellow" />
+
+       <p>
+        En Refaccionarias ERSO <strong>Tlalnepantla</strong> encontrarás las
+        mejores refacciones para tu automóvil. Contamos con más de 20 años de
+        experiencia ofreciendo productos de calidad a nuestros clientes con un
+        servicio de reparto rápido, para que obtengas tus pedidos en el mismo
+        día.
+       </p>
+
+        <h2 class="text-center text-yellow">Catalogó de Refacciones Tlanepantla</h2>
+
+    <p class="branch-p-ul">
+        En nuestra refaccionaria automotriz
+        <strong>Tlalnepantla</strong> encontrarás una amplia gama de piezas de
+        refacción, como:
+        <ul>
+            {%for item in items %}
+            <li><a class="text-info"  href="../productos/{{branch}}{{item.url}}">{{item.category}}</a></li>
+            {% endfor%}
+        </ul>
+    </p>
+
+      <p>
+        La Refaccionaria ERSO Tlalnepantla cuenta con una amplia gama de
+        refacciones, donde estamos seguros que encontrarás la pieza que
+        necesites, con la mejor calidad y precio. Nuestros productos son 100%
+        originales, no manejamos productos reacondicionados, para que brindes el
+        mejor servicio en tu taller mecánico y tus clientes estén satisfechos.
+        Somos una de las mejores refaccionarias de
+        <strong>Tlalnepantla</strong>, ven y compruébalo. Tenemos el servicio
+        más rápido, pide tu pieza, cotiza en nuestra página y recibe tu producto
+        de inmediato. ¿Lo necesitas en tu taller para una reparación urgente?
+        Llámanos o cotiza en nuestra web en menos de 5 minutos y recibe tus
+        pedidos el mismo día. Cientos de talleres de Tlalnepantla nos respaldan.
+        Ven y conócenos, compara precios y verás que Refaccionaria ERSO
+        Tlalnepantla es tu mejor opción. Somos el número 1 en
+        <strong>Refacciones en Tlalnepantla</strong>. Ven y compruébalo tú
+        mismo.
+      </p>
+    </div>
+</section>
+{% endif %}
+{%if branch == 'coacalco'%}
+<section class="branch-content">
+    <div class="branch-container">
+        <h2  class="text-center text-yellow"> Tienda de Refacciones en Coacalco </h2>
+        <hr class="hr-yellow" />
+
+        <p>En Refaccionarias ERSO <strong>Coacalco</strong> encontrarás las mejores refacciones para tu automóvil. Contamos con más de 20 años de experiencia ofreciendo productos de calidad a nuestros clientes con un servicio de reparto rápido, para que obtengas tus pedidos en el mismo día.
+ 
+            La Refaccionaria ERSO <strong>Coacalco</strong> cuenta con una amplia gama de refacciones, donde estamos seguros que encontrarás la pieza que necesites, con la mejor calidad y precio. Nuestros productos son 100% originales, no manejamos productos reacondicionados, para que brindes el mejor servicio en tu taller mecánico y tus clientes estén satisfechos.
+             
+            Somos una de las mejores refaccionarias de <strong>Coacalco</strong>, ven y compruébalo. Tenemos el servicio más rápido, pide tu pieza, cotiza en nuestra página y recibe tu producto de inmediato. ¿Lo necesitas en tu taller para una reparación urgente? Llámanos o cotiza en nuestra web en menos de 5 minutos y recibe tus pedidos el mismo día.
+            </p>
+<h2  class="text-center text-yellow"> Catalogó de Refacciones Coacalco </h2>
+
+<p class="branch-p-ul">En nuestra refaccionaria automotriz <strong>Coacalco</strong> encontrarás una amplia gama de piezas de refacción, como:</p>
+<ul>
+{%for item in items %}
+<li><a class="text-info"  href="../productos/{{branch}}{{item.url}}">{{item.category}}</a></li>
+{% endfor%}
+</ul>
+    <p> Cientos de talleres de Coacalco nos respaldan. Ven y conócenos, compara precios y verás que Refaccionaria ERSO Coacalco es tu mejor opción.
+     
+    <br/>Somos el número 1 en <strong>Refacciones en Coacalco</strong>. Ven y compruébalo tú mismo.</p>
+
+    </div>
+</section>
+{%endif%}
