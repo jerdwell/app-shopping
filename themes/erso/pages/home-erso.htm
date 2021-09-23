@@ -14,6 +14,10 @@ per_page = 5
 
 [SlideComponent]
 ==
+{%if branch == "" %}
+{% partial 'titles/_home' %}
+{%endif%}
+
 {% component 'SlideComponent' %}
 {%
   partial 'components/_step'
@@ -30,8 +34,7 @@ per_page = 5
 
 <!-- Content -->
 <div class="home-content bg-dark">
-  <h2 class="text-center"> TIENDA DE REFACCIONES EN LÍNEA </h2>
-
+  <h2 class="text-center text-yellow"> TIENDA DE REFACCIONES EN LÍNEA </h2>
 <p class="text-light">
   En <strong  class="text-yellow">Refaccionarias ERSO</strong> tenemos más de 20 años de experiencia en el mercado de las refacciones automotrices. Somos expertos en <strong class="text-yellow">amortiguadores, embragues, suspensión, dirección, frenos, embrague y tracción.</strong>
  

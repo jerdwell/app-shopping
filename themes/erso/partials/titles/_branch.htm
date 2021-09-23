@@ -1,0 +1,16 @@
+{% put title %} 
+  {%if category ==''%}
+    {%if branch == 'Tlalnepantla' %}
+    <title>Refacciones para auto en {{branch}} | Refaccionaria ERSO</title>
+    <meta name="¿Buscas refacciones para auto en Tlalnepantla? En ERSO tenemos justo lo que necesitas. Variedad de refacciones para todas las marcas." content>
+
+    {%elseif branch == "Coacalco" %}
+    <title>Busca refacciones para auto en {{branch}} | Refaccionaria ERSO</title>
+    <meta name="¿Necesitas refacciones para tu auto y estás cerca de Coacalco? En ERSO tenemos todo lo que estás buscando. ¡Visítanos!" content>
+
+    {% elseif branch == "Cuautitlan-izcalli"%}
+    <title>Refacciones en {{branch}} | Refaccionaria ERSO</title>
+    <meta name="Una gran variedad de refacciones para autos de todas las marcas en Cuautitlán Izcalli. En ERSO tenemos lo que tu auto necesita." content>
+    {%endif%}
+  {%endif%}
+{% endput %}
