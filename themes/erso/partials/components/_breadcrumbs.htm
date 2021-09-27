@@ -29,6 +29,6 @@
 {%elseif type == 'blog' %}
     <a class="text-info" href="/"><i class="fas fa-home"></i></a>
     / <a class="text-info" href="/blog">BLOG</a>
-    / <a class="text-info" href="/blog/post/{{post.title}}">{{post.title|upper}}</a>
+    / <a class="text-info" href="/blog/post/{{post.slug}}">{{post.title|upper}}</a>
 {%endif%}
 </section>
