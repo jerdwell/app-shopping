@@ -16,7 +16,7 @@
     / <a class="text-info" href="/productos">PRODUCTOS</a>
     {% if branch %} / 
     <a class="text-info" href="/productos/{{brach}}">{{branch|upper}}</a> /
-    <a class="text-info" href="/productos/{{product.category.category_slug}}">
+    <a class="text-info" href="/productos/{{branch}}/{{product.category.category_slug}}">
         {{product.category.category_name|upper}}
     </a>
     /
