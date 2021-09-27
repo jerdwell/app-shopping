@@ -29,6 +29,15 @@ branch = "{{ :branch }}"
     category = this.param.category|capitalize 
     img= "cover_01.jpg"|media
 %}
+{% partial 'components/_breadcrumbs'
+    branch = this.param.branch
+    category = this.param.category
+    model = this.param.model
+    shipowner = this.param.shipowner
+    year = this.param.year
+    brand = this.param.brand
+    type = 1
+%}
 {% if (this.param.branch == '') %}
     {% component 'SelectBranch' %}
 {% endif %}

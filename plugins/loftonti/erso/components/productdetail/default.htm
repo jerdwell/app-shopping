@@ -2,6 +2,17 @@
 {% set related = __SELF__.related %}
 {% set branch = __SELF__.branch %}
 
+{% partial 'components/_breadcrumbs'
+    branch = this.param.branch
+    category = this.param.category
+    model = this.param.model
+    shipowner = this.param.shipowner
+    year = this.param.year
+    brand = this.param.brand
+    id=this.param.id
+    type= 2
+    product= product
+%}
 
 <div class="single-product-container" style="background-image: url('{{ '/footer_03.png'|media }}');">
   <div class="single-product-image">
@@ -55,5 +66,7 @@
   color= "dark"
   img= "steps1.jpg"|media
 %}
+
+
 
 {% partial 'components/products/_list-products' list=related %}

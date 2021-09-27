@@ -1,0 +1,34 @@
+<section class="breadcrumbs">
+
+{% if type == 1%}
+    <a class="text-info" href="/"><i class="fas fa-home"></i></a> /
+    <a class="text-info" href="/productos">PRODUCTOS</a>
+    {% if branch %} /
+    <a class="text-info" href="/productos/{{branch}}">{{branch|upper}}</a> 
+    {% endif %} 
+    {% if category %} /
+    <a class="text-info" href="/{{branch}}/{{category}}">{{category|upper}}</a
+    >
+{% endif %} 
+
+{%elseif type == 2 %}
+    <a class="text-info" href="/"><i class="fas fa-home"></i></a>
+    / <a class="text-info" href="/productos">PRODUCTOS</a>
+    {% if branch %} / 
+    <a class="text-info" href="/productos/{{brach}}">{{branch|upper}}</a> /
+    <a class="text-info" href="/productos/{{product.category.category_slug}}">
+        {{product.category.category_name|upper}}
+    </a>
+    /
+    <a class="text-info" href="">{{product.product_name}}</a>
+    {% endif %} 
+{%elseif type == 3 %}
+    <a class="text-info" href="/"><i class="fas fa-home"></i></a>
+    / <a class="text-info" href="/{{page.slug}}">{{page.name}}</a>
+
+{%elseif type == 'blog' %}
+    <a class="text-info" href="/"><i class="fas fa-home"></i></a>
+    / <a class="text-info" href="/blog">BLOG</a>
+    / <a class="text-info" href="/blog/post/{{post.title}}">{{post.title|upper}}</a>
+{%endif%}
+</section>

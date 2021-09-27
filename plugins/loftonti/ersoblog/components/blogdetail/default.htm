@@ -12,6 +12,11 @@
     principal = true
     img = post.cover.path
 %}
+{% partial 'components/_breadcrumbs' 
+    type='blog'
+    posts = posts
+    post=post
+%}
 
 {{ post.content|raw }}
 

@@ -18,4 +18,8 @@ Posts = 9
   principal = true
   img = "cover_02.jpg"|media
 %}
+{% partial 'components/_breadcrumbs' 
+    type=3
+    page = {name:"BLOG",slug:"blog"}
+%}
 {% component 'MainBlog' %}
