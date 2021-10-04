@@ -1,6 +1,0 @@
-plugin:
-    name: 'loftonti.sockethandler::lang.plugin.name'
-    description: 'loftonti.sockethandler::lang.plugin.description'
-    author: LoftonTi
-    icon: oc-icon-adjust
-    homepage: ''
