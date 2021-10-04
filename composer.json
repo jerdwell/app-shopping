@@ -31,7 +31,7 @@
         "source": "https://github.com/octobercms/october"
     },
     "require": {
-        "php": ">=7.0.8",
+        "php": ">=7.4.0",
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "october/rain": "~1.0",
@@ -39,7 +39,7 @@
         "october/backend": "~1.0",
         "october/cms": "~1.0",
         "laravel/framework": "~5.5.40",
-        "wikimedia/composer-merge-plugin": "1.4.1",
+        "wikimedia/composer-merge-plugin": "dev-master",
         "barryvdh/laravel-dompdf": "^0.8.7"
     },
     "require-dev": {
@@ -72,7 +72,7 @@
     "config": {
         "preferred-install": "dist",
         "platform": {
-            "php": "7.0.8"
+            "php": "7.4.0"
         }
     },
     "minimum-stability": "dev",
