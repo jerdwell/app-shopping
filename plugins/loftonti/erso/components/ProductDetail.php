@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProductDetail extends ComponentBase
 {
-    public $product, $related;
+    public $product, $related,$branch;
     public function componentDetails()
     {
         return [
@@ -53,6 +53,7 @@ class ProductDetail extends ComponentBase
                 -> first();
             if(empty($product)) throw new \Exception('Este producto existe en esta sucursal');
             $this -> product = $product;
+            $this -> branch = $branch;
             if(count($product -> applications) > 0){
                 $this -> related = Products::whereHas('applications', function(Builder $q) use($product){
                     $q -> where('shipowner_id', $product -> applications[0] -> shipowner_id)

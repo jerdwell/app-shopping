@@ -1,3 +1,13 @@
+{%if branch != ''%}
+    {% partial 'titles/_branch' %}
+{%endif%}
+
+{% if category != ''%}
+{% partial 'titles/_category' 
+branch = this.param.branch 
+category = this.param.category %}
+{%endif%}
+
 <div
     class="step bg-{{type != '' ? type : ''}} {{ principal ? 'step-principal' : null }}"
 >

@@ -41,7 +41,14 @@ function onStart(){
         </picture>
         {% if slide_item['slide_text'] != null %}
         <div class="slide-item-title">
-          <h3 class="slide-item-title-text">{{ slide_item['slide_text'] }}</h3>
+          {% if loop.first %}
+         <div class="slide-item-title-text">
+          <h1 class="slide-item-title-text-first">{{ slide_item['slide_text'] }}</h1>
+          <p class="slide-item-title-text-p"> Conoce nuestros productos y cotiza rápidamente. </p>
+         </div>
+          {% else %}
+          <p class="slide-item-title-text">{{ slide_item['slide_text'] }}</p>
+          {%endif%}
         </div>
         {% endif %}
       </div>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ this.page.title }}</title>
-  <meta name="description" content="{{this.page.meta_description}}">
+    {% placeholder title %}
+  <meta name="facebook-domain-verification" content="4ggkkjcq6dpv1lijmefuss0jvnlynf" />
   <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="{{ 'assets/img/brand/favicon.png'|theme }}">
   <link rel="stylesheet" href="{{ [
@@ -12,6 +12,31 @@
     'assets/fonts/open-iconic/font/css/open-iconic-bootstrap.css',
     'assets/fontawesome/css/all.css'
   ]|theme }}">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-207275747-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-207275747-1');
+  </script>
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '396369158524902');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=396369158524902&ev=PageView&noscript=1"
+    /></noscript>
+  <!-- End Facebook Pixel Code -->
 </head>
 <body>
 

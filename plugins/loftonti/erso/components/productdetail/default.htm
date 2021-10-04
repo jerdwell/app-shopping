@@ -1,5 +1,18 @@
 {% set product = __SELF__.product %}
 {% set related = __SELF__.related %}
+{% set branch = __SELF__.branch %}
+
+{% partial 'components/_breadcrumbs'
+    branch = this.param.branch
+    category = this.param.category
+    model = this.param.model
+    shipowner = this.param.shipowner
+    year = this.param.year
+    brand = this.param.brand
+    id=this.param.id
+    type= 2
+    product= product
+%}
 
 <div class="single-product-container" style="background-image: url('{{ '/footer_03.png'|media }}');">
   <div class="single-product-image">
@@ -12,7 +25,7 @@
     <h3 class="text-yellow">${{ product.public_price|number_format(2) }}</h3>
     <h5 class="text-light">Marca: {{ product.brand.brand_name }}</h5>
     <p class="text-light">Código: {{ product.erso_code }}</p>
-    <p class="text-light">Categoría: <a class="text-info" href="/productos/{{ product.category.category_slug }}">{{ product.category.category_name }}</a></p>
+    <p class="text-light">Categoría: <a class="text-info" href="/productos/{{branch}}/{{ product.category.category_slug }}">{{ product.category.category_name }}</a></p>
     <p class="text-light">Aplicación: {{ product.product_description|raw }}</p>
     <hr class="border-light">
     <product-handler :product="{{ product }}"></product-handler>
@@ -53,5 +66,7 @@
   color= "dark"
   img= "steps1.jpg"|media
 %}
+
+
 
 {% partial 'components/products/_list-products' list=related %}
