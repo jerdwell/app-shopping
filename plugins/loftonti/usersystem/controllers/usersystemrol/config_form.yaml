@@ -1,0 +1,10 @@
+name: UserSystemRol
+form: $/loftonti/usersystem/models/usersystemrol/fields.yaml
+modelClass: LoftonTi\Usersystem\Models\UserSystemRol
+defaultRedirect: loftonti/usersystem/usersystemrol
+create:
+    redirect: 'loftonti/usersystem/usersystemrol/update/:id'
+    redirectClose: loftonti/usersystem/usersystemrol
+update:
+    redirect: loftonti/usersystem/usersystemrol
+    redirectClose: loftonti/usersystem/usersystemrol

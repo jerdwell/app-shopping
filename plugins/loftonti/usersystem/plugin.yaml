@@ -1,0 +1,24 @@
+plugin:
+    name: 'loftonti.usersystem::lang.plugin.name'
+    description: 'loftonti.usersystem::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-users
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'Usuarios del sistema'
+        url: loftonti/usersystem/usersystem
+        icon: icon-desktop
+        sideMenu:
+            side-menu-item3:
+                label: 'Usuarios del sistema'
+                url: loftonti/usersystem/usersystem
+                icon: icon-users
+            side-menu-item:
+                label: Roles
+                url: loftonti/usersystem/usersystemrol
+                icon: icon-key
+            side-menu-item2:
+                label: Móulos
+                url: loftonti/usersystem/usersystemmodule
+                icon: icon-sitemap

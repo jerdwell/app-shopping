@@ -1,0 +1,14 @@
+tabs:
+    fields:
+        module_name:
+            label: Módulo
+            span: auto
+            required: 1
+            type: text
+            tab: 'Tab 1'
+        description:
+            label: Descripción
+            size: ''
+            span: auto
+            type: richeditor
+            tab: 'Tab 1'

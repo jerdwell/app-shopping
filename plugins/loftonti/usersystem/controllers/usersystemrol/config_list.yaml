@@ -1,0 +1,12 @@
+list: $/loftonti/usersystem/models/usersystemrol/columns.yaml
+modelClass: LoftonTi\Usersystem\Models\UserSystemRol
+title: UserSystemRol
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'loftonti/usersystem/usersystemrol/update/:id'

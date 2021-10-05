@@ -8,3 +8,9 @@
 </ul>
 
 <p>Proyect developed by Eduardo Navarrete Erdwell</p>
+
+# Composer Dependencies
+1. [Library to handle JWT](https://github.com/firebase/php-jwt)
+
+# Frontend Dependencies
+1. [Laravel echo to handle websocket in frontend](https://www.npmjs.com/package/laravel-echo)

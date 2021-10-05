@@ -6,7 +6,7 @@ plugin:
     homepage: ''
 navigation:
     main-menu-item:
-        label: Usuarios
+        label: Clientes
         url: loftonti/users/users
         icon: icon-users
         permissions:

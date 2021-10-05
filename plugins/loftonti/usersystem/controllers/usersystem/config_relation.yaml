@@ -1,0 +1,10 @@
+rol:
+    label: Roles
+    view:
+        form: $/loftonti/usersystem/models/usersystemrol/fields.yaml
+        toolbarButtons: 
+          link: "Asignar rol"
+          unlink: "Quitar rol"
+    manage:
+        form: $/loftonti/usersystem/models/usersystemrol/fields.yaml
+        list: $/loftonti/usersystem/models/usersystemrol/columns.yaml

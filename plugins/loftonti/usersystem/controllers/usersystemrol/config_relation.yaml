@@ -1,0 +1,27 @@
+modules:
+    label: Módulo
+    view:
+        list: $/loftonti/usersystem/models/usersystemmodule/columns_rol_pivot.yaml
+        toolbarButtons:
+          link: Asignar
+          unlink: Quitar
+    manage:
+        list: $/loftonti/usersystem/models/usersystemmodule/columns.yaml
+    pivot:
+        form:
+            fields:
+                pivot[create]:
+                    label: Crear
+                    type: switch
+                    default: true
+                pivot[read]:
+                    label: Leer
+                    type: switch
+                    default: true
+                pivot[update]:
+                    label: Actualizar
+                    type: switch
+                    default: true
+                pivot[delete]:
+                    label: Eliminar
+                    type: switch

@@ -1,0 +1,9 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    rol_name:
+        label: Rol
+        type: text
+        searchable: true

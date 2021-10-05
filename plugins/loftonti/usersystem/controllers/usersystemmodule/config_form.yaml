@@ -1,0 +1,10 @@
+name: UserSystemModule
+form: $/loftonti/usersystem/models/usersystemmodule/fields.yaml
+modelClass: LoftonTi\Usersystem\Models\UserSystemModule
+defaultRedirect: loftonti/usersystem/usersystemmodule
+create:
+    redirect: 'loftonti/usersystem/usersystemmodule/update/:id'
+    redirectClose: loftonti/usersystem/usersystemmodule
+update:
+    redirect: loftonti/usersystem/usersystemmodule
+    redirectClose: loftonti/usersystem/usersystemmodule

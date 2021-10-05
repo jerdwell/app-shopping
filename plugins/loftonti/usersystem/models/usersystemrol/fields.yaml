@@ -1,0 +1,11 @@
+fields:
+    rol_name:
+        label: Rol
+        span: full
+        required: 1
+        type: text
+    description:
+        label: Descripción
+        size: ''
+        span: full
+        type: richeditor

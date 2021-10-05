@@ -1,0 +1,20 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_usersystem_roles'
+    - builder_table_create_loftonti_usersystem_roles.php
+1.0.3:
+    - 'Created table loftonti_usersystem_user'
+    - builder_table_create_loftonti_usersystem_user.php
+1.0.4:
+    - 'Created table loftonti_usersystem_modules'
+    - builder_table_create_loftonti_usersystem_modules.php
+1.0.5:
+    - 'Created table loftonti_usersystem_rol_module_permissions'
+    - builder_table_create_loftonti_usersystem_rol_module_permissions.php
+1.0.6:
+    - 'Updated table loftonti_usersystem_roles - add fiel slug to rol table'
+    - builder_table_update_loftonti_usersystem_roles.php
+1.0.7:
+    - 'Updated table loftonti_usersystem_modules - add field slug to module table'
+    - builder_table_update_loftonti_usersystem_modules.php

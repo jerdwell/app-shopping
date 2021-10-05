@@ -1,0 +1,17 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    firstname:
+        label: Nombre
+        type: text
+        searchable: true
+    lastname:
+        label: Apellidos
+        type: text
+        searchable: true
+    email:
+        label: Correo
+        type: text
+        searchable: true

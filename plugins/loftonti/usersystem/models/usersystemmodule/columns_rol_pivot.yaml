@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: Id
+        type: number
+    module_name:
+        label: Módulo
+        type: text
+    pivot[create]:
+        label: Crear
+        type: switch
+    pivot[read]:
+        label: Leer
+        type: switch
+    pivot[update]:
+        label: Actualizar
+        type: switch
+    pivot[delete]:
+        label: Eliminar
+        type: switch

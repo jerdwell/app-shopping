@@ -1,0 +1,23 @@
+fields:
+    firstname:
+        label: Nombre(s)
+        span: auto
+        required: 1
+        type: text
+    lastname:
+        label: Apellidos
+        span: auto
+        required: 1
+        type: text
+    email:
+        label: Correo
+        span: auto
+        required: 1
+        type: text
+    password:
+        label: Contraseña
+        span: auto
+        required: 1
+        context:
+            - create
+        type: password

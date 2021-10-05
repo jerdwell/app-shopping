@@ -1,0 +1,7 @@
+columns:
+    id:
+        label: Id
+        type: number
+    module_name:
+        label: Módulo
+        type: text
