@@ -3,8 +3,18 @@ rol:
     view:
         form: $/loftonti/usersystem/models/usersystemrol/fields.yaml
         toolbarButtons: 
-          link: "Asignar rol"
-          unlink: "Quitar rol"
+            link: "Asignar rol"
+            unlink: "Quitar rol"
     manage:
         form: $/loftonti/usersystem/models/usersystemrol/fields.yaml
         list: $/loftonti/usersystem/models/usersystemrol/columns.yaml
+branches:
+    label: Sucursales
+    view: 
+        list: $/loftonti/erso/models/branches/columns.yaml
+        toolbarButtons: 
+            link: "Asignar sucursal"
+            unlink: "Quitar sucursal"
+    manage:
+        list: $/loftonti/erso/models/branches/columns.yaml
+        form: $/loftonti/erso/models/branches/fields.yaml

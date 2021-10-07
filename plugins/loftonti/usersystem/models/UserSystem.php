@@ -70,5 +70,17 @@ class UserSystem extends Model
             'LoftonTi\Usersystem\Models\UserSystemRol'
         ]
     ];
+    
+    /**
+     * @var array
+     */
+    public $belongsToMany = [
+        'branches' => [
+            'Loftonti\Erso\Models\Branches',
+            'table' => 'loftonti_usersystem_user_branches',
+            'key' => 'user_id',
+            'otherKey' => 'branch_id'
+        ]
+    ];
 
 }

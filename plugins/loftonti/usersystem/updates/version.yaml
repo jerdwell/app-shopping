@@ -21,3 +21,6 @@
 1.0.8:
     - 'Updated table loftonti_usersystem_user - rename email field to username'
     - builder_table_update_loftonti_usersystem_user.php
+1.0.9:
+    - 'Created table loftonti_usersystem_user_branches - create piivot table for relation user and branch'
+    - builder_table_create_loftonti_usersystem_user_branches.php

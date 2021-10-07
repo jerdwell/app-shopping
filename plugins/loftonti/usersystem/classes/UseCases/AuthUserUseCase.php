@@ -25,7 +25,7 @@ class AuthUserUseCase
   /**
    * @var object
    */
-  private $rol;
+  private $rol, $branches;
 
   public function __construct(string $username, string $password)
   {
@@ -77,12 +77,14 @@ class AuthUserUseCase
       $user -> rol;
       $user -> rol -> makeHidden(['description', 'deleted_at', 'updated_at', 'created_at']);
       $user -> rol -> modules;
+      $user -> branches;
       $user -> rol -> modules -> makeHidden(['description', 'created_at', 'updated_at', 'deleted_at', 'id']);
       $this -> rol = $user -> rol;
       $this -> name = $user -> firstname . ' ' . $user -> lastname;
       $this -> sk = $user -> sk;
       $this -> pk = $user -> pk;
       $this -> id = $user -> id;
+      $this -> branches = $user -> branches;
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -91,6 +93,11 @@ class AuthUserUseCase
   public function getRol(): object
   {
     return $this -> rol;
+  }
+  
+  public function getBranches(): object
+  {
+    return $this -> branches;
   }
 
   public function getName(): string
