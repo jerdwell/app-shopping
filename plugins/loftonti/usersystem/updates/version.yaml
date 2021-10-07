@@ -18,3 +18,6 @@
 1.0.7:
     - 'Updated table loftonti_usersystem_modules - add field slug to module table'
     - builder_table_update_loftonti_usersystem_modules.php
+1.0.8:
+    - 'Updated table loftonti_usersystem_user - rename email field to username'
+    - builder_table_update_loftonti_usersystem_user.php

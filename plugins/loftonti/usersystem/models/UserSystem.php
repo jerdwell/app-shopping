@@ -60,7 +60,6 @@ class UserSystem extends Model
         $this -> password = Hash::make($this -> password);
         $this -> sk = Str::random(32);
         $this -> pk = Str::random(32);
-        throw new \Exception($this -> password);
     }
 
     /**

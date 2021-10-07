@@ -11,7 +11,7 @@ columns:
         label: Apellidos
         type: text
         searchable: true
-    email:
-        label: Correo
+    username:
+        label: Usuario
         type: text
         searchable: true
