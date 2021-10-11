@@ -65,6 +65,13 @@ class UserSystem extends Model
     /**
      * @var array
      */
+    public $attachOne = [
+        'avatar' => ['System\Models\File', 'public' => true]
+    ];
+    
+    /**
+     * @var array
+     */
     public $belongsTo = [
         'rol' => [
             'LoftonTi\Usersystem\Models\UserSystemRol'

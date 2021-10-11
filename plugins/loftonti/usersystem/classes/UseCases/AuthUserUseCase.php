@@ -25,7 +25,7 @@ class AuthUserUseCase
   /**
    * @var object
    */
-  private $rol, $branches;
+  private $rol, $branches, $avatar;
 
   public function __construct(string $username, string $password)
   {
@@ -78,13 +78,16 @@ class AuthUserUseCase
       $user -> rol -> makeHidden(['description', 'deleted_at', 'updated_at', 'created_at']);
       $user -> rol -> modules;
       $user -> branches;
+      $user -> branches;
       $user -> rol -> modules -> makeHidden(['description', 'created_at', 'updated_at', 'deleted_at', 'id']);
+      $user -> avatar;
       $this -> rol = $user -> rol;
       $this -> name = $user -> firstname . ' ' . $user -> lastname;
       $this -> sk = $user -> sk;
       $this -> pk = $user -> pk;
       $this -> id = $user -> id;
       $this -> branches = $user -> branches;
+      $this -> avatar = $user -> avatar;
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -118,6 +121,11 @@ class AuthUserUseCase
   public function getId(): int
   {
     return $this -> id;
+  }
+  
+  public function getAvatar()
+  {
+    return $this -> avatar;
   }
 
 }

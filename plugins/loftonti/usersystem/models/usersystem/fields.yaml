@@ -21,3 +21,14 @@ fields:
         context:
             - create
         type: password
+    avatar:
+        label: Avatar
+        mode: image
+        imageWidth: '100'
+        imageHeight: '100'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

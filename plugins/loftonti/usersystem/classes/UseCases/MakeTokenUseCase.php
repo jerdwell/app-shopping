@@ -42,7 +42,8 @@ class MakeTokenUseCase extends AuthUserUseCase
         'id' => $this -> getId(),
         'name' => $this -> getName(),
         'rol' => $this -> getRol(),
-        'branches' => $this -> getBranches()
+        'branches' => $this -> getBranches(),
+        'avatar' => $this -> getAvatar()
       ];
     } catch (\Throwable $th) {
       throw $th;
