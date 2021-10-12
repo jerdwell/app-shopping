@@ -2,8 +2,15 @@
 {% set related = __SELF__.related %}
 {% set branch = __SELF__.branch %}
 
+{% set branches = ['cuautitlan-izcalli','tlalnepantla','coacalco'] %}
+{% set url = url_current() %}
+{% set current = '' %}
+{% for b in branches|filter(item => item in url ? item :'') %}
+{% set current = b%}
+{%endfor%}
+
 {% partial 'components/_breadcrumbs'
-    branch = this.param.branch
+    branch = this.param.branch ? this.param.branch : current
     category = this.param.category
     model = this.param.model
     shipowner = this.param.shipowner
@@ -18,7 +25,6 @@
   <div class="single-product-image">
     <img src="/storage/app/media{{ product.product_cover }}" alt="">
   </div>
-
   <div class="single-product-data">
     <h4 class="text-info">{{ product.product_name }}</h4>
     <hr class="border-info">
