@@ -58,6 +58,17 @@ class Branches extends Model
     /**
      * @var array belongsToMany set the relationships into the model
      */
+    public $hasMany = [
+        'quotations' => [
+            'LoftonTi\Quotations\Models\Quotations',
+            'key' => 'branch',
+            'otherKey' => 'id'
+        ]
+    ];
+    
+    /**
+     * @var array belongsToMany set the relationships into the model
+     */
     public $belongsToMany = [
         'products' => [
             'Loftonti\Erso\Models\Products',

@@ -111,7 +111,7 @@ class Quotations extends Model
      */
 
     public $hasOne = [
-        'quotations' => [
+        'users' => [
             'LoftonTi\Users\Models\Users',
             'key' => 'user_id',
             'otherKey' => 'id'
