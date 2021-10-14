@@ -2,11 +2,11 @@
 {% set related = __SELF__.related %}
 {% set branch = __SELF__.branch %}
 
-{% set branches = ['cuautitlan-izcalli','tlalnepantla','coacalco'] %}
+
 {% set url = url_current() %}
 {% set current = '' %}
-{% for b in branches|filter(item => item in url ? item :'') %}
-{% set current = b%}
+{% for b in product.branches |filter(item => item in url ? item :'') %}
+{% set current = b %}
 {%endfor%}
 
 {% partial 'components/_breadcrumbs'
@@ -20,7 +20,7 @@
     type= 2
     product= product
 %}
-
+{%set selectedbranch = branch? branch : current %}
 <div class="single-product-container" style="background-image: url('{{ '/footer_03.png'|media }}');">
   <div class="single-product-image">
     <img src="/storage/app/media{{ product.product_cover }}" alt="">
@@ -31,7 +31,7 @@
     <h3 class="text-yellow">${{ product.public_price|number_format(2) }}</h3>
     <h5 class="text-light">Marca: {{ product.brand.brand_name }}</h5>
     <p class="text-light">Código: {{ product.erso_code }}</p>
-    <p class="text-light">Categoría: <a class="text-info" href="/productos/{{branch}}/{{ product.category.category_slug }}">{{ product.category.category_name }}</a></p>
+    <p class="text-light">Categoría: <a class="text-info" href="/productos/{{selectedbranch}}/{{ product.category.category_slug }}">{{ product.category.category_name }}</a></p>
     <p class="text-light">Aplicación: {{ product.product_description|raw }}</p>
     <hr class="border-light">
     <product-handler :product="{{ product }}"></product-handler>

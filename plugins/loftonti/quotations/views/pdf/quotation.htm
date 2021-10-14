@@ -17,7 +17,7 @@
   <table style="background-color: #f8f9fa; margin: 0; padding: 0; width: 100%;">
     <thead>
       <tr>
-        <th style="background-color: #880F04; color: white; text-align: center;" colspan="5">
+        <th style="background-color: #000; color: white; text-align: center;" colspan="5">
           <div style="text-align: center; width: 110px; display: inline-block; vertical-align: middle;">
             <img src="{{ logo }}" style="width: 100px; margin:10px 0; padding:0;" alt="logo erso">
           </div>
@@ -62,7 +62,7 @@
         <table style="width: 50%;">
           <thead>
             <tr>
-              <th style="text-align: left; color: #880F04;">Cliente</th>
+              <th style="text-align: left; color: #000;">Cliente</th>
             </tr>
           </thead>
           <tbody>
@@ -80,7 +80,7 @@
   {% if data_quotation.shipping_contact is not null %}
       <div style="display: inline-block; vertical-align: top; width: 65%;">
         <div style="width: 100%;">
-          <div style="color: #880F04; text-align: center;"><b>Dirección de entrega</b></div>
+          <div style="color: #; text-align: center;"><b>Dirección de entrega</b></div>
           <div style="width: 100%; padding: 10px;">
             <div style="display: inline-block; text-align: center; vertical-align: top;">{{ data_quotation.shipping_address[0].value }} colonia {{ data_quotation.shipping_address[1].value }}, C.P. {{ data_quotation.shipping_address[2].value }}, delegación {{ data_quotation.shipping_address[4].value }}, {{ data_quotation.shipping_address[5].value }}, {{ data_quotation.shipping_address[3].value }}</div>
           </div>
@@ -90,12 +90,12 @@
   {% endif %}
   
   <table style="margin-top: 20px; width: 100%;">
-    <thead style="background-color: #880F04; color: white; margin-top: 20px;">
+    <thead style="background-color: #000; color: white; margin-top: 20px;">
       <tr>
         <th style="text-align: center;" colspan="4">Productos</th>
       </tr>
     </thead>
-    <thead style="background-color: #ff9500; color: white">
+    <thead style="background-color: #C90D2B; color: white">
       <tr>
         <th style="padding: 5px;">Producto</th>
         <th style="padding: 5px; text-align: center;">Cantidad</th>
@@ -122,12 +122,12 @@
         <td></td>
         <td></td>
         <td></td>
-        <td style="background-color: #880F04; color: white; font-size: 1.3em; text-align: right;">Total: <b>${{ data_quotation.amount|number_format(2,'.', ',') }}</td>
+        <td style="background-color: #000; color: white; font-size: 1.3em; text-align: right;">Total: <b>${{ data_quotation.amount|number_format(2,'.', ',') }}</td>
       </tr>
     </tbody>
   </table>
   {% if data_quotation.shipping_contact is not null %}
-  <h5 style="color: #880F04; text-align: center;">Cotización sujeta a cambios sin previo aviso.</h5>
+  <h5 style="color: #000; text-align: center;">Cotización sujeta a cambios sin previo aviso.</h5>
   {% endif %}
   
 </body>
