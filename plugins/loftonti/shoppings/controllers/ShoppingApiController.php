@@ -4,6 +4,7 @@ namespace LoftonTi\Shoppings\Controllers;
 
 use Illuminate\Http\Request;
 use LoftonTi\Shoppings\Classes\UseCases\CreateOrderUseCase;
+use LoftonTi\Shoppings\Classes\UseCases\GetOrderUseCase;
 
 class ShoppingApiController
 {
@@ -22,6 +23,22 @@ class ShoppingApiController
         $request -> shopping_contact,
         $request -> branch_id);
       return $use_case();
+    } catch (\Throwable $th) {
+      return response()
+        -> json([
+          'error' => $th -> getMessage()
+        ], 400);
+    }
+  }
+
+  public function getOrder(Request $request, $order_id)
+  {
+    try {
+      $order = new GetOrderUseCase(
+        $order_id,
+        $request -> data_user ? $request -> data_user['id'] : null
+      );
+      return $order -> getOrderData();
     } catch (\Throwable $th) {
       return response()
         -> json([
