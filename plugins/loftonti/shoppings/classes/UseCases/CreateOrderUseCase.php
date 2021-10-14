@@ -54,7 +54,8 @@ class CreateOrderUseCase
       $this -> setUsertype();
       $this -> prepareOrderItems();
       $this -> setAmount();
-      return $this -> createOrder();
+      if($this -> type === 'order') return $this -> createOrder();
+      if($this -> type === 'quotation') return $this -> createQuotation();
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -78,6 +79,18 @@ class CreateOrderUseCase
         return $order;
       });
       return $order;
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  private function createQuotation()
+  {
+    try {
+      $order_data = $this -> getOrderData();
+      $order_data['shopping_contact'] = $this -> shopping_contact;
+      $order_data['products'] = $this -> items_quotation;
+      return $order_data;
     } catch (\Throwable $th) {
       throw $th;
     }
