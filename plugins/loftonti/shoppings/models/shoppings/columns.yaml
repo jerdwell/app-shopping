@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    created_at:
+        label: 'Fecha de creación'
+        type: datetime
+        searchable: true
+        sortable: true

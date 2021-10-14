@@ -1,0 +1,20 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_shoppings_shopping'
+    - builder_table_create_loftonti_shoppings_shopping.php
+1.0.3:
+    - 'Created table loftonti_shoppings_shopping_products'
+    - builder_table_create_loftonti_shoppings_shopping_products.php
+1.0.4:
+    - 'Updated table loftonti_shoppings_shopping'
+    - builder_table_update_loftonti_shoppings_shopping.php
+1.0.5:
+    - 'Updated table loftonti_shoppings_shopping_products'
+    - builder_table_update_loftonti_shoppings_shopping_products.php
+1.0.6:
+    - 'Created table loftonti_shoppings_shopping_contact'
+    - builder_table_create_loftonti_shoppings_shopping_contact.php
+1.0.7:
+    - 'Updated table loftonti_shoppings_shopping_contact add id field'
+    - builder_table_update_loftonti_shoppings_shopping_contact.php

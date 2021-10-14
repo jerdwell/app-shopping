@@ -1,8 +1,8 @@
 plugin:
-    name: 'loftonti.quotations::lang.plugin.name'
+    name: Cotizaciones
     description: 'loftonti.quotations::lang.plugin.description'
     author: LoftonTi
-    icon: oc-icon-files-o
+    icon: oc-icon-shopping-cart
     homepage: ''
 navigation:
     main-menu-item:

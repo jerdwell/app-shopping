@@ -1,0 +1,11 @@
+plugin:
+    name: 'loftonti.shoppings::lang.plugin.name'
+    description: 'loftonti.shoppings::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-shopping-cart
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Pedidos
+        url: loftonti/shoppings/shoppings
+        icon: icon-shopping-cart

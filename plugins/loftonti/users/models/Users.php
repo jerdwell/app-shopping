@@ -1,6 +1,5 @@
 <?php namespace LoftonTi\Users\Models;
 
-use Exception;
 use Model;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;

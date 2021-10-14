@@ -36,7 +36,6 @@ class UsersAuth extends Model
 
   public static function validRequest($request)
   {
-
     $token = $request -> header('Authorization');
     if(!$token) throw new \Exception('Credenciales inválidas');
     $token_decripted =  Crypt::decryptString(str_replace('Bearer ', '', $token));
