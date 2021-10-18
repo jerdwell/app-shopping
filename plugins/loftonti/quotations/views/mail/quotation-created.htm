@@ -1,8 +1,8 @@
 <div>
-    <img src="{{'/themes/erso/assets/img/brand/brand_logo_erso_color.png'|app}}" style="width: 160px; display: inline-block; vertical-align: middle; margin-right: 20px;" alt="logo erso">
+    <img src="{{'/themes/erso/assets/img/brand/logo_web_erso_white.png'|app}}" style="width: 160px; display: inline-block; vertical-align: middle; margin-right: 20px;" alt="logo erso">
     <h1 style="width: 200px; display: inline-block; vertical-align: middle;">Nueva orden de compra</h1>
 </div>
-<h2 style="color: #880F04;">¡Hola refaccionarias ERSO!</h2>
+<h2 style="color: #000;">¡Hola refaccionarias ERSO!</h2>
 <p>Es un placer informarte que se ha solicitado una nueva órden por parte del usuario {{ name }}, a continuación te dejamos sus datos de contacto:</p>
 <p><b>Número de órden: {{ id }}</b></p>
 <ul>
@@ -39,7 +39,7 @@
             <td style="text-align: center;"><small>${{ (item.price * item.quantity)|number_format(2,'.', ',') }}</small></td>
         </tr>
         {% endfor %}
-        <tr style="background-color: #ff9500; color: white;">
+        <tr style="background-color: #C90D2B; color: white;">
             <td colspan="4" style="text-align: right;">Total de la compra: ${{ amount|number_format(2,'.', ',') }}</td>
         </tr>
     </tbody>
