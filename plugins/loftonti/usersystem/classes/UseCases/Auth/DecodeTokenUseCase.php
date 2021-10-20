@@ -1,6 +1,6 @@
 <?php
 
-namespace Loftonti\Usersystem\Classes\UseCases;
+namespace Loftonti\Usersystem\Classes\UseCases\Auth;
 
 use LoftonTi\Usersystem\Models\UserSystem;
 use Firebase\JWT\JWT;

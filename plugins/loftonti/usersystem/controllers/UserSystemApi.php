@@ -3,7 +3,7 @@
 namespace LoftonTI\UserSystem\Controllers;
 
 use Illuminate\Http\Request;
-use LoftonTI\Usersystem\Classes\UseCases\MakeTokenUseCase;
+use LoftonTI\Usersystem\Classes\UseCases\Auth\MakeTokenUseCase;
 
 class UserSystemApi
 {

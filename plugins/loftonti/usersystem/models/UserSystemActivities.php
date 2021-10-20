@@ -8,8 +8,25 @@ use Model;
 class UserSystemActivities extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
 
+    /**
+     * use timestapms created_at and updated_at
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
+     * Data to fillable
+     * @var array
+     */
+    public $fillable = [
+        'user_id',
+        'type',
+        'request',
+        'response',
+        'response_code'
+    ];
+    
     /**
      * @var string The database table used by the model.
      */
@@ -19,5 +36,12 @@ class UserSystemActivities extends Model
      * @var array Validation rules
      */
     public $rules = [
+    ];
+
+    /**
+     * @var array
+     */
+    public $belongsTo = [
+        'user' => 'LoftonTi\Usersystem\Models\UserSystem'
     ];
 }

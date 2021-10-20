@@ -3,7 +3,6 @@
 namespace LoftonTi\Usersystem\Classes\UseCases\Products;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 
 class SyncProductStockUseCase
 {
@@ -32,7 +31,7 @@ class SyncProductStockUseCase
    * Main functon to update items
    * @method
    */
-  public function __invoke(): void
+  public function __invoke(): array
   {
     try {
       $updateds = 0;
@@ -54,14 +53,11 @@ class SyncProductStockUseCase
           $error_data[] = ['error' => $th -> getMessage()];
         }
       }
-      Mail::send('loftonti.usersystem::mail.sync-databases-mail', [
+      return [
         'updateds' => $updateds,
         'errors' => $errors,
         'error_data' => $error_data
-      ], function ($message) {
-        $message->to('erdwell@gmail.com')
-          ->subject('Sincronización de productos.');
-      });
+      ];
     } catch (\Throwable $th) {
       throw $th;
     }

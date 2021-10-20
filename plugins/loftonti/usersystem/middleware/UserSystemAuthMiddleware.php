@@ -4,7 +4,7 @@ namespace LoftonTi\Usersystem\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Loftonti\Usersystem\Classes\UseCases\DecodeTokenUseCase;
+use Loftonti\Usersystem\Classes\UseCases\Auth\DecodeTokenUseCase;
 
 class UserSystemAuthMiddleware
 {

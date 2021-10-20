@@ -1,10 +1,24 @@
 <h3>Se ha terminado la sincronización de las bases de datos local > cloud, los resultados de la sincronización son los siguientes.</h3>
 
-<h4>Productos actualizados: {{ updateds }}</h4>
-<h4>Errores en la actualización: {{ errors }}</h4>
-{% if errors > 0 %}
+<h4>Productos actualizados: {{ products_updateds }}</h4>
+<h4>Errores en la actualización productos: {{ products_errors }}</h4>
+<hr>
+<h4>Productos actualizados en stock: {{ stock_updateds }}</h4>
+<h4>Errores en la actualización de stock: {{ stock_errors }}</h4>
+<hr>
+{% if products_errors > 0 %}
 <ul>
-  {% for error in errors %}
+  <li><b>Errores en actualización de productos.</b></li>
+  {% for error in products_errors %}
+  <li>{{ error.error }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if stock_errors > 0 %}
+<ul>
+  <li><b>Errores en actualización de stock.</b></li>
+  {% for error in stock_errors %}
   <li>{{ error.error }}</li>
   {% endfor %}
 </ul>

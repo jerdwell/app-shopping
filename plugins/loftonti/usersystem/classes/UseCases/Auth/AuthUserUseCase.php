@@ -1,6 +1,6 @@
 <?php
 
-namespace LoftonTI\Usersystem\Classes\UseCases;
+namespace LoftonTI\Usersystem\Classes\UseCases\Auth;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

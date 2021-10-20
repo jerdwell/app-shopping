@@ -1,8 +1,8 @@
 <?php
 
-namespace Loftonti\Usersystem\Classes\UseCases;
+namespace Loftonti\Usersystem\Classes\UseCases\Auth;
 
-use LoftonTI\Usersystem\Classes\UseCases\AuthUserUseCase;
+use LoftonTI\Usersystem\Classes\UseCases\Auth\AuthUserUseCase;
 use Firebase\JWT\JWT;
 
 class MakeTokenUseCase extends AuthUserUseCase

@@ -2,8 +2,10 @@
 
 namespace LoftonTi\Usersystem\Classes\UseCases\Products;
 
+use Illuminate\Support\Facades\Mail;
 use Loftonti\Erso\Models\Enterprises;
 use Loftonti\Erso\Models\Products;
+use LoftonTi\UserSystem\Classes\UseCases\Products\SyncProductsData;
 
 class PrepareProductsToSyncDatabaseUseCase
 {
@@ -34,10 +36,13 @@ class PrepareProductsToSyncDatabaseUseCase
       $this->branch_id = $data['branch_id'];
       $this->file = $data['file_name'];
       $this -> processSync();
+      $this -> deleteFile();
+      $job ->delete();
     } catch (\Throwable $th) {
-      print_r('existe un error: ' . $th -> getMessage());
+      $this -> sendTrowNotification($th -> getMessage());
+      $this -> deleteFile();
+      $job ->delete();
     }
-    $job ->delete();
   }
 
   private function processSync(): void
@@ -47,8 +52,11 @@ class PrepareProductsToSyncDatabaseUseCase
       $this -> getAllProducts();
       $this -> getAllEnterprises();
       $this -> prepareData();
+      $sync_products = new SyncProductsData($this -> items_sync);
+      $sync_products = $sync_products();
       $sync_stock = new SyncProductStockUseCase($this -> items_sync);
-      $sync_stock();
+      $sync_stock = $sync_stock();
+      $this -> sendNotification($sync_stock, $sync_products);
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -84,7 +92,7 @@ class PrepareProductsToSyncDatabaseUseCase
   private function prepareData():void
   {
     try {
-      $errors = [];
+      $errors = '';
       $r = 0;
       foreach ($this -> rows as $row) {
         $r ++;
@@ -98,7 +106,7 @@ class PrepareProductsToSyncDatabaseUseCase
               'branch_id' => $this -> branch_id,
               'erso_code' => $erso_code,
               'enterprise_id' => $this -> enterprises[$row[12]],
-              'products_status' => $row[9] == 'A' ? true : false,
+              'product_status' => $row[9] == 'A' ? true : false,
               'stock' => $row[5] ? $row[5] : 0
             ];
             if($row[10]) $item['customer_price'] = number_format($row[10], 2, '.', '');
@@ -107,13 +115,10 @@ class PrepareProductsToSyncDatabaseUseCase
             array_push($this -> items_sync, $item);
           }
         } catch (\Throwable $th) {
-          $errors[] = [
-            'error' => $th -> getMessage(),
-            'line' => $r
-          ];
+          $errors .= "<li>Error: " . $th->getMessage() . " en la línea $r</li>";
         }
       }
-      // if(count($errors) > 0) throw new \Exception($errors);
+      if(strlen($errors) > 0) $this -> sendTrowNotification($errors);
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -180,6 +185,67 @@ class PrepareProductsToSyncDatabaseUseCase
       for ($i=0; $i < count($this -> headers); $i++) { 
         if($this -> headers[$i] != $headers[$i]) throw new \Exception("Las cabeceras no coinciden con el órden establecido.");
       }
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Delete file storage after update records
+   */
+  public function deleteFile()
+  {
+    try {
+      $path = storage_path("/app/private/sync-files/branch/$this->branch_id/$this->file");
+      unlink($path);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Send notification after update records
+   * @method
+   */
+  public function sendNotification($sync_stock, $sync_products)
+  {
+    try {
+      $data = [
+        'products_updateds' => $sync_products['updateds'],
+        'products_errors' => $sync_products['errors'],
+        'products_errors_data' => $sync_products['errors_data'],
+        'stock_updateds' => $sync_stock['updateds'],
+        'stock_errors' => $sync_stock['errors'],
+        'stock_error_data' => $sync_stock['error_data'],
+      ];
+      Mail::send('loftonti.usersystem::mail.sync-databases-mail', $data, function ($message) {
+        $message->to('erdwell@gmail.com')
+          ->subject('Sincronización de productos.')
+          -> attach(storage_path("/app/private/sync-files/branch/$this->branch_id/$this->file"), [
+            'as' => $this->file
+          ]);
+      });
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Send throw error to notify if any method fails
+   * @method
+   */
+  private function sendTrowNotification($errors)
+  {
+    try {
+      Mail::send('loftonti.usersystem::mail.fails-sync-databases-mail', [
+        'errors' => $errors
+      ], function ($message) {
+        $message->to('erdwell@gmail.com')
+          ->subject('Sincronización de productos.')
+          -> attach(storage_path("/app/private/sync-files/branch/$this->branch_id/$this->file"), [
+            'as' => $this->file
+          ]);
+      });
     } catch (\Throwable $th) {
       throw $th;
     }
