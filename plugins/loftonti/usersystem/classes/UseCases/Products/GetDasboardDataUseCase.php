@@ -54,7 +54,7 @@ class GetDasboardDataUseCase
     try {
       $products = Branches::find($this -> branch_id)
         -> with(['products' => function($q){
-          $q -> where('stock', '<', 10);
+          $q -> where('stock', 0);
         }])
         -> first();
       return count($products -> products);

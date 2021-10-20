@@ -24,3 +24,6 @@
 1.0.9:
     - 'Created table loftonti_usersystem_user_branches - create piivot table for relation user and branch'
     - builder_table_create_loftonti_usersystem_user_branches.php
+1.0.10:
+    - 'Created table loftonti_usersystem_activities_user'
+    - builder_table_create_loftonti_usersystem_activities_user.php
