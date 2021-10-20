@@ -11,7 +11,7 @@
     location.assign("/backend/loftonti/quotations/quotations/download/" + id)
   }
   function updateStatusQuotation(id, oldStatus){
-    let conf = confirm('¿En verdad deseas actulizar el status de esta cotización?')
+    let conf = confirm('¿En verdad deseas actualizar el status de esta cotización?')
     let item = $('#' + id)
     if(conf){
       $(this).request('onUpdateStatus',{
