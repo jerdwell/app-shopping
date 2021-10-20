@@ -23,7 +23,7 @@ class GetDasboardDataUseCase
         'branch_id' => $this -> branch_id,
         'all_products' => $this -> getCountAllProducts(),
         'products_low_stock' => $this -> getProductsWithLowStock(),
-        'orders_of_the_day' => $this -> getOrderOfTheDay(),
+        'orders_of_the_month' => $this -> getOrderOfTheMonth(),
         'products_most_selled' => $this -> getProductsMostSelled()
       ];
     } catch (\Throwable $th) {
@@ -31,18 +31,19 @@ class GetDasboardDataUseCase
     }
   }
 
-  public function getOrderOfTheDay()
+  public function getOrderOfTheMonth()
   {
     try {
       $orders = Branches::find($this -> branch_id)
         -> withCount([
-          'quotations' => function($q){
-            $q -> whereRaw('DATE(created_at) = CURDATE()')
-              -> where('status', '!=', 'declined');
+          'orders' => function($q){
+            $q -> whereRaw('Month(updated_at) = MONTH(CURRENT_DATE())')
+            -> whereRaw('Year(updated_at) = Year(CURRENT_DATE())')
+            -> where('status', 'shipped');
           }
         ])
         -> first();
-      return $orders -> quotations_count;
+      return $orders -> orders_count;
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -82,7 +83,12 @@ class GetDasboardDataUseCase
     try {
       $branch = Branches::find($this -> branch_id)
         -> with(['products' => function($q){
-          $q -> limit(5);
+          $q -> withCount([
+            'orders'
+          ])
+          -> whereHas('orders')
+          -> orderBy('orders_count', 'desc')
+          -> limit(5);
         }])
         -> first();
       return $branch -> products;

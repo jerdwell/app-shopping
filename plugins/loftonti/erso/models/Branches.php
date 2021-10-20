@@ -63,6 +63,10 @@ class Branches extends Model
             'LoftonTi\Quotations\Models\Quotations',
             'key' => 'branch',
             'otherKey' => 'id'
+        ],
+        'orders' => [
+            'LoftonTi\Shoppings\Models\Shoppings',
+            'key' => 'branch_id',
         ]
     ];
     
@@ -76,7 +80,7 @@ class Branches extends Model
             'key' => 'branch_id',
             'otherKey' => 'product_id',
             'pivot' => ['stock', 'enterprise_id']
-        ],
+        ]
     ];
 
 }

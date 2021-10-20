@@ -1,5 +1,9 @@
 fields:
     enterprise_name:
         label: Empresa
-        span: full
+        span: left
+        type: text
+    rfc:
+        label: RFC
+        span: auto
         type: text

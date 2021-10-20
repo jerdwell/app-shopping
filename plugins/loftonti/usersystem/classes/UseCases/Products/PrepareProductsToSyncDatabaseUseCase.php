@@ -1,0 +1,188 @@
+<?php
+
+namespace LoftonTi\Usersystem\Classes\UseCases\Products;
+
+use Loftonti\Erso\Models\Enterprises;
+use Loftonti\Erso\Models\Products;
+
+class PrepareProductsToSyncDatabaseUseCase
+{
+
+  /**
+   * @var string
+   */
+  private $file;
+  /**
+   * @var int
+   */
+  private $branch_id;
+  /**
+   * @var array
+   */
+  private $headers, $rows;
+  /**
+   * @var array
+   */
+  private $items_sync = [];
+  /**
+   * @var object
+   */
+  private $products, $enterprises;
+
+  public function fire($job, $data) {
+    try {
+      $this->branch_id = $data['branch_id'];
+      $this->file = $data['file_name'];
+      $this -> processSync();
+    } catch (\Throwable $th) {
+      print_r('existe un error: ' . $th -> getMessage());
+    }
+    $job ->delete();
+  }
+
+  private function processSync(): void
+  {
+    try {
+      $this -> parseFile();
+      $this -> getAllProducts();
+      $this -> getAllEnterprises();
+      $this -> prepareData();
+      $sync_stock = new SyncProductStockUseCase($this -> items_sync);
+      $sync_stock();
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Parse file and set rows and headers
+   * @method
+   */
+  private function parseFile():void
+  {
+    try {
+      $path = storage_path("/app/private/sync-files/branch/$this->branch_id/$this->file");
+      $file = fopen($path, 'r');
+      $rows = array();
+      while (($r = fgetcsv($file, 1000, ",")) !== false) {
+        $rows[] = $r;
+      }
+      fclose($file);
+      $this -> headers = $rows[0];
+      $this -> validHeaders();
+      array_shift($rows);
+      $this -> rows = $rows;
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * prepare array data
+   * @method
+   */
+  private function prepareData():void
+  {
+    try {
+      $errors = [];
+      $r = 0;
+      foreach ($this -> rows as $row) {
+        $r ++;
+        try {
+          $erso_code = str_replace('@', '', $row[0]);
+          $product_id = $erso_code;
+          $product_id = $this -> products[$erso_code];
+          if($row[11] == 'Precio público' && $product_id){
+            $item = [
+              'id' => $product_id,
+              'branch_id' => $this -> branch_id,
+              'erso_code' => $erso_code,
+              'enterprise_id' => $this -> enterprises[$row[12]],
+              'products_status' => $row[9] == 'A' ? true : false,
+              'stock' => $row[5] ? $row[5] : 0
+            ];
+            if($row[10]) $item['customer_price'] = number_format($row[10], 2, '.', '');
+            if($row[10]) $item['public_price'] = number_format($row[10] * 1.16, 2, '.', '');
+            if($row[6]) $item['product_cover'] = "/products/{$row[6]}.jpg";
+            array_push($this -> items_sync, $item);
+          }
+        } catch (\Throwable $th) {
+          $errors[] = [
+            'error' => $th -> getMessage(),
+            'line' => $r
+          ];
+        }
+      }
+      // if(count($errors) > 0) throw new \Exception($errors);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Get all products from database
+   *  @method 
+   */
+  private function getAllProducts(): void
+  {
+    try {
+      $products = Products::select('erso_code', 'id')
+        ->get();
+      foreach ($products as $product) {
+        $this -> products[$product -> erso_code] = $product -> id;
+      }
+      unset($products);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Get all enterprises from database
+   *  @method 
+   */
+  public function getAllEnterprises()
+  {
+    try {
+      $enterprises = Enterprises::select('id', 'rfc')
+        -> get();
+      foreach ($enterprises as $enterprise) {
+        $this -> enterprises[$enterprise -> rfc] = $enterprise -> id;
+      }
+      unset($enterprises);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Valid if headers and data are in place assigned
+   * @method
+   */
+  public function validHeaders(): void
+  {
+    try {
+      $headers = [
+        "CVE_ART",
+        "DESCR",
+        "LIN_PROD",
+        "CON_SERIE",
+        "CTRL_ALM",
+        "EXIST",
+        "CVE_IMAGEN",
+        "CVE_PRODSERV",
+        "CVE_UNIDAD",
+        "STATUS",
+        "PRECIO",
+        "DESCRIPCION",
+        "RFC"
+      ];
+      for ($i=0; $i < count($this -> headers); $i++) { 
+        if($this -> headers[$i] != $headers[$i]) throw new \Exception("Las cabeceras no coinciden con el órden establecido.");
+      }
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+  
+}

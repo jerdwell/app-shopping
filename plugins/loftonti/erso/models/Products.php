@@ -161,6 +161,13 @@ class Products extends Model
             'otherKey' => 'branch_id',
             'pivot' => ['stock', 'enterprise_id']
         ],
+        'orders' => [
+            'LoftonTi\Shoppings\Models\Shoppings',
+            'table' => 'loftonti_shoppings_shopping_products',
+            'key' => 'product_id',
+            'otherKey' => 'shopping_id',
+            'pivot' => ['current_price', 'discount', 'quantity']
+        ]
     ];
 
 }

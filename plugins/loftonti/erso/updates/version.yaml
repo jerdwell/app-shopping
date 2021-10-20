@@ -135,3 +135,12 @@
 1.0.46:
     - 'Updated table loftonti_erso_application'
     - builder_table_update_loftonti_erso_application_2.php
+1.0.47:
+    - 'Updated table loftonti_erso_branches'
+    - builder_table_update_loftonti_erso_branches_2.php
+1.0.48:
+    - 'Updated table loftonti_erso_branches'
+    - builder_table_update_loftonti_erso_branches_3.php
+1.0.49:
+    - 'Updated table loftonti_erso_enterprises - add rfc field to enterprice'
+    - builder_table_update_loftonti_erso_enterprises.php

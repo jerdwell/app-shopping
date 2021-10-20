@@ -8,3 +8,6 @@ columns:
         type: text
         searchable: true
         sortable: true
+    rfc:
+        label: RFC
+        type: text
