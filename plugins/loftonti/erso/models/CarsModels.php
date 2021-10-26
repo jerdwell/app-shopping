@@ -28,6 +28,13 @@ class CarsModels extends Model
     public $table = 'loftonti_erso_cars';
 
     /**
+     * @var array
+     */
+    public $fillable = [
+        'car_name'
+    ];
+    
+    /**
      * @var array Validation rules
      */
     public $rules = [

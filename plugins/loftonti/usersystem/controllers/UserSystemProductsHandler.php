@@ -5,7 +5,14 @@ namespace LoftonTi\Usersystem\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
+use loftonTi\Usersystem\Classes\UseCases\Products\CreateCarUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\CreateShipownerUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\GetCarsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetDasboardDataUseCase;
+use LoftonTI\Usersystem\Classes\UseCases\Products\SearchBrandsUseCase;
+use LoftonTI\Usersystem\Classes\UseCases\Products\SearchCarsUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\SearchCategoriesUseCase;
+use LoftonTI\Usersystem\Classes\UseCases\Products\SearchShipownerUseCase;
 
 class UserSystemProductsHandler  
 {
@@ -43,6 +50,122 @@ class UserSystemProductsHandler
       return response() -> json([
         'message' => 'El archivo se ha cargado exitosamente, te notificaremos por correo cuando se haya procesado la información.'
       ], 200);
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+
+  /**
+   * search brands
+   * @method
+   */
+  public function searchBrands(Request $request)
+  {
+    try {
+      if(!$request -> has('data_search')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
+      $brands = new SearchBrandsUseCase($request -> data_search);
+      return $brands -> searchByParam();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+  
+  /**
+   * search categories
+   * @method
+   */
+  public function searchCategories(Request $request)
+  {
+    try {
+      if(!$request -> has('data_search')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
+      $brands = new SearchCategoriesUseCase($request -> data_search);
+      return $brands -> searchCategories();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+
+  /**
+   * create new car
+   * @method
+   */
+  public function createCar(Request $request)
+  {
+    try {
+      if(!$request -> has('car_name')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
+      $created = new CreateCarUseCase($request -> car_name);
+      return $created();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+
+  /**
+   * get all cars
+   * @method
+   */
+  public function getCars()
+  {
+    try {
+      $cars = new GetCarsUseCase;
+      return $cars -> get();
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  /**
+   * Search car
+   * @method
+   */
+  public function searchCars(Request $request)
+  {
+    try {
+      if(!$request -> has('data_search')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
+      $search = new SearchCarsUseCase($request -> data_search);
+      return $search -> searchByParam();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+
+  /**
+   * create new shipowner
+   * @method
+   */
+  public function createShipowner(Request $request)
+  {
+    try {
+      if(!$request -> has('shipowner_name')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
+      $created = new CreateShipownerUseCase($request -> shipowner_name);
+      return $created();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+
+  /**
+   * Search shipowner
+   * @method
+   */
+  public function searchShipowners(Request $request)
+  {
+    try {
+      if(!$request -> has('data_search')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
+      $shipowner = new SearchShipownerUseCase($request -> data_search);
+      return $shipowner -> searchByParam();
     } catch (\Throwable $th) {
       return response() -> json([
         'error' => $th -> getMessage()

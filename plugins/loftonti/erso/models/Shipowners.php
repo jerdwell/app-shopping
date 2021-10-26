@@ -21,6 +21,13 @@ class Shipowners extends Model
      * Remove this line if timestamps are defined in the database table.
      */
     public $timestamps = false;
+    
+    /*
+     * set data fillable
+     */
+    public $fillable = [
+        'shipowner_name'
+    ];
 
     /**
      * Events
