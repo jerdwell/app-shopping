@@ -16,7 +16,7 @@ class DecodeTokenUseCase
   /**
    * @var string
    */
-  private $token_encoded;
+  private $token_encoded, $refresh_token;
 
   /**
    * @var object
@@ -40,8 +40,7 @@ class DecodeTokenUseCase
       $this -> getUserData();
       $this -> decodeToken();
       $this -> validExpiration();
-      return ['ok'];
-      return [$this -> token_decoded];
+      explode('.', $this -> token_encoded);
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -62,8 +61,19 @@ class DecodeTokenUseCase
     try {
       $this -> token_decoded = JWT::decode(
         $this -> token_encoded,
-      $this -> user -> pk,
-      array('HS256'));
+        $this -> user -> pk,
+        array('HS256')
+      );
+    } catch (\Firebase\JWT\ExpiredException $e) {
+      JWT::$leeway = 720000;
+      $decoded = JWT::decode(
+        $this -> token_encoded,
+        $this -> user -> pk,
+        array('HS256'));
+      $this -> token_decoded = $decoded;
+      $decoded -> iat = time();
+      $decoded -> exp = time() + getenv('TIME_EXPIRES_SESSION_USERS_SYSTEM') + (60 * 60); // Tiempo que expirará el token (+ lo acordado en el .env)
+      $this -> refresh_token = JWT::encode($decoded, $this -> user -> sk);
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -86,6 +96,11 @@ class DecodeTokenUseCase
   public function getBranches()
   {
     return $this -> token_decoded -> data -> branches;
+  }
+
+  public function getRefreshToken()
+  {
+    return $this -> refresh_token;
   }
   
 }

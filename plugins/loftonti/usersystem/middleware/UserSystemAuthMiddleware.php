@@ -40,6 +40,7 @@ class UserSystemAuthMiddleware
       $this -> branch_id = $request -> headers -> get('Auth-Branch');
       $token = new DecodeTokenUseCase($request -> headers -> get('Auth-User'), $request -> headers -> get('Authorization'));
       $token -> validToken();
+      $refresh_token = $token -> getRefreshToken();
       $this -> permissions = $token -> getPermissions();
       $this -> branches = $token -> getBranches();
       $this -> checkBranchAssigned();
@@ -48,7 +49,9 @@ class UserSystemAuthMiddleware
         'branch_id' => $this -> branch_id,
         'user_id' => $request -> headers -> get('Auth-User'),
       ]);
-      return $next($request);
+      $response = $next($request);
+      if($refresh_token) $response -> header('Refresh-Token', $refresh_token);
+      return $response;
     } catch (\Throwable $th) {
       return response() 
         -> json([
