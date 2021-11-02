@@ -1,0 +1,8 @@
+address:
+  label: Dirección
+  view:
+    form: $/loftonti/users/models/useraddress/fields.yaml
+    toolbarButtons: update|delete
+  manage:
+    form: $/loftonti/users/models/useraddress/fields.yaml
+    list: $/loftonti/users/models/useraddress/columns.yaml

@@ -1,0 +1,6 @@
+fields:
+  shipowner_name:
+    label: Armadora
+    span: full
+    required: 1
+    type: text

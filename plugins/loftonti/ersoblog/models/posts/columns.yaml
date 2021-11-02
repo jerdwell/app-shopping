@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: id
+        type: number
+    title:
+        label: Título
+        type: text
+    created_at:
+        label: Creación
+        type: date
+    status:
+        label: Status
+        type: text

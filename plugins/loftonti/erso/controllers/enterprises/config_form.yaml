@@ -1,0 +1,10 @@
+name: Enterprises
+form: $/loftonti/erso/models/enterprises/fields.yaml
+modelClass: Loftonti\Erso\Models\Enterprises
+defaultRedirect: loftonti/erso/enterprises
+create:
+    redirect: 'loftonti/erso/enterprises/update/:id'
+    redirectClose: loftonti/erso/enterprises
+update:
+    redirect: loftonti/erso/enterprises
+    redirectClose: loftonti/erso/enterprises

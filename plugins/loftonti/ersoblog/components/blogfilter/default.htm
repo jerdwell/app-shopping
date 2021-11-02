@@ -1,0 +1,11 @@
+{% set posts = __SELF__.posts %}
+{% set categories = __SELF__.categories %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% partial 'components/blog/_recents' posts = posts title='Resultados' %}
+        <div class="col-lg-3 browser-main-blog bg-dark">
+        {% partial 'components/blog/_filters-blog' categories = categories %}
+        </div>
+    </div>
+</div>

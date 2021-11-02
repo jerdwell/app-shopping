@@ -1,0 +1,11 @@
+title = "Activar cuenta"
+url = "/account/activate/:token"
+layout = "_default"
+is_hidden = 0
+
+[UsersRegister]
+token = "{{ :token }}"
+==
+
+{% partial 'components/_page-header' pageTitle="Activación de cuenta" %}
+{% component 'UsersRegister' %}

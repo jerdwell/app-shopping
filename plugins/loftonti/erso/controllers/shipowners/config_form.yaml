@@ -1,0 +1,10 @@
+name: Shipowners
+form: $/loftonti/erso/models/shipowners/fields.yaml
+modelClass: Loftonti\Erso\Models\Shipowners
+defaultRedirect: loftonti/erso/shipowners
+create:
+    redirect: 'loftonti/erso/shipowners/update/:id'
+    redirectClose: loftonti/erso/shipowners
+update:
+    redirect: loftonti/erso/shipowners
+    redirectClose: loftonti/erso/shipowners

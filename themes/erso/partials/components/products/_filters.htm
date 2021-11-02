@@ -1,0 +1,49 @@
+<div class="py-4 bg-dark">
+  <div class="container">
+    <div class="row">
+  
+      <div class="col-12 col-md-4 col-lg-3 py-3">
+        <h5 class="text-light">Filtrar productos: <a href="/productos" class="text-light"><i class="fas fa-home"></i></a></h5>
+      </div>
+
+      <div class="col-12 col-md-3  py-3 text-light">
+        <products-category-filter
+          :categories="{{ categories }}"
+          category="{{ category|upper }}"
+          model="{{ model }}"
+          shipowner="{{ shipowner }}"
+          year="{{ year }}"
+          branch="{{ branch }}"
+          ></products-category-filter>
+      </div>
+      
+      <div class="col-12 col-md-2 col-xl-2 py-3">
+        <product-shipowner-filter
+          shipowner_selected="{{ shipowner_selected }}"
+          branch="{{ branch }}"
+          category="{{ category }}"></product-shipowner-filter>
+      </div>
+
+      <div class="col-12 col-md-2 col-xl-2 py-3">
+        <products-cars-filter
+          model_selected="{{ model_selected }}"
+          shipowner="{{ shipowner }}"
+          branch="{{ branch }}"
+          category="{{ category }}"></products-cars-filter>
+      </div>
+      
+      <div class="col-12 col-md-2 col-xl-2 py-3">
+        <products-years-filter
+          category="{{ category }}"
+          year="{{ year }}"
+          shipowner="{{shipowner}}"
+          model="{{model}}"
+          branch="{{ branch }}"></products-years-filter>
+      </div>
+  
+    </div>
+    <div class="text-muted">
+      Resultados totales: {{list.total}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+==
+function onStart(){
+  $this['menu_items'] = [
+    [
+      'item' => 'Productos',
+      'url' => '/productos',
+      'childs' => []
+    ],
+    [
+      'item' => 'Blog',
+      'url' => '/blog',
+      'childs' => []
+    ],
+    [
+      'item' => 'Contacto',
+      'url' => '/contacto',
+      'childs' => []
+    ]
+  ];
+}
+==
+
+<ul class="main-menu-erso navbar-main-inactive-erso">
+
+  <li class="main-menu-item">
+    <buttton-search-products>
+  </li>
+
+  {% for item in menu_items %}
+    <li class="main-menu-item">
+      {% if item.url != null %}
+        <a class="text-light main-menu-item-link" href="{{ item.url }}">{{ item.item }}</a>
+      {% else %}
+        <span>{{ item.item }}</span>
+      {% endif %}
+    </li>
+  {% endfor %}
+  <button-account-register></button-account-register>
+  <div class="main-menu-item">
+    <cart-button-state></cart-button-state>
+  </div>
+</ul>

@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Código ERSO</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Costo</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <?php forEach($record -> items as $item): ?>
+      <tr>
+        <td><?= $item -> erso_code ?></td>
+        <td><?= $item -> product_name ?></td>
+        <td><?= $item -> quantity ?> </td>
+        <td>$<?= number_format($item -> public_price, '2') ?> </td>
+      </tr>
+    <?php endForEach ?>
+  </tbody>
+</table>

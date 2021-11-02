@@ -1,0 +1,10 @@
+name: Brands
+form: $/loftonti/erso/models/brands/fields.yaml
+modelClass: Loftonti\Erso\Models\Brands
+defaultRedirect: loftonti/erso/brands
+create:
+    redirect: 'loftonti/erso/brands/update/:id'
+    redirectClose: loftonti/erso/brands
+update:
+    redirect: loftonti/erso/brands
+    redirectClose: loftonti/erso/brands

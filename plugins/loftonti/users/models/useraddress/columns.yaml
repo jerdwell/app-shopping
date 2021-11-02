@@ -1,0 +1,8 @@
+columns:
+    id:
+        label: id
+        type: number
+    address1:
+        label: Dirección
+        type: text
+        select: concat(address1, ', C.P. ', zip_code, ', ', state)

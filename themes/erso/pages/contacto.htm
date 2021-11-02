@@ -1,0 +1,11 @@
+title = "Contacto"
+url = "/contacto/:branch?"
+layout = "_default"
+is_hidden = 0
+
+[ContactBranch]
+branch = "{{ :branch }}"
+==
+{% partial 'titles/_contacto' %}
+
+{% component 'ContactBranch' %}

@@ -1,0 +1,3 @@
+{% set categories = __SELF__.list_categories %}
+{% set branch = __SELF__.branch %}
+{% partial 'components/products/_categories-list-blocks' categories = categories branch=branch %}

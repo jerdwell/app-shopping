@@ -1,0 +1,16 @@
+fields:
+    brand_name:
+        label: Marca
+        span: auto
+        required: 1
+        type: text
+    brand_logo:
+        label: Logo
+        mode: image
+        span: left
+        type: mediafinder
+    brand_cover:
+        label: Cover
+        span: right
+        mode: image
+        type: mediafinder

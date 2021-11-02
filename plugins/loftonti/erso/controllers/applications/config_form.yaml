@@ -1,0 +1,10 @@
+name: Applications
+form: $/loftonti/erso/models/applications/fields.yaml
+modelClass: Loftonti\Erso\Models\Applications
+defaultRedirect: loftonti/erso/applications
+create:
+    redirect: 'loftonti/erso/applications/update/:id'
+    redirectClose: loftonti/erso/applications
+update:
+    redirect: loftonti/erso/applications
+    redirectClose: loftonti/erso/applications

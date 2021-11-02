@@ -1,0 +1,29 @@
+<div class="recents-full-content col-lg-9" style="background-image: url('{{ 'footer_03.png'|media }}');">
+  <div class="py-5">
+    <div class="container-fluid">
+      <h2 class="text-center text-dark">{{ title }}</h2>
+      <hr>
+      <div class="recents-container">
+        {% set e = 0 %}
+        {% for post in posts %}
+          <div class="bg-white recent-item {{ e == 0 ? 'recent-primary' : 'recent-secondary' }}" data-aos="fade-up" data-aos-offset="200">
+            <img class="recent-item-image" src="{{ post.cover.path }}" alt="">
+            <div class="recent-item-text">
+              <h5 class="text-dark">{{ post.title }}</h5>
+              <hr class="border-dark">
+              <h6 class="text-muted text-left w-100 small">{{ post.created_at }}</h6>
+              <p class="small">{{ post.excerpt }}</p>
+              <div class="text-center">
+                <a href="/blog/post/{{ post.slug }}" class="btn btn-dark">Ver más</a>
+              </div>
+            </div>
+          </div>
+          {% set e = e +1 %}
+          {% if(e > 2) %}
+          {% set e = 0 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

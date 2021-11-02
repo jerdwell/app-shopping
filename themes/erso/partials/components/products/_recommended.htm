@@ -1,0 +1,30 @@
+<div class="list-product-recommended-content" style="background-image: url({{ 'heads_head-5.png'|media }});">
+  <img class="w-100 bg-transparent" src="{{ 'test-bg-fixed.jpg'|media }}" srcset="{{ '/heads_head-1.png'|media }} 1280w" alt="">
+  <div class="list-product-recommended">
+    <div class="container pb-5">
+      <h2 class="list-product-heading">Productos recomendados:</h2>
+      <hr>
+      <div class="row pt-3">
+        {% for i in 0..3%}
+        <div class="col-md-6 col-xl-3 mb-4">
+          <div class="card product-recommended border-0">
+            <div class="card-header product-recommended-header">
+              <img src="{{ '/640x360.png'|media }}" alt="">
+            </div>
+            <div class="card-body product-recommended-body">
+              <h6 class="text-dark text-center">
+                <span class="product-recommended-title">Lorem, ipsum dolor.</span>
+                <hr>
+                <div class="small product-recommended-note">30% de descuento</div>
+              </h6>
+              <div class="text-center py-3">
+                <button class="btn btn-dark bg-transparent text-dark px-3">Ver más</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

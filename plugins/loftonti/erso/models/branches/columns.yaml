@@ -1,0 +1,9 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    branch_name:
+        label: Sucursal
+        type: text
+        sortable: true

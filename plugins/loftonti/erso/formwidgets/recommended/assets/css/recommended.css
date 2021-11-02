@@ -1,0 +1,54 @@
+.search-product-recommended-modal-results{
+    align-items: center;
+    border: solid 1px red;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: all ease .5s;
+    width: 100%;
+    z-index: 100;
+}
+.search-product-recommended-modal-results::after{
+    background: rgba(0,0,0,.7);
+    display: inline-block;
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.search-product-recommended-modal-results .modal-results-body {
+    background: rgb(245, 245, 245);
+    border: solid 1px rgb(202, 202, 202);
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 80%;
+    overflow-y: auto;
+    width: 90%;
+    max-width: 600px;
+    z-index: 1;
+}
+.search-product-recommended-modal-results .modal-results-body .modal-results-items{
+    padding: 0;
+ }
+
+.search-product-recommended-modal-results .modal-results-body .modal-results-items .modal-results-item{
+    border-bottom: solid 1px rgb(175, 175, 175);
+    cursor: pointer;
+    display: block;
+    list-style: none;
+    padding: 10px 5px;
+}
+.search-product-recommended-modal-results .modal-results-body .modal-results-items .modal-results-item:last-child{
+    border-bottom: 0;
+}
+.search-product-recommended-modal-results .modal-results-body .modal-results-items .modal-results-item label {
+    cursor: pointer;
+    width: 100%;
+}
+
+.search-product-recommended-modal-results-inactive{
+    left: -200%;
+}

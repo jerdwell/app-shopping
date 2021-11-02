@@ -1,0 +1,25 @@
+title = "Blog"
+url = "/blog"
+layout = "_default"
+is_hidden = 0
+
+[MainBlog]
+Posts = 9
+==
+{% partial 'titles/_blog' %}
+
+{%
+  partial 'components/_step'
+  title = "Blog"
+  align= "center"
+  type= "light"
+  local= true
+  color= "dark"
+  principal = true
+  img = "cover_02.jpg"|media
+%}
+{% partial 'components/_breadcrumbs' 
+    type=3
+    page = {name:"BLOG",slug:"blog"}
+%}
+{% component 'MainBlog' %}

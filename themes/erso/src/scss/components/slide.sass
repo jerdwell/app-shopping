@@ -1,0 +1,141 @@
+.slide
+  overflow: hidden
+  position: relative
+  width: 100%
+  .slide-container
+    transition: all ease .5s
+    display: flex
+    flex-wrap: wrap
+    width: auto
+    .slide-item
+      align-items: center
+      display: flex
+      justify-content: center
+      position: relative
+      width: 100%
+      .slide-item-image
+        margin: 0
+        padding: 0
+        height: 100vh
+        object-fit: cover
+        object-position: center
+        width: 100%
+      .slide-item-title
+        align-items: center
+        display: flex
+        height: 100%
+        justify-content: center
+        text-shadow: -1px 1px 0px #000
+        position: absolute
+        top: 0
+        width: 100%
+        z-index: 1
+        .slide-item-title-text
+          border-left: solid 4px white
+          color: white
+          font-size: 2.1em!important
+          font-weight: 'bold'
+          left: 10%
+          text-shadow: 0 5px 10px rgba(0,0,0,.8)
+          padding: 20px 10px
+          width: 90%
+        .slide-item-title-text-first
+          color: white
+          font-size: 1.2em!important
+          font-weight: 'bold'
+          left: 10%
+          text-shadow: 0 5px 10px rgba(0,0,0,.8)
+          padding: 20px 10px
+          width: 95%
+        .slide-item-title-text-p
+          color: white
+          font-size: 0.8em!important
+          font-weight: 'bold'
+          left: 10%
+          text-shadow: 0 5px 10px rgba(0,0,0,.8)
+          padding: 20px 10px
+          width: 100%
+  
+
+  .slide-controls
+    display: flex
+    justify-content: space-between
+    left: 0
+    position: absolute
+    padding: 0px 10px
+    top: 50%
+    transform: translateY(-50%)
+    width: 100%
+    z-index: 1
+    .slide-controls-prev, .slide-controls-next
+      align-items: center
+      background: rgba($dark, .4)
+      border-radius: 50%
+      cursor: pointer
+      display: flex
+      height: 50px
+      justify-content: center
+      transition: all ease .5s
+      width: 50px
+      &:hover
+        background: rgba(#000000,.8)
+      .slide-control-icon
+        color: rgba(#ffffff,.6)
+        font-size: 30px
+        margin-left: -3px
+    .slide-controls-next
+      .slide-control-icon
+        margin-left: 6px
+  
+  .slide-control-dots
+    align-items: center
+    bottom: 40px
+    display: flex
+    justify-content: center
+    position: absolute
+    width: 100%
+    .dot-indicator
+      background: rgba(#ffffff, .4)
+      border-radius: 10px
+      cursor: pointer
+      display: inline-block
+      height: 15px
+      transition: all ease .5s
+      margin: 0px 5px
+      width: 15px
+    .dot-indicator-active
+      background: rgba(#ffffff, .8)
+      width: 40px
+  
+  @media screen and ( min-width: 768px )
+    .slide-container
+      .slide-item
+        justify-content: flex-start
+        .slide-item-title
+          .slide-item-title-text
+            font-size: 3em!important
+            left: 15%
+            width: 70%
+
+  @media screen and ( min-width: 1024px )
+    .slide-container
+      .slide-item
+        .slide-item-title
+          .slide-item-title-text
+            font-size: 4em!important
+  @media screen and ( min-width: 1280px )
+    .slide-container
+      .slide-item
+        .slide-item-title
+          justify-content: flex-start
+          .slide-item-title-text
+            margin-left: 10%
+            width: 60%
+  @media screen and ( min-width: 1440px )
+    .slide-container
+      .slide-item
+        .slide-item-title
+          justify-content: flex-start
+          .slide-item-title-text
+            width: 40%
+    

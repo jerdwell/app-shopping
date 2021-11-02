@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    car_name:
+        label: Auto
+        type: text
+        searchable: true
+        sortable: true

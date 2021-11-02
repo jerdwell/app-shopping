@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    product_name:
+        label: Producto
+        type: text
+        searchable: true
+        sortable: true
+    erso_code:
+        label: 'Código ERSO'
+        type: text
+        searchable: true
+        sortable: true
+    public_price:
+        label: 'Precio Público'
+        type: number
+        searchable: true
+        sortable: true
+    customer_price:
+        label: 'Precio Cliente'
+        type: number
+        searchable: true
+        sortable: true

@@ -1,0 +1,15 @@
+fields:
+    category_name:
+        label: Categoría
+        span: left
+        type: text
+    category_cover:
+        label: Cover
+        span: auto
+        mode: image
+        type: mediafinder
+    order:
+        label: Orden
+        span: auto
+        required: 1
+        type: number

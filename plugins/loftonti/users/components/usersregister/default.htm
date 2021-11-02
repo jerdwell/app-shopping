@@ -1,0 +1,32 @@
+{% set token = __SELF__.token %}
+{% set valid = __SELF__.valid %}
+
+<div class="container my-5">
+  <div class="card">
+    <div class="card-body">
+      {% if( valid ) %}
+        <h4 class="display-5 text-primary text-center">¡Cuenta activada exitosamente!</h4>
+        <h2 class="text-center">
+          <span class="border-success rounded-circle d-inline-flex justify-content-center align-items-center"
+            style="border: solid 3px; width:100px; height:100px; font-size: 70px;">
+            <i class="oi oi-check text-success m-0 p-0"></i>
+          </span>
+        </h2>
+        <p class="lead text-center text-muted">Tu cuenta se ha activado exitosamente, ya puede iniciar sesión.</p>
+        {% else %}
+        <h4 class="display-5 text-primary text-center">Esta cuenta no existe</h4>
+        <h2 class="text-center">
+          <span class="border-danger rounded-circle d-inline-flex justify-content-center align-items-center"
+            style="border: solid 3px; width:100px; height:100px; font-size: 50px;">
+            <i class="oi oi-x text-danger m-0 p-0"></i>
+          </span>
+        </h2>
+        <p class="lead text-center text-muted">Lo sentimos, esta cuenta no puede ser activada.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(() => { window.location.href = '/login' }, 2500)
+</script>

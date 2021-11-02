@@ -1,0 +1,30 @@
+<button class="btn btn-block btn-primary btn-sm" style="text-align: center;" onclick="goToDownloadQuotation(<?= $record -> id ?>)">Ver</button>
+<select style="margin-top: 10px;" name="<?= $record -> id ?>" id="<?= $record -> id ?>" class="form-control" value="<?= $record -> status ?>" onchange="updateStatusQuotation(<?= $record -> id ?>, '<?= $record -> status ?>')">
+  <option value="">Selecciona una opción</option>
+  <option value="active" <?= $record -> status == 'active' ? 'selected' : null ?> >Activa</option>
+  <option value="declined" <?= $record -> status == 'declined' ? 'selected' : null ?>>Cancelada</option>
+  <option value="successed" <?= $record -> status == 'successed' ? 'selected' : null ?>>Entregada</option>
+</select>
+
+<script>
+  function goToDownloadQuotation(id){
+    location.assign("/backend/loftonti/quotations/quotations/download/" + id)
+  }
+  function updateStatusQuotation(id, oldStatus){
+    let conf = confirm('¿En verdad deseas actualizar el status de esta cotización?')
+    let item = $('#' + id)
+    if(conf){
+      $(this).request('onUpdateStatus',{
+        data: {
+          id: id,
+          status: item.val()
+        },
+        success: res => {
+          alert(res[0])
+        }
+      })
+    }else{
+      item.val(oldStatus)
+    }
+  }
+</script>

@@ -1,0 +1,43 @@
+tabs:
+    fields:
+        product_name:
+            label: Producto
+            span: left
+            required: 1
+            type: text
+            tab: Producto
+        product_status:
+            label: Status
+            span: auto
+            default: 1
+            required: 1
+            type: switch
+            tab: Producto
+        erso_code:
+            label: 'Código erso'
+            span: auto
+            required: 1
+            type: text
+            tab: Producto
+        provider_code:
+            label: 'Código de proveedor'
+            span: right
+            required: 1
+            type: text
+            tab: Producto
+        public_price:
+            label: 'Precio público'
+            span: left
+            type: number
+            tab: Producto
+        customer_price:
+            label: 'Precio de cliente'
+            span: right
+            type: number
+            tab: Producto
+        product_cover:
+            label: Cover
+            mode: image
+            span: auto
+            type: mediafinder
+            tab: Media

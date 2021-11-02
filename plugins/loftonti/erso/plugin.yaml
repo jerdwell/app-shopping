@@ -1,0 +1,85 @@
+plugin:
+    name: 'loftonti.erso::lang.plugin.name'
+    description: 'loftonti.erso::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-puzzle-piece
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Erso
+        url: loftonti/erso/products
+        icon: icon-cubes
+        permissions:
+            - erso_manage
+        sideMenu:
+            side-menu-item2:
+                label: Productos
+                url: loftonti/erso/products
+                icon: icon-cubes
+                permissions:
+                    - manage_products
+            side-menu-item:
+                label: Categorías
+                url: loftonti/erso/categories
+                icon: icon-tag
+                permissions:
+                    - manage_categories
+            side-menu-item3:
+                label: Armadoras
+                url: loftonti/erso/shipowners
+                icon: icon-puzzle-piece
+                permissions:
+                    - manage_shipowners
+            side-menu-item4:
+                label: Marcas
+                url: loftonti/erso/brands
+                icon: icon-list-ul
+                permissions:
+                    - manage_brands
+            side-menu-item5:
+                label: Sucursales
+                url: loftonti/erso/branches
+                icon: icon-sitemap
+                permissions:
+                    - manage_branches
+            side-menu-item6:
+                label: Empresas
+                url: loftonti/erso/enterprises
+                icon: icon-building
+            side-menu-item7:
+                label: Autos
+                url: loftonti/erso/carsmodels
+                icon: icon-automobile
+                permissions:
+                    - manage_cars
+            side-menu-item8:
+                label: aplicaciones
+                url: loftonti/erso/applications
+                icon: icon-sitemap
+                permissions:
+                    - manage_applications
+permissions:
+    manage_products:
+        tab: Productos
+        label: 'Gestor de productos'
+    manage_branches:
+        tab: Sucursales
+        label: 'Gestor de sucursales'
+    manage_cars:
+        tab: Autos
+        label: 'Gestor de autos'
+    manage_brands:
+        tab: Marcas
+        label: 'Gestor de marcas'
+    manage_shipowners:
+        tab: Armadoras
+        label: 'Gestor de armadoras'
+    manage_applications:
+        tab: Aplicaciones
+        label: 'Gestor de aplicaciones'
+    manage_categories:
+        tab: Categorías
+        label: 'Gestor de categorías'
+    erso_manage:
+        tab: Erso
+        label: 'Gestor Erso'

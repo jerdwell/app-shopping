@@ -1,0 +1,14 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_users_users'
+    - builder_table_create_loftonti_users_users.php
+1.0.3:
+    - 'Created table loftonti_users_address'
+    - builder_table_create_loftonti_users_address.php
+1.0.4:
+    - 'add input type in table users'
+    - builder_table_update_loftonti_users_users.php
+1.0.5:
+    - 'add timestamps in table users'
+    - builder_table_update_loftonti_users_users_2.php

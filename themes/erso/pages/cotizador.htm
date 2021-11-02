@@ -1,0 +1,16 @@
+title = "cotizador"
+url = "/cotizador-erso"
+layout = "_default"
+is_hidden = 0
+==
+{% partial 'titles/_cotizador' %}
+
+{% partial 'components/_cotizador-help' %} 
+
+<filters-search-products></filters-search-products>
+{% partial 'components/_breadcrumbs' 
+    type=3
+    page = {name:"COTIZADOR",slug:"cotizador-erso"}
+%}
+
+<main-products-browser></main-products-browser>

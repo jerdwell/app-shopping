@@ -1,0 +1,11 @@
+name: Posts
+modelClass: LoftonTi\ErsoBlog\Models\Posts
+form: $/loftonti/ersoblog/models/posts/fields.yaml
+defaultRedirect: loftonti/ersoblog/posts
+create:
+    redirect: 'loftonti/ersoblog/posts/update/:id'
+    redirectClose: loftonti/ersoblog/posts
+update:
+    redirect: loftonti/ersoblog/posts
+    redirectClose: loftonti/ersoblog/posts
+preview: {  }

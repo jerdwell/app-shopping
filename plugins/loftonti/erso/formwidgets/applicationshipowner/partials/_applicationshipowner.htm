@@ -1,0 +1,18 @@
+<?php
+    $shipowner_name = $shipowner['shipowner_name'] ? $shipowner['shipowner_name'] : '';
+    $shipowner_id = $shipowner['shipowner_id'] ? $shipowner['shipowner_id'] : '';
+    $id = $model ? $model -> id : '';
+?>
+<label>Buscar armadora</label>
+<input class="form-control" type="text" id="search-shipowner" value="<?= $shipowner_name ?>" oninput="searchShipowner.searchShipowner()">
+<input
+    class="form-control"
+    name="Applications[shipowner_id]"
+    id="id-shipowner-selected"
+    type="hidden"
+    value="<?= $shipowner_id ?>"
+    readonly>
+
+<ul id="shippowners-results" style="display:none;">
+    <h5 class="text-center text-muted">Selecciona una opción</h5>
+</ul>

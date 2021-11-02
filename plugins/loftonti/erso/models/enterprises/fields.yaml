@@ -1,0 +1,5 @@
+fields:
+    enterprise_name:
+        label: Empresa
+        span: full
+        type: text

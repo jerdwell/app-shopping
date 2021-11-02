@@ -1,0 +1,10 @@
+categories:
+  label: Categorías
+  view:
+    list: $/loftonti/ersoblog/models/categories/columns.yaml
+    toolbarButtons: link|unlink|create
+  manage:
+    list: $/loftonti/ersoblog/models/categories/columns.yaml
+    form: $/loftonti/ersoblog/models/categories/fields.yaml
+  pivot:
+    form: $/loftonti/ersoblog/models/categories/fields.yaml

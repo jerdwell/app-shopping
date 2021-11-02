@@ -1,0 +1,38 @@
+columns:
+ product_name:
+   label: 'Producto'
+ product_cover:
+   label: 'Imagen'
+ customer_price:
+   label: 'Precio Cliente'
+ public_price:
+   label: 'Precio Público'
+ erso_code:
+   label: 'Código Erso'
+ provider_code:
+   label: 'Código Proveedor'
+ category_name:
+   label: 'Categoría'
+ brand_name:
+   label: 'Marca'
+ public_price:
+   label: 'Precio Público'
+ customer_price:
+   label: 'Precio Cliente'
+  
+  #Relación producto - sucursal
+#  product_id:
+#    label: 'Producto'
+#  coacalco_branch:
+#    label: 'Sucursal Coacalco'
+#  coacalco_enterprise:
+#    label: 'Empresa Coacalco'
+#  izcalli_branch:
+#    label: 'Sucursal Izcalli'
+#  izcalli_enterprise:
+#    label: 'Empresa Izcalli'
+#  tlalnepantla_branch:
+#    label: 'Sucursal Tlalnepantla'
+#  tlalnepantla_enterprise:
+#    label: 'Empresa Tlalnepantla'
+  

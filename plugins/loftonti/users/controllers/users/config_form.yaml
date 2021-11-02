@@ -1,0 +1,11 @@
+name: Users
+modelClass: LoftonTi\Users\Models\Users
+form: $/loftonti/users/models/users/fields.yaml
+defaultRedirect: loftonti/users/users
+create:
+    redirect: 'loftonti/users/users/update/:id'
+    redirectClose: loftonti/users/users
+update:
+    redirect: loftonti/users/users
+    redirectClose: loftonti/users/users
+preview: {  }

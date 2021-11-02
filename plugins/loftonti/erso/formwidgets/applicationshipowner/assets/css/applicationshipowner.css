@@ -1,0 +1,14 @@
+ul#shippowners-results{
+  padding: 0;
+  max-height: 200px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+ul#shippowners-results li{
+  border-bottom: solid 1px gray;
+  list-style: none;
+  padding: 5px;
+}
+ul#shippowners-results li > *{
+  cursor: pointer;
+}

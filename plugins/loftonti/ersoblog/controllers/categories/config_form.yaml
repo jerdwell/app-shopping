@@ -1,0 +1,11 @@
+name: Categories
+modelClass: LoftonTi\ErsoBlog\Models\Categories
+form: $/loftonti/ersoblog/models/categories/fields.yaml
+defaultRedirect: loftonti/ersoblog/categories
+create:
+    redirect: 'loftonti/ersoblog/categories/update/:id'
+    redirectClose: loftonti/ersoblog/categories
+update:
+    redirect: loftonti/ersoblog/categories
+    redirectClose: loftonti/ersoblog/categories
+preview: {  }

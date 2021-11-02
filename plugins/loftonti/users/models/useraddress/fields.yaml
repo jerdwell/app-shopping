@@ -1,0 +1,42 @@
+fields:
+    address1:
+        label: 'Calle y número'
+        span: auto
+        required: 1
+        type: text
+    zip_code:
+        label: 'Código postal'
+        span: auto
+        required: 1
+        type: text
+    suburb:
+        label: Colonia
+        span: auto
+        required: 1
+        type: text
+    country:
+        label: Delegación/Municipio
+        span: auto
+        required: 1
+        type: text
+    state:
+        label: Estado
+        options:
+            CDMX: CDMX
+            EDOMEX: 'Estado de México'
+        showSearch: true
+        span: auto
+        required: 1
+        default: CDMX
+        type: dropdown
+    city:
+        label: Ciudad
+        span: auto
+        default: México
+        readOnly: 1
+        required: 1
+        type: text
+    address2:
+        label: Referencias
+        span: auto
+        type: text

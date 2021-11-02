@@ -1,0 +1,10 @@
+fields:
+    status:
+        label: Status
+        span: auto
+        default: 1
+        type: switch
+    items:
+        label: Productos
+        span: full
+        type: recommended

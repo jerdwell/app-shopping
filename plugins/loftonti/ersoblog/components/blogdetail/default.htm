@@ -1,0 +1,40 @@
+{% set posts = __SELF__.related %}
+{% set categories = __SELF__.categories %}
+{% set post = __SELF__.post %}
+
+{%
+    partial 'components/_step'
+    title = post.title
+    align= "center"
+    type= "light"
+    local= true
+    color= "dark"
+    principal = true
+    img = post.cover.path
+%}
+{% partial 'components/_breadcrumbs' 
+    type='blog'
+    posts = posts
+    post=post
+%}
+
+{{ post.content|raw }}
+
+<div class="container-fluid">
+    <div class="row">
+        {% if posts|length > 0 %}
+            {% partial 'components/blog/_recents' posts = posts title='Relacionados' %}
+        {% else %}
+        <div class="col-lg-9">
+            <div class="text-center text-muted">
+                <h3>No existen noticias relacionadas</h3>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-lg-3 browser-main-blog bg-dark">
+        {% partial 'components/blog/_filters-blog' categories = categories %}
+        </div>
+    </div>
+</div>
+
+<span>{{ categories }}</span>

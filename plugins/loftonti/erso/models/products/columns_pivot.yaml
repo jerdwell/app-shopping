@@ -1,0 +1,13 @@
+columns:
+  stock: 
+    label: Stock
+    type: text
+    select: loftonti_erso_product_branch.stock 
+  branch:
+    label: Sucursal
+    type: text
+    select: loftonti_erso_branches.branch_name
+  enterprise:
+    label: Empresa
+    type: text
+    select: (select loftonti_erso_enterprises.enterprise_name from loftonti_erso_enterprises where loftonti_erso_enterprises.id = loftonti_erso_product_branch.enterprise_id)

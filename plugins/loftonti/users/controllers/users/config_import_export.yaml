@@ -1,0 +1,4 @@
+import:
+  title: Importar productos
+  modelClass: Loftonti\Users\Models\UsersImport
+  list: $/loftonti/users/models/users/columns_import.yaml

@@ -1,0 +1,8 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+    slide_text:
+        label: texto
+        type: text

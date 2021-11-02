@@ -1,0 +1,5 @@
+import:
+  title: Importar productos
+  modelClass: Loftonti\Erso\Models\ApplicationsImport
+  list: $/loftonti/erso/models/applications/columns_import.yaml
+  # redirect: loftonti/erso/products

@@ -1,0 +1,20 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table loftonti_quotations_quotations'
+    - builder_table_create_loftonti_quotations_quotations.php
+1.0.3:
+    - 'Updated table loftonti_quotations_quotations'
+    - builder_table_update_loftonti_quotations_quotations.php
+1.0.4:
+    - 'Created table loftonti_quotations_quotation_user'
+    - builder_table_create_loftonti_quotations_quotation_user.php
+1.0.5:
+    - 'Drop table loftonti_quotations_quotation_user'
+    - builder_table_delete_loftonti_quotations_quotation_user.php
+1.0.6:
+    - 'Updated table loftonti_quotations_quotations'
+    - builder_table_update_loftonti_quotations_quotations_2.php
+1.0.7:
+    - 'Updated table loftonti_quotations_quotations'
+    - builder_table_update_loftonti_quotations_quotations_3.php

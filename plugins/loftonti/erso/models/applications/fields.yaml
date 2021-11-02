@@ -1,0 +1,18 @@
+fields:
+    year:
+        label: Año
+        span: auto
+        required: 1
+        type: text
+    note:
+        label: Nota
+        span: auto
+        type: text
+    car_id:
+        label: Auto
+        span: auto
+        type: applicationCar
+    shipowner_id:
+        label: Armadora
+        span: auto
+        type: applicationShipowner

@@ -1,0 +1,36 @@
+brand:
+  label: Marcas
+  view:
+    form: $/loftonti/erso/models/brands/fields_relation_product.yaml
+    toolbarButtons: link
+  manage:
+    form: $/loftonti/erso/models/brands/fields_relation_product.yaml
+    list: $/loftonti/erso/models/brands/columns.yaml
+
+category:
+  label: Categorías
+  view:
+    form: $/loftonti/erso/models/categories/fields_product_relation.yaml
+    toolbarButtons: link
+  manage:
+    form: $/loftonti/erso/models/categories/fields_product_relation.yaml
+    list: $/loftonti/erso/models/categories/columns.yaml
+
+branches:
+  label: Sucursales
+  view:
+    list: $/loftonti/erso/models/products/columns_pivot.yaml
+    toolbarButtons: link|unlink
+  manage:
+    list: $/loftonti/erso/models/branches/columns.yaml
+  pivot:
+    form: $/loftonti/erso/models/products/fields_pivot.yaml
+
+applications:
+  label: Aplicaciones
+  manage:
+    form: $/loftonti/erso/models/applications/fields.yaml
+    list: $/loftonti/erso/models/applications/columns.yaml
+  view:
+    list: $/loftonti/erso/models/applications/columns.yaml
+    toolbarButtons: create|delete

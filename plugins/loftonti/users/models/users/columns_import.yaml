@@ -1,0 +1,21 @@
+columns:
+  firstname:
+    label: 'Nombre'
+  lastname:
+    label: 'Apellidos'
+  email:
+    label: 'Correo'
+  phone:
+    label: 'Teléfono'
+  address1:
+    label: 'Calle y Número'
+  suburb:
+    label: 'Colonia'
+  zip_code:
+    label: 'C.P.'
+  state:
+    label: 'Estado'
+  country:
+    label: 'Delegación/Municipio'
+  address2:
+    label: 'Referencias'

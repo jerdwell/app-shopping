@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    firstname:
+        label: Nombre
+        type: text
+        searchable: true
+        select: 'concat(firstname, '' '', lastname)'
+    email:
+        label: Correo
+        type: text
+        searchable: true
+        sortable: true
+    phone:
+        label: Teléfono
+        type: text
+        searchable: true

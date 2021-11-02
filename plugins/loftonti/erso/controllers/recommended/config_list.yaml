@@ -1,0 +1,12 @@
+title: Recommended
+modelClass: Loftonti\Erso\Models\Recommended
+list: $/loftonti/erso/models/recommended/columns.yaml
+recordUrl: 'loftonti/erso/recommended/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

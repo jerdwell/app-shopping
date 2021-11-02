@@ -1,0 +1,21 @@
+title = "Filtrado de noticias"
+url = "/blog/:filter/:values"
+layout = "_default"
+is_hidden = 0
+
+[BlogFilter]
+filter = "{{ :filter }}"
+per = 20
+values = "{{ :values }}"
+==
+{%
+    partial 'components/_step'
+    title = "Blog"
+    align= "center"
+    type= "light"
+    local= true
+    color= "dark"
+    principal = true
+    img = "steps6.jpg"|media
+%}
+{% component 'BlogFilter' %}

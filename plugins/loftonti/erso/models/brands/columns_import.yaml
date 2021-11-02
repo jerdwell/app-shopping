@@ -1,0 +1,9 @@
+columns:
+  brand_name:
+    type: text
+  brand_slug:
+    type: text
+  brand_cover:
+    type: text
+  brand_logo:
+    type: text

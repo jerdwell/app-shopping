@@ -1,0 +1,22 @@
+plugin:
+    name: 'loftonti.users::lang.plugin.name'
+    description: 'loftonti.users::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-user
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Usuarios
+        url: loftonti/users/users
+        icon: icon-users
+        permissions:
+            - manage_users
+        sideMenu:
+            side-menu-item:
+                label: 'Menu Item'
+                url: loftonti/users/useraddress
+                icon: icon-sitemap
+permissions:
+    manage_users:
+        tab: Usuarios
+        label: 'Gestor de usuarios'

@@ -1,0 +1,55 @@
+.step
+  align-items: center
+  display: flex
+  // min-height: 150px
+  justify-content: center
+  overflow: hidden
+  position: relative
+  padding: 0
+  width: 100%
+  .step-bg
+    left: 0
+    height: 100%
+    object-fit: cover
+    object-position: center
+    position: absolute
+    top: 0
+    width: 100%
+  .step-text
+    align-items: center
+    // background: rgba(#000, .9)
+    background-image: radial-gradient(rgba(#000, .8) 0%, rgba(#000, .8) 50%, rgba(#000, .5) 51%, rgba(#000,.5) 100%)
+    background-size: 5px 5px
+    color: white
+    display: flex
+    font-family: $headings-font-family
+    font-weight: bolder
+    font-size: 3em
+    justify-content: center
+    line-height: 1.2em
+    margin: 0
+    flex-direction: column
+    // min-height: 150px
+    padding: 30px 5%
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1 )
+    width: 100%
+    z-index: 1
+    .erso-titles
+      display: flex
+      flex-direction: column 
+  @media screen and ( min-width: 768px )
+    .step-text
+      padding-top: 120px
+      min-height: 250px
+      font-size: 3em
+  @media screen and(min-width:1280px)
+    .step-text
+      font-size: 4em
+
+.step-principal
+  @media screen and ( min-width: 768px )
+    .step-text
+      padding: 130px 5%
+  @media screen and ( min-width: 1024px )
+    .step-text
+      padding: 180px 5%

@@ -1,0 +1,57 @@
+fields:
+    branch_name:
+        label: Sucursal
+        span: left
+        required: 1
+        type: text
+    address1:
+        label: 'Dirección 1'
+        span: full
+        required: 1
+        type: text
+    address2:
+        label: 'Dirección 2'
+        span: full
+        type: text
+    city:
+        label: Ciudad
+        span: left
+        required: 1
+        type: text
+    zip_code:
+        label: 'Código Postal'
+        span: auto
+        required: 1
+        type: number
+    state:
+        label: Estado
+        span: auto
+        required: 1
+        type: text
+    country:
+        label: Municipio
+        span: auto
+        required: 1
+        type: text
+    contact_data:
+        label: 'Datos de contacto'
+        prompt: 'Agregar nuevo dato'
+        span: full
+        type: repeater
+        form:
+            fields:
+                type:
+                    label: Tipo
+                    options:
+                        phone: Teléfono
+                        email: Correo
+                        whatsapp: whatsapp
+                    showSearch: true
+                    span: auto
+                    required: 1
+                    type: dropdown
+                data:
+                    label: Dato
+                    span: auto
+                    required: 1
+                    type: text

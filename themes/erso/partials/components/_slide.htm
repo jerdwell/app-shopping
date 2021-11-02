@@ -1,0 +1,67 @@
+==
+function onStart(){
+  $this['slide_items'] = [
+    [
+      'pos' => 0,
+      'img' => 'cover_01.jpg',
+      'srcset' => ['cover_01_portrait.jpg', 'cover_01.jpg'],
+      'title' => 'Conoce nuestros productos y cotiza rápidamente',
+      'description' => null,
+      'url' => null,
+    ],
+    [
+      'pos' => 1,
+      'img' => 'cover_02.jpg',
+      'srcset' => ['cover_02_portrait.jpg', 'cover_02.jpg'],
+      'title' => 'Horario de servicio L-V de 8:30 a 18:00 y Sábado de 8:30 a 16:00.',
+      'description' => null,
+      'url' => null,
+    ],
+    [
+      'pos' => 2,
+      'img' => 'cover_03.jpg',
+      'srcset' => ['cover_03_portrait.jpg', 'cover_03.jpg'],
+      'title' => 'Contacta con la sucursal más cerca de ti y resuelve tus dudas',
+      'description' => null,
+      'url' => null,
+    ],
+  ];
+  $this['index_slide'] = 0;
+}
+==
+
+<div class="slide" id="main-slide">
+  <div class="slide-container">
+    {% for slide_item in data_slide %}
+      <div class="slide-item">
+        <picture class="slide-item-image">
+          <source class="slide-item-image" media="(max-width: 767px)" srcset="{{ slide_item['slide_portrait']|media }}">
+          <source class="slide-item-image" media="(min-width: 768px)" srcset="{{ slide_item['slide_landscape']|media }}">
+          <img class="slide-item-image" style="background-attachment: fixed;" src="{{ slide_item['slide_landscape']|media }}" alt="{{ slide_item['title'] }}">
+        </picture>
+        {% if slide_item['slide_text'] != null %}
+        <div class="slide-item-title">
+          {% if loop.first %}
+         <div class="slide-item-title-text">
+          <h1 class="slide-item-title-text-first">{{ slide_item['slide_text'] }}</h1>
+          <p class="slide-item-title-text-p"> Conoce nuestros productos y cotiza rápidamente. </p>
+         </div>
+          {% else %}
+          <p class="slide-item-title-text">{{ slide_item['slide_text'] }}</p>
+          {%endif%}
+        </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+  </div>
+  <div class="slide-controls">
+    <div id="slide-controls-prev" class="slide-controls-prev"><span class="oi oi-chevron-left slide-control-icon"></span></div>
+    <div id="slide-controls-next" class="slide-controls-next"><span class="oi oi-chevron-right slide-control-icon"></span></div>
+  </div>
+  <div class="slide-control-dots">
+    {% for slide_item  in slide_items %}
+    <div class="dot-indicator {{ slide_item['id'] == 0 ? 'dot-indicator-active' : '' }}" data-index="{{ slide_item['id'] }}"></div>
+    {% endfor %}
+  </div>
+</div>
