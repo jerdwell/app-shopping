@@ -1,0 +1,5 @@
+{% put title %}
+<title>{{post.title}}</title>
+<meta name="description" content='{{ post.content|striptags|length > 150 ? post.content|replace({"\n": "", "\r": "", "\t": ""})|striptags|slice(0, 150) ~ "..." : post.content|replace({"\n": "", "\r": "", "\t": ""})|striptags }}'>
+{% endput %}
+
