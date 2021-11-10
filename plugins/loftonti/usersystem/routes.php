@@ -23,6 +23,10 @@ Route::prefix('api/v1/user_system') -> group(function(){
   Route::prefix('products') -> group(function ()
   {
     /**
+     * products
+     */
+    Route::post('product', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@createProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
+    /**
      * brands
      */
     Route::post('search-brands', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchBrands') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
