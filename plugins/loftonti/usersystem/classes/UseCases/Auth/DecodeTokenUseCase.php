@@ -40,7 +40,6 @@ class DecodeTokenUseCase
       $this -> getUserData();
       $this -> decodeToken();
       $this -> validExpiration();
-      explode('.', $this -> token_encoded);
     } catch (\Throwable $th) {
       throw $th;
     }
@@ -73,7 +72,7 @@ class DecodeTokenUseCase
       $this -> token_decoded = $decoded;
       $decoded -> iat = time();
       $decoded -> exp = time() + getenv('TIME_EXPIRES_SESSION_USERS_SYSTEM') + (60 * 60); // Tiempo que expirará el token (+ lo acordado en el .env)
-      $this -> refresh_token = JWT::encode($decoded, $this -> user -> sk);
+      $this -> refresh_token = JWT::encode($decoded, $this -> user -> pk);
     } catch (\Throwable $th) {
       throw $th;
     }
