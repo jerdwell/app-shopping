@@ -64,11 +64,8 @@ export default {
 
 <style lang="sass" scoped>
 .filters-search-products
-  padding: 80px 5% 20px
+  padding: 40px 5%
   left: 0
   top: 0
   width: 100%
-  @media screen and( min-width: 768px)
-    padding-top: 150px
-
 </style>

@@ -2,6 +2,9 @@
 {% set categories = __SELF__.categories %}
 {% set post = __SELF__.post %}
 
+{% partial 'titles/_post' 
+   post = post
+%}
 {%
     partial 'components/_step'
     title = post.title
