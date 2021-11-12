@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use loftonTi\Usersystem\Classes\UseCases\Products\CreateCarUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\CreateShipownerUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\GetBrandsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetCarsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetDasboardDataUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchBrandsUseCase;
@@ -71,6 +72,21 @@ class UserSystemProductsHandler
       return response() -> json([
         'error' => $th -> getMessage()
       ], 400);
+    }
+  }
+
+  /**
+   * @method getBranches
+   */
+  public function getBrands(Request $request)
+  {
+    try {
+      $brands = new GetBrandsUseCase;
+      return $brands();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 401);
     }
   }
   

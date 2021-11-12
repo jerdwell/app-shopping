@@ -30,6 +30,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
      * brands
      */
     Route::post('search-brands', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchBrands') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
+    Route::get('brands', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@getBrands') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     /**
      * categories
      */
