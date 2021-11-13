@@ -47,7 +47,12 @@ Route::prefix('api/v1/user_system') -> group(function(){
     Route::post('search-shipowner', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchShipowners') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     Route::post('create-shipowner', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@createShipowner') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     /**
-     * cars
+     * mixed
+     */
+    Route::get('data-applications', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@getCarsAndShipowners') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
+    
+     /**
+     * dashboard
      */
     Route::get('dashboard-data', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@dashboardData') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     Route::post('upload-sync-file', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@uploadFileSync') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);

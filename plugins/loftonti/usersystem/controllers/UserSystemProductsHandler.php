@@ -10,6 +10,7 @@ use LoftonTi\Usersystem\Classes\UseCases\Products\CreateShipownerUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetBrandsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetCarsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetDasboardDataUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\GetShipownersUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchBrandsUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchCarsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\SearchCategoriesUseCase;
@@ -182,6 +183,27 @@ class UserSystemProductsHandler
       if(!$request -> has('data_search')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
       $shipowner = new SearchShipownerUseCase($request -> data_search);
       return $shipowner -> searchByParam();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 400);
+    }
+  }
+
+  /**
+   * Get all cars and shipowners
+   * @method
+   */
+  public function getCarsAndShipowners(Request $request)
+  {
+    try {
+      $cars = new GetCarsUseCase;
+      $shipowners = new GetShipownersUseCase;
+      return [
+        'cars' => $cars -> get(),
+        'shipowners' => $shipowners -> get()
+      ];
+      return $request -> all();
     } catch (\Throwable $th) {
       return response() -> json([
         'error' => $th -> getMessage()
