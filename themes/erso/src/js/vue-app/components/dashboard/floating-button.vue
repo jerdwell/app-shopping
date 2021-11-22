@@ -68,7 +68,7 @@ export default {
     justify-content: center
     align-items: center
     animation-name: easyin
-    animation-duration: .5s
+    animation-duration: .02s
     animation-delay: 0
     animation-direction: alternate
     animation-timing-function: ease-in
