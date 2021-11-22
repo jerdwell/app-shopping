@@ -26,10 +26,10 @@ export default {
 <style lang="sass">
 .floating-button
     background-color: #40c351
-    width:50px
-    height:50px
-    border:4px solid white
-    border-radius:50%
+    width: 50px
+    height: 50px
+    border: 4px solid white
+    border-radius: 50%
     position: fixed
     right: 7%
     bottom: 5%
@@ -48,15 +48,15 @@ export default {
     animation-fill-mode: none
     animation-play-state: running
     @media screen and ( min-width: 768px )
-        right:30px
+        right: 30px
         bottom: 10%
 .fab-container
     flex-direction: column
-    height:25%
+    height: 25%
     align-items: space-between
-    border-radius:50%
+    border-radius: 50%
     position: fixed
-    right:60px
+    right: 60px
     bottom: 13%
     display: none
 .fab-child
@@ -89,11 +89,11 @@ export default {
     display: none
 .square
     display: flex
-    padding:10px
+    padding: 10px
     flex-direction: column
     width: 200px
     height: 100px
-    border-radius:10px
+    border-radius: 10px
     animation-name: zoomin
     animation-duration: .02s
     animation-delay: 0
@@ -135,7 +135,7 @@ export default {
     width: 50px
     height: 50px
     background-color: #40c351
-    border-radius:50%
+    border-radius: 50%
 
 @keyframes easyin 
     0%
