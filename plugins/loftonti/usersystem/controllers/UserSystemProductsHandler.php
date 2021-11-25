@@ -9,6 +9,7 @@ use loftonTi\Usersystem\Classes\UseCases\Products\CreateCarUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\CreateShipownerUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetBrandsUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetCarsUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\GetCategoriesUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetDasboardDataUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetShipownersUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchBrandsUseCase;
@@ -197,11 +198,15 @@ class UserSystemProductsHandler
   public function getCarsAndShipowners(Request $request)
   {
     try {
+      $brands = new GetBrandsUseCase();
       $cars = new GetCarsUseCase;
       $shipowners = new GetShipownersUseCase;
+      $categories = new GetCategoriesUseCase;
       return [
         'cars' => $cars -> get(),
-        'shipowners' => $shipowners -> get()
+        'shipowners' => $shipowners -> get(),
+        'brads' => $brands(),
+        'categories' => $categories()
       ];
       return $request -> all();
     } catch (\Throwable $th) {
