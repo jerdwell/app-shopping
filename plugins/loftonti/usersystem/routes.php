@@ -26,6 +26,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
      * products
      */
     Route::post('product', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@createProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
+    Route::get('product/{erso_code}', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@getProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     /**
      * brands
      */

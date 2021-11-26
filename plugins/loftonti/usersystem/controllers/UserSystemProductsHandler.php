@@ -205,7 +205,7 @@ class UserSystemProductsHandler
       return [
         'cars' => $cars -> get(),
         'shipowners' => $shipowners -> get(),
-        'brads' => $brands(),
+        'brands' => $brands(),
         'categories' => $categories()
       ];
       return $request -> all();

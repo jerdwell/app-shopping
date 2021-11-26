@@ -4,6 +4,7 @@ namespace LoftonTI\Usersystem\Controllers;
 use Illuminate\Http\Request;
 use LoftonTi\Usersystem\Classes\UseCases\Branches\AttachProductUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\CreateProductUseCase;
+use LoftonTi\Usersystem\Classes\UseCases\Products\GetProductUseCase;
 
 class UserSystemProductResources
 {
@@ -45,6 +46,21 @@ class UserSystemProductResources
       return response() -> json([
         'error' => $th -> getMessage()
       ]);
+    }
+  }
+
+  /**
+   * get all data of product finded by erso_code
+   * @method getProductController
+   * @param string $erso_code
+   */
+  public function getProductController($erso_code)
+  {
+    try {
+      $use_case = new GetProductUseCase($erso_code);
+      return $use_case -> getProduct();
+    } catch (\Throwable $th) {
+      throw $th;
     }
   }
 
