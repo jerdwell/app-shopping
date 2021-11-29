@@ -2,6 +2,7 @@
 namespace LoftonTI\Usersystem\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Queue;
 use LoftonTi\Usersystem\Classes\UseCases\Branches\AttachProductUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\CreateProductUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetProductUseCase;
@@ -15,33 +16,40 @@ class UserSystemProductResources
   /**
    * @var array
    */
-  private $applications;
+  private
+    $items,
+    $cars, 
+    $shipowners, 
+    $brands,
+    $categories, 
+    $applications;
 
   public function createProductController(Request $request)
   {
     try {
-      $this -> setApplications($request -> applications);
-      $this -> setPrices($request -> all());
-      $use_case = new CreateProductUseCase(
-        $request -> CVE_ART,
-        $request -> CVES_ALTER,
-        $request -> DESCR,
-        $request -> category['id'],
-        $request -> brand['id'],
-        $this -> public_price,
-        $this -> customer_price,
-        $request -> CVE_IMAGEN,
-        $this -> applications
-      );
-      $product = $use_case();
-      $attach_branch = new AttachProductUseCase(
-        $request -> branch_id,
-        $request -> enterprise_id,
-        intval($request -> EXIST),
-        $product
-      );
-      $attach_branch();
-      return $product;
+      if (count($request -> items) > 20) {
+        Queue::push('LoftonTi\Usersystem\Classes\UseCases\Products\CreateProductsQueueUseCase', [
+          'items' => $request -> items,
+          'branch_id' => $request -> branch_id,
+          'user_id' => $request -> user_id,
+        ]);
+        return [
+          'queue' => true,
+          'status' => 'working',
+          'errors' => [],
+          'assertions' => 0
+        ];
+      }else{
+        $use_case = new CreateProductUseCase($request -> items, $request -> branch_id);
+        $createds = $use_case();
+        return [
+          'queue' => false,
+          'status' => 'finish',
+          'errors' => $createds['errors'],
+          'assertions' => $createds['assertions'],
+          'items' => $createds['items']
+        ];
+      }
     } catch (\Throwable $th) {
       return response() -> json([
         'error' => $th -> getMessage()
@@ -59,52 +67,6 @@ class UserSystemProductResources
     try {
       $use_case = new GetProductUseCase($erso_code);
       return $use_case -> getProduct();
-    } catch (\Throwable $th) {
-      throw $th;
-    }
-  }
-
-  /**
-   * @method setApplications
-   * @param Array $applications
-   * @return void
-   */
-  private function setApplications(array $applications)
-  {
-    $items = array();
-    try {
-      foreach($applications as $application) {
-        $items[] = [
-          'car_id' => $application['car']['id'],
-          'shipowner_id' => $application['shipowner']['id'],
-          'year' => $application['years']['from'] . '-' . $application['years']['to'],
-          'note' => $application['notes']
-        ];
-      }
-      $this -> applications = $items;
-    } catch (\Throwable $th) {
-      throw $th;
-    }
-  }
-
-  /**
-   * Set ptoduct prices [public_price, customer_price]
-   * @method setPrices
-   * @param Array $product
-   * @return void
-   */
-  private function setPrices($product):void
-  {
-    try {
-      if(count($product['prices']) <= 0){
-        $this -> public_price = $product['ULT_COSTO'];
-        $this -> customer_price = $product['ULT_COSTO'];
-      }else{
-        $public_price = collect($product['prices']) -> firstWhere('CVE_PRECIO', '=', 1);
-        $customer_price = collect($product['prices']) -> firstWhere('CVE_PRECIO', '=', 2);
-        $this -> public_price = $public_price ? $public_price['PRECIO'] : $product['ULT_COSTO'];
-        $this -> customer_price = $customer_price ? $customer_price['PRECIO'] : $product['ULT_COSTO'];
-      }
     } catch (\Throwable $th) {
       throw $th;
     }

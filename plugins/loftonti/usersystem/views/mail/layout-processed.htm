@@ -1,0 +1,23 @@
+<h3>Carga de productos por layout</h3>
+<h5>Te informamos que se han cargado {{ assertions }} productos.</h5>
+
+<p>Productos cargados exitosamente: {{assertions}}</p>
+<p>Errores: {{ errors|length }}</p>
+
+{% if errors|length > 0 %}
+<h3>En el proceso de lectura del layout encontramos los siguientes errores y estos productos no se han dado de alta:</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center; width: 100px;">Línea</th>
+      <th>Error</th>
+    </tr>
+  </thead>
+  {% for error in errors %}
+    <tr>
+      <td style="text-align: center;">{{error.line}}</td>
+      <td>{{error.error}}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endif %}

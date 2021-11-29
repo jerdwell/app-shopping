@@ -16,7 +16,6 @@ Route::prefix('api/v1/user_system') -> group(function(){
     Route::get('all-enterprises', 'LoftonTi\Usersystem\Controllers\UserSystemResourcesApi@getAllEnterprises');
   });
 
-
   /**
    * Routes product handler
    */
