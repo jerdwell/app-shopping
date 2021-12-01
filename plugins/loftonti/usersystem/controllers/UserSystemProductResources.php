@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use LoftonTi\Usersystem\Classes\UseCases\Branches\AttachProductUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\CreateProductUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetProductUseCase;
+use LoftonTI\Usersystem\Classes\UseCases\Products\UpdateProductUseCase;
 
 class UserSystemProductResources
 {
@@ -94,8 +95,28 @@ class UserSystemProductResources
     } catch (\Throwable $th) {
       return response() -> json([
         'error' => $th -> getMessage()
-      ]);
+      ], 403);
     }
+  }
+
+  /**
+   * Upload product api
+   * @method updateProductController
+   * @param Object $request
+   */
+  public function updateProductController(Request $request)
+  {
+  try {
+    $use_case = new UpdateProductUseCase(
+      $request -> erso_code, 
+      $request -> product, 
+      $request -> branch_id);
+    return $use_case();
+  } catch (\Throwable $th) {
+    return response() -> json([
+      'error' => $th -> getMessage()
+    ], 403);
+  }
   }
 
 }

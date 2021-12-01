@@ -5,80 +5,73 @@ namespace LoftonTI\Usersystem\Classes\UseCases\Products;
 use Illuminate\Support\Facades\DB;
 use Loftonti\Erso\Models\Products;
 
-/**
- * Create product
- * @class
- */
-class CreateProductUseCase
+class UpdateProductUseCase
 {
+  /**
+   * @var int
+   */
+  private $branch_id, $enterprise_id;
+  /**
+   * @var object
+   */
+  private $repository, $entity;
 
   /**
    * @var array
    */
-  private $items, $errors = [];
+  private $product, $product_data;
 
   /**
-   * @var object
+   * @var string
    */
-  private $repository;
-  
+  private $erso_code;
+
   /**
-   * @var int
+   * @param string $erso_code code of product to be updated
+   * @param array $product product data to update
    */
-  private $assertions = 0, $branch_id;
-  
-  /**
-   * @param array $products contain all products to create with applications
-   * @param int $branch_id branch to attach products
-   */
-  public function __construct($products, $branch_id) {
-    $this -> branch_id = $branch_id;
-    $this -> setItems($products);
-    $this -> repository = new Products();
+  public function __construct(string $erso_code, array $product, int $branch_id) {
+    $this->branch_id = $branch_id;
+    $this->enterprise_id = $product['enterprise_id'];
+    $this->erso_code = $erso_code;
+    $this->product = $product;
+    $this -> repository = new Products;
+    $this -> validProductExist();
   }
   
   public function __invoke()
   {
     try {
-      $this -> createItems();
-      return [
-        "assertions" => $this -> assertions,
-        "errors" => $this -> errors,
-        "items" => $this -> items
-      ];
+      $prices = $this -> setPrices($this -> product);
+      $product_data = $this -> setProduct(
+        $this -> product['CVE_ART'],
+        $this -> product['CVES_ALTER'],
+        $this -> product['DESCR'],
+        $this -> product['category']['id'],
+        $this -> product['brand']['id'],
+        $prices['public_price'],
+        $prices['customer_price'],
+        $this -> product['CVE_IMAGEN'],
+        $this -> product['applications'],
+        $this -> product['EXIST'],
+        $this -> product['enterprise_id'],
+      );
+      $this -> updateProduct($product_data);
+      return $product_data;
     } catch (\Throwable $th) {
       throw $th;
     }
   }
 
   /**
-   * Prepare data to create product
-   * @method setItems
-   * @param array $products
-   * @return void
+   * @method validProductExist
    */
-  private function setItems($products)
+  private function validProductExist():void
   {
-    try {
-      foreach ($products as $product) {
-        $prices = $this -> setPrices($product);
-        $this -> items[] = $this -> setProduct(
-          $product['CVE_ART'],
-          $product['CVES_ALTER'],
-          $product['DESCR'],
-          $product['category']['id'],
-          $product['brand']['id'],
-          $prices['public_price'],
-          $prices['customer_price'],
-          $product['CVE_IMAGEN'],
-          $product['applications'],
-          $product['EXIST'],
-          $product['enterprise_id']
-        );
-      }
-    } catch (\Throwable $th) {
-      throw $th;
-    }
+    $product = $this -> repository -> where('erso_code', $this -> erso_code)
+      -> first();
+    if(!$product) throw new \Exception("El producto que intentas actualizar no existe.");
+    $this -> entity = $product;
   }
 
   /**
@@ -93,7 +86,7 @@ class CreateProductUseCase
    * @param null|string $product_cover
    * @param array $applications
    */
-  public function setProduct($erso_code, $provider_code, $product_name, $category_id, $brand_id, $public_price, $customer_price, $product_cover, $applications, $EXIST, $enterprise_id):array
+  private function setProduct($erso_code, $provider_code, $product_name, $category_id, $brand_id, $public_price, $customer_price, $product_cover, $applications, $EXIST, $enterprise_id):array
   {
     try {
       $erso_code = strtoupper($erso_code);
@@ -115,8 +108,8 @@ class CreateProductUseCase
         "customer_price" => $customer_price,
         "product_cover" => $erso_code . '.jpg',
         "applications" => $this -> setApplications($applications),
-        "EXIST" => $EXIST,
-        "enterprise_id" => $enterprise_id
+        "enterprise_id" => $enterprise_id,
+        "EXIST" => $EXIST
       ];
       return $product;
     } catch (\Throwable $th) {
@@ -167,7 +160,7 @@ class CreateProductUseCase
         $product_applications[] = [
           'car_id' => $application['car']['id'],
           'shipowner_id' => $application['shipowner']['id'],
-          'year' => $application['years']['from'] . '-' . $application['years']['to'],
+          'year' => $application['year'],
           'note' => $application['notes']
         ];
       }
@@ -178,54 +171,30 @@ class CreateProductUseCase
   }
 
   /**
-   * @method createItems
-   * @return int $assertions number of items created successfully
+   * @method updateProduct
    */
-  public function createItems()
+  private function updateProduct(array $product)
   {
-    $i = 1;
-    foreach ($this -> items as $item) {
-      try {
-        $this -> createProduct($item);
-        $this -> assertions ++;
-      } catch (\Throwable $th) {
-        $this -> errors[] = [
-          'line' => $i,
-          'error' => $th -> getMessage()
-        ];
-      }
-      $i ++;
-    }
-  }
-
-  /**
-   * Create product and attach applications
-   * @method createProduct
-   * @param object $product 
-   */
-  private function createProduct(array $product):void
-  {
-    DB::transaction(function() use ($product) {
-      try {
-        $p = $this -> repository -> create($product);
-        $p -> branches() -> attach([
-          $this -> branch_id => [
-            'enterprise_id' => $product['enterprise_id'],
-            'stock' => $product['EXIST'],
-          ]
-        ]);
+    try {
+      DB::transaction(function() use($product){
+        $this -> entity -> update($product);
+        $this -> entity -> branches() 
+          -> where('id', $this -> branch_id)
+          -> where('enterprise_id', $this -> enterprise_id)
+          -> update(['stock' => $product['EXIST']]);
+        $this -> entity -> applications() -> delete();
         foreach ($product['applications'] as $application) {
-          $p -> applications() -> create([
+          $this -> entity -> applications() -> create([
             'car_id' => $application['car_id'],
             'shipowner_id' => $application['shipowner_id'],
             'year' => $application['year'],
             'note' => $application['note']
           ]);
         }
-      } catch (\Throwable $th) {
-        throw new \Exception($th -> getMessage());
-      }
-    });
+      });
+    } catch (\Throwable $th) {
+      throw $th;
+    }
   }
 
 }
