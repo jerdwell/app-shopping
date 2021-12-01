@@ -28,11 +28,18 @@ class GetProductUseCase
   {
     try {
       $product = $this -> repository -> where('erso_code', $this -> erso_code)
+        -> with([
+          'brand',
+          'branches',
+          'category',
+          'applications' => function($query_applications) {
+            $query_applications -> with([
+              'car',
+              'shipowner',
+            ]);
+          }
+        ])
         -> first();
-      $product -> brand;
-      $product -> category;
-      $product -> applications;
-      $product -> branches;
       return $product;
     } catch (\Throwable $th) {
       throw $th;
