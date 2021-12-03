@@ -4,7 +4,7 @@
         i.fas.fa-phone-alt(:class="{'padd show':isActive}")
         a.fab-child(@click="openWhats('https://wa.me/525527358877')" :class="{'show': isActive }") Coacalco
         a.fab-child(@click="openWhats('https://wa.me/525549828827')" :class="{'show': isActive }") Tlalnepantla
-        a.fab-child(@click="openWhats('https://wa.me/525546105157')" :class="{'show': isActive }") Cuautitlán Izcalli
+        a.fab-child(@click="openWhats('https://wa.me/525546105175')" :class="{'show': isActive }") Cuautitlán Izcalli
 </template>
 
 <script>
