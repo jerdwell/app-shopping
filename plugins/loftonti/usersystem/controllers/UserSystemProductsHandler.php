@@ -14,7 +14,6 @@ use LoftonTi\Usersystem\Classes\UseCases\Products\GetDasboardDataUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetShipownersUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchBrandsUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchCarsUseCase;
-use LoftonTi\Usersystem\Classes\UseCases\Products\SearchCategoriesUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\SearchShipownerUseCase;
 
 class UserSystemProductsHandler  
@@ -96,12 +95,11 @@ class UserSystemProductsHandler
    * search categories
    * @method
    */
-  public function searchCategories(Request $request)
+  public function getCategories()
   {
     try {
-      if(!$request -> has('data_search')) throw new \Exception("Es importante colocar el parámetro de búsqueda");
-      $brands = new SearchCategoriesUseCase($request -> data_search);
-      return $brands -> searchCategories();
+      $use_case = new GetCategoriesUseCase();
+      return $use_case();
     } catch (\Throwable $th) {
       return response() -> json([
         'error' => $th -> getMessage()

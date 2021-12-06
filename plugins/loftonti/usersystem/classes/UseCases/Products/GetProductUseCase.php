@@ -40,6 +40,7 @@ class GetProductUseCase
           }
         ])
         -> first();
+      if(!$product) throw new \Exception('El producto no se encuentra registrado.');
       return $product;
     } catch (\Throwable $th) {
       throw $th;

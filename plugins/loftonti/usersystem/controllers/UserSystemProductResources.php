@@ -4,6 +4,8 @@ namespace LoftonTI\Usersystem\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
+use Loftonti\Erso\Models\Branches;
+use Loftonti\Erso\Models\Products;
 use LoftonTi\Usersystem\Classes\UseCases\Branches\AttachProductUseCase;
 use LoftonTI\Usersystem\Classes\UseCases\Products\CreateProductUseCase;
 use LoftonTi\Usersystem\Classes\UseCases\Products\GetProductUseCase;
@@ -69,11 +71,10 @@ class UserSystemProductResources
     try {
       $use_case = new GetProductUseCase($erso_code);
       return $use_case -> getProduct();
-
     } catch (\Throwable $th) {
       return response() -> json([
         'error' => $th -> getMessage()
-      ]);
+      ], 401);
     }
   }
 
@@ -106,17 +107,45 @@ class UserSystemProductResources
    */
   public function updateProductController(Request $request)
   {
-  try {
-    $use_case = new UpdateProductUseCase(
-      $request -> erso_code, 
-      $request -> product, 
-      $request -> branch_id);
-    return $use_case();
-  } catch (\Throwable $th) {
-    return response() -> json([
-      'error' => $th -> getMessage()
-    ], 403);
+    try {
+      $use_case = new UpdateProductUseCase(
+        $request -> erso_code, 
+        $request -> product, 
+        $request -> branch_id);
+      return $use_case();
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 403);
+    }
   }
+
+  /**
+   * get all products from branch only with category
+   * @method getAllSingleProductsForBranch
+   */
+  public function getAllProductsForBranch(Request $request)
+  {
+    try {
+      $paginate = in_array($request -> per_page, [50, 100, 200, 500]) ? $request -> per_page : 50;
+      $branch = Branches::where('id', $request -> branch_id) -> first();
+      $branch -> setRelation('products', $branch -> products()
+        -> with('category')
+        -> when($request -> order_by && $request -> order, function($q) use($request) {
+            $items_valid = ['id', 'erso_code', 'product_name', 'public_price', 'customer_price'];
+            if(!in_array($request -> order_by, $items_valid) || !in_array($request -> order, ['asc', 'desc'])) return;
+            $q -> orderBy($request->order_by, $request->order);
+          })
+        -> when($request -> param, function ($query_search) use($request){
+          $query_search -> where('erso_code', 'like', "%$request->param%");
+        })
+        -> paginate($paginate));
+      return $branch;
+    } catch (\Throwable $th) {
+      return response() -> json([
+        'error' => $th -> getMessage()
+      ], 403);
+    }
   }
 
 }

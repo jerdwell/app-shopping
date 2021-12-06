@@ -24,6 +24,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
     /**
      * products
      */
+    Route::post('/all', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@getAllProductsForBranch') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     Route::post('product', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@createProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
     Route::put('product', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@updateProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
     Route::get('product/{erso_code}', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@getProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
@@ -36,7 +37,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
     /**
      * categories
      */
-    Route::post('search-categories', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchCategories') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
+    Route::get('/categories', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@getCategories') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     /**
      * cars
      */

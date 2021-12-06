@@ -161,7 +161,7 @@ class UpdateProductUseCase
           'car_id' => $application['car']['id'],
           'shipowner_id' => $application['shipowner']['id'],
           'year' => $application['year'],
-          'note' => $application['notes']
+          'note' => $application['note']
         ];
       }
       return $product_applications;
