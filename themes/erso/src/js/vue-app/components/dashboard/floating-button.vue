@@ -41,7 +41,7 @@ export default {
     justify-content: center
     border-radius: 10px 10px 0 0
     img
-        margin-left:5px
+        margin-left: 5px
 
 
 .floating-button
@@ -68,7 +68,7 @@ export default {
     animation-fill-mode: none
     animation-play-state: running
     img
-        width:20px
+        width: 20px
     @media screen and ( min-width: 768px )
         right: 30px
         bottom: 10%
