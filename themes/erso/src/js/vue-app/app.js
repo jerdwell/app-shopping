@@ -25,6 +25,7 @@ Vue.prototype.$moment = moment
 //dashboard
 import butttonSearchProducts from './components/dashboard/button-search-products'
 import buttonAccountRegister from './components/dashboard/button-account-register'
+import floatingButton from './components/dashboard/floating-button';
 
 //filters
 import filtersSearchProducts from './components/filters/filters-search-products'
@@ -78,7 +79,8 @@ const app = new Vue({
     blogSearch,
     selectBranch,
     productShipownerFilter,
-    productFilters
+    productFilters,
+    floatingButton
   },
   template: '',
   store,
