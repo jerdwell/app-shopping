@@ -127,7 +127,7 @@ class UserSystemProductResources
   public function getAllProductsForBranch(Request $request)
   {
     try {
-      $paginate = in_array($request -> per_page, [50, 100, 200, 500]) ? $request -> per_page : 50;
+      $paginate = in_array($request -> per_page, [50, 100, 200, 500, 1000]) ? $request -> per_page : 50;
       $branch = Branches::where('id', $request -> branch_id) -> first();
       $branch -> setRelation('products', $branch -> products()
         -> with('category')
@@ -145,6 +145,23 @@ class UserSystemProductResources
       return response() -> json([
         'error' => $th -> getMessage()
       ], 403);
+    }
+  }
+
+  /**
+   * Change suatus of products to dissable
+   * @method deleteProducts
+   */
+  public function deleteProducts(Request $request)
+  {
+    try {
+      $products = Products::whereIn('erso_code', $request -> products)
+      -> update(['product_status' => false]);
+      return response()
+        -> json(['message' => 'Los productos se han dado de baja exitosamente.'], 201);
+    } catch (\Throwable $th) {
+      return response()
+        -> json(['error' => $th -> getMessage()], 403);
     }
   }
 
