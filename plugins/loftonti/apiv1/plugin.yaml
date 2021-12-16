@@ -1,0 +1,6 @@
+plugin:
+    name: 'loftonti.apiv1::lang.plugin.name'
+    description: 'loftonti.apiv1::lang.plugin.description'
+    author: LoftonTi
+    icon: oc-icon-adjust
+    homepage: ''

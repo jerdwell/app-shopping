@@ -1,18 +1,23 @@
 <?php
 
-namespace LoftonTi\Usersystem\Middleware;
+namespace LoftonTi\Apiv1\Services\Auth\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Loftonti\Usersystem\Classes\UseCases\Auth\DecodeTokenUseCase;
+use LoftonTi\Apiv1\Services\Auth\Request\Traits\SetHeadersRequest;
+use Loftonti\Apiv1\Services\Auth\UseCase\DecodeTokenUseCase;
 
 class UserSystemAuthMiddleware
 {
+  use SetHeadersRequest;
 
   /**
    * @var int
    */
-  private $branch_id;
+  private 
+    $branch_id,
+    $bearer_token,
+    $user_id;
 
   /**
    * @var null|string
@@ -32,22 +37,22 @@ class UserSystemAuthMiddleware
   public function handle(Request $request, Closure $next, ?string $module = null, ?string $permission = null)
   {
     try {
-      if(!$request -> headers -> has('Authorization')) throw new \Exception("Error: Not credentials in request");
-      if(!$request -> headers -> has('Auth-User')) throw new \Exception("Error: Not credentials in request");
-      if(!$request -> headers -> has('Auth-Branch')) throw new \Exception("Error: Not credentials in request");
+      $this -> checkHeaders($request);
       $this -> permission = $permission;
       $this -> module = $module;
-      $this -> branch_id = $request -> headers -> get('Auth-Branch');
-      $token = new DecodeTokenUseCase($request -> headers -> get('Auth-User'), $request -> headers -> get('Authorization'));
-      $token -> validToken();
+      $token = new DecodeTokenUseCase(
+        $this -> user_id, 
+        $this -> bearer_token,
+        'user_system'
+      );
       $refresh_token = $token -> getRefreshToken();
       $this -> permissions = $token -> getPermissions();
       $this -> branches = $token -> getBranches();
       $this -> checkBranchAssigned();
-      if($this -> module && $this -> permission ) $this -> checkPermission();
+      if($this -> module && $this -> permission) $this -> checkPermission();
       $request -> request -> add([
         'branch_id' => $this -> branch_id,
-        'user_id' => $request -> headers -> get('Auth-User'),
+        'user_id' => $this -> user_id,
       ]);
       $response = $next($request);
       if($refresh_token) $response -> header('Refresh-Token', $refresh_token);

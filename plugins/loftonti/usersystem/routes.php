@@ -1,13 +1,6 @@
 <?php
 
-// use LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware as AuthMiddleware;
-
 Route::prefix('api/v1/user_system') -> group(function(){
-
-  /**
-   * Auth Routes
-   */
-  Route::post('auth', 'LoftonTI\UserSystem\Controllers\UserSystemApi@authUser');
 
   /**
    * Routes for single resources
@@ -58,7 +51,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
      /**
      * dashboard
      */
-    Route::get('dashboard-data', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@dashboardData') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
+    Route::get('dashboard-data', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@dashboardData') -> middleware(['LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read']);
     Route::post('upload-sync-file', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@uploadFileSync') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
   });
 
