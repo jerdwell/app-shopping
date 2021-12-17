@@ -51,7 +51,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
      /**
      * dashboard
      */
-    Route::get('dashboard-data', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@dashboardData') -> middleware(['LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read']);
+    // Route::get('dashboard-data', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@dashboardData') -> middleware(['LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read']);
     Route::post('upload-sync-file', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@uploadFileSync') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
   });
 
