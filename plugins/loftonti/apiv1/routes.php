@@ -25,7 +25,12 @@ Route::prefix('api/v1') -> group(function()
   Route::prefix('products') -> group(function()
   {
     Route::post('sync-file', LoftonTi\Apiv1\Services\Products\Controllers\SyncFileController::class)
-    -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create');;
+    -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create');
+  });
+
+  Route::prefix('cars') -> group(function(){
+    Route::post('search', LoftonTi\Apiv1\Services\Cars\Controllers\SearchCarsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create');;
   });
 
 });

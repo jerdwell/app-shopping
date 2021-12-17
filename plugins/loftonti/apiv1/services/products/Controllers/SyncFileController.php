@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Loftonti\Apiv1\Services\Products\Request\ValidFileSyncRequest;
-use LoftonTi\Apiv1\Services\Products\UseCase\PrepareProductsToSyncDatabaseUseCase;
 
 class SyncFileController
 {
