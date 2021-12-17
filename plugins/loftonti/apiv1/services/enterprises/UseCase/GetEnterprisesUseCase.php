@@ -1,6 +1,6 @@
 <?php
 
-namespace LoftonTi\Apiv1\Services\Enterprises\Controllers;
+namespace LoftonTi\Apiv1\Services\Enterprises\Usecase;
 
 use LoftonTi\Apiv1\Services\Enterprises\Repositories\EnterpriseEloquentRepository;
 

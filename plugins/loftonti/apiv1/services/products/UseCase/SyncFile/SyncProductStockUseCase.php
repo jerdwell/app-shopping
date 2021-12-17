@@ -1,6 +1,6 @@
 <?php
 
-namespace LoftonTi\Usersystem\Classes\UseCases\Products;
+namespace LoftonTi\Apiv1\Services\Products\UseCase\SyncFile;
 
 use Illuminate\Support\Facades\DB;
 

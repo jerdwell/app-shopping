@@ -36,11 +36,18 @@ class ProductEloquentRepository implements ProductContracts
       -> groupBy('product_id')
       -> where('product_status', true)
       -> where('loftonti_shoppings_shopping.branch_id', $branch_id)
-      // -> whereRaw('MONTH(loftonti_shoppings_shopping.updated_at) = MONTH(CURRENT_DATE())')
+      -> whereRaw('MONTH(loftonti_shoppings_shopping.updated_at) = MONTH(CURRENT_DATE())')
       -> whereRaw('YEAR(loftonti_shoppings_shopping.updated_at) = YEAR(CURRENT_DATE())')
       -> take(5)
       -> get();
     return $products;
+  }
+
+  public function getAll(): object
+  {
+    return $this -> repository 
+      -> where('product_status', true)
+      -> get();
   }
 
 }
