@@ -2,7 +2,6 @@
 
 namespace Loftonti\Apiv1\Services\Auth\UseCase;
 
-// use Loftonti\Apiv1\Services\Auth\UseCase\AuthUserUseCase;
 use Firebase\JWT\JWT;
 
 class MakeTokenUseCase
