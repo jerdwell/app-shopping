@@ -21,6 +21,11 @@ class SearchCarsController
    */
   public function __invoke(Request $request)
   {
-    return $this -> repository -> searchCars($request -> data_search);
+    try {
+      return $this -> repository -> searchCars($request -> data_search);
+    } catch (\Throwable $th) {
+      return response()
+        -> json(['error' => $th -> getMessage()], 403);
+    }
   }
 }
