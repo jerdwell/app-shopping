@@ -42,4 +42,9 @@ class CarEloquentRepository implements CarContract
       -> first();
   }
 
+  public function getAll(): object
+  {
+    return $this -> repository -> all();
+  }
+
 }

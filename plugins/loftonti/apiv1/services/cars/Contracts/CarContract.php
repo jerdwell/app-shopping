@@ -8,5 +8,7 @@ interface CarContract
   public function searchCars(string $param): object;
 
   public function getByCarName(string $param): ?object;
+  
+  public function getAll(): object;
 
 }

@@ -33,6 +33,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('search-car');
     Route::post('/', LoftonTi\Apiv1\Services\Cars\Controllers\CreateCarController::class) 
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create') -> name('create-car');
+    Route::get('/', LoftonTi\Apiv1\Services\Cars\Controllers\GetAllCarsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('all-cars');
   });
 
 });

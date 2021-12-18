@@ -28,7 +28,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
     /**
      * cars
      */
-    Route::get('cars', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@getCars') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
+    // Route::get('cars', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@getCars') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     // Route::post('search-cars', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchCars') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     // Route::post('create-car', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@createCar') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
     /**

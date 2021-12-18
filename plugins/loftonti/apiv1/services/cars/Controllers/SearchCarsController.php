@@ -4,6 +4,7 @@ namespace LoftonTi\Apiv1\Services\Cars\Controllers;
 
 use Illuminate\Http\Request;
 use LoftonTi\Apiv1\Services\Cars\Repositories\CarEloquentRepository;
+use LoftonTi\Apiv1\Services\Cars\Usecase\SearchCarUseCase;
 
 class SearchCarsController
 {
@@ -22,7 +23,8 @@ class SearchCarsController
   public function __invoke(Request $request)
   {
     try {
-      return $this -> repository -> searchCars($request -> data_search);
+      $cars = new SearchCarUseCase;
+      return $cars($request -> data_search);
     } catch (\Throwable $th) {
       return response()
         -> json(['error' => $th -> getMessage()], 403);
