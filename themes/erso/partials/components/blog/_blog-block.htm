@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    {% for item in list_blogs %}
+    {% for item in list_blogs | slice(0,2) %}
     <div class="block-item">
         <div class="block-item-img">
             <img src="{{ item.cover.path }}" alt="" class="image-main-block" />
