@@ -50,4 +50,18 @@ class ProductEloquentRepository implements ProductContracts
       -> get();
   }
 
+  public function getByErsoCode(string $erso_code): ?object
+  {
+    return $this 
+      -> repository 
+      -> where('erso_code', $erso_code)
+      -> with([
+        'brand',
+        'applications',
+        'branches',
+        'category'
+      ])
+      -> first();
+  }
+
 }

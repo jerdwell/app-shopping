@@ -11,4 +11,6 @@ interface ProductContracts
 
   public function getAll(): object;
 
+  public function getByErsoCode(string $erso_code): ?object;
+
 }
