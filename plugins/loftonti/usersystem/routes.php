@@ -34,7 +34,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
     /**
      * shipwoners
      */
-    Route::post('search-shipowner', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchShipowners') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
+    // Route::post('search-shipowner', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@searchShipowners') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     Route::post('create-shipowner', 'LoftonTi\Usersystem\Controllers\UserSystemProductsHandler@createShipowner') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     /**
      * mixed
