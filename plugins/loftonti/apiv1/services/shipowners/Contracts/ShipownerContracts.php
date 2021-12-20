@@ -8,5 +8,7 @@ interface ShipownerContracts
   public function search(string $param): ?object;
   
   public function create(string $shipowner_name): ?object;
+  
+  public function all(): ?object;
 
 }

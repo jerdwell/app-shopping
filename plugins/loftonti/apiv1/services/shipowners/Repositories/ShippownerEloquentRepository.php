@@ -30,4 +30,9 @@ class ShippownerEloquentRepository implements ShipownerContracts
     ]);
   }
 
+  public function all(): object
+  {
+    return $this -> repository -> all();
+  }
+
 }

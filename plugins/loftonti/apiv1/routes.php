@@ -5,9 +5,19 @@ use LoftonTi\Apiv1\Services\Auth\Controllers\LoginUserController;
 Route::prefix('api/v1') -> group(function()
 {
 
+  Route::prefix('applications') -> group(function(){
+    Route::get('/', LoftonTi\Apiv1\Services\Applications\Controllers\GetDataApplicationsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-applications');
+  });
+
   Route::prefix('auth') -> group(function()
   {
     Route::post('/', LoginUserController::class) -> name('login');
+  });
+
+  Route::prefix('branch') -> group(function(){
+    Route::post('/products', LoftonTi\Apiv1\Services\Branches\Controllers\GetBranchProductsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-branch-products');
   });
 
   Route::prefix('dashboard') -> group(function()
