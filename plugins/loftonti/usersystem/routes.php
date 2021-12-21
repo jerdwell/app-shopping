@@ -15,7 +15,7 @@ Route::prefix('api/v1/user_system') -> group(function(){
     Route::put('product', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@updateProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,create']);
     // Route::get('product/{erso_code}', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@getProductController') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
     // Route::post('image', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@uploadProduct') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,read']);
-    Route::delete('/', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@deleteProducts') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,delete']);
+    // Route::delete('/', 'LoftonTI\Usersystem\Controllers\UserSystemProductResources@deleteProducts') -> middleware(['LoftonTi\Usersystem\Middleware\UserSystemAuthMiddleware:products,delete']);
     /**
      * brands
      */

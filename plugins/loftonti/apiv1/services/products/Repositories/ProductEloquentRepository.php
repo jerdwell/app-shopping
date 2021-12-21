@@ -99,4 +99,12 @@ class ProductEloquentRepository implements ProductContracts
     return $transaction;
   }
 
+  public function deleteMany(array $products): int
+  {
+    return $this 
+      -> repository 
+      -> whereIn('erso_code', $products)
+      -> update(['product_status' => false]);
+  }
+
 }

@@ -16,5 +16,7 @@ interface ProductContracts
   public function getInErsoCode(array $codes): ?object;
   
   public function create(array $product, int $branch_id): ?object;
+  
+  public function deleteMany(array $products): int;
 
 }
