@@ -47,6 +47,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create') -> name('sync-products');
     Route::get('product/{erso_code}', LoftonTi\Apiv1\Services\Products\Controllers\GetProductController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-product');
+    Route::post('/', LoftonTi\Apiv1\Services\Products\Controllers\CreateProductController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-product');
   });
 
   Route::prefix('shipowners') -> group(function ()

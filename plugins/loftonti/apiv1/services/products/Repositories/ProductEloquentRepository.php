@@ -2,6 +2,7 @@
 
 namespace Loftonti\Apiv1\Services\Products\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use LoftonTi\Apiv1\Services\Products\Contracts\ProductContracts;
 use Loftonti\Erso\Models\Products;
 
@@ -62,6 +63,40 @@ class ProductEloquentRepository implements ProductContracts
         'category'
       ])
       -> first();
+  }
+
+  public function getInErsoCode(array $codes): object
+  {
+    return $this 
+      -> repository
+      -> select('erso_code') 
+      -> whereIn('erso_code', $codes)
+      -> get();
+  }
+
+  public function create(array $product, int $branch_id): ?object
+  {
+    $transaction = DB::transaction(function() use($product, $branch_id) {
+      $p = $this 
+        -> repository
+        -> create($product);
+      $p -> branches() -> attach([
+        $branch_id => [
+          'enterprise_id' => $product['enterprise_id'],
+          'stock' => $product['stock']
+        ]
+      ]);
+      foreach ($product['applications'] as $application) {
+        $p -> applications() -> create([
+          'car_id' => $application['car_id'],
+          'shipowner_id' => $application['shipowner_id'],
+          'year' => $application['year'],
+          'note' => $application['note'],
+        ]);
+      }
+      return $p;
+    });
+    return $transaction;
   }
 
 }

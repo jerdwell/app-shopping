@@ -12,5 +12,9 @@ interface ProductContracts
   public function getAll(): object;
 
   public function getByErsoCode(string $erso_code): ?object;
+  
+  public function getInErsoCode(array $codes): ?object;
+  
+  public function create(array $product, int $branch_id): ?object;
 
 }

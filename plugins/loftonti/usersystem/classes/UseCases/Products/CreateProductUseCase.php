@@ -82,7 +82,6 @@ class CreateProductUseCase
   }
 
   /**
-   * 
    * @param string $erso_code
    * @param null|string $provider_code
    * @param string $product_name
