@@ -23,6 +23,8 @@ Route::prefix('api/v1') -> group(function()
   Route::prefix('brands') -> group(function(){
     Route::post('/search', LoftonTi\Apiv1\Services\Brands\Controllers\SearchBrandController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('search-brands');
+    Route::get('/', LoftonTi\Apiv1\Services\Brands\Controllers\GetBrandsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-brands');
   });
 
   Route::prefix('dashboard') -> group(function()

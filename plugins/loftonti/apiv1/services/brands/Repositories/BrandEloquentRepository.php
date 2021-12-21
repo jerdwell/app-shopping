@@ -25,4 +25,11 @@ class BrandEloquentRepository implements BrandContracts
       -> get();
   }
 
+  public function all(): object
+  {
+    return $this 
+      -> repository 
+      -> all();
+  }
+
 }

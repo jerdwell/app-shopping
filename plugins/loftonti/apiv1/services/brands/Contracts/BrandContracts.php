@@ -6,5 +6,7 @@ interface BrandContracts
 {
 
   public function search(string $param): object;
+  
+  public function all(): object;
 
 }
