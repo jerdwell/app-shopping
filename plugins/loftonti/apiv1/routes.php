@@ -27,12 +27,6 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-brands');
   });
 
-  Route::prefix('dashboard') -> group(function()
-  {
-    Route::get('/products', LoftonTi\Apiv1\Services\Dashboard\Controllers\CountBranchProductsController::class) 
-      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('dashboard-products');
-  });
-
   Route::prefix('cars') -> group(function(){
     Route::post('search', LoftonTi\Apiv1\Services\Cars\Controllers\SearchCarsController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('search-car');
@@ -40,6 +34,17 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create') -> name('create-car');
     Route::get('/', LoftonTi\Apiv1\Services\Cars\Controllers\GetAllCarsController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('all-cars');
+  });
+
+  Route::prefix('categories') -> group(function(){
+    Route::get('/', LoftonTi\Apiv1\Services\Categories\Controllers\GetCategoriesController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('all-categories');;
+  });
+
+  Route::prefix('dashboard') -> group(function()
+  {
+    Route::get('/products', LoftonTi\Apiv1\Services\Dashboard\Controllers\CountBranchProductsController::class) 
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('dashboard-products');
   });
 
   Route::prefix('enterprises') -> group(function()
