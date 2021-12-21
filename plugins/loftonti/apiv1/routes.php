@@ -49,6 +49,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-product');
     Route::post('/', LoftonTi\Apiv1\Services\Products\Controllers\CreateProductController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-product');
+    Route::post('upload-image', LoftonTi\Apiv1\Services\Products\Controllers\UploadProductImageUseCase::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('upload-product-image');
   });
 
   Route::prefix('shipowners') -> group(function ()
