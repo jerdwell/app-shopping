@@ -64,7 +64,9 @@ Route::prefix('api/v1') -> group(function()
     Route::post('upload-image', LoftonTi\Apiv1\Services\Products\Controllers\UploadProductImageUseCase::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,update') -> name('upload-product-image');
     Route::delete('/', LoftonTi\Apiv1\Services\Products\Controllers\DeleteProductsController::class)
-    -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,delete');
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,delete');
+    Route::put('/', LoftonTi\Apiv1\Services\Products\Controllers\UpdateProductController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,update') -> name('update-product');
   });
 
   Route::prefix('shipowners') -> group(function ()

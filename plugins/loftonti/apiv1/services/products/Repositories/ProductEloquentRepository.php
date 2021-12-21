@@ -5,6 +5,7 @@ namespace Loftonti\Apiv1\Services\Products\Repositories;
 use Illuminate\Support\Facades\DB;
 use LoftonTi\Apiv1\Services\Products\Contracts\ProductContracts;
 use Loftonti\Erso\Models\Products;
+use phpDocumentor\Reflection\Types\Void_;
 
 class ProductEloquentRepository implements ProductContracts
 {
@@ -86,14 +87,15 @@ class ProductEloquentRepository implements ProductContracts
           'stock' => $product['stock']
         ]
       ]);
-      foreach ($product['applications'] as $application) {
-        $p -> applications() -> create([
-          'car_id' => $application['car_id'],
-          'shipowner_id' => $application['shipowner_id'],
-          'year' => $application['year'],
-          'note' => $application['note'],
-        ]);
-      }
+      $this -> attachApplications($p, $product['applications']);
+      // foreach ($product['applications'] as $application) {
+      //   $p -> applications() -> create([
+      //     'car_id' => $application['car_id'],
+      //     'shipowner_id' => $application['shipowner_id'],
+      //     'year' => $application['year'],
+      //     'note' => $application['note'],
+      //   ]);
+      // }
       return $p;
     });
     return $transaction;
@@ -105,6 +107,36 @@ class ProductEloquentRepository implements ProductContracts
       -> repository 
       -> whereIn('erso_code', $products)
       -> update(['product_status' => false]);
+  }
+
+  public function update(string $erso_code, array $product): void
+  {
+    $updated = $this
+      -> repository
+      -> where('erso_code', $erso_code)
+      -> first();
+    if ($updated) {
+      $updated -> update($product);
+      $updated 
+        -> branches()
+        -> where('id', $product['branch_id'])
+        -> where('enterprise_id', $product['branch_id'])
+        -> update(['stock' => $product['stock']]);
+      $updated -> applications() -> delete();
+      $this -> attachApplications($updated, $product['applications']);
+    }
+  }
+
+  private function attachApplications(object $product, array $applications)
+  {
+    foreach ($applications as $application) {
+      $product -> applications() -> create([
+        'car_id' => $application['car_id'],
+        'shipowner_id' => $application['shipowner_id'],
+        'year' => $application['year'],
+        'note' => $application['note'],
+      ]);
+    }
   }
 
 }

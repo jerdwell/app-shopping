@@ -18,5 +18,7 @@ interface ProductContracts
   public function create(array $product, int $branch_id): ?object;
   
   public function deleteMany(array $products): int;
+  
+  public function update(string $erso_code, array $product): void;
 
 }

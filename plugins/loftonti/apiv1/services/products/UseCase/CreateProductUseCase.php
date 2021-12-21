@@ -38,7 +38,7 @@ class CreateProductUseCase
         $this -> repository -> create($p, $this -> branch_id);
         $products[] = $p;
       } catch (\Throwable $th) {
-        $this -> errors[] = "Producto problema en el producto {$product['CVE_ART']}: " . $th -> getMessage();
+        $this -> errors[] = "Existe un problema en el producto {$product['CVE_ART']}: " . $th -> getMessage();
       }
     }
     return [

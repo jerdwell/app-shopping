@@ -5,6 +5,9 @@ namespace LoftonTi\Apiv1\Services\Products\UseCase\Traits;
 trait SetProductPricesTrait
 {
 
+  /**
+   * @return array [public_price, customer_price]
+   */
   public function setProductPrices(array $prices): array
   {
     $prices = collect($prices);
