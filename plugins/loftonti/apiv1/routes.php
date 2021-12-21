@@ -20,6 +20,11 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-branch-products');
   });
 
+  Route::prefix('brands') -> group(function(){
+    Route::post('/search', LoftonTi\Apiv1\Services\Brands\Controllers\SearchBrandController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('search-brands');
+  });
+
   Route::prefix('dashboard') -> group(function()
   {
     Route::get('/products', LoftonTi\Apiv1\Services\Dashboard\Controllers\CountBranchProductsController::class) 
@@ -48,7 +53,7 @@ Route::prefix('api/v1') -> group(function()
     Route::get('product/{erso_code}', LoftonTi\Apiv1\Services\Products\Controllers\GetProductController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-product');
     Route::post('/', LoftonTi\Apiv1\Services\Products\Controllers\CreateProductController::class)
-      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-product');
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('create-product');
     Route::post('upload-image', LoftonTi\Apiv1\Services\Products\Controllers\UploadProductImageUseCase::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,update') -> name('upload-product-image');
     Route::delete('/', LoftonTi\Apiv1\Services\Products\Controllers\DeleteProductsController::class)
