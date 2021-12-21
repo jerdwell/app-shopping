@@ -65,7 +65,6 @@ class SetDataProductUseCase
   public function __invoke($data): array
   {
     $this -> enterprise_id = $data['enterprise_id'];
-    $erso_code = mb_strtoupper($this -> erso_code);
     $prices = $this ->setProductPrices($data['prices']);
     $product = [
       "enterprise_id" => $this -> enterprise_id,
@@ -76,7 +75,7 @@ class SetDataProductUseCase
       "brand_id" => $data['brand']['id'],
       "public_price" => $prices['public_price'],
       "customer_price" => $prices['customer_price'],
-      "product_cover" => '/products/' . $erso_code . '.jpg',
+      "product_cover" => '/products/' . $data['CVE_ART'] . '.jpg',
       "stock" => $data['EXIST'],
       "applications" => $this -> setApplications($data['applications']),
     ];
