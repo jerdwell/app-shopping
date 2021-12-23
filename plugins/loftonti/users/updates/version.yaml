@@ -12,3 +12,12 @@
 1.0.5:
     - 'add timestamps in table users'
     - builder_table_update_loftonti_users_users_2.php
+1.0.6:
+    - 'Updated table loftonti_users_users - change typ of status, unifique name and lastname in full_name and add rfc field'
+    - builder_table_update_loftonti_users_users_3.php
+1.0.7:
+    - 'Updated table loftonti_users_address - add fields line3, localty, cross_site(s), referency and change addres to line'
+    - builder_table_update_loftonti_users_address.php
+1.0.8:
+    - 'Updated table loftonti_users_users - rename table users as customers'
+    - builder_table_update_loftonti_users_customers.php
