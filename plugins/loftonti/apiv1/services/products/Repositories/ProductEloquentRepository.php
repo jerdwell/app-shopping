@@ -59,9 +59,14 @@ class ProductEloquentRepository implements ProductContracts
       -> where('erso_code', $erso_code)
       -> with([
         'brand',
-        'applications',
         'branches',
-        'category'
+        'category',
+        'applications' => function($q) {
+          $q -> with([
+            'car',
+            'shipowner'
+          ]);
+        }
       ])
       -> first();
   }
