@@ -41,6 +41,11 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('all-categories');;
   });
 
+  Route::prefix('customers') -> group(function(){
+    Route::post('/', LoftonTi\Apiv1\Services\Customers\Controllers\CreateCustomerController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,create') -> name('create-customer');;
+  });
+
   Route::prefix('dashboard') -> group(function()
   {
     Route::get('/products', LoftonTi\Apiv1\Services\Dashboard\Controllers\CountBranchProductsController::class) 

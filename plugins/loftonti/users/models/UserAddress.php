@@ -19,13 +19,18 @@ class UserAddress extends Model
      * @var array filable to fill all public vars
      */
     public $fillable = [
-        "address1",
+        "line1",
+        "line2",
+        "line3",
         "suburb",
         "zip_code",
         "state",
         "city",
         "country",
-        "address2"
+        "localty",
+        "cross_site1",
+        "cross_site2",
+        "referency"
     ];
 
 
