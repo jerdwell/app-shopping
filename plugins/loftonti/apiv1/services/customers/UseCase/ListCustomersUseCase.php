@@ -21,7 +21,7 @@ class ListCustomersUseCase
     $per_page = $per_page ? $per_page : 100;
     $order = $order ? $order : 'asc';
     $order_by = $order_by ? $order_by : 'id';
-    return $this 
+    return $this
       -> repository
       -> list($per_page, $order, $order_by, $param);
   }

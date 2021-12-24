@@ -17,7 +17,7 @@ class CreateCustomerController
       $customer = new CreateCustomerUseCase;
       return $customer(
         $request -> only('email', 'phone', 'full_name', 'address', 'password'), 
-        'customer');
+        'customer', true);
       return $request -> all();
     } catch (\Throwable $th) {
       return response()
