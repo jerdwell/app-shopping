@@ -29,4 +29,25 @@ class CustomersEloquentRepository implements CustomerContracts
     return $created;
   }
 
+  public function get(int $id): ?object
+  {
+    return $this 
+      -> repository
+      -> with([
+        'address'
+      ])
+      -> find($id);
+  }
+
+  public function list(?int $per_page, ?string $order, ?string $order_by, ?string $param): object
+  {
+    return $this 
+      -> repository
+      ->when($param, function($q) use($order_by, $param){
+        return $q -> where($order_by, "like", "%{$param}%");
+      })
+      -> orderBy($order_by, $order)
+      -> paginate($per_page);
+  }
+
 }

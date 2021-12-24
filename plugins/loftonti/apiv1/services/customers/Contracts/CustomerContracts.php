@@ -5,5 +5,9 @@ interface CustomerContracts
 {
 
   public function create(array $customer): object;
+  
+  public function get(int $id): ?object;
+  
+  public function list(?int $per_page, ?string $order, ?string $order_by, ?string $param): ?object;
 
 }

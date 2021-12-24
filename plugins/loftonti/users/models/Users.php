@@ -37,6 +37,16 @@ class Users extends Model
     ];
 
     /**
+     * @var array set prootected fields
+     */
+    protected $hidden = [
+        'password',
+        'sk',
+        'pk',
+        'deleted_at'
+    ];
+
+    /**
      * @var string The database table used by the model.
      */
     public $table = 'loftonti_users_customers';
