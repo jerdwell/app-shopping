@@ -9,5 +9,7 @@ interface CustomerContracts
   public function get(int $id): ?object;
   
   public function list(?int $per_page, ?string $order, ?string $order_by, ?string $param): ?object;
+  
+  public function update(array $customer): ?object;
 
 }

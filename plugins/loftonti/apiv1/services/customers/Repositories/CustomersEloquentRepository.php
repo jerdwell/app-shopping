@@ -31,7 +31,7 @@ class CustomersEloquentRepository implements CustomerContracts
 
   public function get(int $id): ?object
   {
-    return $this 
+    return $this
       -> repository
       -> with([
         'address'
@@ -48,6 +48,16 @@ class CustomersEloquentRepository implements CustomerContracts
       })
       -> orderBy($order_by, $order)
       -> paginate($per_page);
+  }
+
+  public function update(array $customer): ?object
+  {
+    $customer_entity = $this -> repository -> find($customer['id']);
+    $customer_entity -> update($customer);
+    $customer_entity -> address()
+      -> update($customer['address']);
+    $customer_entity -> address;
+    return $customer_entity;
   }
 
 }

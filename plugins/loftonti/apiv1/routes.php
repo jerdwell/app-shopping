@@ -48,6 +48,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,read') -> name('get-customer');;
     Route::post('list', LoftonTi\Apiv1\Services\Customers\Controllers\ListCustomersController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,read') -> name('list-customers');;
+    Route::put('/', LoftonTi\Apiv1\Services\Customers\Controllers\UpdateCustomerController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,update') -> name('update-customer');;
   });
 
   Route::prefix('dashboard') -> group(function()

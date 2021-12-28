@@ -4,7 +4,7 @@ namespace LoftonTi\Apiv1\Services\Customers\Usecase;
 
 use LoftonTi\Apiv1\Services\Customers\Repositories\CustomersEloquentRepository;
 
-class GetCustomerUseCase
+class UpdateCustomerUseCase
 {
 
   /**
@@ -16,13 +16,11 @@ class GetCustomerUseCase
     $this->repository = new CustomersEloquentRepository;
   }
 
-  public function __invoke(int $id)
+  public function __invoke(array $customer)
   {
-    $customer = $this 
+    return $this
       -> repository
-      -> get($id);
-    if(!$customer) throw new \Exception("Este cliente no existe");
-    return $customer;
+      -> update($customer);
   }
 
 }

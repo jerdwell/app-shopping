@@ -2,7 +2,6 @@
 
 namespace LoftonTi\Apiv1\Services\Customers\Request;
 
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -20,7 +19,7 @@ trait NewCustomerRequest
     try {
       $valid = Validator::make(
         $request -> all(), 
-        $this -> rules(),
+        $this -> rules($request->all()),
         $this -> messages()
       );
       if($valid -> fails()){
@@ -35,13 +34,15 @@ trait NewCustomerRequest
     }
   }
 
-  private function rules()
+  private function rules(array $customer)
   {
     return [
-      'email' => 'required|email|unique:loftonti_users_customers,email',
+      'email' => 'required|email|' . Rule::unique('loftonti_users_customers') -> ignore(isset($customer['id']) ? $customer['id'] : null, 'id'),
       'phone' => 'required|max:25|regex:/^[0-9\/-]*$/',
       'password' => 'sometimes|string|min:8|max:20',
       'full_name' => 'required|string|min:4|max:120',
+      'status' => 'sometimes|' . Rule::in(['A', 'S', 'M']),
+      'rfc' => 'sometimes|nullable|alpha_num|min:12|max:13',
       'address' => 'required|array',
       'address.line1' => 'present|string|min:1|max:80',
       'address.line2' => 'present|string|min:1|max:15',
@@ -65,6 +66,8 @@ trait NewCustomerRequest
       'phone.*' => 'El teléfono es un dato requerido y no puede contener más de 25 dígitos',
       'password.*' => 'La contraseña es un dato requerido y debe contener entre 8 y 20 caracteres incuidas mayúsculas, minúsculas y números',
       'full_name.*' => 'El nombre es un dato requerido y debe contener entre 4 y 120 caracteres',
+      'status.*' => 'El status solo puede estar dentro de las categorías establlecidas (Activo, Suspendido, Moroso)',
+      'rfc.*' => 'El RFC solo puede contener números y letras y debe contener entre 12 y 13 caracteres',
       'address.line1.*' => 'La calle debe contener entre 1 y 80 caracteres',
       'address.line2.*' => 'El número interior debe contener entre 1 y 15 caracteres',
       'address.line3.*' => 'El número debe contener entre 1 y 15 caracteres',

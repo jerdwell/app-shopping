@@ -1064,8 +1064,8 @@ module.exports = Slide; // TODO(erdwell): Add features to touch events
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\themes\erso\src\js\main.js */"./themes/erso/src/js/main.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\themes\erso\src\scss\app.sass */"./themes/erso/src/scss/app.sass");
+__webpack_require__(/*! C:\Users\mktstf05\Documents\projects\erso\themes\erso\src\js\main.js */"./themes/erso/src/js/main.js");
+module.exports = __webpack_require__(/*! C:\Users\mktstf05\Documents\projects\erso\themes\erso\src\scss\app.sass */"./themes/erso/src/scss/app.sass");
 
 
 /***/ })
