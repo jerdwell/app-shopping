@@ -20,6 +20,7 @@ class UpdateCustomerUseCase
   {
     unset($customer['created_at']);
     unset($customer['updated_at']);
+    unset($customer['password']);
     unset($customer['email_verified_at']);
     unset($customer['address']['user_id']);
     return $this
