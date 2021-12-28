@@ -18,6 +18,10 @@ class UpdateCustomerUseCase
 
   public function __invoke(array $customer)
   {
+    unset($customer['created_at']);
+    unset($customer['updated_at']);
+    unset($customer['email_verified_at']);
+    unset($customer['address']['user_id']);
     return $this
       -> repository
       -> update($customer);
