@@ -2,7 +2,7 @@
 {% set categories = __SELF__.categories %} 
 {% set post = __SELF__.post %} 
 {% partial 'titles/_post' post = post %} 
-{% partial 'components/_step' title = post.title align= "center" type= "light" local= true color= "dark" principal = true img = post.cover.path %} 
+{% partial 'components/_step' isBlog= true title = post.title align= "center" type= "light" local= true color= "dark" principal = true img = post.cover.path %} 
 {% partial'components/_breadcrumbs' type='blog' posts = posts post=post %}
 
 <section class="post-container bg-dark">
