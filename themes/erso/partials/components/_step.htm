@@ -15,20 +15,27 @@ category = this.param.category %}
     <img src="{{ img }}" alt="Refaccionarias ERSO" class="step-bg" />
     {% endif %}
     <div class="step-text text-center">
-        {% if branch and category or branch == "" %}
-        <span data-aos="fade-up">{{ title }}</span>
-
+        {% if isBlog == true %}
+            <h1>{{ title }}</h1>
         {% else %}
+                
+            {% if branch and category or branch == "" %}
+            <span data-aos="fade-up">{{ title }}</span>
 
-        <div class="erso-titles">
-            <h1 data-aos="fade-up">
-                Refaccionaria en <span class="cap_branch">{{branch}}</span>
-            </h1>
-            <h2 data-aos="fade-up">
-                Catálogos de productos {{category}}
-                <span class="cap_branch">{{branch}}</span>
-            </h2>
-        </div>
+            {% else %}
+
+            <div class="erso-titles">
+                <h1 data-aos="fade-up">
+                    Refaccionaria en <span class="cap_branch">{{branch}}</span>
+                </h1>
+                <h2 data-aos="fade-up">
+                    Catálogos de productos {{category}}
+                    <span class="cap_branch">{{branch}}</span>
+                </h2>
+            </div>
+            {% endif %}
         {% endif %}
+
+     
     </div>
 </div>
