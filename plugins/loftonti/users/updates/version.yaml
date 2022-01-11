@@ -21,3 +21,6 @@
 1.0.8:
     - 'Updated table loftonti_users_users - rename table users as customers'
     - builder_table_update_loftonti_users_customers.php
+1.0.9:
+    - 'Updated table loftonti_users_address - set all items as null default'
+    - builder_table_update_loftonti_users_address_2.php

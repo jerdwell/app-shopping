@@ -60,4 +60,12 @@ class CustomersEloquentRepository implements CustomerContracts
     return $customer_entity;
   }
 
+  public function getBycol(string $col, string $value): ?object
+  {
+    $customer_entity = $this -> repository 
+      -> where($col, $value)
+      -> first();
+    return $customer_entity;
+  }
+
 }

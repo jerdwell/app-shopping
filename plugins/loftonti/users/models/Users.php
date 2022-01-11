@@ -1,12 +1,7 @@
 <?php namespace LoftonTi\Users\Models;
 
 use Model;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
+use LoftonTi\Apiv1\Services\Customers\Scopes\BeforeSave;
 
 /**
  * Model
@@ -16,6 +11,8 @@ class Users extends Model
     use \October\Rain\Database\Traits\Validation;
     
     use \October\Rain\Database\Traits\SoftDelete;
+
+    use BeforeSave;
 
     protected $dates = ['deleted_at'];
 

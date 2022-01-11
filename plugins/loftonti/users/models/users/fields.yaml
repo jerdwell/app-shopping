@@ -1,11 +1,6 @@
 fields:
-    firstname:
+    full_name:
         label: Nombre(s)
-        span: auto
-        required: 1
-        type: text
-    lastname:
-        label: Apellido(s)
         span: auto
         required: 1
         type: text
@@ -22,9 +17,13 @@ fields:
     type:
         label: Tipo
         options:
-            user: Usuario
+            guest: Usuario
             customer: Cliente
         showSearch: true
         span: auto
         required: 1
         type: dropdown
+    rfc:
+        label: RFC
+        span: auto
+        type: text

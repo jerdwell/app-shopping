@@ -12,4 +12,6 @@ interface CustomerContracts
   
   public function update(array $customer): ?object;
 
+  public function getByCol(string $col, string $value): ?object;
+
 }

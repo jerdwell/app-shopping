@@ -1,8 +1,16 @@
 fields:
-    address1:
-        label: 'Calle y número'
+    line1:
+        label: Calle
         span: auto
         required: 1
+        type: text
+    line2:
+        label: 'Número ext'
+        span: auto
+        type: text
+    line3:
+        label: 'Num int'
+        span: auto
         type: text
     zip_code:
         label: 'Código postal'
@@ -36,7 +44,15 @@ fields:
         readOnly: 1
         required: 1
         type: text
-    address2:
+    cross_site1:
+        label: 'Cruzamiento 1'
+        span: auto
+        type: text
+    cross_site2:
+        label: 'Cruzamiento 2'
+        span: auto
+        type: text
+    referency:
         label: Referencias
         span: auto
         type: text

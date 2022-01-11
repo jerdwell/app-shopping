@@ -44,6 +44,8 @@ Route::prefix('api/v1') -> group(function()
   Route::prefix('customers') -> group(function(){
     Route::post('/', LoftonTi\Apiv1\Services\Customers\Controllers\CreateCustomerController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,create') -> name('create-customer');;
+    Route::post('/many', LoftonTi\Apiv1\Services\Customers\Controllers\CreateManyCustomersController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,create') -> name('create-many-customers');;
     Route::get('/{id}', LoftonTi\Apiv1\Services\Customers\Controllers\GetCustomerController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,read') -> name('get-customer');;
     Route::post('list', LoftonTi\Apiv1\Services\Customers\Controllers\ListCustomersController::class)

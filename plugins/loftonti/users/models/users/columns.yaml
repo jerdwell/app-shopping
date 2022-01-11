@@ -3,11 +3,10 @@ columns:
         label: id
         type: number
         sortable: true
-    firstname:
+    full_name:
         label: Nombre
         type: text
         searchable: true
-        select: 'concat(firstname, '' '', lastname)'
     email:
         label: Correo
         type: text
@@ -17,3 +16,6 @@ columns:
         label: Teléfono
         type: text
         searchable: true
+    rfc:
+        label: rfc
+        type: text
