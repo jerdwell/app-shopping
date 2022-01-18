@@ -68,4 +68,15 @@ class CustomersEloquentRepository implements CustomerContracts
     return $customer_entity;
   }
 
+  public function search(string $data): ?object
+  {
+    return $this -> repository
+      -> where('email', 'like', "%$data%")
+      -> orWhere('rfc', 'like', "%$data%")
+      -> orWhere('phone', 'like', "%$data%")
+      -> with(['address'])
+      -> limit(10)
+      -> get();
+  }
+
 }

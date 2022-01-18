@@ -15,10 +15,14 @@ interface ProductContracts
   
   public function getInErsoCode(array $codes): ?object;
   
+  public function getById(int $id): ?object;
+  
   public function create(array $product, int $branch_id): ?object;
   
   public function deleteMany(array $products): int;
   
   public function update(string $erso_code, array $product): void;
+  
+  public function search(?int $car, ?int $shipowner, ?int $category, ?int $brand, ?int $year, ?string $erso_code): ?object;
 
 }

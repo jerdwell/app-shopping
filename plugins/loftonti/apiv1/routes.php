@@ -8,6 +8,8 @@ Route::prefix('api/v1') -> group(function()
   Route::prefix('applications') -> group(function(){
     Route::get('/', LoftonTi\Apiv1\Services\Applications\Controllers\GetDataApplicationsController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-applications');
+    Route::post('years', LoftonTi\Apiv1\Services\Applications\Controllers\GetYearsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('get-range-years');
   });
 
   Route::prefix('auth') -> group(function()
@@ -52,6 +54,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,read') -> name('list-customers');;
     Route::put('/', LoftonTi\Apiv1\Services\Customers\Controllers\UpdateCustomerController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,update') -> name('update-customer');;
+    Route::post('/search', LoftonTi\Apiv1\Services\Customers\Controllers\SearchCustomerController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:customers,read') -> name('search-customer');;
   });
 
   Route::prefix('dashboard') -> group(function()
@@ -80,6 +84,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,delete');
     Route::put('/', LoftonTi\Apiv1\Services\Products\Controllers\UpdateProductController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,update') -> name('update-product');
+    Route::post('search', LoftonTi\Apiv1\Services\Products\Controllers\SearchProductsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('search-products');
   });
 
   Route::prefix('shipowners') -> group(function ()
@@ -88,6 +94,12 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('search-shipowner');
     Route::post('/', LoftonTi\Apiv1\Services\Shipowners\Controllers\CreateShipownerController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,create') -> name('create-shipowner');
+  });
+
+  Route::prefix('shoppings') -> group(function ()
+  {
+    Route::post('/admin', LoftonTi\Apiv1\Services\Shoppings\Controllers\CreateShoppingController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('create-order');
   });
 
 });

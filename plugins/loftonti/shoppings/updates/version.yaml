@@ -18,3 +18,6 @@
 1.0.7:
     - 'Updated table loftonti_shoppings_shopping_contact add id field'
     - builder_table_update_loftonti_shoppings_shopping_contact.php
+1.0.8:
+    - 'Updated table loftonti_shoppings_shopping_contact - set values as nullable'
+    - builder_table_update_loftonti_shoppings_shopping_contact_2.php

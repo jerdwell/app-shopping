@@ -39,5 +39,4 @@ class Enterprises extends Model
     {
         $this -> enterprise_slug = Str::slug($this -> enterprise_name);
     }
-
 }

@@ -13,5 +13,7 @@ interface CustomerContracts
   public function update(array $customer): ?object;
 
   public function getByCol(string $col, string $value): ?object;
+  
+  public function search(string $value): ?object;
 
 }

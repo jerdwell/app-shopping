@@ -2,6 +2,7 @@
 
 use Model;
 use Illuminate\Support\Str;
+use LoftonTi\Apiv1\Services\Products\Scopes\ScopeSearch;
 use Loftonti\Erso\Models\Applications;
 use Loftonti\Erso\Models\Categories;
 
@@ -10,7 +11,8 @@ use Loftonti\Erso\Models\Categories;
  */
 class Products extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Validation,
+    ScopeSearch;
     
     /*
      * Disable timestamps by default.
@@ -142,7 +144,7 @@ class Products extends Model
 
     public $belongsTo = [
         'brand' => [ 'Loftonti\Erso\Models\Brands' ],
-        'category' => [ 'Loftonti\Erso\Models\Categories' ],
+        'category' => [ 'Loftonti\Erso\Models\Categories' ]
     ];
 
     public $hasMany = [
@@ -160,6 +162,13 @@ class Products extends Model
             'key' => 'product_id',
             'otherKey' => 'branch_id',
             'pivot' => ['stock', 'enterprise_id']
+        ],
+        'enterprises' => [
+            'Loftonti\Erso\Models\Enterprises',
+            'table' => 'loftonti_erso_product_branch',
+            'key' => 'product_id',
+            'otherKey' => 'enterprise_id',
+            'pivot' => ['stock', 'branch_id']
         ],
         'orders' => [
             'LoftonTi\Shoppings\Models\Shoppings',

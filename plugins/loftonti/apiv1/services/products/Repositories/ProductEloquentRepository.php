@@ -5,7 +5,6 @@ namespace Loftonti\Apiv1\Services\Products\Repositories;
 use Illuminate\Support\Facades\DB;
 use LoftonTi\Apiv1\Services\Products\Contracts\ProductContracts;
 use Loftonti\Erso\Models\Products;
-use phpDocumentor\Reflection\Types\Void_;
 
 class ProductEloquentRepository implements ProductContracts
 {
@@ -142,6 +141,25 @@ class ProductEloquentRepository implements ProductContracts
         'note' => $application['note'],
       ]);
     }
+  }
+
+  public function search(?int $car, ?int $shipowner, ?int $category, ?int $brand, ?int $year, ?string $erso_code): ?object
+  {
+    return $this -> repository
+      -> search($car, $shipowner, $category, $brand, $year, $erso_code);
+  }
+
+  public function getById(int $id): ?object
+  {
+    return $this -> repository ->
+      with([
+        'applications',
+        'brand',
+        'branches',
+        'category',
+        'enterprises'
+      ])
+      -> find($id);
   }
 
 }
