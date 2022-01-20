@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9904292bb479f9b02ad24dffeed46319",
+    "content-hash": "62442ac565e802b6f0a7c034231cfb85",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1046,7 +1046,7 @@
         },
         {
             "name": "facturapi/facturapi-php",
-            "version": "1.7.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FacturAPI/facturapi-php.git",
@@ -6736,7 +6736,6 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "abandoned": true,
             "time": "2015-07-28T20:34:47+00:00"
         },
         {

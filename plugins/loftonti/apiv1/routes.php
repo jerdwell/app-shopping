@@ -106,9 +106,4 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,read') -> name('get-order');
   });
 
-  Route::prefix('billing') -> group(function ()
-  {
-    Route::post('/test', LoftonTi\Apiv1\Services\Billing\Controllers\TestBillingController::class) -> name('test.billing');
-  });
-
 });
