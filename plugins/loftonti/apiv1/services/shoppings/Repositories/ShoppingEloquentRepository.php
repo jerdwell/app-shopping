@@ -39,4 +39,39 @@ class ShoppingEloquentRepository implements ShoppingsContracts
     return $orders;
   }
 
+  public function list(string $begin, string $end, string $order, ?int $branch_id, ?int $customer_id, int $limit): object
+  {
+    return $this -> repository 
+      -> whereDate('created_at', '>=', now() -> parse($begin) -> format('Y-m-d H:i:s'))
+      -> whereDate('created_at', '<=', now() -> parse($end) -> format('Y-m-d H:i:s'))
+      -> when($branch_id, function($q) use ($branch_id) {
+        $q -> whereHas('branch', function($b) use ($branch_id){
+          $b -> where('branch_id', $branch_id);
+        });
+      })
+      -> when($customer_id, function($q) use ($customer_id) {
+        $q -> whereHas('user', function($b) use ($customer_id){
+          $b -> where('user_id', $customer_id);
+        });
+      })
+      -> with([
+        'user',
+        'shopping_contact',
+        'products'
+      ])
+      -> orderBy('id', 'desc')
+      -> paginate($limit);
+  }
+
+  public function find(int $id): ?object
+  {
+    return $this -> repository 
+      -> with([
+        'products',
+        'user',
+        'branch'
+      ]) 
+      -> find($id);
+  }
+
 }

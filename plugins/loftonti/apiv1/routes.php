@@ -99,7 +99,16 @@ Route::prefix('api/v1') -> group(function()
   Route::prefix('shoppings') -> group(function ()
   {
     Route::post('/admin', LoftonTi\Apiv1\Services\Shoppings\Controllers\CreateShoppingController::class)
-      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:products,read') -> name('create-order');
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,create') -> name('create-order');
+    Route::post('/admin/list', LoftonTi\Apiv1\Services\Shoppings\Controllers\ListShoppingsController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,read') -> name('list-orders');
+    Route::get('/admin/{id}', LoftonTi\Apiv1\Services\Shoppings\Controllers\GetShoppingController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,read') -> name('get-order');
+  });
+
+  Route::prefix('billing') -> group(function ()
+  {
+    Route::post('/test', LoftonTi\Apiv1\Services\Billing\Controllers\TestBillingController::class) -> name('test.billing');
   });
 
 });

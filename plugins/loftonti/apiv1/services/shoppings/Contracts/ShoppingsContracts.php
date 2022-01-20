@@ -9,4 +9,8 @@ interface ShoppingsContracts
   
   public function getOrdersOfMonth(int $branch_id): object;
 
+  public function list(string $begin, string $end, string $order, ?int $branch_id, ?int $customer_id, int $limit): object;
+  
+  public function find(int $id): ?object;
+
 }

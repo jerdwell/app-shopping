@@ -37,12 +37,8 @@ class SetOrderItemsUseCase
       $items_quotation[] = [
         'product_id' => $product -> id,
         'quantity' => $item['quantity'],
-        // 'product' => $product -> product_name,
         'discount' => 0.00,
         'current_price' => number_format($price, 2, '.', ''),
-        // 'amount' => number_format(SetAmountUseCase::productAmount($price, $item['quantity']), 2, '.', ''),
-        // 'marca' => $product -> brand -> brand_name,
-        // 'image' => $product -> product_cover
       ];
     }
     return $items_quotation;
