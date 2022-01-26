@@ -13,4 +13,6 @@ interface ShoppingsContracts
   
   public function find(int $id): ?object;
 
+  public function updateStatus(int $id, string $status, ?string $notes): bool;
+
 }

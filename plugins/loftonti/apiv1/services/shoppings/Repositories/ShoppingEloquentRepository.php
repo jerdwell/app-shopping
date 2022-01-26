@@ -74,4 +74,11 @@ class ShoppingEloquentRepository implements ShoppingsContracts
       -> find($id);
   }
 
+  public function updateStatus(int $id, string $status, ?string $notes): bool
+  {
+    return $this -> repository 
+      -> where('id', $id)
+      -> update(['status' => $status, 'notes' => $notes]); 
+  }
+
 }

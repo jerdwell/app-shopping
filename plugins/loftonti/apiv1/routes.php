@@ -104,6 +104,8 @@ Route::prefix('api/v1') -> group(function()
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,read') -> name('list-orders');
     Route::get('/admin/{id}', LoftonTi\Apiv1\Services\Shoppings\Controllers\GetShoppingController::class)
       -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,read') -> name('get-order');
+    Route::put('/admin/order-status', LoftonTi\Apiv1\Services\Shoppings\Controllers\UpdateStatusShoppingController::class)
+      -> middleware('LoftonTi\Apiv1\Services\Auth\Middleware\UserSystemAuthMiddleware:sales,update') -> name('update-status-order');
   });
 
 });
