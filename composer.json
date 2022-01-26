@@ -42,7 +42,8 @@
         "wikimedia/composer-merge-plugin": "dev-master",
         "barryvdh/laravel-dompdf": "^0.8.7",
         "firebase/php-jwt": "^5.4",
-        "facturapi/facturapi-php": "master"
+        "facturapi/facturapi-php": "master",
+        "guzzlehttp/guzzle": "7.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.7",
