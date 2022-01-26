@@ -39,7 +39,7 @@ class UpdateOrderStatusRequest
     return [
       'id.*' => 'Este pedido no existe en el sistema',
       'status.*' => 'El status que intentas asignar no está permitido',
-      'message.*' => 'Las observaciones deben contener entre 5 y 250 caracateres'
+      'notes.*' => 'Las observaciones deben contener entre 5 y 250 caracateres'
     ];
   }
 

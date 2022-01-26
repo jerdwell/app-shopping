@@ -23,13 +23,14 @@ class Shoppings extends Model
     /**
      * @var array 
      */
-    public $fillble = [
+    public $fillable = [
         'amount',
         'discount',
         'status',
         'shipping_cost',
         'branch_id',
-        'user_id'
+        'user_id',
+        'notes'
     ];
 
     /**

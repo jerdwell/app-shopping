@@ -14,6 +14,10 @@ class CreateOrderUseCase
    * @var null|int
    */
   private $customer_id;
+  /**
+   * @var null|string
+   */
+  private $notes;
   
   /**
    * @var int
@@ -24,11 +28,12 @@ class CreateOrderUseCase
    */
   private $repository;
 
-  public function __construct(array $items, ?object $customer, int $branch_id, array $shopping_contact) {
+  public function __construct(array $items, ?object $customer, int $branch_id, array $shopping_contact, ?string $notes) {
     $this -> customer_id = isset($customer -> id) ? $customer -> id : null;
     $this -> branch_id = $branch_id;
     $this -> shopping_contact = $shopping_contact;
     $this->items = $items;
+    $this -> notes = $notes;
     $this -> repository = new ShoppingEloquentRepository;
   }
 
@@ -41,6 +46,7 @@ class CreateOrderUseCase
       'discount' => 0.00,
       'status' => 'standby',
       'shipping_cost' => 0.00,
+      'notes' => $this -> notes,
       'user_id' => $this -> customer_id
     ];
     return $this -> repository 

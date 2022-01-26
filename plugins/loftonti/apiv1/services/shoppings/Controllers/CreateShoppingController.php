@@ -22,7 +22,7 @@ class CreateShoppingController
       if ($request -> customer_id) $customer = $request -> customer_id ? $customer('id', $request -> customer_id) : null;
       $items = new SetOrderItemsUseCase($request -> items, $request -> branch_id, $customer);
       $items = $items();
-      $order = new CreateOrderUseCase($items, $customer, $request -> branch_id, $request -> shopping_contact);
+      $order = new CreateOrderUseCase($items, $customer, $request -> branch_id, $request -> shopping_contact, $request -> notes);
       $order = $order();
       Queue::push('LoftonTi\Apiv1\Services\Shoppings\Events\OrderCreatedEvent', [
         'order_id' => $order -> id,
