@@ -34,7 +34,9 @@ class BranchEloquentrepository implements BranchContracts
         $q -> orderBy($data['order_by'], $data['order']);
       })
     -> when($data['param'], function ($query_search) use($data){
-      $query_search -> where('erso_code', 'like', "%" . $data['param'] . "%");
+      $query_search 
+        -> where('erso_code', 'like', "%" . $data['param'] . "%")
+        -> orwhere('product_name', 'like', "%" . $data['param'] . "%");
     })
     -> paginate($paginate));
   return $branch;

@@ -23,7 +23,6 @@ class SyncThrowNotificationJob
       throw $th;
     }
     $job->delete();
-    unlink($data['file_path']);
   }
 
 }

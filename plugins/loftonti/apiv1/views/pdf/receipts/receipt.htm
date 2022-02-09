@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Document</title>
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <table style="background-color: #f8f9fa; font-size: 14px; margin: 0; padding: 0; width: 100%;">
+    <thead>
+      <tr>
+        <th style="background-color: #000; color: white; text-align: center;" colspan="5">
+          <div style="text-align: center; width: 110px; display: inline-block; vertical-align: middle;">
+            <img src="{{ logo }}" style="width: 100px; margin:10px 0; padding:0;" alt="logo erso">
+          </div>
+          <span style="display: inline-block; vertical-align: middle; width: 60%;">ERSO - {{ order.branch.branch_name }} </span>
+          <span style="display: inline-block; vertical-align: middle; width: 20%; text-align: right;"><small>{{ order.created_at|date('Y/m/d') }}</small></span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5" style="text-align: center;">{{ order.branch.address1 }} colonia {{ order.branch.address2 }} {{ order.branch.zip_code }}</td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align: center;">{{ order.branch.state }}, {{ order.branch.country }}, {{ order.branch.city }}</td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align: center;">
+          {% for item in order.branch.contact_data %}
+            {% if item.type == 'phone' %}
+            <small> {{ item.data }} </small>
+            {% endif %}
+            {% if item.type == 'whatsapp' %}
+            <small> {{ item.data }} </small>
+            {% endif %}
+            {% if item.type == 'email' %}
+            <small> {{ item.data }} </small>
+            {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background: #8f8f8f; padding: 10px; padding: 10px; text-align: center;">Fecha de entrega: {{ order.created_at|split(' ')[0] }}</div>
+  
+    <div style="background: #cfcfcf;  width: 100%;">
+    {% if order.shopping_contact is not null %}
+      <div style="display: inline-block; vertical-align: top;">
+        <div style="width: 100%;">
+          <div style="color: #000; text-align: center;"><b>Dirección de entrega</b></div>
+          <div style="width: 100%; padding: 10px;">
+            <div style="display: inline-block; text-align: center; vertical-align: top;">
+              {{ order.shopping_contact.address1 }},
+              {{ order.shopping_contact.suburb }},
+              C.P. {{ order.shopping_contact[2].zip_code }},
+              Delegación {{ order.shopping_contact.city }},
+              Estado: {{ order.shopping_contact.state }},
+              Pais: {{ order.shopping_contact.country }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  
+  <table style="margin-top: 20px; width: 100%;">
+    <thead style="background-color: #000; color: white; margin-top: 20px;">
+      <tr>
+        <th style="text-align: center;" colspan="4">Productos</th>
+      </tr>
+    </thead>
+    <thead style="background-color: #C90D2B; color: white">
+      <tr>
+        <th style="padding: 5px;">Producto</th>
+        <th style="padding: 5px; text-align: center;">Cantidad</th>
+        <th style="padding: 5px; text-align: center;">P/Unitario</th>
+        <th style="padding: 5px; text-align: center;">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody style="font-size: 12px;">
+      {% for item in order.products %}
+      <tr>
+        <td style="border-bottom: solid 1px gray;">
+          <span>{{ item.product_name }}</span>
+          <br>
+          <small>Código: <b>{{ item.erso_code }}</b></small>
+          <br>
+          <small><b>{{ item.brand.brand_name }}</b></small>
+        </td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: center;">{{ item.pivot.quantity }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ item.pivot.current_price|number_format(2, '.', ',') }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ (item.pivot.current_price * item.pivot.quantity)|number_format(2, '.', ',') }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="background-color: #000; color: white; font-size: 1.3em; text-align: right;">Total: <b>${{ order.amount|number_format(2,'.', ',') }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</body>
+</html>

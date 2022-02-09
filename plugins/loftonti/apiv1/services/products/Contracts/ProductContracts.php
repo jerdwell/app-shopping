@@ -25,4 +25,6 @@ interface ProductContracts
   
   public function search(?int $car, ?int $shipowner, ?int $category, ?int $brand, ?int $year, ?string $erso_code): ?object;
 
+  public function updateStock(int $id, int $quantity, int $branch_id): bool;
+
 }

@@ -35,7 +35,7 @@ trait ListCustomersRequest
       'per_page' => 'required|nullable|integer|' . Rule::in([100, 200, 500, 1000]),
       'order' => 'present|nullable|string|' . Rule::in(['asc', 'desc']),
       'order_by' => 'present|nullable|string|' . Rule::in(['full_name', 'email', 'rfc', 'id', 'phone', 'type']),
-      'param' => 'present|nullable|string|min:3|max:100',
+      'param' => 'present|nullable|string|min:1|max:100',
     ];
   }
 

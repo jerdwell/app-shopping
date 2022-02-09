@@ -50,6 +50,7 @@ class CreateShoppingrequest
       "items" => "required|array|min:1",
       "items.*.id" => "required|integer|exists:loftonti_erso_products,id",
       "items.*.quantity" => "required|numeric|max:10",
+      "invoiceable" => "required|boolean",
     ];
   }
 
@@ -70,6 +71,7 @@ class CreateShoppingrequest
       'shopping_contact.email.*' => 'El correo este elemento no contiene la estructura correcta.',
       'shopping_contact.phone.*' => 'El teléfono debe contener entre 10 y 25 dígitos.',
       'shopping_contact.address2.*' => 'Las referencias del domicilio no pueden tener más de 200 caracteres.',
+      "invoiceable.*" => "Es requerido especificar si el pedido debera ser facturado.",
     ];
   }
 

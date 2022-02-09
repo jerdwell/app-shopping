@@ -20,6 +20,7 @@ fields:
         required: 1
         context:
             - create
+            - update
         type: password
     avatar:
         label: Avatar

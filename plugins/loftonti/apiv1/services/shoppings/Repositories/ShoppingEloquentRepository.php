@@ -67,9 +67,12 @@ class ShoppingEloquentRepository implements ShoppingsContracts
   {
     return $this -> repository 
       -> with([
+        'shopping_contact',
         'products',
+        'products.brand',
+        'products.category',
         'user',
-        'branch'
+        'branch',
       ]) 
       -> find($id);
   }

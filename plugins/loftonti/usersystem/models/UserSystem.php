@@ -62,6 +62,15 @@ class UserSystem extends Model
         $this -> pk = Str::random(32);
     }
 
+    public function beforeUpdate()
+    {
+        if (isset($this->password) && $this -> password){
+            $this -> password = Hash::make($this -> password);
+        }else{
+            unset($this -> password);
+        }
+    }
+
     /**
      * @var array
      */

@@ -31,14 +31,13 @@ class ProductEloquentRepository implements ProductContracts
   public function getProductsMostSelledByBranch(int $branch_id): object
   {
     $products = $this -> repository
-      -> selectRaw('loftonti_erso_products.*, count(shopping_id) as shoppings')
-      -> join('loftonti_shoppings_shopping_products', 'product_id', 'id')
-      -> join('loftonti_shoppings_shopping', 'branch_id', 'loftonti_shoppings_shopping_products.shopping_id')
-      -> groupBy('product_id')
-      -> where('product_status', true)
+      -> selectRaw('loftonti_erso_products.*, count(loftonti_erso_products.id) as shoppings')
+      -> join('loftonti_shoppings_shopping_products', 'product_id', 'loftonti_erso_products.id')
+      -> join('loftonti_shoppings_shopping', 'branch_id', DB::raw($branch_id))
       -> where('loftonti_shoppings_shopping.branch_id', $branch_id)
       -> whereRaw('MONTH(loftonti_shoppings_shopping.updated_at) = MONTH(CURRENT_DATE())')
       -> whereRaw('YEAR(loftonti_shoppings_shopping.updated_at) = YEAR(CURRENT_DATE())')
+      -> groupBy('loftonti_shoppings_shopping_products.product_id')
       -> take(5)
       -> get();
     return $products;
@@ -160,6 +159,14 @@ class ProductEloquentRepository implements ProductContracts
         'enterprises'
       ])
       -> find($id);
+  }
+
+  public function updateStock(int $id, int $quantity, int $branch_id): bool
+  {
+    $product = $this -> repository -> find($id);
+    $product -> branches;
+    $product -> branches() -> where('branch_id', $branch_id) -> update(['stock' => DB::raw("stock - $quantity")]);
+    return true;
   }
 
 }
