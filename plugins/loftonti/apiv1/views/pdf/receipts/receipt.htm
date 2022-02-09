@@ -18,11 +18,11 @@
     <thead>
       <tr>
         <th style="background-color: #000; color: white; text-align: center;" colspan="5">
+          <div style="display: block; text-align: right; width: 100%;">Pedido: #{{ order.id }}</div>
           <div style="text-align: center; width: 110px; display: inline-block; vertical-align: middle;">
             <img src="{{ logo }}" style="width: 100px; margin:10px 0; padding:0;" alt="logo erso">
           </div>
           <span style="display: inline-block; vertical-align: middle; width: 60%;">ERSO - {{ order.branch.branch_name }} </span>
-          <span style="display: inline-block; vertical-align: middle; width: 20%; text-align: right;"><small>{{ order.created_at|date('Y/m/d') }}</small></span>
         </th>
       </tr>
     </thead>
@@ -53,19 +53,28 @@
 
   <div style="background: #8f8f8f; padding: 10px; padding: 10px; text-align: center;">Fecha de entrega: {{ order.created_at|split(' ')[0] }}</div>
   
-    <div style="background: #cfcfcf;  width: 100%;">
+    <div style="background: #cfcfcf;  width: 100%; font-size: 14px;">
     {% if order.shopping_contact is not null %}
-      <div style="display: inline-block; vertical-align: top;">
+      <div style="display: inline-block; vertical-align: top; padding: 10px;">
         <div style="width: 100%;">
+          <div style="color: #000; text-align: center;"><b>Datos del cliente</b></div>
+            <p style="padding: 0; margin: 0;"><b>Nombre:</b> {{ order.shopping_contact.fullname }}</p>
+            <p style="padding: 0; margin: 0;"><b>Correo:</b> {{ order.shopping_contact.email }}</p>
+            <p style="padding: 0; margin: 0;"><b>Teléfono:</b> {{ order.shopping_contact.phone }}</p>
+            <p style="padding: 0; margin: 0;"><b>RFC:</b> {{ order.shopping_contact.rfc ? order.shopping_contact.rfc : null }}</p>
           <div style="color: #000; text-align: center;"><b>Dirección de entrega</b></div>
           <div style="width: 100%; padding: 10px;">
             <div style="display: inline-block; text-align: center; vertical-align: top;">
-              {{ order.shopping_contact.address1 }},
-              {{ order.shopping_contact.suburb }},
-              C.P. {{ order.shopping_contact[2].zip_code }},
-              Delegación {{ order.shopping_contact.city }},
-              Estado: {{ order.shopping_contact.state }},
-              Pais: {{ order.shopping_contact.country }}
+              {% if order.shopping_contact.address1 %}
+                {{ order.shopping_contact.address1 }},
+                {{ order.shopping_contact.suburb }},
+                C.P. {{ order.shopping_contact[2].zip_code }},
+                Delegación {{ order.shopping_contact.city }},
+                Estado: {{ order.shopping_contact.state }},
+                Pais: México
+              {% else %}
+              <h5 style="text-align: center;">En mostrador</h5>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -76,7 +85,7 @@
   <table style="margin-top: 20px; width: 100%;">
     <thead style="background-color: #000; color: white; margin-top: 20px;">
       <tr>
-        <th style="text-align: center;" colspan="4">Productos</th>
+        <th style="text-align: center;" colspan="5">Productos</th>
       </tr>
     </thead>
     <thead style="background-color: #C90D2B; color: white">
@@ -84,6 +93,7 @@
         <th style="padding: 5px;">Producto</th>
         <th style="padding: 5px; text-align: center;">Cantidad</th>
         <th style="padding: 5px; text-align: center;">P/Unitario</th>
+        <th style="padding: 5px; text-align: center;">IVA</th>
         <th style="padding: 5px; text-align: center;">Subtotal</th>
       </tr>
     </thead>
@@ -98,14 +108,13 @@
           <small><b>{{ item.brand.brand_name }}</b></small>
         </td>
         <td style="border-bottom: solid 1px gray; padding: 5px; text-align: center;">{{ item.pivot.quantity }}</td>
-        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ item.pivot.current_price|number_format(2, '.', ',') }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ item.pivot.current_price - (item.pivot.current_price|trim * 16 / 100)| number_format(2, '.', ',') }}</td>
+        <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ item.pivot.current_price * 16 / 100|number_format(2, '.', ',') }}</td>
         <td style="border-bottom: solid 1px gray; padding: 5px; text-align: right;">${{ (item.pivot.current_price * item.pivot.quantity)|number_format(2, '.', ',') }}</td>
       </tr>
       {% endfor %}
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td colspan="4"></td>
         <td style="background-color: #000; color: white; font-size: 1.3em; text-align: right;">Total: <b>${{ order.amount|number_format(2,'.', ',') }}</td>
       </tr>
     </tbody>
