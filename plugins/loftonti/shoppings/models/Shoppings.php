@@ -30,7 +30,11 @@ class Shoppings extends Model
         'shipping_cost',
         'branch_id',
         'user_id',
-        'notes'
+        'notes',
+        'sold_out',
+        'payment_method',
+        'type_billing',
+        'billing_id'
     ];
 
     /**

@@ -8,18 +8,18 @@ use Loftonti\Apiv1\Services\Billing\UseCase\SendByEmailInvoiceUseCase;
 class InvoiceableUseCase
 {
 
-  public function handler(object $order, bool $invoiceable)
+  public function handler(object $order, string $type_billing): object
   {
-    $invoiceable = $invoiceable ? 'invoice' : 'receipt';
     $method  = [
       'invoice' => new CreateInvoiceUseCase($order),
       'receipt' => new CreateReceiptUseCase($order, null),
     ];
-    $event = $method[$invoiceable]();
-    if ($invoiceable === 'invoice') {
+    $event = $method[$type_billing]();
+    if ($type_billing === 'invoice') {
       $sended = new SendByEmailInvoiceUseCase($event -> id, [$order -> shopping_contact]);
       $sended();
     }
+    return $event;
   }
 
 }

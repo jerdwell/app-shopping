@@ -26,13 +26,18 @@ class CreateInvoiceUseCase
       $customer = [
         "legal_name" => $this -> order -> shopping_contact -> fullname,
         "email" => $this -> order -> shopping_contact -> email,
-        "tax_id" => "mone890912qi2"
+        "tax_id" => $this -> order -> shopping_contact -> rfc
       ];
       $items = SetItemsInvoiceUseCase::setItems($this -> order -> products);
-      $payment_form = 'efectivo';
       $folio = $this -> order -> id;
-      $series = "F";
-      $invoice = $this -> repository -> createInvoice($customer, $items, $payment_form, $folio, $series);    if (isset($invoice -> message)) throw new \Exception($invoice -> message);
+      $series = null;
+      $invoice = $this -> repository -> createInvoice(
+        $customer,
+        $items,
+        $this -> order -> payment_method,
+        $folio,
+        $series
+      );
       if (isset($invoice -> message)) throw new \Exception($invoice -> message);
       return $invoice;
     } catch (\Throwable $th) {

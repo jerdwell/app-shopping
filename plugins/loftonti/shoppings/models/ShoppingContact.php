@@ -29,7 +29,8 @@ class ShoppingContact extends Model
         'fullname',
         'email',
         'phone',
-        'address2'
+        'address2',
+        'rfc'
     ];
 
 

@@ -24,3 +24,12 @@
 1.0.9:
     - 'Updated table loftonti_shoppings_shopping - add notes to shipping entity'
     - builder_table_update_loftonti_shoppings_shopping_2.php
+1.0.10:
+    - 'Updated table loftonti_shoppings_shopping - add items to handle billing'
+    - builder_table_update_loftonti_shoppings_shopping_3.php
+1.0.11:
+    - 'Updated table loftonti_shoppings_shopping_contact'
+    - builder_table_update_loftonti_shoppings_shopping_contact_3.php
+1.0.12:
+    - 'Updated table loftonti_shoppings_shopping add case_shopping field to specify chanle of sale'
+    - builder_table_update_loftonti_shoppings_shopping_4.php
