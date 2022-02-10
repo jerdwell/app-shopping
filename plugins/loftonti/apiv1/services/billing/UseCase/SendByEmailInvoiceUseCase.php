@@ -11,10 +11,6 @@ class SendByEmailInvoiceUseCase
    */
   private $id;
   /**
-   * @var array
-   */
-  private $emails;
-  /**
    * @var object
    */
   private $repository;
@@ -24,15 +20,14 @@ class SendByEmailInvoiceUseCase
    * @param string $id invoice id
    * @param array $emails list of emails to send invoice
    */
-  public function __construct(String $id, Array $emails) {
+  public function __construct(String $id) {
     $this->id = $id;
-    $this->emails = $emails;
     $this -> repository = new BillingFacturapiRepository;
   }
 
   public function __invoke(): void
   {
-    $this -> repository -> sendByEmail($this -> id, $this -> emails);
+    $this -> repository -> sendByEmail($this -> id);
   }
 
 }

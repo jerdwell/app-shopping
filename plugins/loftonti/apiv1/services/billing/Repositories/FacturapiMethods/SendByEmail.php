@@ -5,9 +5,9 @@ namespace LoftonTi\Apiv1\Services\Billing\Repositories\FacturapiMethods;
 trait sendByEmail
 {
 
-  public function sendByEmail(String $id, Array $emails): void
+  public function sendByEmail(String $id): void
   {
-    $this -> repository -> Invoices -> send_by_email($id, $emails);
+    $this -> repository -> Invoices -> send_by_email($id);
   }
 
 }

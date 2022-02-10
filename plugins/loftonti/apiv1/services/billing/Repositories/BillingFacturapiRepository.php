@@ -4,8 +4,11 @@ namespace LoftonTi\Apiv1\Services\Billing\Repositories;
 
 use Facturapi\Facturapi;
 use LoftonTi\Apiv1\Services\Billing\Contracts\BillingContracts;
+use LoftonTi\Apiv1\Services\Billing\Repositories\FacturapiMethods\cancelInvoice;
+use LoftonTi\Apiv1\Services\Billing\Repositories\FacturapiMethods\cancelReceipt;
 use LoftonTi\Apiv1\Services\Billing\Repositories\FacturapiMethods\createInvoice;
 use Loftonti\Apiv1\Services\Billing\Repositories\FacturapiMethods\CreateReceipt;
+use LoftonTi\Apiv1\Services\Billing\Repositories\FacturapiMethods\getInvoice;
 use LoftonTi\Apiv1\Services\Billing\Repositories\FacturapiMethods\sendByEmail;
 
 class BillingFacturapiRepository implements BillingContracts
@@ -13,7 +16,10 @@ class BillingFacturapiRepository implements BillingContracts
   use 
     createInvoice,
     sendByEmail,
-    CreateReceipt;
+    CreateReceipt,
+    getInvoice,
+    cancelInvoice,
+    cancelReceipt;
   /**
    * @var string
    */

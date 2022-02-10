@@ -30,7 +30,8 @@ class UpdateOrderStatusRequest
     return [
       'id' => 'required|integer|exists:loftonti_shoppings_shopping,id',
       'status' => 'required|string|' . Rule::in(['standby', 'ready', 'shipped', 'cancelled']),
-      'notes' => 'present|string|nullable|min:5|max:250'
+      'notes' => 'present|string|nullable|min:5|max:250',
+      'invoice_motive' => 'present|string|nullable|' . Rule::in(['02', '03']) . '|required_if:status,cancelled'
     ];
   }
 
@@ -39,7 +40,8 @@ class UpdateOrderStatusRequest
     return [
       'id.*' => 'Este pedido no existe en el sistema',
       'status.*' => 'El status que intentas asignar no está permitido',
-      'notes.*' => 'Las observaciones deben contener entre 5 y 250 caracateres'
+      'notes.*' => 'Las observaciones deben contener entre 5 y 250 caracateres',
+      'invoice_motive.*' => 'Captura el motivo de cancelación fiscal'
     ];
   }
 
