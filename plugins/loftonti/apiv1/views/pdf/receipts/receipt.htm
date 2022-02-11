@@ -12,13 +12,17 @@
   </style>
 </head>
 <body>
-
   
   <table style="background-color: #f8f9fa; font-size: 14px; margin: 0; padding: 0; width: 100%;">
     <thead>
       <tr>
         <th style="background-color: #000; color: white; text-align: center;" colspan="5">
-          <div style="display: block; text-align: right; width: 100%;">Pedido: #{{ order.id }}</div>
+          <div style="display: block; text-align: right; width: 100%;">
+            <span>Pedido: #{{ order.id }}</span>
+            {% if (order.type_billing == 'invoice') %}
+              <h5 style="color: white; padding: 0; margin: 0;">Factura #{{ order.billing_id }}</h5>
+            {% endif %}
+          </div>
           <div style="text-align: center; width: 110px; display: inline-block; vertical-align: middle;">
             <img src="{{ logo }}" style="width: 100px; margin:10px 0; padding:0;" alt="logo erso">
           </div>
@@ -65,7 +69,7 @@
           <div style="color: #000; text-align: center;"><b>Dirección de entrega</b></div>
           <div style="width: 100%; padding: 10px;">
             <div style="display: inline-block; text-align: center; vertical-align: top;">
-              {% if order.shopping_contact.address1 %}
+              {% if (order.shopping_contact.suburb) %}
                 {{ order.shopping_contact.address1 }},
                 {{ order.shopping_contact.suburb }},
                 C.P. {{ order.shopping_contact[2].zip_code }},

@@ -101,7 +101,7 @@ class PrepareProductsToSyncDatabaseUseCase
             array_push($this -> items_sync, $item);
           }
         } catch (\Throwable $th) {
-          $errors .= "<li>Error: " . $th->getMessage() . " en la línea $r</li>";
+          $errors .= "<li>Error: " . $th->getMessage() . " en la línea " . ($r + 1). "</li>";
         }
       }
       if(strlen($errors) > 0) $this -> thrownNotification($errors);
