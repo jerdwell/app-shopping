@@ -1,43 +1,45 @@
-{% set posts = __SELF__.related %}
-{% set categories = __SELF__.categories %}
-{% set post = __SELF__.post %}
+{% set posts = __SELF__.related %} 
+{% set categories = __SELF__.categories %} 
+{% set post = __SELF__.post %} 
+{% partial 'titles/_post' post = post %} 
+{% partial 'components/_step' isBlog= true title = post.title align= "center" type= "light" local= true color= "dark" principal = true img = post.cover.path %} 
+{% partial'components/_breadcrumbs' type='blog' posts = posts post=post %}
 
-{% partial 'titles/_post' 
-   post = post
-%}
-{%
-    partial 'components/_step'
-    title = post.title
-    align= "center"
-    type= "light"
-    local= true
-    color= "dark"
-    principal = true
-    img = post.cover.path
-%}
-{% partial 'components/_breadcrumbs' 
-    type='blog'
-    posts = posts
-    post=post
-%}
-
-{{ post.content|raw }}
-
-<div class="container-fluid">
+<section class="post-container bg-dark">
     <div class="row">
-        {% if posts|length > 0 %}
-            {% partial 'components/blog/_recents' posts = posts title='Relacionados' %}
-        {% else %}
-        <div class="col-lg-9">
-            <div class="text-center text-muted">
-                <h3>No existen noticias relacionadas</h3>
+        <div class="post-content-detail bg-white col-lg-8">
+            <div class="row align-center">
+                <div class="col-lg-11 post-content-box">
+                    <div class="post-content-detail-item">
+                        {{ post.content|raw }}
+                    </div>
+                    <div class="post-ellipsis-container">
+                        <strong class="post-ellipsis">...</strong>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-lg-4 browser-main-blog bg-dark">
+            {% partial 'components/blog/_filters-blog' categories = categories
+            %}
+        </div>
+        <div class="col-lg-8">
+            <div class="row bg-dark">
+                <section class="col-lg-12 centered">
+                    <header class="blog-header h1">Relacionados</header>
+
+                    {% if posts|length > 0 %} {% partial
+                    'components/blog/_related' posts = posts
+                    title='Relacionados' %} {% else %}
+                    <div class="col-lg-9">
+                        <div class="text-center text-muted">
+                            <h3>No existen noticias relacionadas</h3>
+                        </div>
+                    </div>
+                    {% endif %}
+                </section>
             </div>
         </div>
-        {% endif %}
-        <div class="col-lg-3 browser-main-blog bg-dark">
-        {% partial 'components/blog/_filters-blog' categories = categories %}
-        </div>
     </div>
-</div>
-
-<span>{{ categories }}</span>
+</section>

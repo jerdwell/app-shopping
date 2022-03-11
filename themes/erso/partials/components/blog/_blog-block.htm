@@ -1,23 +1,57 @@
 <div class="home-blog-block">
-  <div class="main-block">
-    <img src="{{ main_blog.cover.path }}" alt="" class="image-main-block">
-    <div class="main-block-data">
-      <h5 class="title-main-block text-yellow border-bottom border-yellow pb-3">{{ main_blog.title}}</h5>
-      <small class="text-light w-100">{{ main_blog.created_at }}</small>
-      <br>
-      <p class="text-main-block text-light">{{ main_blog.excerpt }}</p>
-      <a href="/blog/post/{{ main_blog.slug }}" class="btn btn-info btn-lg btn-block">Ver más</a>
+    <div class="block-item">
+        <div class="block-item-img">
+            <img
+                src="{{ main_blog.cover.path }}"
+                alt=""
+                class="image-main-block"
+            />
+        </div>
+        <div class="main-block-data">
+            <h5
+                class="
+                    title-main-block
+                    border-bottom border-black
+                    pb-3
+                "
+            >
+                {{ main_blog.title}}
+            </h5>
+            <small class="text-left w-100"
+                ><strong class="gray">{{ main_blog.created_at }}</strong></small
+            >
+            <br />
+            <p class="text-main-block">{{ main_blog.excerpt }}</p>
+            <div class="see-more">
+                <a
+                    href="/blog/post/{{ main_blog.slug }}"
+                    class="btn btn-info btn-sm"
+                    >Ver más</a
+                >
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="secondary-block">
-    {% for item in list_blogs %}
-    <div class="secondary-block-item">
-      <img src="{{ item.cover.path }}" alt="" class="image-secondary-block">
-      <div class="secondary-block-data text-center">
-        <h5 class="title-secondary-block text-center text-yellow">{{ item.title }}</h5>
-        <a href="/blog/post/{{ item.slug }}" class="btn btn-info btn-sm">Ver más</a>
-      </div>
+    {% for item in list_blogs | slice(0,2) %}
+    <div class="block-item">
+        <div class="block-item-img">
+            <img src="{{ item.cover.path }}" alt="" class="image-main-block" />
+        </div>
+        <div class="main-block-data">
+            <h5 class="title-main-block border-bottom border-black pb-3">
+                {{ item.title }}
+            </h5>
+            <small class="text-left w-100"
+                ><strong class="gray">{{ item.created_at }}</strong></small
+            >
+            <p class="text-main-block">{{ main_blog.excerpt }}</p>
+            <div class="see-more">
+                <a
+                    href="/blog/post/{{ item.slug }}"
+                    class="btn btn-info btn-sm text-center"
+                    >Ver más</a
+                >
+            </div>
+        </div>
     </div>
     {% endfor %}
-  </div>
 </div>

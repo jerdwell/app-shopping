@@ -1,15 +1,13 @@
-<div
-    class="recents-full-content col-lg-12"
+<div class="recents-full-content col-lg-12"
     style="background-image: url('{{ 'footer_03.png'|media }}');"
 >
     <div class="py-5">
-        <!-- <div class=" blog-recents-container"> -->
-        <div class="recents-container col-lg-12">
+        <div class="recents-container detail-post-main col-lg-12">
             {% set e = 0 %} {% for post in posts %}
-            <div class="bg-white col-lg-5 recent-item recent-secondary">
+            <div class="bg-white col-lg-5 recent-item">
                 <div class="container-image">
                     <img
-                        class="recent-item-image"
+                        class="image-main-block"
                         src="{{ post.cover.path }}"
                         alt=""
                     />
@@ -33,6 +31,5 @@
             {% set e = e +1 %} {% if(e > 2) %} {% set e = 0 %} {% endif %} {%
             endfor %}
         </div>
-        <!-- </div> -->
     </div>
 </div>
