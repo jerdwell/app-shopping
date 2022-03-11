@@ -47,7 +47,7 @@ class Products extends Controller
     {
         try {
             $file_name = 'layout-stock.csv';
-            $products = ProductsModel::all();
+            $products = ProductsModel::with('branches') -> get();
             $headers = array(
                 "Content-type"        => "text/csv",
                 "Content-Disposition" => "attachment; filename=$file_name",
@@ -55,16 +55,18 @@ class Products extends Controller
                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
                 "Expires"             => "0"
             );
-            $columns = array('id', 'erso_code', utf8_decode('Cuautitlán Izcalli'), 'Tlalnepantla', 'Coacalco', utf8_decode('Precio Público'), 'Precio Cliente');
+            $columns = array('id', 'erso_code', utf8_decode('Cuautitlán Izcalli'), 'Tlalnepantla', 'Coacalco', 'ATIZAPAN DE ZARAGOZA', utf8_decode('Precio Público'), 'Precio Cliente');
             $build = function () use ($products, $columns) {
                 $file = fopen('php://output', 'w');
                 fputcsv($file, $columns);
-                foreach ($products as $products) {
-                    $row['id'] = $products->id;
-                    $row['erso_code'] = $products->erso_code;
-                    $row['Cuautitlán Izcalli'] = null;
-                    $row['Tlalnepantla'] = null;
-                    $row['Coacalco'] = null;
+                foreach ($products as $product) {
+                    $branches = collect($product -> branches);
+                    $row['id'] = $product->id;
+                    $row['erso_code'] = $product->erso_code;
+                    $row['Cuautitlán Izcalli'] = $branches -> firstWhere('id', 1) ? 'Si' : 'No';
+                    $row['Tlalnepantla'] = $branches -> firstWhere('id', 2) ? 'Si' : 'No';
+                    $row['Coacalco'] = $branches -> firstWhere('id', 3) ? 'Si' : 'No';
+                    $row['ATIZAPAN DE ZARAGOZA'] = $branches -> firstWhere('id', 4) ? 'Si' : 'No';
                     $row['Precio Público'] = null;
                     $row['Precio Cliente'] = null;
                     fputcsv($file, array(
@@ -73,6 +75,7 @@ class Products extends Controller
                         $row['Cuautitlán Izcalli'],
                         $row['Tlalnepantla'],
                         $row['Coacalco'],
+                        $row['ATIZAPAN DE ZARAGOZA'],
                         $row['Precio Público'],
                         $row['Precio Cliente']
                     ));
