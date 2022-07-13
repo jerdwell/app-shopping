@@ -74,16 +74,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "ae03311f45dfe194412081526be2e003960df74b"
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/ae03311f45dfe194412081526be2e003960df74b",
-                "reference": "ae03311f45dfe194412081526be2e003960df74b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
                 "shasum": ""
             },
             "require": {
@@ -182,6 +182,7 @@
                 "modx",
                 "moodle",
                 "osclass",
+                "pantheon",
                 "phpbb",
                 "piwik",
                 "ppi",
@@ -204,7 +205,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v1.11.0"
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
             },
             "funding": [
                 {
@@ -220,7 +221,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-28T06:42:17+00:00"
+            "time": "2021-09-13T08:19:44+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2396,16 +2397,16 @@
         },
         {
             "name": "october/system",
-            "version": "v1.1.6",
+            "version": "v1.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/octoberrain/system.git",
-                "reference": "82f3de391359b8eca5417a8e8907555b6f01486f"
+                "reference": "cffaaaf12075302089995fd795677a16bef94787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/octoberrain/system/zipball/82f3de391359b8eca5417a8e8907555b6f01486f",
-                "reference": "82f3de391359b8eca5417a8e8907555b6f01486f",
+                "url": "https://api.github.com/repos/octoberrain/system/zipball/cffaaaf12075302089995fd795677a16bef94787",
+                "reference": "cffaaaf12075302089995fd795677a16bef94787",
                 "shasum": ""
             },
             "require": {
@@ -2447,9 +2448,9 @@
                 "system"
             ],
             "support": {
-                "source": "https://github.com/octoberrain/system/tree/v1.1.6"
+                "source": "https://github.com/octoberrain/system/tree/v1.1.12"
             },
-            "time": "2021-05-29T05:00:08+00:00"
+            "time": "2022-02-20T01:54:45+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -7049,5 +7050,5 @@
     "platform-overrides": {
         "php": "7.4.0"
     },
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
